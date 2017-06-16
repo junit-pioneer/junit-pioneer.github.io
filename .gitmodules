@@ -1,0 +1,3 @@
+[submodule "junit-pioneer"]
+	path = junit-pioneer
+	url = https://github.com/junit-pioneer/junit-pioneer.git
