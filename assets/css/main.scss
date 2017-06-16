@@ -5,3 +5,70 @@
 @charset "utf-8";
 
 @import "minimal-mistakes";
+
+$foreground-color: #EEE;
+$background-color: rgba(0, 0, 0, 0.7);
+
+@mixin borders() {
+	border: 1px solid $foreground-color;
+	border-radius: 7px;
+}
+
+// GENERAL
+
+html {
+	background-color: transparent;
+}
+
+body {
+	background-image: url("../site_images/starry-sky.jpg");
+	background-attachment: fixed;
+}
+
+// HEADER
+
+.greedy-nav {
+	background-color: $background-color;
+	@include borders();
+
+	a {
+		color: $foreground-color;
+	}
+
+	.site-title {
+		padding-left: 2rem;
+	}
+}
+
+// HERO
+
+.page__hero--overlay {
+	border-bottom: 1px solid $foreground-color;
+}
+
+// FOOTER
+
+.page__footer {
+	color: $foreground-color;
+	background-color: inherit;
+	margin-top: 1em;
+	border: none;
+
+	.social-icons .fa {
+		color: $foreground-color;
+	}
+
+	footer {
+		@include breakpoint($x-large) {
+			max-width: $x-large;
+		}
+		@include borders();
+		border-bottom: 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+
+		padding: 1em 2rem;
+
+		background-color: $background-color;
+	}
+}
