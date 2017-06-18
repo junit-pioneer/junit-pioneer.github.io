@@ -10,3 +10,13 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+
+
+# DOC MENUS
+# @junit-pioneer:start
+docs-junit-pioneer:
+  - title: Features
+    children:
+      - title: Disabling Tests
+        url: /docs/disabled/
+# @junit-pioneer:end

@@ -265,6 +265,15 @@ tag_archive:
 #     tag: /tags/:name/
 
 
+# Documentation
+collections:
+  docs:
+    output: true
+    # make sure the project does not appear in the path,
+    # so links don't break when features are moved between projects
+    permalink: /:collection/:name/
+
+
 # HTML Compression
 # - https://jch.penibelst.de/
 compress_html:
@@ -286,3 +295,20 @@ defaults:
       comments: false
       share: true
       related: true
+  # docs
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: single
+      author_profile: false
+      read_time: false
+      comments: false
+      share: true
+      related: true
+  - scope:
+      path: "_docs/junit-pioneer"
+      type: docs
+    values:
+      sidebar:
+        nav: "docs-junit-pioneer"
