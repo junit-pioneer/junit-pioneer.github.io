@@ -1,0 +1,90 @@
+// -----
+// CLEAN
+// -----
+
+task removeProjectPage(type: Delete) {
+	delete fileTree('site-source/_pages') {
+		include 'junit-pioneer.*'
+	}
+}
+
+task removeDocsPage(type: Delete) {
+	delete fileTree('site-source/_pages') {
+		include 'docs.*'
+	}
+}
+
+task removeDocs(type: Delete) {
+	delete 'site-source/_docs/junit-pioneer'
+}
+
+task removeDocNav() {
+	doLast {
+		description 'Deletes specific lines in _data/naviation.yml'
+		File nav = file('site-source/_data/navigation.yml')
+		String fullNav = nav.getText()
+		String removedNav = fullNav.replaceAll(/(?m)# @junit-pioneer:start$\s^docs-junit-pioneer:$\s(^[\D\d]*$\s)*^# @junit-pioneer:end/, "# @junit-pioneer:start\ndocs-junit-pioneer:\n# @junit-pioneer:end")
+		nav.setText(removedNav)
+	}
+}
+
+task clean {
+	dependsOn removeProjectPage, removeDocsPage, removeDocs, removeDocNav
+}
+
+// ------
+// CREATE
+// ------
+
+task copyProjectPage(type: Copy) {
+	from 'junit-pioneer/docs/'
+	include 'project-page.*'
+	rename 'project-page.(.*)', 'junit-pioneer.$1'
+	into 'site-source/_pages'
+}
+
+task copyDocsPage(type: Copy) {
+	from 'junit-pioneer/docs/'
+	include 'docs-page.*'
+	rename 'docs-page.(.*)', 'docs.$1'
+	into 'site-source/_pages'
+}
+
+task copyDocs(type: Copy) {
+	from 'junit-pioneer/docs'
+	exclude 'project.*', 'docs-page.*', 'docs-nav.yml'
+	into 'site-source/_docs/junit-pioneer'
+}
+
+task insertDocNav() {
+	doLast {
+		description 'Deletes specific lines in _data/naviation.yml'
+		String navContent = file('junit-pioneer/docs/docs-nav.yml').getText()
+		File navTarget = file('site-source/_data/navigation.yml')
+		String emptyNav = navTarget.getText()
+		String fullNav = emptyNav.replaceAll(/(?m)# @junit-pioneer:start$\s^docs-junit-pioneer:$\s^# @junit-pioneer:end/, "# @junit-pioneer:start\ndocs-junit-pioneer:\n${navContent}# @junit-pioneer:end")
+		navTarget.setText(fullNav)
+	}
+}
+
+task create {
+	dependsOn copyProjectPage, copyDocsPage, copyDocs, insertDocNav
+}
+
+// ----
+// MISC
+// ----
+
+task recreate {
+	dependsOn clean, create
+}
+
+configure(rootProject) {
+
+	task wrapper(type: Wrapper) {
+		description = 'Generates gradlew and gradlew.bat scripts'
+		gradleVersion = '3.2'
+		jarFile = "${project.projectDir}/.infra/gradle/gradle-wrapper.jar"
+	}
+
+}
