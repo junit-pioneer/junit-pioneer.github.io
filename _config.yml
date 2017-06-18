@@ -164,6 +164,12 @@ kramdown:
   enable_coderay: false
 
 
+# Asciidoc Processing
+asciidoctor:
+  attributes:
+    junit-pioneer-assets: /assets/docs_images/junit-pioneer
+
+
 # Sass/SCSS
 sass:
   sass_dir: _sass
@@ -179,6 +185,7 @@ timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Plugins
 gems:
+  - jekyll-asciidoc
   # - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
