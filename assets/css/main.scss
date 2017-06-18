@@ -8,17 +8,33 @@
 @import "minimal-mistakes"; // main partials
 
 $foreground-color: #EEE;
-$background-color: rgba(0, 0, 0, 0.7);
+$hover-color: #FFF;
+$gold: #FFBF00;
+$bright-gold: #FFD700;
+$background-color: rgba(0, 0, 0, 0.75);
+$border-color: $foreground-color;
 
 @mixin borders() {
-	border: 1px solid $foreground-color;
+	border: 1px solid $border-color;
 	border-radius: 7px;
+}
+
+@mixin gold-hover-link($color) {
+	a {
+		color: $color;
+		text-decoration: none;
+		&:hover {
+			color: $bright-gold;
+			text-decoration: none;
+		}
+	}
 }
 
 // GENERAL
 
 html {
 	background-color: transparent;
+	@include gold-hover-link($gold);
 }
 
 body {
@@ -28,23 +44,105 @@ body {
 
 // HEADER
 
+.masthead {
+	border: none;
+
+	&__inner-wrap {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.site-subtitle {
+		transition: none;
+	}
+
+}
+
 .greedy-nav {
 	background-color: $background-color;
 	@include borders();
-
-	a {
-		color: $foreground-color;
-	}
+	@include gold-hover-link($foreground-color);
 
 	.site-title {
 		padding-left: 2rem;
 	}
+
+	a:hover:before {
+		content: none;
+	}
 }
 
-// HERO
+// HERO / TITLE IMAGE / FEATURE ROWS
 
 .page__hero--overlay {
+	margin-top: 1em;
+	border-top: 1px solid $foreground-color;
 	border-bottom: 1px solid $foreground-color;
+	@include gold-hover-link($gold);
+}
+
+.feature__wrapper {
+	margin-bottom: 0;
+	border: none;
+}
+
+.archive__item {
+	&:hover {
+		.archive__item-title {
+			text-decoration: none;
+		}
+	}
+
+	.archive__item-teaser {
+		// magic numbers for the win!
+		z-index: -2;
+	}
+}
+
+.archive__item-body {
+	margin-top: -3em;
+	margin-left: 0.5em;
+}
+
+.archive__item-body > p {
+	margin-bottom: 0;
+}
+
+// NAV
+
+.sidebar {
+	opacity: inherit;
+	transition: none;
+}
+
+.nav__list .nav__items {
+	.active {
+		color: black;
+		background-color: $gold;
+		&:hover {
+			color: black;
+			background-color: $bright-gold;
+			text-decoration: none;
+		}
+	}
+
+	& > li > ul > li {
+		@include gold-hover-link($foreground-color);
+		margin-left: 0.5em;
+	}
+}
+
+// MAIN
+
+#main {
+	@include borders();
+	padding: 1em 2rem;
+	background-color: $background-color;
+	color: $foreground-color;
+}
+
+.page__content {
+	@include gold-hover-link($gold);
 }
 
 // FOOTER
@@ -58,6 +156,8 @@ body {
 	.social-icons .fab, .social-icons .fas {
 		color: $foreground-color;
 	}
+
+	@include gold-hover-link($foreground-color);
 
 	footer {
 		@include breakpoint($x-large) {
