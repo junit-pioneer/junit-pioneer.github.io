@@ -8,10 +8,10 @@ main:
     url: https://github.com/junit-pioneer/junit-pioneer
 
 # DOC MENUS
-# @junit-pioneer:start
-docs-junit-pioneer:
+# @xp:start
+docs-xp:
   - title: Features
     children:
       - title: Disabling Tests
         url: /docs/disabled/
-# @junit-pioneer:end
+# @xp:end
