@@ -18,6 +18,9 @@ The directory structure in `grandmaster` must be as follows:
 * `site-source`: worktree of branch `site-source`
 * `junit-pioneer`: submodule of the project [JUnit Pioneer][pioneer] (`master` branch)
 
+If you're on Linux, you can run `git-setup.sh` to correctly initialize the repository.
+These are all Git commands, so they should be the same for Windows or Mac - just give it a try.
+
 
 ## Requirements
 

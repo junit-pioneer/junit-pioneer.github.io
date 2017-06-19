@@ -90,6 +90,14 @@ task pushSite(type: Exec) {
 	commandLine './git-commit-push.sh site'.split(' ')
 }
 
+// -----
+// SETUP
+// -----
+
+task setupGit(type: Exec) {
+	commandLine './git-setup.sh'
+}
+
 configure(rootProject) {
 
 	task wrapper(type: Wrapper) {
