@@ -78,7 +78,7 @@ analytics:
 # Site Author
 author:
   name             : "JUnit Pioneers"
-  avatar           : assets/site_images/pioneer_probe.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : assets/images/site/pioneer_probe.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "The first on Jupiter, the first beyond"
   location         : "Jupiter"
   email            :
