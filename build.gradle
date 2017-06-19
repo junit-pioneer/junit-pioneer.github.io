@@ -98,6 +98,13 @@ task setupGit(type: Exec) {
 	commandLine './git-setup.sh'
 }
 
+task setupJekyll(type: Exec) {
+	dependsOn setupGit
+
+	workingDir 'site-source'
+	commandLine 'bundle install --quiet'.split(' ')
+}
+
 configure(rootProject) {
 
 	task wrapper(type: Wrapper) {
