@@ -203,7 +203,7 @@ kramdown:
 asciidoctor:
   attributes:
     xp-images: /assets/images/docs/xp
-
+    site-images: /assets/images/site
 
 # Sass/SCSS
 sass:
