@@ -3,4 +3,4 @@
 :page-header: { overlay_image: assets/images/site/type-writer.jpg }
 :page-title: Documentation
 
-Once we have features, they'll be documented here. :wink:
+include::_pages/_docs-xp.adoc[]
