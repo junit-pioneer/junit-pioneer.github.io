@@ -73,6 +73,7 @@ body {
 	margin-top: 1em;
 	border-top: 1px solid $foreground-color;
 	border-bottom: 1px solid $foreground-color;
+	background-color: $background-color;
 	@include gold-hover-link($gold);
 }
 

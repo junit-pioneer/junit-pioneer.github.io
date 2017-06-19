@@ -1,10 +1,6 @@
----
-layout: single
-permalink: /docs/
-header:
-  overlay_color: black
-  overlay_image: assets/images/site/type-writer.jpg
-title: Documentation
----
+:page-layout: single
+:page-permalink: /docs/
+:page-header: { overlay_image: assets/images/site/type-writer.jpg }
+:page-title: Documentation
 
 Once we have features, they'll be documented here. :wink:
