@@ -1,4 +1,33 @@
 // -----
+// SETUP
+// -----
+
+configure(rootProject) {
+
+	task wrapper(type: Wrapper) {
+		description = 'Generates gradlew and gradlew.bat scripts'
+		gradleVersion = '3.2'
+		jarFile = "${project.projectDir}/.infra/gradle/gradle-wrapper.jar"
+	}
+
+}
+
+task setupGit(type: Exec) {
+	commandLine './git-setup.sh'
+}
+
+task setupJekyll(type: Exec) {
+	dependsOn setupGit
+
+	workingDir 'site-source'
+	commandLine 'bundle install --quiet'.split(' ')
+}
+
+task setup {
+	dependsOn setupGit, setupJekyll
+}
+
+// -----
 // CLEAN
 // -----
 
@@ -88,29 +117,4 @@ task buildSite(type: Exec) {
 
 task pushSite(type: Exec) {
 	commandLine './git-commit-push.sh site'.split(' ')
-}
-
-// -----
-// SETUP
-// -----
-
-task setupGit(type: Exec) {
-	commandLine './git-setup.sh'
-}
-
-task setupJekyll(type: Exec) {
-	dependsOn setupGit
-
-	workingDir 'site-source'
-	commandLine 'bundle install --quiet'.split(' ')
-}
-
-configure(rootProject) {
-
-	task wrapper(type: Wrapper) {
-		description = 'Generates gradlew and gradlew.bat scripts'
-		gradleVersion = '3.2'
-		jarFile = "${project.projectDir}/.infra/gradle/gradle-wrapper.jar"
-	}
-
 }

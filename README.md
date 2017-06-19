@@ -3,14 +3,25 @@
 The site for the [JUnit Pioneer organization][pioneer-org] and all its projects.
 There is currently only one (also called [JUnit Pioneer][pioneer]) but this repository is set up to host many more.
 
+[pioneer-org]: https://github.com/junit-pioneer
+[pioneer]: https://github.com/junit-pioneer/junit-pioneer
+
 
 ## Structure
 
-Branches:
+This project depends on Java, Gradle, Ruby, and Bundler.
+Acceptable version ranges were not thoroughly tested - these versions were used to set the project up:
 
-* `grandmaster`: contains all branches (as [worktrees](https://git-scm.com/docs/git-worktree)) and projects (as [submodules](https://git-scm.com/docs/git-submodule))
-* `master`: the HTML content hosted under [junit-pioneer.org](http://junit-pioneer.org)
-* `site-source`: the site in source form
+* Java 1.8.0_131
+* Gradle 3.5
+* Ruby 2.3.4p301
+* Bundler 1.14.3
+
+This repository consists of three branches:
+
+* `grandmaster`: contains all branches (as [worktrees][git-worktree]) and projects (as [submodules][git-submodule] - it is the default branch
+* `master`: the HTML content hosted under [junit-pioneer.org](http://junit-pioneer.org) as required by [GitHub organization pages][gh-org-pages]
+* `site-source`: the site in source form without project-specific content
 
 The directory structure in `grandmaster` must be as follows:
 
@@ -18,8 +29,17 @@ The directory structure in `grandmaster` must be as follows:
 * `site-source`: worktree of branch `site-source`
 * `junit-pioneer`: submodule of the project [JUnit Pioneer][pioneer] (`master` branch)
 
-If you're on Linux, you can run `git-setup.sh` to correctly initialize the repository.
-These are all Git commands, so they should be the same for Windows or Mac - just give it a try.
+[git-worktree]: https://git-scm.com/docs/git-worktree
+[git-submodule]: https://git-scm.com/docs/git-submodule
+[gh-org-pages]: https://help.github.com/articles/user-organization-and-project-pages/#user--organization-pages
+
+
+## Setup
+
+Besides creating the correct folder structure, `bundle install` must be executed in `site-source` to initialize Jekyll.
+
+If you're on Linux, all of this can be done by calling `gradle setup`.
+On Windows, you may have to run `git-setup.sh` (these are all Git commands) and then `bundle install` in `site-source`.
 
 
 ## Requirements
@@ -37,10 +57,6 @@ Stretch goals:
 * to make sure code samples work, they should be executed as part of the regular build process but repeating that when building the site wouldn't hurt
 * the project and documentation should look similar
 * documentation should be able to use Asciidoc
-
-
-[pioneer-org]: https://github.com/junit-pioneer
-[pioneer]: https://github.com/junit-pioneer/junit-pioneer
 
 
 ## Properties
