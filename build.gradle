@@ -10,7 +10,7 @@ task removeProjectPage(type: Delete) {
 
 task removeDocsPage(type: Delete) {
 	delete fileTree('site-source/_pages') {
-		include 'docs.*'
+		include '_docs-xp.adoc'
 	}
 }
 
@@ -46,7 +46,7 @@ task copyProjectPage(type: Copy) {
 task copyDocsPage(type: Copy) {
 	from 'junit-pioneer/docs/'
 	include 'docs-page.*'
-	rename 'docs-page.(.*)', 'docs.$1'
+	rename 'docs-page.adoc', '_docs-xp.adoc'
 	into 'site-source/_pages'
 }
 
