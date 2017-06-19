@@ -4,7 +4,7 @@
 
 task removeProjectPage(type: Delete) {
 	delete fileTree('site-source/_pages') {
-		include 'junit-pioneer.*'
+		include 'xp.*'
 	}
 }
 
@@ -15,7 +15,7 @@ task removeDocsPage(type: Delete) {
 }
 
 task removeDocs(type: Delete) {
-	delete 'site-source/_docs/junit-pioneer'
+	delete 'site-source/_docs/xp'
 }
 
 task removeDocNav() {
@@ -23,7 +23,7 @@ task removeDocNav() {
 		description 'Deletes specific lines in _data/naviation.yml'
 		File nav = file('site-source/_data/navigation.yml')
 		String fullNav = nav.getText()
-		String removedNav = fullNav.replaceAll(/(?m)# @junit-pioneer:start$\s^docs-junit-pioneer:$\s(^[\D\d]*$\s)*^# @junit-pioneer:end/, "# @junit-pioneer:start\ndocs-junit-pioneer:\n# @junit-pioneer:end")
+		String removedNav = fullNav.replaceAll(/(?m)# @xp:start$\s^docs-xp:$\s(^[\D\d]*$\s)*^# @xp:end/, "# @xp:start\ndocs-xp:\n# @xp:end")
 		nav.setText(removedNav)
 	}
 }
@@ -39,7 +39,7 @@ task clean {
 task copyProjectPage(type: Copy) {
 	from 'junit-pioneer/docs/'
 	include 'project-page.*'
-	rename 'project-page.(.*)', 'junit-pioneer.$1'
+	rename 'project-page.(.*)', 'xp.$1'
 	into 'site-source/_pages'
 }
 
@@ -52,17 +52,17 @@ task copyDocsPage(type: Copy) {
 
 task copyDocs(type: Copy) {
 	from 'junit-pioneer/docs'
-	exclude 'project.*', 'docs-page.*', 'docs-nav.yml'
-	into 'site-source/_docs/junit-pioneer'
+	exclude 'project-page.*', 'docs-page.*', 'docs-nav.yml'
+	into 'site-source/_docs/xp'
 }
 
 task insertDocNav() {
 	doLast {
-		description 'Deletes specific lines in _data/naviation.yml'
+		description 'Inserts specific lines into _data/naviation.yml'
 		String navContent = file('junit-pioneer/docs/docs-nav.yml').getText()
 		File navTarget = file('site-source/_data/navigation.yml')
 		String emptyNav = navTarget.getText()
-		String fullNav = emptyNav.replaceAll(/(?m)# @junit-pioneer:start$\s^docs-junit-pioneer:$\s^# @junit-pioneer:end/, "# @junit-pioneer:start\ndocs-junit-pioneer:\n${navContent}# @junit-pioneer:end")
+		String fullNav = emptyNav.replaceAll(/(?m)# @xp:start$\s^docs-xp:$\s^# @xp:end/, "# @xp:start\ndocs-xp:\n${navContent}# @xp:end")
 		navTarget.setText(fullNav)
 	}
 }
