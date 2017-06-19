@@ -3,7 +3,7 @@ layout: single
 permalink: /docs/
 header:
   overlay_color: black
-  overlay_image: assets/site_images/type-writer.jpg
+  overlay_image: assets/images/site/type-writer.jpg
 title: Documentation
 ---
 
