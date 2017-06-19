@@ -167,7 +167,7 @@ kramdown:
 # Asciidoc Processing
 asciidoctor:
   attributes:
-    junit-pioneer-assets: /assets/docs_images/junit-pioneer
+    xp-images: /assets/images/docs/xp
 
 
 # Sass/SCSS
@@ -285,8 +285,8 @@ defaults:
       share: true
       related: true
   - scope:
-      path: "_docs/junit-pioneer"
+      path: "_docs/xp"
       type: docs
     values:
       sidebar:
-        nav: "docs-junit-pioneer"
+        nav: "docs-xp"
