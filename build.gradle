@@ -71,9 +71,9 @@ task create {
 	dependsOn copyProjectPage, copyDocsPage, copyDocs, insertDocNav
 }
 
-// ----
-// MISC
-// ----
+// ---------------
+// BUILD & PUBLISH
+// ---------------
 
 task recreate {
 	dependsOn clean, create
@@ -84,6 +84,10 @@ task buildSite(type: Exec) {
 
 	workingDir 'site-source'
 	commandLine 'bundle exec jekyll build --destination ../site'.split(' ')
+}
+
+task pushSite(type: Exec) {
+	commandLine './git-commit-push.sh site'.split(' ')
 }
 
 configure(rootProject) {

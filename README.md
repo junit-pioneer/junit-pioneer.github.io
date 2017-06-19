@@ -47,3 +47,4 @@ Some properties of the current solution:
 * the documentation is organized as a [collection][TODO]
 * the _jekyll-feed_ plugin does not include collections, so the documentation does not show up in feeds
 * the _jekyll-archives_ plugin does not include collections, so the documentation do not show up in archive pages for categories and tags; as a consequence docs should use neither to avoid confusion
+* I found no Gradle Git plugin that would cooperate with worktrees, so I fell back to a (Linux) command line script
