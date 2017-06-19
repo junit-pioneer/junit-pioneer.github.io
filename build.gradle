@@ -79,6 +79,13 @@ task recreate {
 	dependsOn clean, create
 }
 
+task buildSite(type: Exec) {
+	dependsOn recreate
+
+	workingDir 'site-source'
+	commandLine 'bundle exec jekyll build --destination ../site'.split(' ')
+}
+
 configure(rootProject) {
 
 	task wrapper(type: Wrapper) {
