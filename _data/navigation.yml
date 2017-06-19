@@ -10,8 +10,4 @@ main:
 # DOC MENUS
 # @xp:start
 docs-xp:
-  - title: Features
-    children:
-      - title: Disabling Tests
-        url: /docs/disabled/
 # @xp:end
