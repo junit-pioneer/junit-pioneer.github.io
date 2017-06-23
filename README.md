@@ -10,7 +10,7 @@ There is currently only one (also called [JUnit Pioneer][pioneer]) but this repo
 ## Structure
 
 This project depends on Java, Gradle, Ruby, and Bundler.
-Acceptable version ranges were not thoroughly tested - these versions were used to set the project up:
+Acceptable version ranges were not thoroughly tested - these versions were used to set the project up and are hence known to work:
 
 * Java 1.8.0_131
 * Gradle 3.5
@@ -27,7 +27,7 @@ The directory structure in `grandmaster` must be as follows:
 
 * `site`: worktree of branch `master`
 * `site-source`: worktree of branch `site-source`
-* `junit-pioneer`: submodule of the project [JUnit Pioneer][pioneer] (`master` branch)
+* `junit-pioneer`: `master` branch of [JUnit Pioneer][Pioneer]
 
 [git-worktree]: https://git-scm.com/docs/git-worktree
 [git-submodule]: https://git-scm.com/docs/git-submodule
@@ -95,6 +95,7 @@ Some properties of the current solution:
 * the _jekyll-archives_ plugin does not include collections, so the documentation pages do not show up in archive pages for categories and tags; as a consequence docs should use neither to avoid confusion
 * I found no Gradle Git plugin that would cooperate with worktrees, so I fell back to a (Linux) command line script
 * I found no Gradle Bundle or Jekyll plugin so I fell back to calling commands
+* the `junit-pioneer` directory is not a submodule because that would require a new commit on `grandmaster` every time the site is built
 
 [jekyll-asciidoc]: https://github.com/asciidoctor/jekyll-asciidoc
 [jekyll-collections]: https://jekyllrb.com/docs/collections/

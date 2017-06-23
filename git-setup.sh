@@ -1,6 +1,5 @@
-# initializing submodule `junit-pioneer`
-git submodule init
-git submodule update
+# cloning `junit-pioneer`
+git clone https://github.com/junit-pioneer/junit-pioneer.git junit-pioneer --depth=10
 # adding worktrees `site` and `site-source`
 git checkout master
 git checkout site-source
