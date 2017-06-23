@@ -12,8 +12,14 @@ configure(rootProject) {
 
 }
 
+task setupGitOnTravis(type: Exec) {
+	commandLine './git-travis-setup.sh'
+}
+
 task setupGit(type: Exec) {
 	commandLine './git-setup.sh'
+	if (project.findProperty('on-travis'))
+		dependsOn setupGitOnTravis
 }
 
 task setupJekyll(type: Exec) {

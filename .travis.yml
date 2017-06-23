@@ -1,0 +1,13 @@
+language: java
+sudo: enabled
+dist: trusty
+
+before_install:
+  # helpful when debugging directory layout problems
+  - sudo apt-get install -y tree
+
+install:
+  - ./gradlew setup --no-daemon --stacktrace -Pon-travis=true
+
+script:
+  - tree
