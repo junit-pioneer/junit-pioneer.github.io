@@ -12,14 +12,14 @@ configure(rootProject) {
 
 }
 
-task setupGitRepoOnTravis(type: Exec) {
-	commandLine './git-repo-travis-setup.sh'
+task setupGitOnTravis(type: Exec) {
+	commandLine './git-travis-setup.sh'
 }
 
 task setupGitRepo(type: Exec) {
 	commandLine './git-repo-setup.sh'
 	if (project.findProperty('on-travis'))
-		dependsOn setupGitRepoOnTravis
+		dependsOn setupGitOnTravis
 }
 
 task setupJekyll(type: Exec) {
@@ -123,4 +123,9 @@ task buildSite(type: Exec) {
 
 task pushSite(type: Exec) {
 	commandLine './git-commit-push.sh site'.split(' ')
+}
+
+task publishSite {
+	dependsOn buildSite, pushSite
+	pushSite.mustRunAfter(buildSite)
 }

@@ -2,3 +2,5 @@ site/
 site-source/
 .gradle/
 junit-pioneer/
+
+deploy-key
