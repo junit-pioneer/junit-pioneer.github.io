@@ -12,25 +12,25 @@ configure(rootProject) {
 
 }
 
-task setupGitOnTravis(type: Exec) {
-	commandLine './git-travis-setup.sh'
+task setupGitRepoOnTravis(type: Exec) {
+	commandLine './git-repo-travis-setup.sh'
 }
 
-task setupGit(type: Exec) {
-	commandLine './git-setup.sh'
+task setupGitRepo(type: Exec) {
+	commandLine './git-repo-setup.sh'
 	if (project.findProperty('on-travis'))
-		dependsOn setupGitOnTravis
+		dependsOn setupGitRepoOnTravis
 }
 
 task setupJekyll(type: Exec) {
-	dependsOn setupGit
+	dependsOn setupGitRepo
 
 	workingDir 'site-source'
 	commandLine 'bundle install --quiet'.split(' ')
 }
 
 task setup {
-	dependsOn setupGit, setupJekyll
+	dependsOn setupGitRepo, setupJekyll
 }
 
 // -----
