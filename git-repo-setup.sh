@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# exit with nonzero exit code if anything fails
+set -e
+
 # cloning `junit-pioneer`
 git clone https://github.com/junit-pioneer/junit-pioneer.git junit-pioneer --depth=10
 # adding worktrees `site` and `site-source`
