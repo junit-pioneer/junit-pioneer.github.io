@@ -109,6 +109,14 @@ body {
 	margin-bottom: 0;
 }
 
+.btn {
+	color: black !important;
+	background-color: $gold;
+	&:hover {
+		background-color: $bright-gold;
+	}
+}
+
 // NAV
 
 .sidebar {
