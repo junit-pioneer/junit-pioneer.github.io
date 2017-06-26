@@ -1,0 +1,8 @@
+# Travis only builds grandmaster if "build branch updates" is
+# enabled, in which case it would also build this branch, which
+# is totally useless. Hence deactivate it.
+language: generic
+
+branches:
+  only:
+    - grandmaster
