@@ -1,0 +1,9 @@
+# Travis only builds grandmaster if "build branch updates" is
+# enabled, in which case it would also build this branch.
+# That wouldn't be too bad but this branch lacks `gradnmaster`s
+# elaborate setup, so a build is pointless. Hence deactivate it.
+language: generic
+
+branches:
+  only:
+    - grandmaster
