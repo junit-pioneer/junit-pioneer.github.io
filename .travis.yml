@@ -14,7 +14,7 @@ script:
 
 deploy:
   provider: script
-  script: ./gradlew pushSite --no-daemon --stacktrace
+  script: ./gradlew pushSite --no-daemon --stacktrace -Pon-travis=true
   skip_cleanup: true
   on:
     branch: grandmaster

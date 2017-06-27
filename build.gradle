@@ -2,6 +2,10 @@
 // SETUP
 // -----
 
+ext {
+	onTravis = project.findProperty('on-travis') == "true"
+}
+
 configure(rootProject) {
 
 	task wrapper(type: Wrapper) {
@@ -18,7 +22,7 @@ task setupGitOnTravis(type: Exec) {
 
 task setupGitRepo(type: Exec) {
 	commandLine './git-repo-setup.sh'
-	if (project.findProperty('on-travis'))
+	if (onTravis)
 		dependsOn setupGitOnTravis
 }
 
@@ -122,7 +126,10 @@ task buildSite(type: Exec) {
 }
 
 task pushSite(type: Exec) {
-	commandLine './git-commit-push.sh site'.split(' ')
+	if (onTravis)
+		commandLine './git-commit-push.sh launch-ssh'.split(' ')
+	else
+		commandLine './git-commit-push.sh'
 }
 
 task publishSite {
