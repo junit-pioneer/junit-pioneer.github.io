@@ -2,6 +2,8 @@
 main:
   - title: "Documentation"
     url: /docs/
+  - title: "Javadoc"
+    url: /api/
   - title: "About the Project"
     url: /junit-pioneer/
   - title: "GitHub"
