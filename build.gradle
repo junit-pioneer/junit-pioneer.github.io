@@ -110,9 +110,9 @@ task create {
 	dependsOn copyProjectPage, copyDocsPage, copyDocs, insertDocNav
 }
 
-// ---------------
-// BUILD & PUBLISH
-// ---------------
+// -----
+// BUILD
+// -----
 
 task recreate {
 	dependsOn clean, create
@@ -125,6 +125,26 @@ task buildSite(type: Exec) {
 	commandLine 'bundle exec jekyll build --destination ../site'.split(' ')
 }
 
+task buildJavadoc(type: Exec) {
+	workingDir 'junit-pioneer'
+	commandLine './gradlew javadoc --no-daemon'.split(' ')
+}
+
+task includeJavadoc(type: Copy) {
+	dependsOn buildJavadoc, buildSite
+
+	from 'junit-pioneer/build/docs/javadoc'
+	into 'site/api'
+}
+
+task buildAll {
+	dependsOn buildSite, includeJavadoc
+}
+
+// -------
+// PUBLISH
+// -------
+
 task pushSite(type: Exec) {
 	if (onTravis)
 		commandLine './git-commit-push.sh launch-ssh'.split(' ')
@@ -133,6 +153,6 @@ task pushSite(type: Exec) {
 }
 
 task publishSite {
-	dependsOn buildSite, pushSite
-	pushSite.mustRunAfter(buildSite)
+	dependsOn buildAll, pushSite
+	pushSite.mustRunAfter buildAll
 }

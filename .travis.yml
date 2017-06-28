@@ -10,7 +10,7 @@ install:
   - ./gradlew setup --no-daemon --stacktrace -Pon-travis=true
 
 script:
-  - ./gradlew buildSite --no-daemon --stacktrace
+  - ./gradlew buildAll --no-daemon --stacktrace
 
 deploy:
   provider: script
