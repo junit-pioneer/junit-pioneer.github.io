@@ -19,7 +19,7 @@ Acceptable version ranges were not thoroughly tested - these versions were used 
 
 This repository consists of three branches:
 
-* `grandmaster`: contains all branches (as [worktrees][git-worktree]) and projects (as [submodules][git-submodule] - it is the default branch
+* `grandmaster`: contains all branches (as [worktrees][git-worktree]) and projects (as [submodules][git-submodule] - it is the default branch)
 * `master`: the HTML content hosted under [junit-pioneer.org](http://junit-pioneer.org) as required by [GitHub organization pages][gh-org-pages]
 * `site-source`: the site in source form without project-specific content
 
@@ -40,6 +40,15 @@ Besides creating the correct folder structure, `bundle install` must be executed
 
 If you're on Linux, all of this can be done by calling `gradle setup`.
 On Windows, you may have to run `git-setup.sh` (these are all Git commands) and then `bundle install` in `site-source`.
+
+
+## Site-Building
+
+After everything has been setup, running `gradle buildSite` builds the site and `gradle buildAll` includes each project's Javadoc.
+With the correct credentials, `gradle pushSite` pushes the changes in `site-source` to the tracked remote branch.
+
+For local experimentation with the site layout, it makes sense to first run `gradle buildSite` and then manually launch Jekyll in `site-source` with `bundle exec jekyll serve`.
+Note the `serve`, which launches a server on localhost (Jekyll messages list the port) and also watches the `site-source` directory for further changes.
 
 
 ## Background
