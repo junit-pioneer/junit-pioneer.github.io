@@ -12,7 +12,7 @@ feature_row:
     title: "The Project"
     excerpt: "More about the project..."
     url: "/junit-pioneer/"
-    btn_label: "Explore Jupiter"
+    btn_label: "Explore Pioneer"
   - image_path: /assets/images/site/card-docs.jpg
     alt: "docs"
     title: "Documentation"
