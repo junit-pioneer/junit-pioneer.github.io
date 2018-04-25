@@ -182,7 +182,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 # Conversion
 markdown: kramdown
-highlighter: rouge
+highlighter: pygments
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
@@ -205,6 +205,9 @@ asciidoctor:
   attributes:
     xp-images: /assets/images/docs/xp
     site-images: /assets/images/site
+    source-highlighter: pygments
+    pygments-css: style
+    pygments-style: monokai
 
 # Sass/SCSS
 sass:
