@@ -19,7 +19,7 @@
 
 
 
-<title>Disabling Tests - JUnit Pioneer</title>
+<title>Vintage @Test - JUnit Pioneer</title>
 
 
 
@@ -33,11 +33,11 @@
 
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Disabling Tests">
+<meta property="og:title" content="Vintage @Test">
 
 
-  <link rel="canonical" href="http://junit-pioneer.org/docs/disabled/">
-  <meta property="og:url" content="http://junit-pioneer.org/docs/disabled/">
+  <link rel="canonical" href="http://junit-pioneer.org/docs/vintage-test/">
+  <meta property="og:url" content="http://junit-pioneer.org/docs/vintage-test/">
 
 
 
@@ -189,7 +189,7 @@
             
             
 
-            <li><a href="http://junit-pioneer.org/docs/disabled/" class="active">Disabling Tests</a></li>
+            <li><a href="http://junit-pioneer.org/docs/disabled/" class="">Disabling Tests</a></li>
           
         </ul>
         
@@ -203,7 +203,7 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Disabling Tests">
+    <meta itemprop="headline" content="Vintage @Test">
     <meta itemprop="description" content="">
     <meta itemprop="datePublished" content="May 01, 2018">
     
@@ -211,20 +211,103 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Disabling Tests
+          <h1 class="page__title" itemprop="headline">Vintage @Test
 </h1>
           
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <div class="paragraph">
-<p>This is a sample page composed in AsciiDoc.
-Jekyll converts it to HTML using <a href="http://asciidoctor.org">Asciidoctor</a>.</p>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The annotation <code>org.junit$pioneer.vintage.@Test</code> acts as a drop-in replacement for <a href="https://junit.org/junit4/javadoc/4.12/org/junit/Test.html">JUnit 4`s <code>org.junit.@Test</code> annotation</a>, but marks the method as a regular JUnit Jupiter test.
+That means you do not need to run JUnit 5&#8217;s Vintage engine to execute this test&#8212;&#8203;Jupiter suffices.</p>
+</div>
+<div class="paragraph">
+<p>Like JUnit 4&#8217;s version, <code>@Test</code> has two optional parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>expected</code> to fail a test unless an exception of the specified type is thrown</p>
+</li>
+<li>
+<p><code>timeout</code> to fail a test that runs too long (<strong>careful</strong>: at the moment, long running tests are not aborted&#8212;&#8203;they just fail once they&#8217;re finished)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="expecting-exceptions">Expecting exceptions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The optional parameter <code>expected</code> declares that a test method should throw an exception.
+If it doesn&#8217;t throw an exception or if it throws an exception whose type is not the specified one and does not extend it, the test fails.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following test succeeds because the thrown exception is of the specified type:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-ruby" data-lang="ruby">puts "Hello, World!"</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">@Test(expected=IndexOutOfBoundsException.class)
+public void outOfBounds_passes() {
+	new ArrayList&lt;Object&gt;().get(1);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This test succeeds because the thrown exception is a subtype of the specified one:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Test(expected=RuntimeException.class)
+public void outOfBounds_passes() {
+	new ArrayList&lt;Object&gt;().get(1);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, this test fails because the thrown exception is neither of the specified type nor a subtype:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Test(expected=IllegalArgumentException.class)
+public void outOfBounds_fails() {
+	new ArrayList&lt;Object&gt;().get(1);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fail-long-running-tests">Fail long-running tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The optional parameter <code>timeout</code> causes a test to fail if it takes longer than a specified amount of clock time, measured in milliseconds.
+The following test fails:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Test(timeout=100)
+public void slow_fail() {
+	Thread.sleep(1_000);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that unlike in JUnit 4, <code>timeout</code> does not abort long-running tests!
+The following tests does not fail&#8212;&#8203;it runs indefinitely:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Test(timeout=100)
+public void indefinitely() {
+	while(true);
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
         
@@ -245,24 +328,24 @@ Jekyll converts it to HTML using <a href="http://asciidoctor.org">Asciidoctor</a
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Disabling Tests http://junit-pioneer.org/docs/disabled/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Vintage @Test http://junit-pioneer.org/docs/vintage-test/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://junit-pioneer.org/docs/disabled/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://junit-pioneer.org/docs/vintage-test/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=http://junit-pioneer.org/docs/disabled/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=http://junit-pioneer.org/docs/vintage-test/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://junit-pioneer.org/docs/disabled/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://junit-pioneer.org/docs/vintage-test/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="#" class="pagination--pager disabled">Previous</a>
+      <a href="http://junit-pioneer.org/docs/disabled/" class="pagination--pager" title="Disabling Tests
+">Previous</a>
     
     
-      <a href="http://junit-pioneer.org/docs/vintage-test/" class="pagination--pager" title="Vintage @Test
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
