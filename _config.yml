@@ -283,6 +283,7 @@ defaults:
       type: docs
     values:
       layout: single
+      header: { overlay_image: assets/images/site/type-writer.jpg }
       author_profile: false
       read_time: false
       comments: false # true
