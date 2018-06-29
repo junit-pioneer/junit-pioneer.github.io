@@ -11,7 +11,7 @@ title                    : "JUnit Pioneer"
 title_separator          : "-"
 name                     : "JUnit Pioneers"
 description              : "JUnit 5 Extension Pack"
-url                      : http://junit-pioneer.org # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://junit-pioneer.org # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : junit-pioneer # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -82,7 +82,7 @@ author:
   bio              : "The first on Jupiter, the first beyond"
   location         : "Jupiter"
   email            :
-  uri              : # http://junit-pioneer.org
+  uri              : # https://junit-pioneer.org
   bitbucket        :
   codepen          :
   dribbble         :
