@@ -1,1 +1,1 @@
-Sitemap: http://junit-pioneer.org/sitemap.xml
+Sitemap: https://junit-pioneer.org/sitemap.xml

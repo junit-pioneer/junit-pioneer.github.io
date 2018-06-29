@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://junit-pioneer.org/docs/temp-directory/</loc>
-<lastmod>2018-06-04T19:29:45+00:00</lastmod>
+<loc>https://junit-pioneer.org/docs/temp-directory/</loc>
+<lastmod>2018-06-29T06:43:18+02:00</lastmod>
 </url>
 <url>
-<loc>http://junit-pioneer.org/docs/vintage-test/</loc>
-<lastmod>2018-06-04T19:29:45+00:00</lastmod>
+<loc>https://junit-pioneer.org/docs/vintage-test/</loc>
+<lastmod>2018-06-29T06:43:18+02:00</lastmod>
 </url>
 <url>
-<loc>http://junit-pioneer.org/docs/</loc>
+<loc>https://junit-pioneer.org/docs/</loc>
 </url>
 <url>
-<loc>http://junit-pioneer.org/</loc>
+<loc>https://junit-pioneer.org/</loc>
 </url>
 <url>
-<loc>http://junit-pioneer.org/junit-pioneer/</loc>
+<loc>https://junit-pioneer.org/junit-pioneer/</loc>
 </url>
 </urlset>
