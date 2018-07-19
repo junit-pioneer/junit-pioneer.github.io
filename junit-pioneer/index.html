@@ -24,7 +24,7 @@
 
 
 
-<meta name="description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter.Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer   ">
+<meta name="description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. First release coming soon!  ">
 
 
 
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="og:description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter.Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer   ">
+  <meta property="og:description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. First release coming soon!  ">
 
 
 
@@ -172,8 +172,7 @@
         
       </h1>
       
-        <p class="page__lead">JUnit 5 extension pack, pushing the frontiers on Jupiter.
-<small>Released on <a href="https://github.com/junit-pioneer/junit-pioneer/releases">GitHub</a>, <a href="https://jcenter.bintray.com/org/junit-pioneer/junit-pioneer/">JCenter</a>, and <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.junit-pioneer%22%20a%3A%22junit-pioneer%22">Maven Central</a> under<br /><code class="coordinates">org.junit-pioneer : junit-pioneer</code></small><br /><br /> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="145px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=star&count=true&size=large" frameborder="0" scrolling="0" width="138px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="138px" height="30px"></iframe>
+        <p class="page__lead">JUnit 5 extension pack, pushing the frontiers on Jupiter.<br /> <small><a href="https://github.com/junit-pioneer/junit-pioneer/releases">First release coming soon!</a></small><br /><br /> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
 </p>
       
       
@@ -192,7 +191,7 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="JUnit Pioneer">
-    <meta itemprop="description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter.Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer   ">
+    <meta itemprop="description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. First release coming soon!  ">
     
     
 
@@ -201,46 +200,11 @@
 
       <section class="page__content" itemprop="text">
         <div class="paragraph">
-<p>JUnit Pioneer is an <a href="https://blog.codefx.org/design/architecture/junit-5-extension-model/">extension pack</a> for <a href="https://junit.org/junit5/">JUnit 5</a> or, <a href="https://blog.codefx.org/design/architecture/junit-5-architecture/">to be more precise</a>, for the Jupiter engine.
-It&#8217;s still pretty young, but it already has <a href="https://junit-pioneer.org/docs/">a few features</a> and is continuously released with more.</p>
-</div>
-<div class="sect1">
-<h2 id="quick-start">Quick start</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Determine the latest version (e.g. on <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.junit-pioneer%22%20a%3A%22junit-pioneer%22"">Maven Central</a>) and add Pioneer as a test dependency.</p>
+<p>JUnit Pioneer is an <a href="http://blog.codefx.org/design/architecture/junit-5-extension-model/">extension pack</a> for JUnit 5 or, to be <a href="http://blog.codefx.org/design/architecture/junit-5-architecture/">more precise</a>, for the Jupiter engine.
+It is currently being set up, so this site as well as the repo is a little shy on content - we hope to fix that soon!</p>
 </div>
 <div class="paragraph">
-<p>Maven:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="xml"><span style="color: #f92672">&lt;dependency&gt;</span>
-	<span style="color: #f92672">&lt;groupId&gt;</span>org.junit-pioneer<span style="color: #f92672">&lt;/groupId&gt;</span>
-	<span style="color: #f92672">&lt;artifactId&gt;</span>junit-pioneer<span style="color: #f92672">&lt;/artifactId&gt;</span>
-	<span style="color: #f92672">&lt;version&gt;</span><span style="color: #75715e">&lt;!-- ... --&gt;</span><span style="color: #f92672">&lt;version&gt;</span>
-	<span style="color: #f92672">&lt;scope&gt;</span>test<span style="color: #f92672">&lt;/scope&gt;</span>
-<span style="color: #f92672">&lt;/dependency&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Gradle:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="groovy"><span style="color: #f8f8f2">testCompile</span> <span style="color: #f8f8f2">group:</span> <span style="color: #e6db74">&#39;org.junit-pioneer&#39;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">name:</span> <span style="color: #e6db74">&#39;junit-pioneer&#39;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">version:</span> <span style="color: #75715e">/* ... */</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Done, you&#8217;re good to go! 👍</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="contributing">Contributing</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>There are various ways to help us improve JUnit Pioneer if you&#8217;re interested:</p>
+<p>There are various ways to help us get there if you&#8217;re interested:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -254,8 +218,6 @@ It&#8217;s still pretty young, but it already has <a href="https://junit-pioneer
 <p>if you want to contribute but aren&#8217;t sure how, have a look at <a href="https://github.com/junit-pioneer/junit-pioneer/issues">the list of open issues</a>, particularly those <a href="https://github.com/junit-pioneer/junit-pioneer/issues?q=is%3Aissue+is%3Aopen+label%3Aup-for-grabs">marked as <em>up for grabs</em></a></p>
 </li>
 </ul>
-</div>
-</div>
 </div>
         
       </section>
