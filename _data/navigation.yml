@@ -3,7 +3,7 @@ main:
   - title: "Documentation"
     url: /docs/
   - title: "Javadoc"
-    url: /api/
+    url: https://javadoc.io/doc/org.junit-pioneer/junit-pioneer
   - title: "About the Project"
     url: /junit-pioneer/
   - title: "GitHub"
