@@ -43,7 +43,7 @@ On Windows, you may have to run `git-repo-setup.sh` (these are all Git commands)
 
 ## Site-Building
 
-After everything has been set up, running `gradle buildSite` builds the site and `gradle buildAll` includes each project's Javadoc.
+After everything has been set up, running `gradle buildSite` builds the site.
 With the correct credentials, `gradle pushSite` pushes the changes in `site` to the tracked remote branch.
 
 For local experimentation with the site layout, it makes sense to first run `gradle buildSite` and then manually launch Jekyll in `site-source` with `bundle exec jekyll serve`.

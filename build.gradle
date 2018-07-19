@@ -117,17 +117,6 @@ task buildJavadoc(type: Exec) {
 	commandLine './gradlew javadoc --no-daemon'.split(' ')
 }
 
-task includeJavadoc(type: Copy) {
-	dependsOn buildJavadoc, buildSite
-
-	from 'junit-pioneer/build/docs/javadoc'
-	into 'site/api'
-}
-
-task buildAll {
-	dependsOn buildSite, includeJavadoc
-}
-
 // -------
 // PUBLISH
 // -------
@@ -140,6 +129,6 @@ task pushSite(type: Exec) {
 }
 
 task publishSite {
-	dependsOn buildAll, pushSite
-	pushSite.mustRunAfter buildAll
+	dependsOn buildSite, pushSite
+	pushSite.mustRunAfter buildSite
 }
