@@ -58,7 +58,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2019-10-22T05:49:59+00:00">
+  <meta property="article:published_time" content="2019-10-22T20:15:28+00:00">
 
 
 
@@ -261,7 +261,19 @@
       
 
       <section class="page__content" itemprop="text">
-        <div class="paragraph">
+        <div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Since JUnit Jupiter 5.4, there&#8217;s a <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-built-in-extensions-TempDirectory">built-in <code>@TempDir</code> extension</a>. If you don&#8217;t need support for arbitrary file systems, you should consider using that instead of this extension.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
 <p>The <code>TempDirectory</code> extension can be used to create and clean up a temporary directory for an individual test or all tests in a test class.
 To use it, simply register the extension and add a parameter of type <code>java.nio.file.Path</code> to your test or lifecycle method or constructor.</p>
 </div>
