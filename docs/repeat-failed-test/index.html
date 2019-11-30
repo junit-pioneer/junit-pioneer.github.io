@@ -19,12 +19,12 @@
 
 
 
-<title>Documentation - JUnit Pioneer</title>
+<title>@RepeatFailedTest - JUnit Pioneer</title>
 
 
 
 
-<meta name="description" content="Documentation of JUnit Pioneer’s feature set">
+<meta name="description" content="Repeats a failing test a certain number of times; only marking it failed if none of them pass">
 
 
 
@@ -33,13 +33,15 @@
 
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Documentation">
+<meta property="og:title" content="@RepeatFailedTest">
 
 
-  <link rel="canonical" href="https://junit-pioneer.org/docs/">
-  <meta property="og:url" content="https://junit-pioneer.org/docs/">
+  <link rel="canonical" href="https://junit-pioneer.org/docs/repeat-failed-test/">
+  <meta property="og:url" content="https://junit-pioneer.org/docs/repeat-failed-test/">
 
 
+
+  <meta property="og:description" content="Repeats a failing test a certain number of times; only marking it failed if none of them pass">
 
 
 
@@ -54,6 +56,9 @@
   <meta property="og:image" content="https://junit-pioneer.org/assets/images/site/type-writer.jpg">
 
 
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2019-11-30T20:07:25+00:00">
 
 
 
@@ -165,10 +170,13 @@
     <div class="wrapper">
       <h1 class="page__title" itemprop="headline">
         
-          Documentation
+          @RepeatFailedTest
 
         
       </h1>
+      
+        <p class="page__lead">
+</p>
       
       
       
@@ -252,8 +260,8 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Documentation">
-    
+    <meta itemprop="headline" content="@RepeatFailedTest">
+    <meta itemprop="description" content="">
     
     
 
@@ -261,27 +269,56 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>Here’s a list of all the features that you can expect from JUnit Pioneer.
-For some of them you need to be quite familiar with JUnit 5, so make sure to read <a href="https://junit.org/junit5/docs/current/user-guide/">its user guide</a> or <a href="https://blog.codefx.org/libraries/junit-5-basics/">this article series</a>.</p>
-
-<dl>
-
-  <dt><a href="/docs/default-locale-timezone/">@DefaultLocale and @DefaultTimeZone</a></dt>
-  <dd>JUnit Jupiter extensions to change the values returned from Locale.getDefault() and TimeZone.getDefault()</dd>
-
-  <dt><a href="/docs/repeat-failed-test/">@RepeatFailedTest</a></dt>
-  <dd>Repeats a failing test a certain number of times; only marking it failed if none of them pass</dd>
-
-  <dt><a href="/docs/temp-directory/">TempDirectory</a></dt>
-  <dd>JUnit Jupiter extension to create and clean up a temporary directory.</dd>
-
-  <dt><a href="/docs/vintage-test/">Vintage @Test</a></dt>
-  <dd>A drop-in replacement for JUnit 4's @Test annotation, including expected and timeout</dd>
-
-</dl>
-
-<p>To start using JUnit Pioneer, determine the latest version (e.g. on <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.junit-pioneer%22%20a%3A%22junit-pioneer%22">Maven Central</a>) and add <code class="language-plaintext highlighter-rouge">org.junit-pioneer : junit-pioneer</code> as a test dependency.</p>
-
+        <div class="paragraph">
+<p>Some tests, e.g. those depending on external systems, may fail through no fault of the code under test.
+Such tests make a suite fragile and it makes sense to try and avoid them, but if that&#8217;s infeasible, it may help to retry a number of times before eventually assuming actual failure.
+<code>@RepeatFailedTest</code> provides that functionality.</p>
+</div>
+<div class="sect1">
+<h2 id="basic-use">Basic Use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>@RepeatFailedTest(n)</code> is used instead of <code>@Test</code> or other such annotations (e.g. <code>@RepeatedTest</code>).
+The attribute <code>n</code> specifies how often the test is executed before giving up.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RepeatFailedTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsNever</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The test <code>failsNever</code> is executed once (which succeeds) and marked as passed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RepeatFailedTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsOnlyOnFirstInvocation</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// test code that fails on first execution</span>
+    <span style="color: #75715e">// but passes on the second</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The test <code>failsOnlyOnFirstInvocation</code> is executed once (which fails) and then once more (which succeeds).
+To allow the entire test suite to pass, the first execution is marked as ignored/aborted, which includes the underlying exception - the second is of course marked as passing.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RepeatFailedTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsAlways</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// test code that always fails</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The test <code>failsAlways</code> is executed three times (all of which fail).
+The first two executions are marked as ignored/aborted and the last as failed - each contains the underlying exception.</p>
+</div>
+</div>
+</div>
         
       </section>
 
@@ -298,17 +335,28 @@ For some of them you need to be quite familiar with JUnit 5, so make sure to rea
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Documentation https://junit-pioneer.org/docs/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=@RepeatFailedTest https://junit-pioneer.org/docs/repeat-failed-test/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://junit-pioneer.org/docs/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://junit-pioneer.org/docs/repeat-failed-test/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https://junit-pioneer.org/docs/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https://junit-pioneer.org/docs/repeat-failed-test/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://junit-pioneer.org/docs/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://junit-pioneer.org/docs/repeat-failed-test/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
+  <nav class="pagination">
+    
+      <a href="https://junit-pioneer.org/docs/default-locale-timezone/" class="pagination--pager" title="@DefaultLocale and @DefaultTimeZone
+">Previous</a>
+    
+    
+      <a href="https://junit-pioneer.org/docs/temp-directory/" class="pagination--pager" title="TempDirectory
+">Next</a>
+    
+  </nav>
+
     </div>
 
     
