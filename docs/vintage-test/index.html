@@ -58,7 +58,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2019-11-30T20:07:25+00:00">
+  <meta property="article:published_time" content="2019-11-30T20:50:34+00:00">
 
 
 
@@ -270,8 +270,15 @@
 
       <section class="page__content" itemprop="text">
         <div class="paragraph">
-<p>The annotation <code>org.junitpioneer.vintage.@Test</code> acts as a drop-in replacement for <a href="https://junit.org/junit4/javadoc/4.12/org/junit/Test.html">JUnit 4`s <code>org.junit.@Test</code> annotation</a>, but marks the method as a regular JUnit Jupiter test.
-That means you do not need to run JUnit 5&#8217;s Vintage engine to execute this test&#8212;&#8203;Jupiter suffices.</p>
+<p>The annotation <code>org.junitpioneer.vintage.@Test</code> acts as a drop-in replacement for <a href="https://junit.org/junit4/javadoc/4.12/org/junit/Test.html">JUnit 4`s <code>org.junit.@Test</code> annotation</a>, but marks the method as a regular JUnit Jupiter test.</p>
+</div>
+<div class="paragraph">
+<p>You can make use of it when migrating tests from JUnit 4 to Jupiter by doing a fulltext search/replace of <code>import org.junit.Test</code> with <code>import org.junitpioneer.vintage.Test</code>.
+That means you do not need to run JUnit 5&#8217;s Vintage engine to execute such tests&#8212;&#8203;Jupiter suffices.</p>
+</div>
+<div class="paragraph">
+<p>This should be seen as an intermediate step towards a full migration and should be followed up by gradual/manual replacement of of <code>org.junitpioneer.vintage.Test</code> with Jupiter&#8217;s <code>org.junit.jupiter.api.Test</code>.
+To emphasize its character as a temporary solution and to reduce <a href="https://github.com/junit-pioneer/junit-pioneer/issues/137">risk of accidental use</a>, it&#8217;s marked as deprecated.</p>
 </div>
 <div class="paragraph">
 <p>Since the test is run by Jupiter, <strong>JUnit 4 runners and rules will have no effect</strong> and you will still have to replace them with JUnit 5 extensions.</p>
