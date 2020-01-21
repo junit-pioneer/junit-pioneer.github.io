@@ -240,6 +240,9 @@ whitelist:
   - jekyll-feed
   - jekyll-include-cache
 
+# removes warning "GitHub Metadata: No GitHub API authentication could be found. [...]"
+# https://github.com/github/pages-gem/issues/399#issuecomment-301827749
+github: [metadata]
 
 # Archives
 #  Type
