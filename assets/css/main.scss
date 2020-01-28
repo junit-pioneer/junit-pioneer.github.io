@@ -159,6 +159,17 @@ body {
 	@include gold-hover-link($gold);
 }
 
+.note .icon {
+	border: none;
+	width: inherit;
+	font-weight: bold;
+	color: $gold;
+
+	.title::after {
+		content: ":";
+	}
+}
+
 // CODE
 
 // allow more code to be seen by reducing font size
