@@ -165,11 +165,13 @@ body {
 // and increasing horizontal space
 @media (min-width: 64em) {
   pre.pygments.highlight {
-    margin: 1em -10em 1em 1em;
+	margin: 0.5em;
   }
 }
+
 pre.pygments.highlight {
   font-size: 0.75em;
+  padding: 0.5em;
 }
 
 // make inline code readable by removing background and border
