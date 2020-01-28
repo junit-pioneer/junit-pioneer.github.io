@@ -14,6 +14,9 @@ $bright-gold: #FFD700;
 $background-color: rgba(0, 0, 0, 0.75);
 $border-color: $foreground-color;
 
+$sidebar-width: 20%;
+$content-width: 80%;
+
 @mixin borders() {
 	border: 1px solid $border-color;
 	border-radius: 7px;
@@ -55,6 +58,12 @@ body {
 	&__inner-wrap {
 		padding-left: 0;
 		padding-right: 0;
+	}
+
+	&__inner-wrap {
+		@include breakpoint($large) {
+			max-width: $large;
+		}
 	}
 
 	.site-subtitle {
@@ -127,23 +136,29 @@ body {
 .sidebar {
 	opacity: inherit;
 	transition: none;
+	width: $sidebar-width;
+	margin: 0;
 }
 
-.nav__list .nav__items {
-	.active {
-		color: black;
+.nav__list .nav__items ul li {
+
+	@include gold-hover-link($foreground-color);
+	margin: 0.5em 0 0 0.5em;
+
+	&.active {
 		background-color: $gold;
+		margin-left: 0;
+		border-radius: 4px;
+
 		&:hover {
-			color: black;
 			background-color: $bright-gold;
-			text-decoration: none;
+		}
+
+		a {
+			color: black;
 		}
 	}
 
-	& > li > ul > li {
-		@include gold-hover-link($foreground-color);
-		margin-left: 0.5em;
-	}
 }
 
 // MAIN
@@ -153,6 +168,17 @@ body {
 	padding: 1em 2rem;
 	background-color: $background-color;
 	color: $foreground-color;
+
+	@include breakpoint($large) {
+		max-width: $large;
+	}
+}
+
+.page {
+	@include breakpoint($large) {
+		width: $content-width;
+		padding: 1rem 0 0 2em;
+	}
 }
 
 .page__content {
@@ -168,6 +194,11 @@ body {
 	.title::after {
 		content: ":";
 	}
+}
+
+::selection {
+	color: black;
+	background: $gold;
 }
 
 // CODE
@@ -224,8 +255,8 @@ td > code {
 	@include gold-hover-link($foreground-color);
 
 	footer {
-		@include breakpoint($x-large) {
-			max-width: $x-large;
+		@include breakpoint($large) {
+			max-width: $large;
 		}
 		@include borders();
 		border-bottom: 0;
