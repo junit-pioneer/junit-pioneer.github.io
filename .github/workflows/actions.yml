@@ -3,6 +3,8 @@ name: JUnit Pioneer Site
 on:
   push:
     branches: [ grandmaster, site-source ]
+  repository_dispatch:
+    types: [triggerSiteBuild]
 
 jobs:
   publish:
@@ -10,6 +12,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
+        with:
+          ref: "grandmaster"
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
         with:
@@ -23,9 +27,13 @@ jobs:
           ruby -v
           bundler -v
           java -version
-      - name: "Gradle: setup"
-        run: ./gradlew setup --no-daemon --stacktrace
+      - name: Gradle setup
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: setup --no-daemon --stacktrace
       - name: "Gradle: build site"
-        run: ./gradlew buildSite --no-daemon --stacktrace
+        with:
+          arguments: buildSite --no-daemon --stacktrace
       - name: "Gradle: publish site"
-        run: ./gradlew pushSite --no-daemon --stacktrace
+        with:
+          arguments: pushSite --no-daemon --stacktrace
