@@ -1,0 +1,31 @@
+name: JUnit Pioneer Site
+
+on:
+  push:
+    branches: [ grandmaster, site-source ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '8'
+      - name: Versions
+        run: |
+          ruby -v
+          bundler -v
+          java -version
+      - name: "Gradle: setup"
+        run: ./gradlew setup --no-daemon --stacktrace
+      - name: "Gradle: build site"
+        run: ./gradlew buildSite --no-daemon --stacktrace
+      - name: "Gradle: publish site"
+        run: ./gradlew pushSite --no-daemon --stacktrace

@@ -3,7 +3,7 @@
 // -----
 
 ext {
-	onTravis = project.findProperty('on-travis') == "true"
+	onCi = System.getenv("CI")
 }
 
 configure(rootProject) {
@@ -16,14 +16,14 @@ configure(rootProject) {
 
 }
 
-task setupGitOnTravis(type: Exec) {
-	commandLine './git-travis-setup.sh'
+task setupGitOnCi(type: Exec) {
+	commandLine './git-ci-setup.sh'
 }
 
 task setupGitRepo(type: Exec) {
 	commandLine './git-repo-setup.sh'
-	if (onTravis)
-		dependsOn setupGitOnTravis
+	if (onCi)
+		dependsOn setupGitOnCi
 }
 
 task setupJekyll(type: Exec) {
@@ -112,20 +112,12 @@ task buildSite(type: Exec) {
 	commandLine 'bundle exec jekyll build --destination ../site'.split(' ')
 }
 
-task buildJavadoc(type: Exec) {
-	workingDir 'junit-pioneer'
-	commandLine './gradlew javadoc --no-daemon'.split(' ')
-}
-
 // -------
 // PUBLISH
 // -------
 
 task pushSite(type: Exec) {
-	if (onTravis)
-		commandLine './git-commit-push.sh launch-ssh'.split(' ')
-	else
-		commandLine './git-commit-push.sh'
+	commandLine './git-commit-push.sh'
 }
 
 task publishSite {

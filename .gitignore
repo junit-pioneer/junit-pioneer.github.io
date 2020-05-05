@@ -1,7 +1,9 @@
+.gradle/
+.idea/
+.settings/
+.project
+
 site/
 site-source/
-.gradle/
 junit-pioneer/
 junit-pioneer
-
-deploy-key
