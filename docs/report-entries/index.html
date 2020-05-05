@@ -1,0 +1,568 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Report entries - JUnit Pioneer</title>
+
+
+
+
+<meta name="description" content="JUnit Jupiter extension to report with annotations.">
+
+
+
+
+<meta name="author" content="JUnit Pioneers">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="JUnit Pioneer">
+<meta property="og:title" content="Report entries">
+
+
+  <link rel="canonical" href="https://junit-pioneer.org/docs/report-entries/">
+  <meta property="og:url" content="https://junit-pioneer.org/docs/report-entries/">
+
+
+
+  <meta property="og:description" content="JUnit Jupiter extension to report with annotations.">
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="https://junit-pioneer.org/assets/images/site/type-writer.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2020-05-05T19:23:47+00:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "JUnit Pioneers",
+      "url" : "https://junit-pioneer.org",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://junit-pioneer.org/feed.xml" type="application/atom+xml" rel="alternate" title="JUnit Pioneer Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://junit-pioneer.org/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://junit-pioneer.org/">JUnit Pioneer</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://junit-pioneer.org/docs/">Documentation</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://javadoc.io/doc/org.junit-pioneer/junit-pioneer">Javadoc</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://junit-pioneer.org/junit-pioneer/">About the Project</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://github.com/junit-pioneer/junit-pioneer">GitHub</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('https://junit-pioneer.org/assets/images/site/type-writer.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          Report entries
+
+        
+      </h1>
+      
+        <p class="page__lead">
+</p>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Features</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/system-properties/">
+                <div>@ClearSystemProperty and @SetSystemProperty</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/environment-variables/">
+                <div>@ClearEnvironmentVariable and @SetEnvironmentVariable</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/default-locale-timezone/">
+                <div>@DefaultLocale and @DefaultTimeZone</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/range-sources/">
+                <div>Range Sources</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/repeat-failed-test/">
+                <div>@RepeatFailedTest</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item active">
+              <a href="https://junit-pioneer.org/docs/report-entries/">
+                <div>Report entries</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/temp-directory/">
+                <div>TempDirectory</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/vintage-test/">
+                <div>Vintage @Test</div>
+              </a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Report entries">
+    <meta itemprop="description" content="">
+    
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <div class="paragraph">
+<p>You can use <code>@ReportEntry</code> as a simple way to declaratively add metadata to test methods.</p>
+</div>
+<div class="paragraph">
+<p>From the <a href="https://https://junit.org/junit5/docs/current/user-guide/#writing-tests-dependency-injection">JUnit 5 documentation</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>In JUnit Jupiter you should use <code>TestReporter</code> where you used to print information to <code>stdout</code> or <code>stderr</code> in JUnit 4.
+Using <code>@RunWith(JUnitPlatform.class)</code> will output all reported entries to <code>stdout</code>.
+In addition, some IDEs print report entries to <code>stdout</code> or display them in the user interface for test results.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>To see how <code>@ReportEntry</code> helps, let&#8217;s first take a look at the conventional approach and then at this extension.</p>
+</div>
+<div class="sect1">
+<h2 id="standard-use-of-testreporter">Standard Use of <code>TestReporter</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the <a href="https://https://junit.org/junit5/docs/current/user-guide/#writing-tests-dependency-injection">JUnit 5 documentation</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>If a constructor or method parameter is of type <code>TestReporter</code>, the <code>TestReporterParameterResolver</code> will supply an instance of <code>TestReporter</code>.
+The <code>TestReporter</code> can be used to publish additional data about the current test run.
+The data can be consumed via the <code>reportingEntryPublished()</code> method in a <code>TestExecutionListener</code>, allowing it to be viewed in IDEs or included in reports.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>So, you would use it like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">reportingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TestReporter</span> <span style="color: #f8f8f2">reporter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+    <span style="color: #f8f8f2">reporter</span><span style="color: #f92672">.</span><span style="color: #a6e22e">publishEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Hello World!&quot;</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can have a look at <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/TestReporter.html">the official documentation for more details</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="with-the-extension">With the extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It can be argued that publishing data about your tests should not be in your test code because it is simply not part of your test.
+It is meta-data.</p>
+</div>
+<div class="paragraph">
+<p>So it makes sense that you should be able to add that meta-data to your test declaratively with annotations and have JUnit take care of the publishing.
+This is what this extension is for!</p>
+</div>
+<div class="paragraph">
+<p>You can write&#8230;&#8203;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Hello World!&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">reportingTest</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;and the extension will publish your report entry for you after the test was executed!</p>
+</div>
+<div class="sect2">
+<h3 id="multiple-entries">Multiple entries</h3>
+<div class="paragraph">
+<p>You can declare multiple report entries on the same test (the annotation is repeatable).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;foo&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;bar&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">reportingTest</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just like <code>TestReporter::publishEntry</code> accepts a single string as value or a key/value pair, <code>@ReportEntry</code> accepts either a single string as value or a key/value pair:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line1&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Once upon a midnight dreary&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line2&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;While I pondered weak and weary&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">edgarAllanPoe</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Again, just like <code>TestReporter::publishEntry</code>, if no key is given it defaults to <code>"value"</code> (yes, that&#8217;s not a mixup).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="publish-conditions">Publish conditions</h3>
+<div class="paragraph">
+<p>You can specify a <code>PublishCondition</code> parameter on the <code>@ReportEntry</code> annotation for better control when the extension should publish your entry.
+Just so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;success entry&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">when</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ReportEntry</span><span style="color: #f92672">.</span><span style="color: #a6e22e">PublishCondition</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ON_SUCCESS</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">sufferingFromSuccess</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The publish condition must be a value of the <code>ReportEntry.PublishCondition</code> enum, which has the following values:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ALWAYS</dt>
+<dd>
+<p>The extension will always publish your entry when the test runs, regardless of its outcome.
+(This is the default.)</p>
+</dd>
+<dt class="hdlist1">ON_SUCCESS</dt>
+<dd>
+<p>The extension will publish your report entry if the test finishes successfully.</p>
+</dd>
+<dt class="hdlist1">ON_FAILURE</dt>
+<dd>
+<p>The extension will publish your report entry if the test fails.</p>
+</dd>
+<dt class="hdlist1">ON_ABORTED</dt>
+<dd>
+<p>The extension will publish your report entry if the test was aborted (for example because of an <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-assumptions">Assumption</a>).</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Entries will always be published after the test finished.</p>
+</div>
+</div>
+</div>
+</div>
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Report entries https://junit-pioneer.org/docs/report-entries/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://junit-pioneer.org/docs/report-entries/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://junit-pioneer.org/docs/report-entries/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="https://junit-pioneer.org/docs/repeat-failed-test/" class="pagination--pager" title="@RepeatFailedTest
+">Previous</a>
+    
+    
+      <a href="https://junit-pioneer.org/docs/system-properties/" class="pagination--pager" title="@ClearSystemProperty and @SetSystemProperty
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="http://github.com/junit-pioneer"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="https://junit-pioneer.org/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    <script src="https://junit-pioneer.org/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
