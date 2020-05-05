@@ -27,13 +27,7 @@ jobs:
           ruby -v
           bundler -v
           java -version
-      - name: Gradle setup
+      - name: Gradle setup, build and push
         uses: eskatos/gradle-command-action@v1
         with:
-          arguments: setup --no-daemon --stacktrace
-      - name: "Gradle: build site"
-        with:
-          arguments: buildSite --no-daemon --stacktrace
-      - name: "Gradle: publish site"
-        with:
-          arguments: pushSite --no-daemon --stacktrace
+          arguments: setup buildSite pushSite --no-daemon --stacktrace
