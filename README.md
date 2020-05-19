@@ -49,6 +49,19 @@ With the correct credentials, `gradle pushSite` pushes the changes in `site` to 
 For local experimentation with the site layout, it makes sense to first run `gradle buildSite` and then manually launch Jekyll in `site-source` with `bundle exec jekyll serve`.
 Note the `serve`, which launches a server on localhost (Jekyll messages list the port) and also watches the `site-source` directory for further changes.
 
+### Build Trigger
+
+Projects like [JUnit Pioneer (the expansion pack)](https://github.com/junit-pioneer/junit-pioneer) can trigger a site build with GitHub Actions with this step:
+
+```yaml
+- name: Trigger Website Build
+  uses: peter-evans/repository-dispatch@v1
+  with:
+    token: ${{ secrets.GH_WRITE_TOKEN }}
+    repository: junit-pioneer/junit-pioneer.github.io
+    event-type: triggerSiteBuild
+```
+
 
 ## Background
 
