@@ -1,0 +1,517 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>@DisableIfDisplayName - JUnit Pioneer</title>
+
+
+
+
+<meta name="description" content="JUnit Jupiter extensions to selectively disable parameterized tests">
+
+
+
+
+<meta name="author" content="JUnit Pioneers">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="JUnit Pioneer">
+<meta property="og:title" content="@DisableIfDisplayName">
+
+
+  <link rel="canonical" href="https://junit-pioneer.org/docs/disable-if-display-name/">
+  <meta property="og:url" content="https://junit-pioneer.org/docs/disable-if-display-name/">
+
+
+
+  <meta property="og:description" content="JUnit Jupiter extensions to selectively disable parameterized tests">
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="https://junit-pioneer.org/assets/images/site/type-writer.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2020-08-04T17:04:16+00:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "JUnit Pioneers",
+      "url" : "https://junit-pioneer.org",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://junit-pioneer.org/feed.xml" type="application/atom+xml" rel="alternate" title="JUnit Pioneer Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://junit-pioneer.org/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://junit-pioneer.org/">JUnit Pioneer</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://junit-pioneer.org/docs/">Documentation</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://javadoc.io/doc/org.junit-pioneer/junit-pioneer">Javadoc</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://junit-pioneer.org/junit-pioneer/">About the Project</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://github.com/junit-pioneer/junit-pioneer">GitHub</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('https://junit-pioneer.org/assets/images/site/type-writer.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          @DisableIfDisplayName
+
+        
+      </h1>
+      
+        <p class="page__lead">
+</p>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Features</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/system-properties/">
+                <div>@ClearSystemProperty and @SetSystemProperty</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/environment-variables/">
+                <div>@ClearEnvironmentVariable and @SetEnvironmentVariable</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/default-locale-timezone/">
+                <div>@DefaultLocale and @DefaultTimeZone</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item active">
+              <a href="https://junit-pioneer.org/docs/disable-if-display-name/">
+                <div>@DisableIfDisplayName</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/range-sources/">
+                <div>Range Sources</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/retrying-test/">
+                <div>@RetryingTest</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/report-entries/">
+                <div>Report entries</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/standard-input-output/">
+                <div>Standard input/output</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/temp-directory/">
+                <div>TempDirectory</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/vintage-test/">
+                <div>Vintage @Test</div>
+              </a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="@DisableIfDisplayName">
+    <meta itemprop="description" content="">
+    
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <div class="paragraph">
+<p>The <code>@DisableIfDisplayName</code> annotation can be used to selectively disable parameterized tests based on their display names, which are dynamically registered on runtime.
+The annotation is only supported on test method level for parameterized tests.
+Unlike the <code>@Disabled</code> API provided in JUnit Jupiter, which disables the test on first encounter of the annotation , <code>@DisableIfDisplayName</code> is validated before each parameterized test execution.
+As a consequence, instead of disabling the entire set of parameterized tests, each test (name) can be evaluated and possibly disabled individually.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// disable invocations whose display name contains &quot;disable&quot;</span>
+<span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;disable&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span>
+		<span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span>
+				<span style="color: #e6db74">&quot;disable who&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;you, disable you&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;why am I disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;what has been disabled must stay disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;fine disable me all you want&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;not those one, though!&quot;</span> <span style="color: #75715e">// ~&gt; NOT disabled</span>
+		<span style="color: #f92672">}</span>
+<span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testExecutionDisabled</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+	<span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">reason</span><span style="color: #f92672">.</span><span style="color: #a6e22e">contains</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;disable&quot;</span><span style="color: #f92672">))</span>
+		<span style="color: #f8f8f2">fail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also specify more than one substring at a time:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span><span style="color: #e6db74">&quot;1&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;2&quot;</span><span style="color: #f92672">})</span>
+<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">5</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testDisplayNameString</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">num</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+	<span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">num</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">num</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
+		<span style="color: #f8f8f2">fail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled for &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">num</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If substrings are not powerful enough, you can also use regular expressions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// disable invocations whose display name contains &quot;disable &quot; or &quot;disabled &quot;</span>
+<span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">matches</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;.*disabled?\\s.*&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span>
+		<span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span>
+				<span style="color: #e6db74">&quot;disable who&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;you, disable you&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;why am I disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; NOT disabled</span>
+				<span style="color: #e6db74">&quot;what has been disabled must stay disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;fine disable me all you want&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// ~&gt; disabled</span>
+				<span style="color: #e6db74">&quot;not those one, though!&quot;</span> <span style="color: #75715e">// ~&gt; NOT disabled</span>
+		<span style="color: #f92672">}</span>
+<span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">single</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+	<span style="color: #75715e">// ...</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can even use both, in which case a test is disabled if contains a substring <em>or</em> matches an expression:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;000&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">matches</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;.*10?&quot;</span> <span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">10</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">100</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">1_000</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">10_000</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">containsAndMatches_containsAndMatches</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+	<span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">number</span> <span style="color: #f92672">!=</span> <span style="color: #ae81ff">100</span><span style="color: #f92672">)</span>
+		<span style="color: #f8f8f2">fail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled for &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=@DisableIfDisplayName https://junit-pioneer.org/docs/disable-if-display-name/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://junit-pioneer.org/docs/disable-if-display-name/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://junit-pioneer.org/docs/disable-if-display-name/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="https://junit-pioneer.org/docs/default-locale-timezone/" class="pagination--pager" title="@DefaultLocale and @DefaultTimeZone
+">Previous</a>
+    
+    
+      <a href="https://junit-pioneer.org/docs/environment-variables/" class="pagination--pager" title="@ClearEnvironmentVariable and @SetEnvironmentVariable
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="http://github.com/junit-pioneer"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="https://junit-pioneer.org/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    <script src="https://junit-pioneer.org/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>

@@ -19,12 +19,12 @@
 
 
 
-<title>@RepeatFailedTest - JUnit Pioneer</title>
+<title>@RetryingTest - JUnit Pioneer</title>
 
 
 
 
-<meta name="description" content="Repeats a failing test a certain number of times; only marking it failed if none of them pass">
+<meta name="description" content="Retries a failing test a certain number of times; only marking it failed if none of them pass">
 
 
 
@@ -33,15 +33,15 @@
 
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="@RepeatFailedTest">
+<meta property="og:title" content="@RetryingTest">
 
 
-  <link rel="canonical" href="https://junit-pioneer.org/docs/repeat-failed-test/">
-  <meta property="og:url" content="https://junit-pioneer.org/docs/repeat-failed-test/">
+  <link rel="canonical" href="https://junit-pioneer.org/docs/retrying-test/">
+  <meta property="og:url" content="https://junit-pioneer.org/docs/retrying-test/">
 
 
 
-  <meta property="og:description" content="Repeats a failing test a certain number of times; only marking it failed if none of them pass">
+  <meta property="og:description" content="Retries a failing test a certain number of times; only marking it failed if none of them pass">
 
 
 
@@ -58,7 +58,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2020-05-26T07:54:48+00:00">
+  <meta property="article:published_time" content="2020-08-04T17:04:16+00:00">
 
 
 
@@ -170,7 +170,7 @@
     <div class="wrapper">
       <h1 class="page__title" itemprop="headline">
         
-          @RepeatFailedTest
+          @RetryingTest
 
         
       </h1>
@@ -259,6 +259,18 @@
             
 
             <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/disable-if-display-name/">
+                <div>@DisableIfDisplayName</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/range-sources/">
                 <div>Range Sources</div>
               </a>
@@ -271,8 +283,8 @@
             
 
             <li class="nav-item active">
-              <a href="https://junit-pioneer.org/docs/repeat-failed-test/">
-                <div>@RepeatFailedTest</div>
+              <a href="https://junit-pioneer.org/docs/retrying-test/">
+                <div>@RetryingTest</div>
               </a>
             </li>
           
@@ -285,6 +297,18 @@
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/report-entries/">
                 <div>Report entries</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/standard-input-output/">
+                <div>Standard input/output</div>
               </a>
             </li>
           
@@ -325,7 +349,7 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="@RepeatFailedTest">
+    <meta itemprop="headline" content="@RetryingTest">
     <meta itemprop="description" content="">
     
     
@@ -337,18 +361,18 @@
         <div class="paragraph">
 <p>Some tests, e.g. those depending on external systems, may fail through no fault of the code under test.
 Such tests make a suite fragile and it makes sense to try and avoid them, but if that&#8217;s infeasible, it may help to retry a number of times before eventually assuming actual failure.
-<code>@RepeatFailedTest</code> provides that functionality.</p>
+<code>RetryingTest</code> provides that functionality.</p>
 </div>
 <div class="sect1">
 <h2 id="basic-use">Basic Use</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>@RepeatFailedTest(n)</code> is used instead of <code>@Test</code> or other such annotations (e.g. <code>@RepeatedTest</code>).
+<p><code>@RetryingTest(n)</code> is used <em>instead</em> of <code>@Test</code> or other such annotations (e.g. <code>@RepeatedTest</code>).
 The attribute <code>n</code> specifies how often the test is executed before giving up.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RepeatFailedTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsNever</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
 	<span style="color: #75715e">// passing test code</span>
 <span style="color: #f92672">}</span></code></pre>
@@ -359,7 +383,7 @@ The attribute <code>n</code> specifies how often the test is executed before giv
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RepeatFailedTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsOnlyOnFirstInvocation</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
 	<span style="color: #75715e">// test code that fails on first execution</span>
 	<span style="color: #75715e">// but passes on the second</span>
@@ -372,7 +396,7 @@ To allow the entire test suite to pass, the first execution is marked as ignored
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RepeatFailedTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsAlways</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
 	<span style="color: #75715e">// test code that always fails</span>
 <span style="color: #f92672">}</span></code></pre>
@@ -380,7 +404,39 @@ To allow the entire test suite to pass, the first execution is marked as ignored
 </div>
 <div class="paragraph">
 <p>The test <code>failsAlways</code> is executed three times (all of which fail).
-The first two executions are marked as ignored/aborted and the last as failed - each contains the underlying exception.</p>
+The first two executions are marked as ignored/aborted, while the last as failed - each contains the underlying exception.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">aborted</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+	<span style="color: #75715e">// test code that is aborted e.g. because of an Assumption.</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If a test is aborted (e.g.: because of a failed Assumption) <code>@RetryingTest</code> won&#8217;t try again after that.
+The test <code>aborted</code> is aborted before (or during) its first execution.
+The first execution is marked as aborted/skipped, containing the underlying cause.
+The test suite as a whole is also marked as aborted/skipped.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="combining-retryingtest-with-test-et-al">Combining <code>@RetryingTest</code> with <code>@Test</code> et al</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If <code>@RetryingTest</code> is combined with <code>@Test</code> or <code>TestTemplate</code>-based mechanisms (like <code>@RepeatedTest</code> or <code>@ParameterizedTest</code>), the test engine will execute it according to each annotation (i.e. more than once).
+This is most likely unwanted and thus the engine warns:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Possible configuration error:
+method [&#8230;&#8203;] resulted in multiple TestDescriptors [&#8230;&#8203;].
+This is typically the result of annotating a method with multiple competing annotations such as @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, etc.</p>
+</div>
+</blockquote>
 </div>
 </div>
 </div>
@@ -400,22 +456,22 @@ The first two executions are marked as ignored/aborted and the last as failed - 
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=@RepeatFailedTest https://junit-pioneer.org/docs/repeat-failed-test/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=@RetryingTest https://junit-pioneer.org/docs/retrying-test/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://junit-pioneer.org/docs/repeat-failed-test/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://junit-pioneer.org/docs/retrying-test/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://junit-pioneer.org/docs/repeat-failed-test/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://junit-pioneer.org/docs/retrying-test/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="https://junit-pioneer.org/docs/range-sources/" class="pagination--pager" title="Range Sources
+      <a href="https://junit-pioneer.org/docs/report-entries/" class="pagination--pager" title="Report entries
 ">Previous</a>
     
     
-      <a href="https://junit-pioneer.org/docs/report-entries/" class="pagination--pager" title="Report entries
+      <a href="https://junit-pioneer.org/docs/standard-input-output/" class="pagination--pager" title="Standard input/output
 ">Next</a>
     
   </nav>

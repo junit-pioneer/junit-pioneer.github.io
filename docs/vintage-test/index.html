@@ -58,7 +58,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2020-05-26T07:54:48+00:00">
+  <meta property="article:published_time" content="2020-08-04T17:04:16+00:00">
 
 
 
@@ -259,6 +259,18 @@
             
 
             <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/disable-if-display-name/">
+                <div>@DisableIfDisplayName</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/range-sources/">
                 <div>Range Sources</div>
               </a>
@@ -271,8 +283,8 @@
             
 
             <li class="nav-item ">
-              <a href="https://junit-pioneer.org/docs/repeat-failed-test/">
-                <div>@RepeatFailedTest</div>
+              <a href="https://junit-pioneer.org/docs/retrying-test/">
+                <div>@RetryingTest</div>
               </a>
             </li>
           
@@ -285,6 +297,18 @@
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/report-entries/">
                 <div>Report entries</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/standard-input-output/">
+                <div>Standard input/output</div>
               </a>
             </li>
           
@@ -335,7 +359,7 @@
 
       <section class="page__content" itemprop="text">
         <div class="paragraph">
-<p>The annotation <code>org.junitpioneer.vintage.@Test</code> acts as a drop-in replacement for <a href="https://junit.org/junit4/javadoc/4.12/org/junit/Test.html">JUnit 4`s <code>org.junit.@Test</code> annotation</a>, but marks the method as a regular JUnit Jupiter test.</p>
+<p>The annotation <code>org.junitpioneer.vintage.@Test</code> is a drop-in replacement for <a href="https://junit.org/junit4/javadoc/4.12/org/junit/Test.html">JUnit 4`s <code>org.junit.@Test</code> annotation</a>, but marks the method as a regular JUnit Jupiter test.</p>
 </div>
 <div class="paragraph">
 <p>You can make use of it when migrating tests from JUnit 4 to Jupiter by doing a fulltext search/replace of <code>import org.junit.Test</code> with <code>import org.junitpioneer.vintage.Test</code>.
@@ -357,7 +381,7 @@ To emphasize its character as a temporary solution and to reduce <a href="https:
 <p><code>expected</code> to fail a test unless an exception of the specified type is thrown</p>
 </li>
 <li>
-<p><code>timeout</code> to fail a test that runs too long (<strong>careful</strong>: at the moment, long running tests are not aborted&#8212;&#8203;they just fail once they&#8217;re finished)</p>
+<p><code>timeout</code> to fail and abandon a test that runs too long</p>
 </li>
 </ul>
 </div>
@@ -419,8 +443,8 @@ The following test fails:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that unlike in JUnit 4, <code>timeout</code> does not abort long-running tests!
-The following tests does not fail&#8212;&#8203;it runs indefinitely:</p>
+<p>Like in JUnit 4, <code>timeout</code> aborts long-running tests.
+The following tests does not run indefinitely&#8212;&#8203;it failes after 100 milliseconds:</p>
 </div>
 <div class="listingblock">
 <div class="content">

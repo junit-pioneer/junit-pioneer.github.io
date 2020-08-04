@@ -1,0 +1,642 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Standard input/output - JUnit Pioneer</title>
+
+
+
+
+<meta name="description" content="JUnit Jupiter extension for simulating standard input or catching standard output.">
+
+
+
+
+<meta name="author" content="JUnit Pioneers">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="JUnit Pioneer">
+<meta property="og:title" content="Standard input/output">
+
+
+  <link rel="canonical" href="https://junit-pioneer.org/docs/standard-input-output/">
+  <meta property="og:url" content="https://junit-pioneer.org/docs/standard-input-output/">
+
+
+
+  <meta property="og:description" content="JUnit Jupiter extension for simulating standard input or catching standard output.">
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="https://junit-pioneer.org/assets/images/site/type-writer.jpg">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2020-08-04T17:04:16+00:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "JUnit Pioneers",
+      "url" : "https://junit-pioneer.org",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://junit-pioneer.org/feed.xml" type="application/atom+xml" rel="alternate" title="JUnit Pioneer Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://junit-pioneer.org/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://junit-pioneer.org/">JUnit Pioneer</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://junit-pioneer.org/docs/">Documentation</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://javadoc.io/doc/org.junit-pioneer/junit-pioneer">Javadoc</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://junit-pioneer.org/junit-pioneer/">About the Project</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://github.com/junit-pioneer/junit-pioneer">GitHub</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('https://junit-pioneer.org/assets/images/site/type-writer.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 class="page__title" itemprop="headline">
+        
+          Standard input/output
+
+        
+      </h1>
+      
+        <p class="page__lead">
+</p>
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Features</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/system-properties/">
+                <div>@ClearSystemProperty and @SetSystemProperty</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/environment-variables/">
+                <div>@ClearEnvironmentVariable and @SetEnvironmentVariable</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/default-locale-timezone/">
+                <div>@DefaultLocale and @DefaultTimeZone</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/disable-if-display-name/">
+                <div>@DisableIfDisplayName</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/range-sources/">
+                <div>Range Sources</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/retrying-test/">
+                <div>@RetryingTest</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/report-entries/">
+                <div>Report entries</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item active">
+              <a href="https://junit-pioneer.org/docs/standard-input-output/">
+                <div>Standard input/output</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/temp-directory/">
+                <div>TempDirectory</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/vintage-test/">
+                <div>Vintage @Test</div>
+              </a>
+            </li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Standard input/output">
+    <meta itemprop="description" content="">
+    
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        <div class="paragraph">
+<p>The standard IO extension adds a simple way to test classes that read from the standard input (<code>System.in</code>) or write to the standard output (<code>System.out</code>).</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Depending on the configuration, the extension redirects the standard input and/or output, in which case nothing gets forwarded to the original <code>System.in</code> and/or <code>System.out</code>.
+This becomes particularly important when running tests in parallel, where other tests may interfere with tests annotated with <code>@StdIo</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="basic-use">Basic use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The extension consists of two parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The annotation <code>@StdIo</code>. It allows defining input that is read from <code>System.in</code> without having to wait for user input.</p>
+</li>
+<li>
+<p>Parameters <code>StdIn</code> and <code>StdOut</code>, which you can have injected into your test. Their <code>capturedLines()</code> methods allow you to access lines read from <code>System.in</code> or written to <code>System.out</code>, so you can verify them with common assertions.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, after calling <code>System.out.println("Hello")</code> and <code>System.out.println("World")</code>,  the <code>StdOut::capturedLines</code> method would return an array ["Hello", "World"].
+With <code>System.out.print("Hello")</code> and <code>System.out.println("World")</code> (note that the first method does not print a line break), it would return <code>["HelloWorld"]</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s which combinations of this annotation (with or without values for the read lines) and parameters are valid:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>@StdIo("&#8230;&#8203;")</code></dt>
+<dd>
+<p>In this case <code>System.in</code> gets replaced and the code under test will read the specified lines (in the snippet, that&#8217;s just the line <code>"&#8230;&#8203;"</code>).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
+
+	<span style="color: #a6e22e">@Test</span>
+	<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span><span style="color: #f92672">})</span>
+	<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+		<span style="color: #75715e">// `System.in` is replaced and the code under</span>
+		<span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;</span>
+	<span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><code>@StdIo("&#8230;&#8203;")</code> and <code>StdIn</code></dt>
+<dd>
+<p>Like before, but the lines read by the code under test can be verified with the <code>StdIn</code> parameter.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
+
+	<span style="color: #a6e22e">@Test</span>
+	<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span><span style="color: #f92672">})</span>
+	<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+		<span style="color: #75715e">// `System.in` is replaced, the code under</span>
+		<span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;,</span>
+		<span style="color: #75715e">// and `StdIn` can be used to verify that</span>
+	<span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><code>@StdIo</code> and <code>StdOut</code></dt>
+<dd>
+<p><code>System.in</code> is <em>not</em> replaced (because no input lines are defined), but <code>System.out</code> is, so the written lines can be verified with the <code>StdOut</code> parameter.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
+
+	<span style="color: #a6e22e">@Test</span>
+	<span style="color: #a6e22e">@StdIo</span>
+	<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+		<span style="color: #75715e">// `System.out` is replaced, so the written lines</span>
+		<span style="color: #75715e">// are captured and can be verified with `StdOut`</span>
+	<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><code>@StdIo("&#8230;&#8203;")</code> and <code>StdOut</code></dt>
+<dd>
+<p><code>System.in</code> is replaced, so the code can read the input lines and <code>System.out</code> is replaced, so the written lines can be verified with the <code>StdOut</code> parameter.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
+
+	<span style="color: #a6e22e">@Test</span>
+	<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">()</span>
+	<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+		<span style="color: #75715e">// `System.in` and `System.out` are replaced</span>
+		<span style="color: #75715e">// and written lines can be verified with `StdOut`</span>
+	<span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><code>@StdIo("&#8230;&#8203;")</code>, <code>StdIn</code>, and <code>StdOut</code></dt>
+<dd>
+<p>A combination of the two previous cases - <code>System.in</code> and <code>System.out</code> get replaced.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
+
+	<span style="color: #a6e22e">@Test</span>
+	<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span><span style="color: #f92672">})</span>
+	<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+		<span style="color: #75715e">// `System.in` is replaced, the code under</span>
+		<span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;,</span>
+		<span style="color: #75715e">// and `StdIn` can be used to verify that;</span>
+		<span style="color: #75715e">// `System.out` is also replaced, so the</span>
+		<span style="color: #75715e">// written lines can be verified with `StdOut`</span>
+	<span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The remaining combinations of the annotation, its values, and <code>StdIn</code>/<code>StdOut</code> are considered misconfigurations and lead to exceptions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="edge-cases-and-unexpected-behavior">Edge cases and unexpected behavior</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="empty-input-with-or-without-stdin">Empty input (with or without <code>StdIn</code>)</h3>
+<div class="paragraph">
+<p>Using just <code>@StdIo</code> does not redirect <code>System.in</code>, which means code reading from it will still block until input is provided and a <code>StdIn</code> parameter can&#8217;t be resolved.
+To have the code under test read empty input and/or use <code>StdIn</code> to verify that, use <code>@StdIo("")</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unexpected-behavior-with-eagerbuffering-readers">Unexpected behavior with eager/buffering readers</h3>
+<div class="paragraph">
+<p>Some readers read all lines from <code>StdIo</code> eagerly (e.g.: <code>BufferedReader</code>) which can lead to unexpected behavior.
+Take the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ExampleConsoleReader</span> <span style="color: #f92672">{</span>
+
+	<span style="color: #66d9ef">private</span> <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">lines</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;&gt;();</span>
+
+	<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">readLines</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+		<span style="color: #f8f8f2">BufferedReader</span> <span style="color: #f8f8f2">reader</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">BufferedReader</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">InputStreamReader</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">in</span><span style="color: #f92672">));</span>
+		<span style="color: #66d9ef">for</span> <span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">++)</span> <span style="color: #f92672">{</span>
+			<span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">reader</span><span style="color: #f92672">.</span><span style="color: #a6e22e">readLine</span><span style="color: #f92672">();</span>
+			<span style="color: #f8f8f2">lines</span><span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">line</span><span style="color: #f92672">);</span>
+		<span style="color: #f92672">}</span>
+	<span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a straightforward example class.
+It reads two lines from <code>System.in</code>, using a <code>BufferedReader</code>.
+This is the unit test for this class, using <code>StdIoExtension</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ExampleConsoleReaderTest</span> <span style="color: #f92672">{</span>
+
+	<span style="color: #a6e22e">@Test</span>
+	<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;line1&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;line2&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;line3&quot;</span> <span style="color: #f92672">})</span>
+	<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testReadLines</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+		<span style="color: #f8f8f2">ExampleConsoleReader</span> <span style="color: #f8f8f2">consoleReader</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ExampleConsoleReader</span><span style="color: #f92672">();</span>
+
+		<span style="color: #f8f8f2">consoleReader</span><span style="color: #f92672">.</span><span style="color: #a6e22e">readLines</span><span style="color: #f92672">();</span>
+
+		<span style="color: #75715e">// assertEquals(in.capturedLines(), &quot;line1&quot;, &quot;line2&quot;); // This is failing</span>
+		<span style="color: #75715e">// assertEquals(in.capturedLines(), &quot;line1&quot;, &quot;line2&quot;, &quot;line3&quot;); // This is passing</span>
+	<span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The underlying <code>BufferedReader</code> eagerly reads all three supplied lines during the first <code>readLine</code> call in the loop (that&#8217;s why it&#8217;s called <em>buffered</em> reader).
+This means that the assertion fails, because <code>in.capturedLines()</code> contains three lines - even though <code>consoleReader.lines</code> only contains two.</p>
+</div>
+</div>
+</div>
+</div>
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Standard input/output https://junit-pioneer.org/docs/standard-input-output/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://junit-pioneer.org/docs/standard-input-output/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://junit-pioneer.org/docs/standard-input-output/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="https://junit-pioneer.org/docs/retrying-test/" class="pagination--pager" title="@RetryingTest
+">Previous</a>
+    
+    
+      <a href="https://junit-pioneer.org/docs/system-properties/" class="pagination--pager" title="@ClearSystemProperty and @SetSystemProperty
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="http://github.com/junit-pioneer"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="https://junit-pioneer.org/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    <script src="https://junit-pioneer.org/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
