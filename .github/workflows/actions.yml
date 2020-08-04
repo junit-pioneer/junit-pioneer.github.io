@@ -5,6 +5,7 @@ on:
     branches: [ grandmaster, site-source ]
   repository_dispatch:
     types: [triggerSiteBuild]
+  workflow_dispatch:
 
 jobs:
   publish:
