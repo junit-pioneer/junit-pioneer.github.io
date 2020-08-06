@@ -24,7 +24,7 @@
 
 
 
-<meta name="description" content="JUnit Jupiter argument sources for a series of numbers">
+<meta name="description" content="Extends JUnit Jupiter with @IntRangeSource, @FloatRangeSource, etc., which provide series of numbers as argument sources for parameterized tests.">
 
 
 
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="og:description" content="JUnit Jupiter argument sources for a series of numbers">
+  <meta property="og:description" content="Extends JUnit Jupiter with @IntRangeSource, @FloatRangeSource, etc., which provide series of numbers as argument sources for parameterized tests.">
 
 
 
@@ -58,7 +58,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2020-08-05T08:21:43+00:00">
+  <meta property="article:published_time" content="2020-08-06T06:07:05+00:00">
 
 
 
@@ -224,7 +224,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/system-properties/">
-                <div>@ClearSystemProperty and @SetSystemProperty</div>
+                <div>Clearing or Setting System Properties</div>
               </a>
             </li>
           
@@ -236,7 +236,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/environment-variables/">
-                <div>@ClearEnvironmentVariable and @SetEnvironmentVariable</div>
+                <div>Clearing or Setting Environment Variables</div>
               </a>
             </li>
           
@@ -248,7 +248,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/default-locale-timezone/">
-                <div>@DefaultLocale and @DefaultTimeZone</div>
+                <div>Default Locale and TimeZone</div>
               </a>
             </li>
           
@@ -260,7 +260,19 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/disable-if-display-name/">
-                <div>@DisableIfDisplayName</div>
+                <div>Disable Based on DisplayName</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/report-entries/">
+                <div>Publishing Report Entries</div>
               </a>
             </li>
           
@@ -284,19 +296,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/retrying-test/">
-                <div>@RetryingTest</div>
-              </a>
-            </li>
-          
-            
-            
-
-            
-            
-
-            <li class="nav-item ">
-              <a href="https://junit-pioneer.org/docs/report-entries/">
-                <div>Report entries</div>
+                <div>Retrying Failing Tests</div>
               </a>
             </li>
           
@@ -308,7 +308,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/standard-input-output/">
-                <div>Standard input/output</div>
+                <div>Standard Input and Output</div>
               </a>
             </li>
           
@@ -320,7 +320,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/temp-directory/">
-                <div>TempDirectory</div>
+                <div>Temporary Files and Directories</div>
               </a>
             </li>
           
@@ -434,6 +434,14 @@ This behavior can be controlled by specifying the <code>closed</code> argument:<
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="thread-safety">Thread-Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This extension is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
+</div>
+</div>
+</div>
         
       </section>
 
@@ -461,11 +469,11 @@ This behavior can be controlled by specifying the <code>closed</code> argument:<
       
   <nav class="pagination">
     
-      <a href="https://junit-pioneer.org/docs/environment-variables/" class="pagination--pager" title="@ClearEnvironmentVariable and @SetEnvironmentVariable
+      <a href="https://junit-pioneer.org/docs/environment-variables/" class="pagination--pager" title="Clearing or Setting Environment Variables
 ">Previous</a>
     
     
-      <a href="https://junit-pioneer.org/docs/report-entries/" class="pagination--pager" title="Report entries
+      <a href="https://junit-pioneer.org/docs/report-entries/" class="pagination--pager" title="Publishing Report Entries
 ">Next</a>
     
   </nav>

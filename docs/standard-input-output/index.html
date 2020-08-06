@@ -19,12 +19,12 @@
 
 
 
-<title>Standard input/output - JUnit Pioneer</title>
+<title>Standard Input and Output - JUnit Pioneer</title>
 
 
 
 
-<meta name="description" content="JUnit Jupiter extension for simulating standard input or catching standard output.">
+<meta name="description" content="Extends JUnit Jupiter with @StdIo, which simulates standard input or catches standard output.">
 
 
 
@@ -33,7 +33,7 @@
 
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Standard input/output">
+<meta property="og:title" content="Standard Input and Output">
 
 
   <link rel="canonical" href="https://junit-pioneer.org/docs/standard-input-output/">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="og:description" content="JUnit Jupiter extension for simulating standard input or catching standard output.">
+  <meta property="og:description" content="Extends JUnit Jupiter with @StdIo, which simulates standard input or catches standard output.">
 
 
 
@@ -58,7 +58,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2020-08-05T08:21:43+00:00">
+  <meta property="article:published_time" content="2020-08-06T06:07:05+00:00">
 
 
 
@@ -170,7 +170,7 @@
     <div class="wrapper">
       <h1 class="page__title" itemprop="headline">
         
-          Standard input/output
+          Standard Input and Output
 
         
       </h1>
@@ -224,7 +224,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/system-properties/">
-                <div>@ClearSystemProperty and @SetSystemProperty</div>
+                <div>Clearing or Setting System Properties</div>
               </a>
             </li>
           
@@ -236,7 +236,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/environment-variables/">
-                <div>@ClearEnvironmentVariable and @SetEnvironmentVariable</div>
+                <div>Clearing or Setting Environment Variables</div>
               </a>
             </li>
           
@@ -248,7 +248,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/default-locale-timezone/">
-                <div>@DefaultLocale and @DefaultTimeZone</div>
+                <div>Default Locale and TimeZone</div>
               </a>
             </li>
           
@@ -260,7 +260,19 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/disable-if-display-name/">
-                <div>@DisableIfDisplayName</div>
+                <div>Disable Based on DisplayName</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/report-entries/">
+                <div>Publishing Report Entries</div>
               </a>
             </li>
           
@@ -284,19 +296,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/retrying-test/">
-                <div>@RetryingTest</div>
-              </a>
-            </li>
-          
-            
-            
-
-            
-            
-
-            <li class="nav-item ">
-              <a href="https://junit-pioneer.org/docs/report-entries/">
-                <div>Report entries</div>
+                <div>Retrying Failing Tests</div>
               </a>
             </li>
           
@@ -308,7 +308,7 @@
 
             <li class="nav-item active">
               <a href="https://junit-pioneer.org/docs/standard-input-output/">
-                <div>Standard input/output</div>
+                <div>Standard Input and Output</div>
               </a>
             </li>
           
@@ -320,7 +320,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/temp-directory/">
-                <div>TempDirectory</div>
+                <div>Temporary Files and Directories</div>
               </a>
             </li>
           
@@ -349,7 +349,7 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Standard input/output">
+    <meta itemprop="headline" content="Standard Input and Output">
     <meta itemprop="description" content="">
     
     
@@ -499,6 +499,33 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 </div>
 </div>
 <div class="sect1">
+<h2 id="thread-safety">Thread-Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since <code>System.in</code> and <code>System.out</code> are global state, reading and writing them during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a> can lead to unpredictable results and flaky tests.
+The <code>@StdIo</code> extension is prepared for that and tests annotated with it will never execute in parallel (thanks to <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/parallel/ResourceLock.html">resource locks</a>) to guarantee correct test results.</p>
+</div>
+<div class="paragraph">
+<p>However, this does not cover all possible cases.
+Tested code that reads <code>System.in</code> or <code>System.out</code> or calls <code>System.setIn()</code> or <code>System.setOut()</code> <em>independently</em> of the extensions can still run in parallel to them and may thus behave erratically when, for example, it unexpectedly uses <code>System.out</code> that was set by the extension in another thread.
+Tests that cover code that reads or writes <code>System.in</code> or <code>System.out</code> need to be annotated with the respective annotation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@ReadsStdIo</code></p>
+</li>
+<li>
+<p><code>@WritesStdIo</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Tests annotated in this way will never execute in parallel with tests annotated with <code>@StdIo</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="edge-cases-and-unexpected-behavior">Edge cases and unexpected behavior</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -577,7 +604,7 @@ This means that the assertion fails, because <code>in.capturedLines()</code> con
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Standard input/output https://junit-pioneer.org/docs/standard-input-output/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Standard Input and Output https://junit-pioneer.org/docs/standard-input-output/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https://junit-pioneer.org/docs/standard-input-output/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -588,11 +615,11 @@ This means that the assertion fails, because <code>in.capturedLines()</code> con
       
   <nav class="pagination">
     
-      <a href="https://junit-pioneer.org/docs/retrying-test/" class="pagination--pager" title="@RetryingTest
+      <a href="https://junit-pioneer.org/docs/retrying-test/" class="pagination--pager" title="Retrying Failing Tests
 ">Previous</a>
     
     
-      <a href="https://junit-pioneer.org/docs/system-properties/" class="pagination--pager" title="@ClearSystemProperty and @SetSystemProperty
+      <a href="https://junit-pioneer.org/docs/system-properties/" class="pagination--pager" title="Clearing or Setting System Properties
 ">Next</a>
     
   </nav>

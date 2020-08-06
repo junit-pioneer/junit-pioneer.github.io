@@ -216,7 +216,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/system-properties/">
-                <div>@ClearSystemProperty and @SetSystemProperty</div>
+                <div>Clearing or Setting System Properties</div>
               </a>
             </li>
           
@@ -228,7 +228,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/environment-variables/">
-                <div>@ClearEnvironmentVariable and @SetEnvironmentVariable</div>
+                <div>Clearing or Setting Environment Variables</div>
               </a>
             </li>
           
@@ -240,7 +240,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/default-locale-timezone/">
-                <div>@DefaultLocale and @DefaultTimeZone</div>
+                <div>Default Locale and TimeZone</div>
               </a>
             </li>
           
@@ -252,7 +252,19 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/disable-if-display-name/">
-                <div>@DisableIfDisplayName</div>
+                <div>Disable Based on DisplayName</div>
+              </a>
+            </li>
+          
+            
+            
+
+            
+            
+
+            <li class="nav-item ">
+              <a href="https://junit-pioneer.org/docs/report-entries/">
+                <div>Publishing Report Entries</div>
               </a>
             </li>
           
@@ -276,19 +288,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/retrying-test/">
-                <div>@RetryingTest</div>
-              </a>
-            </li>
-          
-            
-            
-
-            
-            
-
-            <li class="nav-item ">
-              <a href="https://junit-pioneer.org/docs/report-entries/">
-                <div>Report entries</div>
+                <div>Retrying Failing Tests</div>
               </a>
             </li>
           
@@ -300,7 +300,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/standard-input-output/">
-                <div>Standard input/output</div>
+                <div>Standard Input and Output</div>
               </a>
             </li>
           
@@ -312,7 +312,7 @@
 
             <li class="nav-item ">
               <a href="https://junit-pioneer.org/docs/temp-directory/">
-                <div>TempDirectory</div>
+                <div>Temporary Files and Directories</div>
               </a>
             </li>
           
@@ -355,35 +355,35 @@ For some of them you need to be quite familiar with JUnit 5, so make sure to rea
 
 <dl>
 
-  <dt><a href="/docs/default-locale-timezone/">@DefaultLocale and @DefaultTimeZone</a></dt>
-  <dd>JUnit Jupiter extensions to change the values returned from Locale.getDefault() and TimeZone.getDefault()</dd>
+  <dt><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></dt>
+  <dd>Extends JUnit Jupiter with `@DefaultLocale`, `@DefaultTimeZone`, which change the values returned from Locale.getDefault() and TimeZone.getDefault()</dd>
 
-  <dt><a href="/docs/disable-if-display-name/">@DisableIfDisplayName</a></dt>
-  <dd>JUnit Jupiter extensions to selectively disable parameterized tests</dd>
+  <dt><a href="/docs/disable-if-display-name/">Disable Based on DisplayName</a></dt>
+  <dd>Extends JUnit Jupiter with `@DisableIfDisplayName`, which selectively disables parameterized tests</dd>
 
-  <dt><a href="/docs/environment-variables/">@ClearEnvironmentVariable and @SetEnvironmentVariable</a></dt>
-  <dd>JUnit Jupiter extensions to clear and set the values of environment variable</dd>
+  <dt><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></dt>
+  <dd>Extends JUnit Jupiter with `@ClearEnvironmentVariable`, `@SetEnvironmentVariable`, which clear and set the values of environment variables</dd>
 
   <dt><a href="/docs/range-sources/">Range Sources</a></dt>
-  <dd>JUnit Jupiter argument sources for a series of numbers</dd>
+  <dd>Extends JUnit Jupiter with `@IntRangeSource`, `@FloatRangeSource`, etc., which provide series of numbers as argument sources for parameterized tests.</dd>
 
-  <dt><a href="/docs/report-entries/">Report entries</a></dt>
-  <dd>JUnit Jupiter extension to report with annotations.</dd>
+  <dt><a href="/docs/report-entries/">Publishing Report Entries</a></dt>
+  <dd>Extends JUnit Jupiter with `@ReportEntry`, which publishes report entries using `TestReporter`.</dd>
 
-  <dt><a href="/docs/retrying-test/">@RetryingTest</a></dt>
-  <dd>Retries a failing test a certain number of times; only marking it failed if none of them pass</dd>
+  <dt><a href="/docs/retrying-test/">Retrying Failing Tests</a></dt>
+  <dd>Extends JUnit Jupiter with `@RetryingTest`, which retries a failing test a certain number of times; only marking it failed if none of them pass</dd>
 
-  <dt><a href="/docs/standard-input-output/">Standard input/output</a></dt>
-  <dd>JUnit Jupiter extension for simulating standard input or catching standard output.</dd>
+  <dt><a href="/docs/standard-input-output/">Standard Input and Output</a></dt>
+  <dd>Extends JUnit Jupiter with `@StdIo`, which simulates standard input or catches standard output.</dd>
 
-  <dt><a href="/docs/system-properties/">@ClearSystemProperty and @SetSystemProperty</a></dt>
-  <dd>JUnit Jupiter extensions to clear and set the values of system properties</dd>
+  <dt><a href="/docs/system-properties/">Clearing or Setting System Properties</a></dt>
+  <dd>Extends JUnit Jupiter with `@ClearSystemProperty`, `@SetSystemProperty`, which clear and set the values of system properties</dd>
 
-  <dt><a href="/docs/temp-directory/">TempDirectory</a></dt>
-  <dd>JUnit Jupiter extension to create and clean up a temporary directory.</dd>
+  <dt><a href="/docs/temp-directory/">Temporary Files and Directories</a></dt>
+  <dd>Extends JUnit Jupiter with `@TempDir`, which create and clean up a temporary directory.</dd>
 
   <dt><a href="/docs/vintage-test/">Vintage @Test</a></dt>
-  <dd>A drop-in replacement for JUnit 4's @Test annotation, including expected and timeout</dd>
+  <dd>Extends JUnit Jupiter with a drop-in replacement for JUnit 4's @Test annotation, including expected and timeout</dd>
 
 </dl>
 
