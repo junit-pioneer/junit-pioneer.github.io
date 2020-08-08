@@ -206,6 +206,7 @@ asciidoctor:
     xp-images: /assets/images/docs/xp
     site-images: /assets/images/site
     source-highlighter: pygments
+    tabsize: 4
     pygments-css: style
     pygments-style: monokai
 
