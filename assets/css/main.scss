@@ -94,6 +94,20 @@ body {
 	border-bottom: 1px solid $foreground-color;
 	background-color: $background-color;
 	@include gold-hover-link($gold);
+
+	.wrapper {
+		max-width: 1024px;
+		margin: 0 auto;
+		padding: 0 2rem;
+
+		#page-title {
+			text-align: center;
+			text-shadow: 4px 4px 2px black;
+			margin: 0;
+		}
+
+	}
+
 }
 
 .feature__wrapper {
