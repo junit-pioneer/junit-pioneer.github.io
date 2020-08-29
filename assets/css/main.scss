@@ -204,15 +204,23 @@ body {
 	@include gold-hover-link($gold);
 }
 
-.note .icon {
-	border: none;
-	width: inherit;
-	font-weight: bold;
-	color: $gold;
+.admonitionblock {
 
-	.title::after {
-		content: ":";
+	.icon {
+		border: none;
+		width: inherit;
+		font-weight: bold;
+		color: $gold;
+
+		.title::after {
+			content: ":";
+		}
 	}
+
+	.content {
+		border-bottom: none;
+	}
+
 }
 
 ::selection {
