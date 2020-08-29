@@ -2,11 +2,11 @@
 layout: splash
 permalink: /
 header:
-  overlay_color: rgba(0, 0, 0, 0.7)
+  overlay_color: rgba(0, 0, 0, 0.9)
   overlay_image: assets/images/site/pioneer-full.jpg
   title_alignment: left
 title: JUnit Pioneer
-excerpt: 'JUnit 5 extension pack, pushing the frontiers on Jupiter.<br/> <small>Released on [GitHub](https://github.com/junit-pioneer/junit-pioneer/releases), [JCenter](https://jcenter.bintray.com/org/junit-pioneer/junit-pioneer/), and [Maven Central](https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer) under<br /><span class="coordinates">`org.junit-pioneer : junit-pioneer : @xp:version`</span></small><br/><br/> {::nomarkdown}<iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="145px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=star&count=true&size=large" frameborder="0" scrolling="0" width="138px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="138px" height="30px"></iframe>{:/nomarkdown}'
+excerpt: @xp:excerpt
 feature_row:
   - image_path: /assets/images/site/card-pioneer.jpg
     alt: "project"
