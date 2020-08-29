@@ -127,10 +127,18 @@ body {
 		}
 	}
 
-	.archive__item-teaser {
+	a {
 		// magic numbers for the win!
+		// (Firefox needs its magic on the div)
 		z-index: -2;
 	}
+
+	.archive__item-teaser {
+		// magic numbers for the win!
+		// (Chromium needs its magic on the div containing the image)
+		z-index: -2;
+	}
+
 }
 
 .archive__item-body {
