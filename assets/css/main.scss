@@ -11,7 +11,7 @@ $foreground-color: #EEE;
 $hover-color: #FFF;
 $gold: #FFBF00;
 $bright-gold: #FFD700;
-$background-color: rgba(0, 0, 0, 0.75);
+$background-color: rgba(0, 0, 0, 0.9);
 $border-color: $foreground-color;
 
 $sidebar-width: 20%;
@@ -84,6 +84,11 @@ body {
 	a:hover:before {
 		content: none;
 	}
+
+	.hidden-links {
+		background-color: $background-color;
+	}
+
 }
 
 // HERO / TITLE IMAGE / FEATURE ROWS
