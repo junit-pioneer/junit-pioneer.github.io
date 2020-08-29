@@ -9,7 +9,8 @@
 # Ruby Gem
 *.gem
 .bundle
-Gemfile.lock
+# Pioneers decided to commit this file
+# Gemfile.lock
 **/vendor/bundle
 
 # Node.js and NPM
