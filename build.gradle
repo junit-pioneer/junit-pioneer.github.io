@@ -61,8 +61,18 @@ task removeDocNav() {
 	}
 }
 
+task removeVersion() {
+	doLast {
+		description 'Removes current version from site-source/_pages/home.md'
+		File home = file('site-source/_pages/home.md')
+		String homeText = home.getText()
+		String homeTextWithVersion = homeText.replaceAll(/`org.junit-pioneer : junit-pioneer : [^`]*`/, "`org.junit-pioneer : junit-pioneer : @xp:version`")
+		home.setText(homeTextWithVersion)
+	}
+}
+
 task clean {
-	dependsOn removeProjectPage, removeDocs, removeDocNav
+	dependsOn removeProjectPage, removeDocs, removeDocNav, removeVersion
 }
 
 // ------
@@ -93,8 +103,21 @@ task insertDocNav() {
 	}
 }
 
+task insertVersion() {
+	doLast {
+		description 'Inserts current XP version into site-source/_pages/home.md'
+		Properties properties = new Properties()
+		file('junit-pioneer/version.properties').withInputStream { properties.load(it) }
+		String version = properties.previousVersion
+		File home = file('site-source/_pages/home.md')
+		String homeText = home.getText()
+		String homeTextWithVersion = homeText.replaceAll(/@xp:version/, "${version}")
+		home.setText(homeTextWithVersion)
+	}
+}
+
 task create {
-	dependsOn copyProjectPage, copyDocs, insertDocNav
+	dependsOn copyProjectPage, copyDocs, insertDocNav, insertVersion
 }
 
 // -----
