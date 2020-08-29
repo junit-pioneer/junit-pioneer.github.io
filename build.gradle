@@ -61,18 +61,18 @@ task removeDocNav() {
 	}
 }
 
-task removeVersion() {
+task removeXpFromHome {
 	doLast {
-		description 'Removes current version from site-source/_pages/home.md'
+		description 'Removes XP excerpt from _site-source/_pages/home.md'
 		File home = file('site-source/_pages/home.md')
 		String homeText = home.getText()
-		String homeTextWithVersion = homeText.replaceAll(/`org.junit-pioneer : junit-pioneer : [^`]*`/, "`org.junit-pioneer : junit-pioneer : @xp:version`")
-		home.setText(homeTextWithVersion)
+		String homeTextWithoutXpExcerpt = homeText.replaceAll(/(?m)^excerpt: .*/, "excerpt: @xp:excerpt")
+		home.setText(homeTextWithoutXpExcerpt)
 	}
 }
 
 task clean {
-	dependsOn removeProjectPage, removeDocs, removeDocNav, removeVersion
+	dependsOn removeProjectPage, removeDocs, removeDocNav, removeXpFromHome
 }
 
 // ------
@@ -82,7 +82,7 @@ task clean {
 task copyProjectPage(type: Copy) {
 	from 'junit-pioneer/docs/'
 	include 'project-page.*'
-	rename 'project-page.(.*)', 'xp.$1'
+	rename 'project-page.adoc', 'xp.adoc'
 	into 'site-source/_pages'
 }
 
@@ -104,20 +104,34 @@ task insertDocNav() {
 }
 
 task insertVersion() {
+	dependsOn copyProjectPage
 	doLast {
-		description 'Inserts current XP version into site-source/_pages/home.md'
+		description 'Inserts current XP version into XP about page'
 		Properties properties = new Properties()
 		file('junit-pioneer/version.properties').withInputStream { properties.load(it) }
 		String version = properties.previousVersion
+		File aboutXp = file('site-source/_pages/xp.adoc')
+		String aboutXpText = aboutXp.getText()
+		String aboutXpTextWithVersion = aboutXpText.replaceAll(/@xp:version/, version)
+		aboutXp.setText(aboutXpTextWithVersion)
+	}
+}
+
+task insertXpIntoHome() {
+	dependsOn insertVersion
+	doLast {
+		description 'Inserts XP excerpt into _site-source/_pages/home.md'
+		String xpContent = file('site-source/_pages/xp.adoc').getText()
+		String excerpt = xpContent.find(/excerpt: .*/)
 		File home = file('site-source/_pages/home.md')
 		String homeText = home.getText()
-		String homeTextWithVersion = homeText.replaceAll(/@xp:version/, "${version}")
-		home.setText(homeTextWithVersion)
+		String homeTextWithXpExcerpt = homeText.replaceAll(/(?m)^excerpt: @xp:excerpt/, excerpt)
+		home.setText(homeTextWithXpExcerpt)
 	}
 }
 
 task create {
-	dependsOn copyProjectPage, copyDocs, insertDocNav, insertVersion
+	dependsOn copyProjectPage, copyDocs, insertDocNav, insertVersion, insertXpIntoHome
 }
 
 // -----
