@@ -4,7 +4,9 @@ main:
     url: /docs/
   - title: "Javadoc"
     url: https://javadoc.io/doc/org.junit-pioneer/junit-pioneer
-  - title: "About the Project"
+  - title: "Release Notes"
+    url: https://github.com/junit-pioneer/junit-pioneer/releases
+  - title: "About"
     url: /junit-pioneer/
   - title: "GitHub"
     url: https://github.com/junit-pioneer/junit-pioneer
