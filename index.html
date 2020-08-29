@@ -1,55 +1,29 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
-  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 
-<!-- begin SEO -->
+<!-- begin _includes/seo.html --><title>JUnit Pioneer - JUnit Pioneer</title>
+<meta name="description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer : 0.9.0">
 
 
+  <meta name="author" content="JUnit Pioneers">
 
 
-
-
-
-
-
-<title>JUnit Pioneer - JUnit Pioneer</title>
-
-
-
-
-<meta name="description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer   ">
-
-
-
-
-<meta name="author" content="JUnit Pioneers">
-
+<meta property="og:type" content="website">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
 <meta property="og:title" content="JUnit Pioneer">
+<meta property="og:url" content="https://junit-pioneer.org/">
 
 
-  <link rel="canonical" href="https://junit-pioneer.org/">
-  <meta property="og:url" content="https://junit-pioneer.org/">
-
-
-
-  <meta property="og:description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer   ">
-
-
-
-
-
-  
-
-  
+  <meta property="og:description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer : 0.9.0">
 
 
 
@@ -63,30 +37,38 @@
 
 
 
+  
 
-  <script type="application/ld+json">
-    {
-      "@context" : "http://schema.org",
-      "@type" : "Person",
-      "name" : "JUnit Pioneers",
-      "url" : "https://junit-pioneer.org",
-      "sameAs" : null
-    }
-  </script>
+  
+
+
+<link rel="canonical" href="https://junit-pioneer.org/">
 
 
 
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "JUnit Pioneers",
+      "url": "https://junit-pioneer.org/"
+    
+  }
+</script>
 
 
-<!-- end SEO -->
 
 
-<link href="https://junit-pioneer.org/feed.xml" type="application/atom+xml" rel="alternate" title="JUnit Pioneer Feed">
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="JUnit Pioneer Feed">
+
+<!-- https://t.co/dKP3o1e -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
@@ -94,9 +76,10 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://junit-pioneer.org/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
-<!--[if lte IE 9]>
+<!--[if IE]>
   <style>
     /* old IE unsupported flexbox fixes */
     .greedy-nav .site-title {
@@ -111,47 +94,64 @@
   </style>
 <![endif]-->
 
-<meta http-equiv="cleartype" content="on">
+
+
     <!-- start custom head snippets -->
 
-<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
+
   </head>
 
   <body class="layout--splash">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
 
     <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
-    <div class="masthead">
+
+    
+
+<div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="https://junit-pioneer.org/">JUnit Pioneer</a>
-        <ul class="visible-links">
-          
-            
-            <li class="masthead__menu-item"><a href="https://junit-pioneer.org/docs/">Documentation</a></li>
-          
-            
-            <li class="masthead__menu-item"><a href="https://javadoc.io/doc/org.junit-pioneer/junit-pioneer">Javadoc</a></li>
-          
-            
-            <li class="masthead__menu-item"><a href="https://junit-pioneer.org/junit-pioneer/">About the Project</a></li>
-          
-            
-            <li class="masthead__menu-item"><a href="https://github.com/junit-pioneer/junit-pioneer">GitHub</a></li>
-          
-        </ul>
-        <button><div class="navicon"></div></button>
+        
+        <a class="site-title" href="/">
+          JUnit Pioneer
+          <span class="site-subtitle">JUnit 5 Extension Pack</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/docs/">Documentation</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://javadoc.io/doc/org.junit-pioneer/junit-pioneer">Javadoc</a>
+            </li><li class="masthead__menu-item">
+              <a href="/junit-pioneer/">About the Project</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/junit-pioneer/junit-pioneer">GitHub</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 </div>
 
-    
+
+    <div class="initial-content">
+      
   
 
 
@@ -161,20 +161,24 @@
 
 
 <div class="page__hero--overlay"
-  style="background-color: rgba(0, 0, 0, 0.7); background-image: url('https://junit-pioneer.org/assets/images/site/pioneer-full.jpg');"
+  style="background-color: rgba(0, 0, 0, 0.7); background-image: url('/assets/images/site/pioneer-full.jpg');"
 >
   
     <div class="wrapper">
-      <h1 class="page__title" itemprop="headline">
+      <h1 id="page-title" class="page__title" itemprop="headline"
+        style="text-align: left;">
         
           JUnit Pioneer
 
         
       </h1>
       
-        <p class="page__lead">JUnit 5 extension pack, pushing the frontiers on Jupiter.<br /> <small>Released on <a href="https://github.com/junit-pioneer/junit-pioneer/releases">GitHub</a>, <a href="https://jcenter.bintray.com/org/junit-pioneer/junit-pioneer/">JCenter</a>, and <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.junit-pioneer%22%20a%3A%22junit-pioneer%22">Maven Central</a> under<br /><code class="coordinates">org.junit-pioneer : junit-pioneer</code></small><br /><br /> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="145px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=star&count=true&size=large" frameborder="0" scrolling="0" width="138px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="138px" height="30px"></iframe>
+        <p class="page__lead">JUnit 5 extension pack, pushing the frontiers on Jupiter.<br /> <small>Released on <a href="https://github.com/junit-pioneer/junit-pioneer/releases">GitHub</a>, <a href="https://jcenter.bintray.com/org/junit-pioneer/junit-pioneer/">JCenter</a>, and <a href="https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer">Maven Central</a> under<br /><span class="coordinates"><code class="language-plaintext highlighter-rouge">org.junit-pioneer : junit-pioneer : 0.9.0</code></span></small><br /><br /> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="145px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=star&count=true&size=large" frameborder="0" scrolling="0" width="138px" height="30px"></iframe> <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=junit-pioneer&repo=junit-pioneer&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="138px" height="30px"></iframe>
 </p>
       
+      
+
+
       
       
     </div>
@@ -185,9 +189,9 @@
 
 
 <div id="main" role="main">
-  <article class="splash" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="JUnit Pioneer">
-    <meta itemprop="description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer   ">
+    <meta itemprop="description" content="JUnit 5 extension pack, pushing the frontiers on Jupiter. Released on GitHub, JCenter, and Maven Central underorg.junit-pioneer : junit-pioneer : 0.9.0   ">
     
     
 
@@ -196,15 +200,15 @@
 <div class="feature__wrapper">
 
   
-
-    
-
     <div class="feature__item">
       <div class="archive__item">
         
-          <a href="https://junit-pioneer.org/junit-pioneer/"><div class="archive__item-teaser">
-            <img src="https://junit-pioneer.org/assets/images/site/card-pioneer.jpg" alt="project" />
-          </div></a>
+           <a href="/junit-pioneer/"> 
+            <div class="archive__item-teaser">
+                <img src="/assets/images/site/card-pioneer.jpg" alt="project" />
+                
+            </div>
+           </a> 
         
 
         <div class="archive__item-body">
@@ -220,21 +224,21 @@
           
 
           
-            <p><a href="https://junit-pioneer.org/junit-pioneer/" class="btn ">Explore Pioneer</a></p>
+            <p><a href="/junit-pioneer/" class="btn ">Explore Pioneer</a></p>
           
         </div>
       </div>
     </div>
   
-
-    
-
     <div class="feature__item">
       <div class="archive__item">
         
-          <a href="https://junit-pioneer.org/docs/"><div class="archive__item-teaser">
-            <img src="https://junit-pioneer.org/assets/images/site/card-docs.jpg" alt="docs" />
-          </div></a>
+           <a href="/docs/"> 
+            <div class="archive__item-teaser">
+                <img src="/assets/images/site/card-docs.jpg" alt="docs" />
+                
+            </div>
+           </a> 
         
 
         <div class="archive__item-body">
@@ -250,7 +254,37 @@
           
 
           
-            <p><a href="https://junit-pioneer.org/docs/" class="btn ">Get Started</a></p>
+            <p><a href="/docs/" class="btn ">Get Started</a></p>
+          
+        </div>
+      </div>
+    </div>
+  
+    <div class="feature__item">
+      <div class="archive__item">
+        
+           <a href="https://github.com/junit-pioneer/junit-pioneer/releases"> 
+            <div class="archive__item-teaser">
+                <img src="/assets/images/site/card-release-notes.jpg" alt="release notes" />
+                
+            </div>
+           </a> 
+        
+
+        <div class="archive__item-body">
+          
+            <h2 class="archive__item-title">Release Notes</h2>
+          
+
+          
+            <div class="archive__item-excerpt">
+              <p>Changes between versions…</p>
+
+            </div>
+          
+
+          
+            <p><a href="https://github.com/junit-pioneer/junit-pioneer/releases" class="btn ">Lift Off</a></p>
           
         </div>
       </div>
@@ -264,7 +298,11 @@
   </article>
 </div>
 
-    <div class="page__footer">
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
@@ -274,22 +312,43 @@
     
       <li><strong>Follow:</strong></li>
     
+
     
+      
+        
+          <li><a href="https://twitter.com/hashtag/JUnitPioneer" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/junit-pioneer" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
     
-    
-      <li><a href="http://github.com/junit-pioneer"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    <li><a href="https://junit-pioneer.org/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2020 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2020 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
 
-    <script src="https://junit-pioneer.org/assets/js/main.min.js"></script>
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
 
 
 
