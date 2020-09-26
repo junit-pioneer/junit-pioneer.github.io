@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-08-30T11:04:27+00:00">
+  <meta property="article:published_time" content="2020-09-26T10:21:19+00:00">
 
 
 
@@ -412,6 +412,32 @@ Just so:</p>
 </div>
 <div class="paragraph">
 <p>Entries will always be published after the test finished.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="publishing-test-parameters">Publishing test parameters</h3>
+<div class="paragraph">
+<p>You can access <code>@ParameterizedTest</code> parameter values and publish them with the <code>@ReportEntry</code> annotation.
+Add a number (starting from zero) between curly braces to reference the argument with that index.
+This works just like arguments in <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">Java&#8217;s <code>MessageFormat</code></a> and is in line with how you reference test parameters <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-display-names">when customizing the Display Name of a <code>ParameterizedTest</code></a>.
+Inside the report entry, the parameters can be referenced in any order and multiple times.
+For example, if you have a <code>@ParameterizedTest</code> like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;Hello, 21&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World, 42&quot;</span><span style="color: #f92672">})</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;{1} - {0} - {1}&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then the extension will publish <code>"21 - Hello - 21"</code> and <code>"42 - World - 42"</code>.</p>
+</div>
+<div class="paragraph">
+<p>Accessing test parameters in the key of the report entry is unsupported.</p>
 </div>
 </div>
 </div>
