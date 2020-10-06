@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-09-29T18:44:28+00:00">
+  <meta property="article:published_time" content="2020-10-06T19:14:53+00:00">
 
 
 
@@ -219,6 +219,8 @@
         
         <ul>
           
+            <li><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+          
             <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
           
             <li><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></li>
@@ -235,7 +237,7 @@
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
           
-            <li><a href="/docs/temp-directory/">Temporary Files and Directories</a></li>
+            <li><a href="/docs/temp-directory/">Temporary Files and Directories (removed in 1.0)</a></li>
           
             <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
@@ -315,7 +317,8 @@ The first two executions are marked as ignored/aborted, while the last as failed
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">aborted</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// test code that is aborted e.g. because of an Assumption.</span>
+    <span style="color: #75715e">// test code that is aborted,</span>
+    <span style="color: #75715e">// e.g. because of an `Assumption`.</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>

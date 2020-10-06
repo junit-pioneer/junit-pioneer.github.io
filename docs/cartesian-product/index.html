@@ -1,0 +1,938 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Cartesian product of all test parameters - JUnit Pioneer</title>
+<meta name="description" content="Extends JUnit Jupiter with @CartesianProductTest, a variant of parameterized tests that tests all combinations of its input">
+
+
+  <meta name="author" content="JUnit Pioneers">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="JUnit Pioneer">
+<meta property="og:title" content="Cartesian product of all test parameters">
+<meta property="og:url" content="https://junit-pioneer.org/docs/cartesian-product/">
+
+
+  <meta property="og:description" content="Extends JUnit Jupiter with @CartesianProductTest, a variant of parameterized tests that tests all combinations of its input">
+
+
+
+  <meta property="og:image" content="https://junit-pioneer.org/assets/images/site/type-writer.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-10-06T19:14:53+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://junit-pioneer.org/docs/cartesian-product/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "JUnit Pioneers",
+      "url": "https://junit-pioneer.org/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="JUnit Pioneer Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          JUnit Pioneer
+          <span class="site-subtitle">JUnit 5 Extension Pack</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/docs/">Documentation</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://javadoc.io/doc/org.junit-pioneer/junit-pioneer">Javadoc</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/junit-pioneer/junit-pioneer/releases">Release Notes</a>
+            </li><li class="masthead__menu-item">
+              <a href="/junit-pioneer/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/junit-pioneer/junit-pioneer">GitHub</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/assets/images/site/type-writer.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline"
+        style="">
+        
+          Cartesian product of all test parameters
+
+        
+      </h1>
+      
+      
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Features</span>
+        
+
+        
+        <ul>
+          
+            <li class="active"><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+          
+            <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
+          
+            <li><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></li>
+          
+            <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
+          
+            <li><a href="/docs/disable-if-display-name/">Disable Based on DisplayName</a></li>
+          
+            <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
+          
+            <li><a href="/docs/range-sources/">Range Sources</a></li>
+          
+            <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
+          
+            <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
+          
+            <li><a href="/docs/temp-directory/">Temporary Files and Directories (removed in 1.0)</a></li>
+          
+            <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Cartesian product of all test parameters">
+    <meta itemprop="description" content="">
+    
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <div class="paragraph">
+<p>From Wikipedia:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>In mathematics, specifically set theory, the Cartesian product of two sets A and B, denoted A × B, is the set of all ordered pairs (a, b) where a is in A and b is in B.
+In terms of set-builder notation, that is <code>A × B = {(a,b) | a ∈ A and b ∈ B}</code>
+[...]
+One can similarly define the Cartesian product of n sets, also known as an n-fold Cartesian product, which can be represented by an n-dimensional array, where each element is an n-tuple.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>What does all this mean?</p>
+</div>
+<div class="paragraph">
+<p>The Cartesian product of sets is all the possible combinations where you take a single element from each set.
+If you have two sets, <code>{ 1, 2 }</code> and <code>{ 3, 4 }</code>, their cartesian product is <code>{ { 1, 3 }, { 1, 4 }, { 2, 3 }, { 2, 4 } }</code>.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes it&#8217;s useful to test all possible combinations of parameter sets.
+Normally, this results in a lot of written test data parameters.
+For a more comfortable way you may use the <code>@CartesianProductTest</code> extension.
+The extension takes the test data parameter values and runs the test for every possible combination of them.</p>
+</div>
+<div class="sect1">
+<h2 id="basic-use">Basic Use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>@CartesianProductTest</code> is used <em>instead</em> of <code>@Test</code> or other such annotations (e.g. <code>@RepeatedTest</code>).</p>
+</div>
+<div class="paragraph">
+<p>You can supply test parameters to <code>@CartesianProductTest</code> in multiple ways.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The annotation can have a <code>String[]</code> value (see <a href="#supplying-cartesianproducttest-with-a-string">Supplying CartesianProductTest with a <code>String[]</code></a>)</p>
+</li>
+<li>
+<p>the test method can be annotated with <code>@CartesianValueSource</code> (see <a href="#annotating-your-test-method-with-cartesianvaluesource">Annotating your test method with @CartesianValueSource</a>)</p>
+</li>
+<li>
+<p>the test class can have a static factory method providing the arguments (see <a href="#writing-a-static-factory-method-for-the-parameters">Writing a static factory method for the parameters</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Specifying more than one kind of parameter source (e.g.: both annotating your test method and having a static factory) does not work and will throw an <code>ExtensionConfigurationException</code>.</p>
+</div>
+<div class="paragraph">
+<p>Our earlier example with <code>{ 1, 2 }</code> and <code>{ 3, 4 }</code>, would look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@CartesianValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span> <span style="color: #f92672">})</span>
+<span style="color: #a6e22e">@CartesianValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">myCartesianTestMethod</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">x</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">y</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>@CartesianProductTest</code> works with parameters injected by JUnit automatically (e.g.: <code>TestReporter</code>).
+<a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-dependency-injection::">You can read about auto-injected parameters here.</a></p>
+</div>
+<div class="paragraph">
+<p>Just like the mathematical Cartesian product, <code>@CartesianProductTest</code> works with sets.
+Duplicate elements get removed automatically.
+If your input is <code>{ 1, 1, 3 }</code> and <code>{ 2, 2 }</code> the extension will consider their Cartesian product <code>{ { 1, 2 }, { 3, 2 } }</code>.
+Otherwise, the test would run with the same parameters multiple times.
+If you need to pass the same parameters multiple times, you might want to look into <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-repeated-tests">repeated tests</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="supplying-cartesianproducttest-with-a-string">Supplying CartesianProductTest with a <code>String[]</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If all your test parameters are strings, you can supply all input parameters simultaneously by giving a string array value to <code>@CartesianProductTest</code>.
+This value is the input for all parameters.
+The test will try every combination of its elements.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;0&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;1&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">threeBits</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">a</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">b</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">c</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The test <code>threeBits</code> is executed exactly eight times, because all three input parameters can have the values "0" or "1".
+<code>@CartesianProductTest</code> tests for all input combinations, that&#8217;s <code>2 × 2 × 2</code>, so eight tests in total.</p>
+</div>
+<div class="paragraph">
+<p>To demonstrate with a table:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>b</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>c</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2nd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3rd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"1"</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="annotating-your-test-method-with-cartesianvaluesource">Annotating your test method with @CartesianValueSource</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you don&#8217;t only supply string values to your test method like in the example above, you can annotate your method with <code>@CartesianValueSource</code>.
+<code>@CartesianValueSource</code> is used to define the possible inputs of a single test parameter - as annotations are listed top-to-bottom, they provide parameter values left-to-right.
+The test will try every combination those values can have.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@CartesianValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span> <span style="color: #f92672">})</span>
+<span style="color: #a6e22e">@CartesianValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testIntChars</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">character</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This annotation might look familiar - it mimics JUnits <code>@ValueSource</code>, except <code>@CartesianValueSource</code> is repeatable.
+It also does NOT work with <code>@ParameterizedTest</code>.
+<a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-sources-ValueSource::">You can read about <code>@ValueSource</code> here.</a></p>
+</div>
+<div class="paragraph">
+<p>The test <code>testIntChars</code> is executed exactly six times.
+The first parameter can have any of the three values <code>1</code>, <code>2</code> or <code>4</code>.
+The second parameter can have any of the two values <code>"A"</code> or <code>"B"</code>.
+<code>@CartesianProductTest</code> tests for all input combinations, that&#8217;s <code>3 × 2</code>, so six tests in total.</p>
+</div>
+<div class="paragraph">
+<p>To demonstrate with a table:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>character</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"A"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2nd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"B"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3rd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"A"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"B"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"A"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"B"</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-a-static-factory-method-for-the-parameters">Writing a static factory method for the parameters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If your tests require special inputs that <code>@CartesianValueSource</code> is not able to supply, you can define a static factory method to supply your test parameters.
+By default, this method must have the same name as the test method, but you can specify a different name with the <code>factory</code> annotation parameter.
+This method must return <code>CartesianProductTest.Sets</code>.
+<code>CartesianProductTest.Sets</code> is a helper class, specifically for creating sets for <code>@CartesianProductTest</code>.
+To create the test data, instantiate a <code>new CartesianProductTest.Sets()</code> then use the <code>add()</code> method to register the values for the parameters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">nFold</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Class</span><span style="color: #f92672">&lt;?&gt;</span> <span style="color: #f8f8f2">clazz</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TimeUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span> <span style="color: #a6e22e">nFold</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span><span style="color: #f92672">()</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Alpha&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Omega&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Runnable</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Cloneable</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Predicate</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">DAYS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">HOURS</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The test <code>nFold</code> is executed exactly twelve times.
+The first parameter can have any of the two values <code>"Alpha"</code> or <code>"Omega"</code>.
+The second parameter can have any of the three values <code>Runnable.class</code>, <code>Cloneable.class</code> or <code>Predicate.class</code>.
+The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or <code>TimeUnit.HOURS</code>.
+<code>@CartesianProductTest</code> tests for all input combinations, that&#8217;s <code>2 × 3 × 2</code>, so twelve tests in total.</p>
+</div>
+<div class="paragraph">
+<p>To demonstrate with a table:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>clazz</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>unit</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2nd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3rd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Remember, you can reuse the same argument provider method, by explicitly passing its name to <code>@CartesianProductTest&#8217;s `factory</code> attribute.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span>
+<span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;provideArguments&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testNeedingArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;provideArguments&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testNeedingSameArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// different passing test code</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span><span style="color: #f92672">()</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Mercury&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Earth&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Venus&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">12</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">144</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="conditions-for-the-static-factory-method">Conditions for the static factory method</h3>
+<div class="paragraph">
+<p>There are multiple conditions the static factory method has to fulfill to qualify:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>must have the same name as the test method (or its name must be specified via the <code>factory</code> attribute)</p>
+</li>
+<li>
+<p>must be <code>static</code></p>
+</li>
+<li>
+<p>must have <strong>no</strong> parameters</p>
+</li>
+<li>
+<p>must return <code>CartesianProductTest.Sets</code></p>
+</li>
+<li>
+<p>must register values for every parameter exactly once</p>
+</li>
+<li>
+<p>must register values in order</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="returning-wrong-sets-in-the-static-factory-method">Returning wrong <code>Sets</code> in the static factory method</h3>
+<div class="paragraph">
+<p>If you register too few, too many, or conflicting parameters, you will get an <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/extension/ParameterResolutionException.html"><code>ParameterResolutionException</code></a>.
+"Conflicting parameters" means your test method has a parameter that should be injected by JUnit (e.g.: <code>TestReporter</code>) but you also try to inject it.</p>
+</div>
+<div class="paragraph">
+<p>Examples of badly configured tests/static factory method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;resolveParameters&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">tooFewParameters</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">boolean</span> <span style="color: #f8f8f2">b</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// fails because the boolean parameter is not resolved</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;resolveParameters&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">tooManyParameters</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// fails because we try to supply a non-existent integer parameter</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;resolveParameters&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">wrongOrderParameters</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// fails because the static factory method declared parameter sets in the wrong order</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;resolveTestReporterParam&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">conflictingParameters</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TestReporter</span> <span style="color: #f8f8f2">info</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// fails because both the factory method and JUnit tries to inject TestReporter</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span> <span style="color: #a6e22e">resolveParameters</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span><span style="color: #f92672">()</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span> <span style="color: #a6e22e">resolveTestReporterParam</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span><span style="color: #f92672">()</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">MyTestReporter</span><span style="color: #f92672">());</span> <span style="color: #75715e">// in this case MyTestReporter implements TestReporter</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="customizing-display-names">Customizing Display Names</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, the display name of a CartesianProductTest invocation contains the invocation index and the String representation of all arguments for that specific invocation.
+You can customize invocation display names via the <code>name</code> attribute of the <code>@CartesianProductTest</code> annotation.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span><span style="color: #e6db74">&quot;0&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;1&quot;</span><span style="color: #f92672">},</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;{index} =&gt; first bit: {0} second bit: {1}&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@DisplayName</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Basic bit test&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithCustomDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">a</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">b</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When executing the above test, you should see output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code><span></span>Basic bit test
+├─ 1 =&gt; first bit: 0 second bit: 0
+├─ 2 =&gt; first bit: 0 second bit: 1
+├─ 3 =&gt; first bit: 1 second bit: 0
+└─ 4 =&gt; first bit: 1 second bit: 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please note that name is a MessageFormat pattern.
+A single quote (') needs to be represented as a doubled single quote ('') in order to be displayed.</p>
+</div>
+<div class="paragraph">
+<p>CartesianProductTest supports the following placeholders in custom display names:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Placeholder</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{displayName}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the method</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{index}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the current invocation index, starting with 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{arguments}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the complete, comma-separated arguments list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{0}</code>, <code>{1}</code>, &#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">an individual argument</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="warning-do-not-cartesianproducttest-with-test">Warning: Do not <code>@CartesianProductTest</code> with <code>@Test</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If <code>@CartesianProductTest</code> is combined with <code>@Test</code> or <code>TestTemplate</code>-based mechanisms (like <code>@RepeatedTest</code> or <code>@ParameterizedTest</code>), the test engine will execute it according to each annotation (i.e. more than once).
+This is most likely unwanted and will probably lead to the following exception/failure message:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>org.junit.jupiter.api.extension.ParameterResolutionException:
+No ParameterResolver registered for parameter [&#8230;&#8203;]</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>This is because <code>@Test</code> does not know what to do with the parameter(s) of the <code>@CartesianProductTest</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="thread-safety">Thread-Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This extension is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
+</div>
+</div>
+</div>
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Cartesian+product+of+all+test+parameters%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fcartesian-product%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fcartesian-product%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fcartesian-product%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/docs/default-locale-timezone/" class="pagination--pager" title="Default Locale and TimeZone
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/hashtag/JUnitPioneer" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/junit-pioneer" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

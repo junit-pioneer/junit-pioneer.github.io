@@ -1,4 +1,10 @@
 var store = [{
+        "title": "Cartesian product of all test parameters",
+        "excerpt":"From Wikipedia: In mathematics, specifically set theory, the Cartesian product of two sets A and B, denoted A × B, is the set of all ordered pairs (a, b) where a is in A and b is in B. In terms of set-builder notation, that is A × B =...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/cartesian-product/",
+        "teaser": null
+      },{
         "title": "Default Locale and TimeZone",
         "excerpt":"The @DefaultLocale and @DefaultTimeZone annotations can be used to change the values returned from Locale.getDefault() and TimeZone.getDefault(). Both annotations work on the test class level and on the test method level. After the annotated element has been executed the initial default value is restored. @DefaultLocale The default Locale can be...","categories": [],
         "tags": [],
@@ -47,14 +53,14 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/system-properties/",
         "teaser": null
       },{
-        "title": "Temporary Files and Directories",
-        "excerpt":"Note Since JUnit Jupiter 5.4, there&#8217;s a built-in @TempDir extension. If you don&#8217;t need support for arbitrary file systems, you should consider using that instead of this extension. The TempDirectory extension can be used to create and clean up a temporary directory for an individual test or all tests in...","categories": [],
+        "title": "Temporary Files and Directories (removed in 1.0)",
+        "excerpt":"Note Since JUnit Jupiter 5.4, there&#8217;s a built-in @TempDir extension. It doesn&#8217;t support custom file systems, but other than that it&#8217;s much better than this version, so we removed the extension in JUnit Pioneer 1.0. We plan to tackle this problem again in the future - see issue #348. The...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/temp-directory/",
         "teaser": null
       },{
         "title": "Vintage @Test",
-        "excerpt":"The annotation org.junitpioneer.vintage.@Test is a drop-in replacement for JUnit 4`s org.junit.@Test annotation, but marks the method as a regular JUnit Jupiter test. You can make use of it when migrating tests from JUnit 4 to Jupiter by doing a fulltext search/replace of import org.junit.Test with import org.junitpioneer.vintage.Test. That means you...","categories": [],
+        "excerpt":"The annotation org.junitpioneer.vintage.@Test is a drop-in replacement for JUnit 4&#8217;s org.junit.@Test annotation, but marks the method as a regular JUnit Jupiter test. You can make use of it when migrating tests from JUnit 4 to Jupiter by doing a fulltext search/replace of import org.junit.Test with import org.junitpioneer.vintage.Test. That means you...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/vintage-test/",
         "teaser": null
