@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Retrying Failing Tests - JUnit Pioneer</title>
-<meta name="description" content="Extends JUnit Jupiter with @RetryingTest, which retries a failing test a certain number of times; only marking it failed if none of them pass">
+<!-- begin _includes/seo.html --><title>Issue Information - JUnit Pioneer</title>
+<meta name="description" content="Extends JUnit Jupiter with @Issue to publish issue information.">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Retrying Failing Tests">
-<meta property="og:url" content="https://junit-pioneer.org/docs/retrying-test/">
+<meta property="og:title" content="Issue Information">
+<meta property="og:url" content="https://junit-pioneer.org/docs/issue/">
 
 
-  <meta property="og:description" content="Extends JUnit Jupiter with @RetryingTest, which retries a failing test a certain number of times; only marking it failed if none of them pass">
+  <meta property="og:description" content="Extends JUnit Jupiter with @Issue to publish issue information.">
 
 
 
@@ -44,7 +44,7 @@
   
 
 
-<link rel="canonical" href="https://junit-pioneer.org/docs/retrying-test/">
+<link rel="canonical" href="https://junit-pioneer.org/docs/issue/">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Retrying Failing Tests
+          Issue Information
 
         
       </h1>
@@ -229,13 +229,13 @@
           
             <li><a href="/docs/disable-if-display-name/">Disable Based on DisplayName</a></li>
           
-            <li><a href="/docs/issue/">Issue information</a></li>
+            <li class="active"><a href="/docs/issue/">Issue information</a></li>
           
             <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
           
             <li><a href="/docs/range-sources/">Range Sources</a></li>
           
-            <li class="active"><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
+            <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
           
@@ -257,7 +257,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Retrying Failing Tests">
+    <meta itemprop="headline" content="Issue Information">
     <meta itemprop="description" content="">
     
     
@@ -267,95 +267,104 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="paragraph">
-<p>Some tests, e.g. those depending on external systems, may fail through no fault of the code under test.
-Such tests make a suite fragile and it makes sense to try and avoid them, but if that&#8217;s infeasible, it may help to retry a number of times before eventually assuming actual failure.
-<code>RetryingTest</code> provides that functionality.</p>
-</div>
-<div class="sect1">
-<h2 id="basic-use">Basic Use</h2>
+        <div class="sect1">
+<h2 id="introduction">Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>@RetryingTest(n)</code> is used <em>instead</em> of <code>@Test</code> or other such annotations (e.g. <code>@RepeatedTest</code>).
-The attribute <code>n</code> specifies how often the test is executed before giving up.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsNever</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// passing test code</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
+<p>The main reason developers write tests is to ensure the functionality of a requirement or to avoid technical problems.
+The <code>@Issue</code> annotation allows marking tests with a <code>String</code>, referencing a related issue (like a requirement, or a bugfix) of an issue-tracker (like Jira or Redmine).</p>
 </div>
 <div class="paragraph">
-<p>The test <code>failsNever</code> is executed once (which succeeds) and marked as passed.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsOnlyOnFirstInvocation</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// test code that fails on first execution</span>
-    <span style="color: #75715e">// but passes on the second</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The test <code>failsOnlyOnFirstInvocation</code> is executed once (which fails) and then once more (which succeeds).
-To allow the entire test suite to pass, the first execution is marked as ignored/aborted, which includes the underlying exception - the second is of course marked as passing.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsAlways</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// test code that always fails</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The test <code>failsAlways</code> is executed three times (all of which fail).
-The first two executions are marked as ignored/aborted, while the last as failed - each contains the underlying exception.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">aborted</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// test code that is aborted,</span>
-    <span style="color: #75715e">// e.g. because of an `Assumption`.</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If a test is aborted (e.g.: because of a failed Assumption) <code>@RetryingTest</code> won&#8217;t try again after that.
-The test <code>aborted</code> is aborted before (or during) its first execution.
-The first execution is marked as aborted/skipped, containing the underlying cause.
-The test suite as a whole is also marked as aborted/skipped.</p>
+<p>It&#8217;s a JUnit Jupiter extension for showing that tests exist to cover a specific issue.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="combining-retryingtest-with-test-et-al">Combining <code>@RetryingTest</code> with <code>@Test</code> et al</h2>
+<h2 id="usage">Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If <code>@RetryingTest</code> is combined with <code>@Test</code> or <code>TestTemplate</code>-based mechanisms (like <code>@RepeatedTest</code> or <code>@ParameterizedTest</code>), the test engine will execute it according to each annotation (i.e. more than once).
-This is most likely unwanted and thus the engine warns:</p>
+<p>The extension is divided into two parts:
+First there is an annotation to mark that a test belongs to a specific issue.</p>
 </div>
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>Possible configuration error:
-method [&#8230;&#8203;] resulted in multiple TestDescriptors [&#8230;&#8203;].
-This is typically the result of annotating a method with multiple competing annotations such as @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, etc.</p>
+<p>The second part of the extension deals with publishing these results.
+The specified issue ID will always be published as a report entry - where this information will be visible, depends on the tool used to execute the tests.
+Then there is an API interface to further process the results, so users can plug in their own behavior, e.g. generating a report, sending mails, or marking the CI-build as failed.</p>
 </div>
-</blockquote>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="thread-safety">Thread-Safety</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="annotating-a-test">Annotating a test</h3>
 <div class="paragraph">
-<p>This extension is thread-safe.
-During <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>, all repetitions of a <code>@RepeatFailedTest</code> are executed sequentially.</p>
+<p>To show that a test relates to an issue just add the annotation and provide a value, e.g. a Jira issue id, like in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Issue</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;REQ-123&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@Test</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// One of the tests for the issue with the id &quot;REQ-123&quot;</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@Issue</code> annotation can be used on the class and method level.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+If you place it on class level, make sure to not mix tests which belong to the issue and those which don&#8217;t!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>@Issue</code> annotation can only be used once per class or method.
+This is done on purpose, because a test case should only cover exactly one aspect of a method.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="issueprocessor-api"><code>IssueProcessor</code> API</h3>
+<div class="paragraph">
+<p>Pioneer tracks the results of tests which are annotated with the <code>@Issue</code> annotation, using an <a href="https://junit.org/junit5/docs/current/user-guide/#launcher-api-listeners-custom">ExecutionListener</a>.
+After all tests are executed, their unique names, results, and the annotated value (called <code>issueID</code>) are provided through the <code>IssueProcessor</code> API.</p>
+</div>
+<div class="paragraph">
+<p>To use the information published this way, [a service implementation](<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html" class="bare">https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html</a>) of the <code>IssueProcessor</code> interface must be provided by the user.</p>
+</div>
+<div class="paragraph">
+<p>The following snippet shows a simple implementation of the interface that just prints out the received values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">SimpleProcessor</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">IssueProcessor</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">processTestResults</span><span style="color: #f92672">(</span>
+            <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">IssuedTestCase</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">allResults</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">for</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">IssuedTestCase</span> <span style="color: #f8f8f2">test</span> <span style="color: #f92672">:</span> <span style="color: #f8f8f2">allResults</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">out</span><span style="color: #f92672">.</span><span style="color: #a6e22e">println</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">test</span><span style="color: #f92672">);</span>
+        <span style="color: #f92672">}</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The implementing class must be registered to the Java ecosystem as a service.
+For further information about registering a service, please see the Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html"><code>ServiceLoader</code> documentation</a>.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -376,22 +385,22 @@ During <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Retrying+Failing+Tests%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fretrying-test%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Issue+Information%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fissue%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fretrying-test%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fissue%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fretrying-test%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fissue%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/docs/report-entries/" class="pagination--pager" title="Publishing Report Entries
+      <a href="/docs/environment-variables/" class="pagination--pager" title="Clearing or Setting Environment Variables
 ">Previous</a>
     
     
-      <a href="/docs/standard-input-output/" class="pagination--pager" title="Standard Input and Output
+      <a href="/docs/range-sources/" class="pagination--pager" title="Range Sources
 ">Next</a>
     
   </nav>

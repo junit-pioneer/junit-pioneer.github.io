@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-10-06T19:14:53+00:00">
+  <meta property="article:published_time" content="2020-11-25T14:38:36+00:00">
 
 
 
@@ -228,6 +228,8 @@
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
             <li><a href="/docs/disable-if-display-name/">Disable Based on DisplayName</a></li>
+          
+            <li><a href="/docs/issue/">Issue information</a></li>
           
             <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
           
@@ -517,7 +519,7 @@ The second parameter can have any of the two values <code>"A"</code> or <code>"B
 By default, this method must have the same name as the test method, but you can specify a different name with the <code>factory</code> annotation parameter.
 This method must return <code>CartesianProductTest.Sets</code>.
 <code>CartesianProductTest.Sets</code> is a helper class, specifically for creating sets for <code>@CartesianProductTest</code>.
-To create the test data, instantiate a <code>new CartesianProductTest.Sets()</code> then use the <code>add()</code> method to register the values for the parameters.</p>
+To create the test data, instantiate a <code>new CartesianProductTest.Sets()</code> then use the methods <code>add()</code> (with varargs arguments) or <code>addAll()</code> (with <code>Iterable</code> or <code>Stream</code> argument) to register the values for the parameters.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -528,6 +530,9 @@ To create the test data, instantiate a <code>new CartesianProductTest.Sets()</co
 
 <span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span> <span style="color: #a6e22e">nFold</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
     <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">CartesianProductTest</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Sets</span><span style="color: #f92672">()</span>
+        <span style="color: #75715e">// e.g. with a `List&lt;String&gt; letters`,</span>
+        <span style="color: #75715e">// you can use `addAll`:</span>
+        <span style="color: #75715e">// .addAll(letters)</span>
         <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Alpha&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Omega&quot;</span><span style="color: #f92672">)</span>
         <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Runnable</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Cloneable</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Predicate</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
         <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">DAYS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">HOURS</span><span style="color: #f92672">);</span>
@@ -637,8 +642,7 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span>
-<span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;provideArguments&quot;</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;provideArguments&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testNeedingArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// passing test code</span>
 <span style="color: #f92672">}</span>
