@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-11-25T14:38:36+00:00">
+  <meta property="article:published_time" content="2020-11-26T15:02:44+00:00">
 
 
 
@@ -332,10 +332,10 @@ This is done on purpose, because a test case should only cover exactly one aspec
 After all tests are executed, their unique names, results, and the annotated value (called <code>issueID</code>) are provided through the <code>IssueProcessor</code> API.</p>
 </div>
 <div class="paragraph">
-<p>To use the information published this way, [a service implementation](<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html" class="bare">https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html</a>) of the <code>IssueProcessor</code> interface must be provided by the user.</p>
+<p>To use the information published this way, <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html">a service implementation</a> of the <code>IssueProcessor</code> interface must be provided by the user.</p>
 </div>
 <div class="paragraph">
-<p>The following snippet shows a simple implementation of the interface that just prints out the received values:</p>
+<p>The following snippet shows a simple implementation of the interface that just prints out the <code>issueID</code> of received values:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -343,9 +343,9 @@ After all tests are executed, their unique names, results, and the annotated val
 
     <span style="color: #a6e22e">@Override</span>
     <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">processTestResults</span><span style="color: #f92672">(</span>
-            <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">IssuedTestCase</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">allResults</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">for</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">IssuedTestCase</span> <span style="color: #f8f8f2">test</span> <span style="color: #f92672">:</span> <span style="color: #f8f8f2">allResults</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-            <span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">out</span><span style="color: #f92672">.</span><span style="color: #a6e22e">println</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">test</span><span style="color: #f92672">);</span>
+            <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">IssueTestSuite</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">allResults</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">for</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">IssueTestSuite</span> <span style="color: #f8f8f2">testSuite</span> <span style="color: #f92672">:</span> <span style="color: #f8f8f2">allResults</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">out</span><span style="color: #f92672">.</span><span style="color: #a6e22e">println</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">testSuite</span><span style="color: #f92672">.</span><span style="color: #a6e22e">issueId</span><span style="color: #f92672">());</span>
         <span style="color: #f92672">}</span>
     <span style="color: #f92672">}</span>
 
