@@ -8,11 +8,13 @@ cd site-source
 SOURCE_HASH="$(git rev-parse --short HEAD)"
 cd ../junit-pioneer
 XP_HASH="$(git rev-parse --short HEAD)"
+cd ../test-reports
+TR_HASH="$(git rev-parse --short HEAD)"
 cd ..
 
 # now commit and push
 cd site
 git add --all
-# echo "Update to source $SOURCE_HASH, xp $XP_HASH"
-git commit -m "Update to source $SOURCE_HASH, xp $XP_HASH"
+# echo "Update to source $SOURCE_HASH, xp $XP_HASH, tr $TR_HASH"
+git commit -m "Update to source $SOURCE_HASH, xp $XP_HASH, tr $TR_HASH"
 git push

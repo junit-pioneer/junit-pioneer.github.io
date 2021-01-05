@@ -43,12 +43,12 @@ task setup {
 
 task removeProjectPage(type: Delete) {
 	delete fileTree('site-source/_pages') {
-		include 'xp.*'
+		include 'xp.*', 'tr.*'
 	}
 }
 
 task removeDocs(type: Delete) {
-	delete 'site-source/_docs/xp'
+	delete 'site-source/_docs/xp', 'site-source/_docs/tr'
 }
 
 task removeDocNav() {
@@ -58,6 +58,7 @@ task removeDocNav() {
 		String fullNav = nav.getText()
 		String removedNav = fullNav
 				.replaceAll(/(?m)# @xp:start$\s(^[\D\d]*$\s)*^# @xp:end/, "# @xp:toc")
+				.replaceAll(/(?m)# @tr:start$\s(^[\D\d]*$\s)*^# @tr:end/, "# @tr:toc")
 		nav.setText(removedNav)
 	}
 }
@@ -93,6 +94,19 @@ task copyPioneerDocs(type: Copy) {
 	into 'site-source/_docs/xp'
 }
 
+task copyTestReportProjectPage(type: Copy) {
+	from 'test-reports/docs/'
+	include 'project-page.*'
+	rename 'project-page.adoc', 'tr.adoc'
+	into 'site-source/_pages'
+}
+
+task copyTestReportDocs(type: Copy) {
+	from 'test-reports/docs'
+	exclude 'project-page.*', 'docs-nav.yml'
+	into 'site-source/_docs/tr'
+}
+
 task insertDocNav() {
 	doLast {
 		description 'Inserts specific lines into _data/naviation.yml'
@@ -100,18 +114,21 @@ task insertDocNav() {
 		String emptyNav = navTarget.getText()
 
 		String xpNavContent = file('junit-pioneer/docs/docs-nav.yml').getText()
+		String trNavContent = file('test-reports/docs/docs-nav.yml').getText()
 		String fullNav = emptyNav
 				.replaceAll(/(?m)# @xp:toc/, "# @xp:start\n${xpNavContent}# @xp:end")
+				.replaceAll(/(?m)# @tr:toc/, "# @tr:start\n${trNavContent}# @tr:end")
 
 		navTarget.setText(fullNav)
 	}
 }
 
 task insertVersion() {
-	dependsOn copyPioneerProjectPage
+	dependsOn copyPioneerProjectPage, copyTestReportProjectPage
 	doLast {
 		description 'Inserts current versions into about pages'
 		insertProjectVersion('junit-pioneer', 'xp')
+		insertProjectVersion('test-reports', 'tr')
 	}
 }
 
@@ -139,7 +156,7 @@ task insertXpIntoHome() {
 }
 
 task create {
-	dependsOn copyPioneerProjectPage, copyPioneerDocs, insertDocNav, insertVersion, insertXpIntoHome
+	dependsOn copyPioneerProjectPage, copyPioneerDocs, copyTestReportProjectPage, copyTestReportDocs, insertDocNav, insertVersion, insertXpIntoHome
 }
 
 // -----
