@@ -53,6 +53,12 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/standard-input-output/",
         "teaser": null
       },{
+        "title": "Measuring time with a Stopwatch",
+        "excerpt":"Introduction Test shall be fast. To get a feeling how fast or slow a specific test is, the @Stopwatch annotation can be used. It will measure elapsed time and pass the result to the TestReporter, which will publish it. Usage To measure elapsed time just add the @Stopwatch annotation to...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/stopwatch/",
+        "teaser": null
+      },{
         "title": "Clearing or Setting System Properties",
         "excerpt":"The @ClearSystemProperty and @SetSystemProperty annotations can be used to clear, respectively, set the values of system properties for a test execution. Both annotations work on the test method and class level, are repeatable as well as combinable. After the annotated method has been executed, the properties mentioned in the annotation...","categories": [],
         "tags": [],

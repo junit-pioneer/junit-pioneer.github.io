@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Retrying Failing Tests - JUnit Pioneer</title>
-<meta name="description" content="Extends JUnit Jupiter with @RetryingTest, which retries a failing test a certain number of times; only marking it failed if none of them pass">
+<!-- begin _includes/seo.html --><title>Measuring time with a Stopwatch - JUnit Pioneer</title>
+<meta name="description" content="Extends JUnit Jupiter with @Stopwatch to measure elapsed time of a test method">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Retrying Failing Tests">
-<meta property="og:url" content="https://junit-pioneer.org/docs/retrying-test/">
+<meta property="og:title" content="Measuring time with a Stopwatch">
+<meta property="og:url" content="https://junit-pioneer.org/docs/stopwatch/">
 
 
-  <meta property="og:description" content="Extends JUnit Jupiter with @RetryingTest, which retries a failing test a certain number of times; only marking it failed if none of them pass">
+  <meta property="og:description" content="Extends JUnit Jupiter with @Stopwatch to measure elapsed time of a test method">
 
 
 
@@ -44,7 +44,7 @@
   
 
 
-<link rel="canonical" href="https://junit-pioneer.org/docs/retrying-test/">
+<link rel="canonical" href="https://junit-pioneer.org/docs/stopwatch/">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Retrying Failing Tests
+          Measuring time with a Stopwatch
 
         
       </h1>
@@ -235,11 +235,11 @@
           
             <li><a href="/docs/range-sources/">Range Sources</a></li>
           
-            <li class="active"><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
+            <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
           
-            <li><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
+            <li class="active"><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
           
             <li><a href="/docs/temp-directory/">Temporary Files and Directories (removed in 1.0)</a></li>
           
@@ -259,7 +259,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Retrying Failing Tests">
+    <meta itemprop="headline" content="Measuring time with a Stopwatch">
     <meta itemprop="description" content="">
     
     
@@ -269,95 +269,30 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="paragraph">
-<p>Some tests, e.g. those depending on external systems, may fail through no fault of the code under test.
-Such tests make a suite fragile and it makes sense to try and avoid them, but if that&#8217;s infeasible, it may help to retry a number of times before eventually assuming actual failure.
-<code>RetryingTest</code> provides that functionality.</p>
-</div>
-<div class="sect1">
-<h2 id="basic-use">Basic Use</h2>
+        <div class="sect1">
+<h2 id="introduction">Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>@RetryingTest(n)</code> is used <em>instead</em> of <code>@Test</code> or other such annotations (e.g. <code>@RepeatedTest</code>).
-The attribute <code>n</code> specifies how often the test is executed before giving up.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsNever</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// passing test code</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The test <code>failsNever</code> is executed once (which succeeds) and marked as passed.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsOnlyOnFirstInvocation</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// test code that fails on first execution</span>
-    <span style="color: #75715e">// but passes on the second</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The test <code>failsOnlyOnFirstInvocation</code> is executed once (which fails) and then once more (which succeeds).
-To allow the entire test suite to pass, the first execution is marked as ignored/aborted, which includes the underlying exception - the second is of course marked as passing.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsAlways</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// test code that always fails</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The test <code>failsAlways</code> is executed three times (all of which fail).
-The first two executions are marked as ignored/aborted, while the last as failed - each contains the underlying exception.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">aborted</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// test code that is aborted,</span>
-    <span style="color: #75715e">// e.g. because of an `Assumption`.</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If a test is aborted (e.g.: because of a failed Assumption) <code>@RetryingTest</code> won&#8217;t try again after that.
-The test <code>aborted</code> is aborted before (or during) its first execution.
-The first execution is marked as aborted/skipped, containing the underlying cause.
-The test suite as a whole is also marked as aborted/skipped.</p>
+<p>Test shall be fast.
+To get a feeling how fast or slow a specific test is, the <code>@Stopwatch</code> annotation can be used.
+It will measure elapsed time and pass the result to the <code><a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/TestReporter.html">TestReporter</a></code>, which will publish it.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="combining-retryingtest-with-test-et-al">Combining <code>@RetryingTest</code> with <code>@Test</code> et al</h2>
+<h2 id="usage">Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If <code>@RetryingTest</code> is combined with <code>@Test</code> or <code>TestTemplate</code>-based mechanisms (like <code>@RepeatedTest</code> or <code>@ParameterizedTest</code>), the test engine will execute it according to each annotation (i.e. more than once).
-This is most likely unwanted and thus the engine warns:</p>
+<p>To measure elapsed time just add the <code>@Stopwatch</code> annotation to a class or, like in the following example, to a method:</p>
 </div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Possible configuration error:
-method [&#8230;&#8203;] resulted in multiple TestDescriptors [&#8230;&#8203;].
-This is typically the result of annotating a method with multiple competing annotations such as @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, etc.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Stopwatch</span>
+<span style="color: #a6e22e">@Test</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// Some test</span>
+<span style="color: #f92672">}</span></code></pre>
 </div>
-</blockquote>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="thread-safety">Thread-Safety</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This extension is thread-safe.
-During <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>, all repetitions of a <code>@RepeatFailedTest</code> are executed sequentially.</p>
 </div>
 </div>
 </div>
@@ -378,22 +313,22 @@ During <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Retrying+Failing+Tests%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fretrying-test%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Measuring+time+with+a+Stopwatch%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fstopwatch%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fretrying-test%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fstopwatch%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fretrying-test%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fstopwatch%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/docs/report-entries/" class="pagination--pager" title="Publishing Report Entries
+      <a href="/docs/standard-input-output/" class="pagination--pager" title="Standard Input and Output
 ">Previous</a>
     
     
-      <a href="/docs/standard-input-output/" class="pagination--pager" title="Standard Input and Output
+      <a href="/docs/system-properties/" class="pagination--pager" title="Clearing or Setting System Properties
 ">Next</a>
     
   </nav>
