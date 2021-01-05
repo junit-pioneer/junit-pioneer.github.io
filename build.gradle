@@ -56,7 +56,8 @@ task removeDocNav() {
 		description 'Deletes specific lines in _data/naviation.yml'
 		File nav = file('site-source/_data/navigation.yml')
 		String fullNav = nav.getText()
-		String removedNav = fullNav.replaceAll(/(?m)# @xp:start$\s^docs-xp:$\s(^[\D\d]*$\s)*^# @xp:end/, "# @xp:start\ndocs-xp:\n# @xp:end")
+		String removedNav = fullNav
+				.replaceAll(/(?m)# @xp:start$\s(^[\D\d]*$\s)*^# @xp:end/, "# @xp:toc")
 		nav.setText(removedNav)
 	}
 }
@@ -79,14 +80,14 @@ task clean {
 // CREATE
 // ------
 
-task copyProjectPage(type: Copy) {
+task copyPioneerProjectPage(type: Copy) {
 	from 'junit-pioneer/docs/'
 	include 'project-page.*'
 	rename 'project-page.adoc', 'xp.adoc'
 	into 'site-source/_pages'
 }
 
-task copyDocs(type: Copy) {
+task copyPioneerDocs(type: Copy) {
 	from 'junit-pioneer/docs'
 	exclude 'project-page.*', 'docs-nav.yml', 'project-logo.jpg'
 	into 'site-source/_docs/xp'
@@ -95,26 +96,33 @@ task copyDocs(type: Copy) {
 task insertDocNav() {
 	doLast {
 		description 'Inserts specific lines into _data/naviation.yml'
-		String navContent = file('junit-pioneer/docs/docs-nav.yml').getText()
 		File navTarget = file('site-source/_data/navigation.yml')
 		String emptyNav = navTarget.getText()
-		String fullNav = emptyNav.replaceAll(/(?m)# @xp:start$\s^docs-xp:$\s^# @xp:end/, "# @xp:start\ndocs-xp:\n${navContent}# @xp:end")
+
+		String xpNavContent = file('junit-pioneer/docs/docs-nav.yml').getText()
+		String fullNav = emptyNav
+				.replaceAll(/(?m)# @xp:toc/, "# @xp:start\n${xpNavContent}# @xp:end")
+
 		navTarget.setText(fullNav)
 	}
 }
 
 task insertVersion() {
-	dependsOn copyProjectPage
+	dependsOn copyPioneerProjectPage
 	doLast {
-		description 'Inserts current XP version into XP about page'
-		Properties properties = new Properties()
-		file('junit-pioneer/version.properties').withInputStream { properties.load(it) }
-		String version = properties.previousVersion
-		File aboutXp = file('site-source/_pages/xp.adoc')
-		String aboutXpText = aboutXp.getText()
-		String aboutXpTextWithVersion = aboutXpText.replaceAll(/@xp:version/, version)
-		aboutXp.setText(aboutXpTextWithVersion)
+		description 'Inserts current versions into about pages'
+		insertProjectVersion('junit-pioneer', 'xp')
 	}
+}
+
+def insertProjectVersion(String project, String abbreviation) {
+	Properties properties = new Properties()
+	file("${project}/version.properties").withInputStream { properties.load(it) }
+	String version = properties.previousVersion
+	File about = file("site-source/_pages/${abbreviation}.adoc")
+	String aboutText = about.getText()
+	String aboutTextWithVersion = aboutText.replaceAll("@${abbreviation}:version", version)
+	about.setText(aboutTextWithVersion)
 }
 
 task insertXpIntoHome() {
@@ -131,7 +139,7 @@ task insertXpIntoHome() {
 }
 
 task create {
-	dependsOn copyProjectPage, copyDocs, insertDocNav, insertVersion, insertXpIntoHome
+	dependsOn copyPioneerProjectPage, copyPioneerDocs, insertDocNav, insertVersion, insertXpIntoHome
 }
 
 // -----
