@@ -9,9 +9,9 @@ title: JUnit Pioneer
 excerpt: @xp:excerpt
 feature_row:
   - image_path: /assets/images/site/card-pioneer.jpg
-    alt: "project"
-    title: "The Project"
-    excerpt: "More about the project..."
+    alt: "extensions"
+    title: "JUnit Extensions"
+    excerpt: "More about extensions..."
     url: "/junit-pioneer/"
     btn_label: "Explore Pioneer"
   - image_path: /assets/images/site/card-docs.jpg

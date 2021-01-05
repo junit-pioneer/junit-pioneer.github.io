@@ -5,7 +5,7 @@ header: { overlay_image: assets/images/site/type-writer.jpg }
 title: Documentation
 description: Documentation of JUnit Pioneer's feature set
 sidebar:
-  nav: "docs-xp"
+  nav: "docs"
 ---
 
 Here's a list of all the features that you can expect from JUnit Pioneer.
@@ -13,8 +13,10 @@ For some of them you need to be quite familiar with JUnit 5, so make sure to rea
 
 <dl>
 {% for item in site.docs %}
-  <dt><a href="{{ item.url }}">{{ item.title }}</a></dt>
-  <dd>{{ item.description }}</dd>
+  {% if item.path contains '/xp/' %}
+    <dt><a href="{{ item.url }}">{{ item.title }}</a></dt>
+    <dd>{{ item.description }}</dd>
+  {% endif %}
 {% endfor %}
 </dl>
 

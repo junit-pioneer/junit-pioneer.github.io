@@ -12,6 +12,6 @@ main:
     url: https://github.com/junit-pioneer/junit-pioneer
 
 # DOC MENUS
-# @xp:start
-docs-xp:
-# @xp:end
+
+docs:
+# @xp:toc

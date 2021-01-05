@@ -329,8 +329,8 @@ defaults:
       share: true
       related: true
   - scope:
-      path: "_docs/xp"
+      path: "_docs/*"
       type: docs
     values:
       sidebar:
-        nav: "docs-xp"
+        nav: "docs"
