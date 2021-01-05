@@ -7,3 +7,5 @@ site/
 site-source/
 junit-pioneer/
 junit-pioneer
+test-reports/
+test-reports

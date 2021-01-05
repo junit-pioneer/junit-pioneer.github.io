@@ -1,10 +1,14 @@
 # JUnit Pioneer Site
 
 The site for the [JUnit Pioneer organization][pioneer-org] and all its projects.
-There is currently only one (also called [JUnit Pioneer][pioneer]) but this repository is set up to host many more.
+It is set up to host various related projects:
+
+* [JUnit Pioneer][pioneer] (yes, it's also the name of a project)
+* [Test Reports][reports]
 
 [pioneer-org]: https://github.com/junit-pioneer
 [pioneer]: https://github.com/junit-pioneer/junit-pioneer
+[reports]: https://github.com/junit-pioneer/test-reports
 
 
 ## Structure
