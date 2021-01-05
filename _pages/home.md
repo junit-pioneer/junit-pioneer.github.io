@@ -14,12 +14,18 @@ feature_row:
     excerpt: "More about extensions..."
     url: "/junit-pioneer/"
     btn_label: "Explore Pioneer"
-  - image_path: /assets/images/site/card-docs.jpg
-    alt: "docs"
-    title: "Documentation"
-    excerpt: "How to get started..."
-    url: "/docs/"
-    btn_label: "Get Started"
+  - image_path: /assets/images/site/card-test-reports.jpg
+    alt: "reports"
+    title: "Test Reports"
+    excerpt: "More about test reports..."
+    url: "/test-reports/"
+    btn_label: "Explore Test Reports"
+#   - image_path: /assets/images/site/card-docs.jpg
+#     alt: "docs"
+#     title: "Documentation"
+#     excerpt: "How to get started..."
+#     url: "/docs/"
+#     btn_label: "Get Started"
   - image_path: /assets/images/site/card-release-notes.jpg
     alt: "release notes"
     title: "Release Notes"
