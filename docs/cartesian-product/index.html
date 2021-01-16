@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-01-05T20:18:44+00:00">
+  <meta property="article:published_time" content="2021-01-16T21:40:43+00:00">
 
 
 
@@ -213,7 +213,7 @@
     
       <li>
         
-          <span class="nav__sub-title">Features</span>
+          <span class="nav__sub-title">JUnit Pioneer Extensions</span>
         
 
         
@@ -307,10 +307,10 @@ The extension takes the test data parameter values and runs the test for every p
 <div class="ulist">
 <ul>
 <li>
-<p>The annotation can have a <code>String[]</code> value (see <a href="#supplying-cartesianproducttest-with-a-string">Supplying CartesianProductTest with a <code>String[]</code></a>)</p>
+<p>the annotation can have a <code>String[]</code> value (see <a href="#supplying-cartesianproducttest-with-a-string">Supplying CartesianProductTest with a <code>String[]</code></a>)</p>
 </li>
 <li>
-<p>the test method can be annotated with <code>@CartesianValueSource</code> (see <a href="#annotating-your-test-method-with-cartesianvaluesource">Annotating your test method with @CartesianValueSource</a>)</p>
+<p>the test method can be annotated with <code>@CartesianValueSource</code> or range source annotations (see <a href="#annotating-your-test-method">Annotating your test method</a>)</p>
 </li>
 <li>
 <p>the test class can have a static factory method providing the arguments (see <a href="#writing-a-static-factory-method-for-the-parameters">Writing a static factory method for the parameters</a>)</p>
@@ -436,7 +436,7 @@ The test will try every combination of its elements.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="annotating-your-test-method-with-cartesianvaluesource">Annotating your test method with @CartesianValueSource</h2>
+<h2 id="annotating-your-test-method">Annotating your test method</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you don&#8217;t only supply string values to your test method like in the example above, you can annotate your method with <code>@CartesianValueSource</code>.
@@ -511,6 +511,93 @@ The second parameter can have any of the two values <code>"A"</code> or <code>"B
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Alternatively, you can annotate your test method with <a href="range-sources.adoc">range source annotations</a>.
+For <em>this purpose only</em>, range sources are repeatable.
+When you annotate your <code>@CartesianProductTest</code> with a range source, you specify the inputs to a single test parameter.
+This is <em>not</em> like <code>@ParameterizedTest</code> where you have to define all inputs in a single <code>@ArgumentsSource</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@ShortRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@LongRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">L</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2L</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">closed</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testShortAndLong</span><span style="color: #f92672">(</span><span style="color: #66d9ef">short</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">long</span> <span style="color: #f8f8f2">l</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just like with <code>@CartesianValueSource</code>, annotations get assigned to parameters in order.
+The first annotation from the top gets assigned to the first parameter, the second annotation to the second parameter and so on.</p>
+</div>
+<div class="paragraph">
+<p>The test <code>testShortAndLong</code> is executed exactly six times.
+The first parameter can have any of the two values <code>1</code>, <code>2</code>.
+The second parameter can have any of the three values <code>0L</code>, <code>1L</code> or <code>2L</code>.
+<code>@CartesianProductTest</code> tests for all input combinations, that&#8217;s <code>2 × 3</code>, so six tests in total.</p>
+</div>
+<div class="paragraph">
+<p>To demonstrate with a table:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>s</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>l</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0L</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2nd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1L</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3rd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2L</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0L</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1L</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2L</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For more information, please see the <a href="range-sources.adoc">separate documentation about range sources</a>.
+You can combine range sources with <code>@CartesianValueSource</code>, it works as you&#8217;d expect:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@ShortRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@CartesianValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;text one&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;text two&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">mixAndMatchTest</span><span style="color: #f92672">(</span><span style="color: #66d9ef">short</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">text</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -732,6 +819,104 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
         <span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">MyTestReporter</span><span style="color: #f92672">());</span> <span style="color: #75715e">// in this case MyTestReporter implements TestReporter</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-your-own-argumentssource-for-cartesianproducttest">Writing your own <code>@ArgumentsSource</code> for <code>@CartesianProductTest</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You might find that the available <code>@ArgumentsSource</code> annotations do not fit your need.
+In that case, you can write a custom <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/ArgumentsSource.html"><code>@ArgumentsSource</code></a> and a corresponding <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/ArgumentsProvider.html"><code>ArgumentsProvider</code></a> for <code>@CartesianProductTest</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s demonstrate with an example.</p>
+</div>
+<div class="paragraph">
+<p>For the sake of the example, let&#8217;s imagine that <code>@CartesianValueSource</code> does not exist.
+We would like to have an <code>@ArgumentsSource</code>, where we can specify integers.
+Let&#8217;s create an annotation for it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">java.lang.annotation.*</span><span style="color: #f92672">;</span>
+
+<span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">METHOD</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@Repeatable</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">CartesianIntSources</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">IntArgumentsProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">public</span> <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">CartesianIntSource</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #66d9ef">int</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">numbers</span><span style="color: #f92672">();</span>
+
+    <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">CartesianIntSources</span> <span style="color: #f92672">{</span>
+        <span style="color: #f8f8f2">CartesianIntSource</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">();</span>
+    <span style="color: #f92672">}</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The annotation has to have <code>RUNTIME</code> retention, so JUnit (and Pioneer) can discover it on your test via reflection.
+It does not have to be repeatable, necessarily, but it is strongly recommended, since you can only specify the input of a single test parameter in a single annotation.
+It has to be annotated with <code>@ArgumentsSource</code>, so Pioneer knows which ArgumentsProvider it should invoke.</p>
+</div>
+<div class="paragraph">
+<p>Next, we need to have a class that takes these values and passes them to our test.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">java.util.Arrays</span><span style="color: #f92672">;</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">java.util.stream.Stream</span><span style="color: #f92672">;</span>
+
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junit.jupiter.api.extension.ExtensionContext</span><span style="color: #f92672">;</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junit.jupiter.params.provider.Arguments</span><span style="color: #f92672">;</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junit.jupiter.params.provider.ArgumentsProvider</span><span style="color: #f92672">;</span>
+
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">IntArgumentsProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">ArgumentsProvider</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">CartesianAnnotationConsumer</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">CartesianIntSource</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #66d9ef">private</span> <span style="color: #f8f8f2">CartesianIntSource</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">;</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">accept</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">CartesianIntSource</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">;</span>
+    <span style="color: #f92672">}</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Stream</span><span style="color: #f92672">&lt;?</span> <span style="color: #66d9ef">extends</span> <span style="color: #f8f8f2">Arguments</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Arrays</span><span style="color: #f92672">.</span><span style="color: #a6e22e">stream</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">value</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">map</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Arguments</span><span style="color: #f92672">::</span><span style="color: #f8f8f2">of</span><span style="color: #f92672">);</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The class has to implement both interfaces (<code>ArgumentsProvider</code> and <code>CartesianAnnotationConsumer&lt;? extends Annotation&gt;</code>).
+Note that an implementation of <code>ArgumentsProvider</code> must be declared as either a top-level class or as a static nested class.
+The <code>IntArgumentsProvider</code> class first 'consumes' the annotation via the <code>accept</code> method, then provides the arguments to JUnit via the <code>provideArguments</code> method.
+The order of these operations is guaranteed, so <code>accept</code> is always first and <code>provideArguments</code> is always second.</p>
+</div>
+<div class="paragraph">
+<p>In our case, we don&#8217;t have to process the values we pass in the annotation, so we just return the values as is, but you could do additional processing, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// no annotations to make example shorter</span>
+<span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">PeopleSource</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #f8f8f2">String</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">names</span><span style="color: #f92672">();</span>
+
+    <span style="color: #66d9ef">int</span> <span style="color: #a6e22e">ages</span><span style="color: #f92672">();</span>
+
+<span style="color: #f92672">}</span>
+
+<span style="color: #75715e">// no class definition to make example shorter</span>
+<span style="color: #a6e22e">@Override</span>
+<span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Stream</span><span style="color: #f92672">&lt;?</span> <span style="color: #66d9ef">extends</span> <span style="color: #f8f8f2">Arguments</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">IntStream</span><span style="color: #f92672">.</span><span style="color: #a6e22e">range</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">)</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">mapToObj</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">i</span> <span style="color: #f92672">-&gt;</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Person</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">],</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ages</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">]))</span>
+        <span style="color: #f92672">.</span><span style="color: #a6e22e">map</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Arguments</span><span style="color: #f92672">::</span><span style="color: #f8f8f2">of</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 </div>
