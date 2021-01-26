@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-01-16T21:40:43+00:00">
+  <meta property="article:published_time" content="2021-01-26T21:00:42+00:00">
 
 
 
@@ -310,7 +310,7 @@ The extension takes the test data parameter values and runs the test for every p
 <p>the annotation can have a <code>String[]</code> value (see <a href="#supplying-cartesianproducttest-with-a-string">Supplying CartesianProductTest with a <code>String[]</code></a>)</p>
 </li>
 <li>
-<p>the test method can be annotated with <code>@CartesianValueSource</code> or range source annotations (see <a href="#annotating-your-test-method">Annotating your test method</a>)</p>
+<p>the test method can be annotated with <code>@CartesianValueSource</code>, <code>@CartesianEnumSource</code>, or range source annotations (see <a href="#annotating-your-test-method">Annotating your test method</a>)</p>
 </li>
 <li>
 <p>the test class can have a static factory method providing the arguments (see <a href="#writing-a-static-factory-method-for-the-parameters">Writing a static factory method for the parameters</a>)</p>
@@ -438,8 +438,10 @@ The test will try every combination of its elements.</p>
 <div class="sect1">
 <h2 id="annotating-your-test-method">Annotating your test method</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="cartesianvaluesource"><code>@CartesianValueSource</code></h3>
 <div class="paragraph">
-<p>If you don&#8217;t only supply string values to your test method like in the example above, you can annotate your method with <code>@CartesianValueSource</code>.
+<p>If you don&#8217;t only supply string values to your test method like in the example of the previous section, you can annotate your method with <code>@CartesianValueSource</code>.
 <code>@CartesianValueSource</code> is used to define the possible inputs of a single test parameter - as annotations are listed top-to-bottom, they provide parameter values left-to-right.
 The test will try every combination those values can have.</p>
 </div>
@@ -454,9 +456,8 @@ The test will try every combination those values can have.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This annotation might look familiar - it mimics JUnits <code>@ValueSource</code>, except <code>@CartesianValueSource</code> is repeatable.
-It also does NOT work with <code>@ParameterizedTest</code>.
-<a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-sources-ValueSource::">You can read about <code>@ValueSource</code> here.</a></p>
+<p>This annotation might look familiar - it mimics <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-sources-ValueSource::">JUnit&#8217;s <code>@ValueSource</code></a>, except <code>@CartesianValueSource</code> is repeatable.
+It also does NOT work with <code>@ParameterizedTest</code>.</p>
 </div>
 <div class="paragraph">
 <p>The test <code>testIntChars</code> is executed exactly six times.
@@ -511,6 +512,154 @@ The second parameter can have any of the two values <code>"A"</code> or <code>"B
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="cartesianenumsource"><code>@CartesianEnumSource</code></h3>
+<div class="paragraph">
+<p><code>@CartesianEnumSource</code> provides a convenient way to use <code>Enum</code> constants.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@CartesianEnumSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithCartesianEnumSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span> <span style="color: #f8f8f2">timeUnit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">timeUnit</span><span style="color: #f92672">).</span><span style="color: #a6e22e">isNotNull</span><span style="color: #f92672">();</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Like <code>@CartesianValueSource</code>, <code>@CartesianEnumSource</code> is an annotation that might look familiar - it mimics <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-sources-EnumSource::">JUnit&#8217;s <code>@EnumSource</code></a>, except <code>@CartesianEnumSource</code> is repeatable.
+It also does NOT work with <code>@ParameterizedTest</code>.</p>
+</div>
+<div class="paragraph">
+<p>The annotation provides an optional <code>names</code> attribute that lets you specify which constants shall be used, like in the following example.
+If omitted, all constants will be used.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@CartesianEnumSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;DAYS&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;HOURS&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithCartesianEnumSourceInclude</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span> <span style="color: #f8f8f2">timeUnit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">EnumSet</span><span style="color: #f92672">.</span><span style="color: #a6e22e">of</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">DAYS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">HOURS</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">contains</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">timeUnit</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The annotation also provides an optional <code>mode</code> attribute that enables fine-grained control over which constants are passed to the test method.
+For example, you can exclude names from the enum constant pool or specify regular expressions as in the following examples.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@CartesianEnumSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">EXCLUDE</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;DAYS&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;HOURS&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithCartesianEnumSourceExclude</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span> <span style="color: #f8f8f2">timeUnit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">EnumSet</span><span style="color: #f92672">.</span><span style="color: #a6e22e">of</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">DAYS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">HOURS</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">doesNotContain</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">timeUnit</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@CartesianEnumSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">MATCH_ALL</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;^(M|N).+SECONDS$&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithCartesianEnumSourceRegex</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span> <span style="color: #f8f8f2">timeUnit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">timeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">name</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">endsWith</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;SECONDS&quot;</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The example below shows how to use <code>@CartesianEnumSource</code> with two <code>Enum</code> types.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">enum</span> <span style="color: #f8f8f2">MyEnum</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">ONE</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TWO</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">THREE</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">enum</span> <span style="color: #f8f8f2">AnotherEnum</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">ALPHA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">BETA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">GAMMA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">DELTA</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@CartesianEnumSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">MyEnum</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@CartesianEnumSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">AnotherEnum</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;ALPHA&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;DELTA&quot;</span> <span style="color: #f92672">},</span> <span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Mode</span><span style="color: #f92672">.</span><span style="color: #a6e22e">EXCLUDE</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testEnumValues</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">MyEnum</span> <span style="color: #f8f8f2">myEnum</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">AnotherEnum</span> <span style="color: #f8f8f2">anotherEnum</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The test <code>testEnumValues</code> is executed exactly six times.
+The first parameter can have any of the three constants <code>ONE</code>, <code>TWO</code> or <code>THREE</code>.
+The second parameter can have any of the two constants <code>BETA</code> or <code>GAMMA</code> (note the <code>EXCLUDE</code> mode applied to the other two constants).
+<code>@CartesianProductTest</code> tests for all input combinations, that&#8217;s <code>3 × 2</code>, so six tests in total.</p>
+</div>
+<div class="paragraph">
+<p>To demonstrate with a table:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>myEnum</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>anotherEnum</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ONE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BETA</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2nd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ONE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GAMMA</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3rd test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TWO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BETA</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TWO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GAMMA</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">THREE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BETA</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6th test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">THREE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GAMMA</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><code>@CartesianEnumSource</code> can also be combined with other supported annotations, like <code>@CartesianValueSource</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">enum</span> <span style="color: #f8f8f2">MyEnum</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">ONE</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TWO</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">THREE</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #a6e22e">@CartesianProductTest</span>
+<span style="color: #a6e22e">@CartesianValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">3</span> <span style="color: #f92672">})</span>
+<span style="color: #a6e22e">@CartesianEnumSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">MyEnum</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testEnumValues</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">MyEnum</span> <span style="color: #f8f8f2">myEnum</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// passing test code</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="range-source-annotations">Range Source annotations</h3>
 <div class="paragraph">
 <p>Alternatively, you can annotate your test method with <a href="range-sources.adoc">range source annotations</a>.
 For <em>this purpose only</em>, range sources are repeatable.
@@ -596,6 +745,7 @@ You can combine range sources with <code>@CartesianValueSource</code>, it works 
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">mixAndMatchTest</span><span style="color: #f92672">(</span><span style="color: #66d9ef">short</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">text</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// passing test code</span>
 <span style="color: #f92672">}</span></code></pre>
+</div>
 </div>
 </div>
 </div>
