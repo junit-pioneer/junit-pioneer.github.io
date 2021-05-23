@@ -116,9 +116,12 @@ task insertVersion() {
 }
 
 def insertProjectVersion(String project, String abbreviation) {
-	Properties properties = new Properties()
-	file("${project}/version.properties").withInputStream { properties.load(it) }
-	String version = properties.previousVersion
+	stdout = new ByteArrayOutputStream()
+	exec {
+		commandLine 'ls' 'junit-pioneer/.git/refs/tags' '|' 'tail' '-1'
+		standardOutput = stdout
+	}
+	final def version = stdout.toString()
 	File about = file("site-source/_pages/${abbreviation}.adoc")
 	String aboutText = about.getText()
 	String aboutTextWithVersion = aboutText.replaceAll("@${abbreviation}:version", version)
