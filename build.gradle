@@ -2,6 +2,10 @@
 // SETUP
 // -----
 
+plugins {
+	id 'org.ajoberstar.grgit' version '4.1.0'
+}
+
 ext {
 	onCi = System.getenv("CI")
 }
@@ -115,13 +119,9 @@ task insertVersion() {
 	}
 }
 
-def insertProjectVersion(String project, String abbreviation) {
-	final def stdout = new ByteArrayOutputStream()
-	exec {
-		commandLine 'ls', 'junit-pioneer/.git/refs/tags'
-		standardOutput = stdout
-	}
-	final def version = stdout.toString().readLines().last()
+def insertProjectVersion(final String project, String abbreviation) {
+	final def tags = grgit.open(dir: project).tag.list().collect { it.getName() }
+	final def version = tags.max()
 	File about = file("site-source/_pages/${abbreviation}.adoc")
 	String aboutText = about.getText()
 	String aboutTextWithVersion = aboutText.replaceAll("@${abbreviation}:version", version)
