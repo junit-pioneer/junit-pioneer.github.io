@@ -119,9 +119,18 @@ task insertVersion() {
 	}
 }
 
-def insertProjectVersion(final String project, String abbreviation) {
-	final def tags = grgit.open(dir: project).tag.list().collect { it.getName() }
-	final def version = tags.max()
+import org.ajoberstar.grgit.Tag
+def insertProjectVersion(String project, String abbreviation) {
+	String latestTagName = grgit
+			.open(dir: project)
+			.tag.list()
+			.sort { it.commit.dateTime }
+			.last()
+			.name
+	if (!latestTagName?.startsWith("v"))
+		throw new IllegalStateException("Could not determine version of @${project}.")
+	String version = latestTagName.substring(1)
+
 	File about = file("site-source/_pages/${abbreviation}.adoc")
 	String aboutText = about.getText()
 	String aboutTextWithVersion = aboutText.replaceAll("@${abbreviation}:version", version)
