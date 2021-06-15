@@ -2,6 +2,10 @@
 // SETUP
 // -----
 
+plugins {
+	id 'org.ajoberstar.grgit' version '4.1.0'
+}
+
 ext {
 	onCi = System.getenv("CI")
 }
@@ -115,10 +119,18 @@ task insertVersion() {
 	}
 }
 
+import org.ajoberstar.grgit.Tag
 def insertProjectVersion(String project, String abbreviation) {
-	Properties properties = new Properties()
-	file("${project}/version.properties").withInputStream { properties.load(it) }
-	String version = properties.previousVersion
+	String latestTagName = grgit
+			.open(dir: project)
+			.tag.list()
+			.sort { it.commit.dateTime }
+			.last()
+			.name
+	if (!latestTagName?.startsWith("v"))
+		throw new IllegalStateException("Could not determine version of @${project}.")
+	String version = latestTagName.substring(1)
+
 	File about = file("site-source/_pages/${abbreviation}.adoc")
 	String aboutText = about.getText()
 	String aboutTextWithVersion = aboutText.replaceAll("@${abbreviation}:version", version)
