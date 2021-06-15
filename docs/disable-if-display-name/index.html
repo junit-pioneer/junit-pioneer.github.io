@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Disable Based on DisplayName - JUnit Pioneer</title>
+<!-- begin _includes/seo.html --><title>Disable Parameterized Test Based on DisplayName - JUnit Pioneer</title>
 <meta name="description" content="Extends JUnit Jupiter with @DisableIfDisplayName, which selectively disables parameterized tests">
 
 
@@ -19,7 +19,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Disable Based on DisplayName">
+<meta property="og:title" content="Disable Parameterized Test Based on DisplayName">
 <meta property="og:url" content="https://junit-pioneer.org/docs/disable-if-display-name/">
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-01-26T21:00:42+00:00">
+  <meta property="article:published_time" content="2021-06-15T18:00:49+00:00">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Disable Based on DisplayName
+          Disable Parameterized Test Based on DisplayName
 
         
       </h1>
@@ -227,7 +227,7 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
-            <li class="active"><a href="/docs/disable-if-display-name/">Disable Based on DisplayName</a></li>
+            <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
             <li><a href="/docs/issue/">Issue information</a></li>
           
@@ -259,7 +259,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Disable Based on DisplayName">
+    <meta itemprop="headline" content="Disable Parameterized Test Based on DisplayName">
     <meta itemprop="description" content="">
     
     
@@ -270,87 +270,8 @@
       <section class="page__content" itemprop="text">
         
         <div class="paragraph">
-<p>The <code>@DisableIfDisplayName</code> annotation can be used to selectively disable parameterized tests based on their display names, which are dynamically registered on runtime.
-The annotation is only supported on test method level for parameterized tests.
-Unlike the <code>@Disabled</code> API provided in JUnit Jupiter, which disables the test on first encounter of the annotation , <code>@DisableIfDisplayName</code> is validated before each parameterized test execution.
-As a consequence, instead of disabling the entire set of parameterized tests, each test (name) can be evaluated and possibly disabled individually.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// disable invocations whose display name contains &quot;disable&quot;</span>
-<span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;disable&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span>
-    <span style="color: #75715e">// Disabled: 1,2,3,4,5</span>
-    <span style="color: #75715e">// Not disabled: 6</span>
-    <span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span>
-        <span style="color: #e6db74">&quot;disable who&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 1</span>
-        <span style="color: #e6db74">&quot;you, disable you&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 2</span>
-        <span style="color: #e6db74">&quot;why am I disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 3</span>
-        <span style="color: #e6db74">&quot;what has been disabled must stay disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 4</span>
-        <span style="color: #e6db74">&quot;fine disable me all you want&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 5</span>
-        <span style="color: #e6db74">&quot;not those one, though!&quot;</span> <span style="color: #75715e">// 6</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testExecutionDisabled</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">reason</span><span style="color: #f92672">.</span><span style="color: #a6e22e">contains</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;disable&quot;</span><span style="color: #f92672">))</span>
-        <span style="color: #f8f8f2">fail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can also specify more than one substring at a time:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span><span style="color: #e6db74">&quot;1&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;2&quot;</span><span style="color: #f92672">})</span>
-<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">5</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testDisplayNameString</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">num</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">num</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">num</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
-        <span style="color: #f8f8f2">fail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled for &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">num</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If substrings are not powerful enough, you can also use regular expressions:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// disable invocations whose display name</span>
-<span style="color: #75715e">// contains &quot;disable &quot; or &quot;disabled &quot;</span>
-<span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">matches</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;.*disabled?\\s.*&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span>
-    <span style="color: #75715e">// Disabled: 1,2,4,5</span>
-    <span style="color: #75715e">// Not disabled: 3,6</span>
-    <span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span>
-        <span style="color: #e6db74">&quot;disable who&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 1</span>
-        <span style="color: #e6db74">&quot;you, disable you&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 2</span>
-        <span style="color: #e6db74">&quot;why am I disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 3</span>
-        <span style="color: #e6db74">&quot;what has been disabled must stay disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 4</span>
-        <span style="color: #e6db74">&quot;fine disable me all you want&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 5</span>
-        <span style="color: #e6db74">&quot;not those one, though!&quot;</span> <span style="color: #75715e">// 6</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">single</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// ...</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can even use both, in which case a test is disabled if contains a substring <em>or</em> matches an expression:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;000&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">matches</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;.*10?&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">10</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">100</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">1_000</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">10_000</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">containsAndMatches_containsAndMatches</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">number</span> <span style="color: #f92672">!=</span> <span style="color: #ae81ff">100</span><span style="color: #f92672">)</span>
-        <span style="color: #f8f8f2">fail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled for &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
-</div>
+<p>This document has been moved and updated.
+See <a href="disable-parameterized-tests.adoc">the updated document</a>.</p>
 </div>
         
       </section>
@@ -369,7 +290,7 @@ As a consequence, instead of disabling the entire set of parameterized tests, ea
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Disable+Based+on+DisplayName%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Disable+Parameterized+Test+Based+on+DisplayName%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -384,7 +305,7 @@ As a consequence, instead of disabling the entire set of parameterized tests, ea
 ">Previous</a>
     
     
-      <a href="/docs/environment-variables/" class="pagination--pager" title="Clearing or Setting Environment Variables
+      <a href="/docs/disable-parameterized-tests/" class="pagination--pager" title="Disable Parameterized Test
 ">Next</a>
     
   </nav>

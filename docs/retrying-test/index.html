@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-01-26T21:00:42+00:00">
+  <meta property="article:published_time" content="2021-06-15T18:00:49+00:00">
 
 
 
@@ -227,7 +227,7 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
-            <li><a href="/docs/disable-if-display-name/">Disable Based on DisplayName</a></li>
+            <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
             <li><a href="/docs/issue/">Issue information</a></li>
           
@@ -273,6 +273,36 @@
 <p>Some tests, e.g. those depending on external systems, may fail through no fault of the code under test.
 Such tests make a suite fragile and it makes sense to try and avoid them, but if that&#8217;s infeasible, it may help to retry a number of times before eventually assuming actual failure.
 <code>RetryingTest</code> provides that functionality.</p>
+</div>
+<div class="sect1">
+<h2 id="attributes">Attributes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="maxattempts-alias-value-required">maxAttempts (alias: value) [required]</h3>
+<div class="paragraph">
+<p>The <code>maxAttempts</code> attribute specifies the maximum number of times to execute the test function.
+If the test function throws an exception, the test will be executed again, up to this limit.</p>
+</div>
+<div class="paragraph">
+<p>The <code>value</code> attribute is an alias for <code>maxAttempts</code>.
+The attribute can be set either with <code>@RetryingTest(N)</code> or <code>@RetryingTest(maxAttempts=N)</code>.</p>
+</div>
+<div class="paragraph">
+<p>This attribute is required and must be a value greater than <code>minSuccess</code>.
+Only one of <code>maxAttempts</code> or <code>value</code> can be set, but not both.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="minsuccess-optional">minSuccess [optional]</h3>
+<div class="paragraph">
+<p>The <code>minSuccess</code> attribute specifies the number of times the test function must complete successfully (i.e. without throwing an exception).
+The test function will be executed, up to <code>maxAttempts</code>, until it completes successfully this number of times.</p>
+</div>
+<div class="paragraph">
+<p>The default for <code>minSuccess</code> is 1. The value must be greater than or equal to 1.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="basic-use">Basic Use</h2>
@@ -331,6 +361,18 @@ The first two executions are marked as ignored/aborted, while the last as failed
 The test <code>aborted</code> is aborted before (or during) its first execution.
 The first execution is marked as aborted/skipped, containing the underlying cause.
 The test suite as a whole is also marked as aborted/skipped.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">minSuccess</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">requiresTwoSuccesses</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// test code that must complete successfully twice</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The test <code>requiresTwoSuccesses</code> must run at least two times without raising an exception.
+However, it will not run more than four times.</p>
 </div>
 </div>
 </div>
