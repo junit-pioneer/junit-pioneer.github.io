@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Disable Parameterized Test Based on DisplayName - JUnit Pioneer</title>
-<meta name="description" content="Extends JUnit Jupiter with @DisableIfDisplayName, which selectively disables parameterized tests">
+<!-- begin _includes/seo.html --><title>Temporarily Disable a Test - JUnit Pioneer</title>
+<meta name="description" content="Extends JUnit Jupiter with @DisabledUntil to temporarily disable a test.">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Disable Parameterized Test Based on DisplayName">
-<meta property="og:url" content="https://junit-pioneer.org/docs/disable-if-display-name/">
+<meta property="og:title" content="Temporarily Disable a Test">
+<meta property="og:url" content="https://junit-pioneer.org/docs/disabled-until/">
 
 
-  <meta property="og:description" content="Extends JUnit Jupiter with @DisableIfDisplayName, which selectively disables parameterized tests">
+  <meta property="og:description" content="Extends JUnit Jupiter with @DisabledUntil to temporarily disable a test.">
 
 
 
@@ -44,7 +44,7 @@
   
 
 
-<link rel="canonical" href="https://junit-pioneer.org/docs/disable-if-display-name/">
+<link rel="canonical" href="https://junit-pioneer.org/docs/disabled-until/">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Disable Parameterized Test Based on DisplayName
+          Temporarily Disable a Test
 
         
       </h1>
@@ -227,7 +227,7 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
-            <li><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+            <li class="active"><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
           
             <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
@@ -261,7 +261,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Disable Parameterized Test Based on DisplayName">
+    <meta itemprop="headline" content="Temporarily Disable a Test">
     <meta itemprop="description" content="">
     
     
@@ -271,9 +271,81 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="paragraph">
-<p>This document has been moved and updated.
-See <a href="disable-parameterized-tests.adoc">the updated document</a>.</p>
+        <div class="sect1">
+<h2 id="introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s sometimes useful to disable a test.
+One can imagine many reasons for doing so, maybe a remote dependency of the test is broken or not yet deployed.
+Maybe the test is still in development and unstable.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@Disable</code> annotation is perfectly adequate to use in such cases.
+The test gets skipped and the test suite can terminate successfully.
+The only problem with this approach is remembering to activate the test again once the original impediment has been resolved.
+The <code>@DisabledUntil</code> annotation may be used to disable a test only for a certain period of time.
+The test will be automatically executed again once the date supplied by the <code>date</code> parameter is reached.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage">Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To mark a test to be temporarily disabled add the <code>@DisabledUntil</code> annotation like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisabledUntil</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2022-01-01&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@Test</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// Test will be skipped if it&#39;s 2021-12-31 or earlier</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>date</code> parameter must be a string in the date format specified by <a href="https://en.m.wikipedia.org/wiki/ISO_8601">ISO 8601</a>, e.g. "1985-10-26".
+Invalid or unparsable date strings lead to an <code>ExtensionConfigurationException</code>.</p>
+</div>
+<div class="paragraph">
+<p>The `@DisabledUntil annotation may optionally be declared with a reason to document why the annotated test class or test method is disabled:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisabledUntil</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">reason</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;The remote server won&#39;t be ready until next year&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2022-01-01&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@Test</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// Test will be skipped if it&#39;s 2021-12-31 or earlier</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@DisabledUntil</code> annotation can be used on the class and method level, it will be inherited from higher level containers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisabledUntil</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2022-01-01&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TestClass</span> <span style="color: #f92672">{</span>
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+        <span style="color: #75715e">// Test will be skipped if it&#39;s 2021-12-31 or earlier</span>
+    <span style="color: #f92672">}</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@DisabledUntil</code> annotation can only be used once per class or method.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="before-and-after">Before and After</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The test will be skipped only if the date specified by <code>date</code> is the future.
+If <code>date</code> is today or in the past, the test will be executed normally but a warning entry will be published to the <a href="https://junit-pioneer.org/docs/report-entries">test report</a>.</p>
+</div>
+</div>
 </div>
         
       </section>
@@ -292,22 +364,22 @@ See <a href="disable-parameterized-tests.adoc">the updated document</a>.</p>
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Disable+Parameterized+Test+Based+on+DisplayName%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Temporarily+Disable+a+Test%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisabled-until%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisabled-until%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisabled-until%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/docs/default-locale-timezone/" class="pagination--pager" title="Default Locale and TimeZone
+      <a href="/docs/disable-parameterized-tests/" class="pagination--pager" title="Disable Parameterized Test
 ">Previous</a>
     
     
-      <a href="/docs/disable-parameterized-tests/" class="pagination--pager" title="Disable Parameterized Test
+      <a href="/docs/environment-variables/" class="pagination--pager" title="Clearing or Setting Environment Variables
 ">Next</a>
     
   </nav>

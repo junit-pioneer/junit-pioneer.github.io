@@ -1,4 +1,10 @@
 var store = [{
+        "title": "Cartesian product of all test parameters (deprecated in 1.5.0)",
+        "excerpt":"Note The CartesianTest extension has undergone significant changes in 1.5.0. This included moving it into a new package. This here is the old variant, which is deprecated and will be removed in the 2.0 release (tentatively scheduled for December 2021). For the new version, see here. From Wikipedia: In mathematics,...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/cartesian-product-v1/",
+        "teaser": null
+      },{
         "title": "Cartesian product of all test parameters",
         "excerpt":"From Wikipedia: In mathematics, specifically set theory, the Cartesian product of two sets A and B, denoted A × B, is the set of all ordered pairs (a, b) where a is in A and b is in B. In terms of set-builder notation, that is A × B =...","categories": [],
         "tags": [],
@@ -21,6 +27,12 @@ var store = [{
         "excerpt":"JUnit Pioneer offers multiple extensions for selectively disabling parameterized tests. These are as follows: DisableIfDisplayName DisableIfArgument DisableIfDisplayName The @DisableIfDisplayName annotation can be used to selectively disable parameterized tests based on their display names, which are dynamically registered on runtime. The annotation is only supported on test method level for parameterized...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/disable-parameterized-tests/",
+        "teaser": null
+      },{
+        "title": "Temporarily Disable a Test",
+        "excerpt":"Introduction It&#8217;s sometimes useful to disable a test. One can imagine many reasons for doing so, maybe a remote dependency of the test is broken or not yet deployed. Maybe the test is still in development and unstable. The @Disable annotation is perfectly adequate to use in such cases. The...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/disabled-until/",
         "teaser": null
       },{
         "title": "Clearing or Setting Environment Variables",

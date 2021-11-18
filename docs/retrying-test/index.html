@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-06-15T18:00:49+00:00">
+  <meta property="article:published_time" content="2021-11-18T07:06:27+00:00">
 
 
 
@@ -227,6 +227,8 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
+            <li><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+          
             <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
             <li><a href="/docs/issue/">Issue information</a></li>
@@ -302,6 +304,13 @@ The test function will be executed, up to <code>maxAttempts</code>, until it com
 <p>The default for <code>minSuccess</code> is 1. The value must be greater than or equal to 1.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="onexceptions-optional">onExceptions [optional]</h3>
+<div class="paragraph">
+<p>By default a test annotated with <code>@RetryingTest</code> will be retried on all exceptions except <a href="http://ota4j-team.github.io/opentest4j/docs/current/api/org/opentest4j/TestAbortedException.html"><code>TestAbortedException</code></a> (which will abort the test entirely).
+To only retry on specific exceptions, use <code>onExceptions</code>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -357,11 +366,13 @@ The first two executions are marked as ignored/aborted, while the last as failed
 </div>
 </div>
 <div class="paragraph">
-<p>If a test is aborted (e.g.: because of a failed Assumption) <code>@RetryingTest</code> won&#8217;t try again after that.
+<p>If a test is aborted (e.g.: because of a failed assumption) <code>@RetryingTest</code> won&#8217;t try again after that.
 The test <code>aborted</code> is aborted before (or during) its first execution.
 The first execution is marked as aborted/skipped, containing the underlying cause.
 The test suite as a whole is also marked as aborted/skipped.</p>
 </div>
+<div class="sect2">
+<h3 id="configuring-the-number-of-successes">Configuring the Number of Successes</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">minSuccess</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
@@ -373,6 +384,36 @@ The test suite as a whole is also marked as aborted/skipped.</p>
 <div class="paragraph">
 <p>The test <code>requiresTwoSuccesses</code> must run at least two times without raising an exception.
 However, it will not run more than four times.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-on-which-exceptions-to-retry">Configuring on which Exceptions to Retry</h3>
+<div class="paragraph">
+<p>Use <code>onExceptions</code> to only retry on the mentioned exception(s):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">private</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">EXECUTION_COUNT</span><span style="color: #f92672">;</span>
+
+<span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">onExceptions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IllegalArgumentException</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsFirstWithExpectedThenWithUnexpectedException</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">EXECUTION_COUNT</span><span style="color: #f92672">++;</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">EXECUTION_COUNT</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">IllegalArgumentException</span><span style="color: #f92672">();</span>
+    <span style="color: #f92672">}</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">EXECUTION_COUNT</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">NullPointerException</span><span style="color: #f92672">();</span>
+    <span style="color: #f92672">}</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example test method will be executed twice.
+The first run yields an <code>IllegalArgumentException</code>, which is mentioned in <code>onExceptions</code>, so it is marked as aborted and a second run is launched.
+(This behavior would be the same without <code>onExceptions</code> because then the test is always retried.)
+The second run results in a <code>NullPointerException</code>, which was <em>not</em> expected and so it is marked as failed and no third run is attempted.
+(This behavior is different from a test without <code>onExceptions</code>, which would try a third time.)</p>
+</div>
 </div>
 </div>
 </div>
