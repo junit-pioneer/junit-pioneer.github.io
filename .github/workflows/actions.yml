@@ -26,7 +26,7 @@ jobs:
         with:
           java-version: '8'
 
-      - name: Versions
+      - name: Print versions
         run: |
           ruby -v
           bundler -v
