@@ -36,6 +36,6 @@ jobs:
           java -version
 
       - name: Gradle setup, build and push
-        uses: eskatos/gradle-command-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: setup buildSite pushSite --no-daemon --stacktrace
