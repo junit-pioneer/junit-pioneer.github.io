@@ -14,21 +14,31 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v2
         with:
-          ref: "grandmaster"
+          ref: 'grandmaster'
+
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
+          bundler-cache: true
+
       - name: Set up Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
-          java-version: '8'
-      - name: Versions
+          java-version: 8
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Print versions
         run: |
           ruby -v
           bundler -v
           java -version
+
       - name: Gradle setup, build and push
-        uses: eskatos/gradle-command-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: setup buildSite pushSite --no-daemon --stacktrace
