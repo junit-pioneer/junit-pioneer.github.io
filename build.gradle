@@ -124,7 +124,8 @@ import org.ajoberstar.grgit.Grgit
 def insertProjectVersion(String project, String abbreviation) {
 	String latestTagName = Grgit
 			.open(dir: project)
-			.tag.list()
+			.tag
+			.list()
 			.sort { it.commit.dateTime }
 			.last()
 			.name
