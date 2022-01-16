@@ -4,7 +4,7 @@
 set -e
 
 # cloning `junit-pioneer`
-git clone https://github.com/junit-pioneer/junit-pioneer.git junit-pioneer --depth=10
+git clone https://github.com/junit-pioneer/junit-pioneer.git junit-pioneer
 # adding worktrees `site` and `site-source`
 git checkout master
 git checkout site-source

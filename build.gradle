@@ -3,7 +3,7 @@
 // -----
 
 plugins {
-	id 'org.ajoberstar.grgit' version '4.1.1'
+	id 'org.ajoberstar.grgit' version '4.1.1' apply false
 }
 
 ext {
@@ -119,16 +119,23 @@ task insertVersion() {
 	}
 }
 
+import org.ajoberstar.grgit.Grgit
 import org.ajoberstar.grgit.Tag
+
 def insertProjectVersion(String project, String abbreviation) {
-	String latestTagName = grgit
+	List<Tag> tags = Grgit
 			.open(dir: project)
-			.tag.list()
+			.tag
+			.list()
+	if (tags.isEmpty())
+		throw new IllegalStateException("No tags available for ${project}.")
+
+	String latestTagName = tags
 			.sort { it.commit.dateTime }
 			.last()
 			.name
-	if (!latestTagName?.startsWith("v"))
-		throw new IllegalStateException("Could not determine version of @${project}.")
+	if (!latestTagName.startsWith("v"))
+		throw new IllegalStateException("Could not determine version of ${project}.")
 	String version = latestTagName.substring(1)
 
 	File about = file("site-source/_pages/${abbreviation}.adoc")
