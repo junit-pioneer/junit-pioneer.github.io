@@ -134,7 +134,7 @@ def insertProjectVersion(String project, String abbreviation) {
 			.sort { it.commit.dateTime }
 			.last()
 			.name
-	if (!latestTagName?.startsWith("v"))
+	if (!latestTagName.startsWith("v"))
 		throw new IllegalStateException("Could not determine version of ${project}.")
 	String version = latestTagName.substring(1)
 
