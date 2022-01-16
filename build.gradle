@@ -120,12 +120,17 @@ task insertVersion() {
 }
 
 import org.ajoberstar.grgit.Grgit
+import org.ajoberstar.grgit.Tag
 
 def insertProjectVersion(String project, String abbreviation) {
-	String latestTagName = Grgit
+	List<Tag> tags = Grgit
 			.open(dir: project)
 			.tag
 			.list()
+	if (tags.isEmpty())
+		throw new IllegalStateException("No tags available for ${project}.")
+
+	String latestTagName = tags
 			.sort { it.commit.dateTime }
 			.last()
 			.name
