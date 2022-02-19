@@ -204,6 +204,9 @@ kramdown:
 asciidoctor:
   attributes:
     xp-images: /assets/images/docs/xp
+    # this overrides the attribute of the same name in the doc files because
+    # the path to the demo source tree differs in the project vs the website
+    xp-demo-dir: _demos/xp
     site-images: /assets/images/site
     source-highlighter: pygments
     tabsize: 4
