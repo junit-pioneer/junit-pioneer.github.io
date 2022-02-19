@@ -23,6 +23,12 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/disable-if-display-name/",
         "teaser": null
       },{
+        "title": "Disable Tests if Others Fail",
+        "excerpt":"There are situations where when one test in a class fails, the remaining tests in the class don&#8217;t need to be executed because their results offer little additional insight. In those situations, disabling the remaining tests can be preferable in order to avoid larger build logs and/or reduce the test...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/disable-if-test-fails/",
+        "teaser": null
+      },{
         "title": "Disable Parameterized Test",
         "excerpt":"JUnit Pioneer offers multiple extensions for selectively disabling parameterized tests. These are as follows: DisableIfDisplayName DisableIfArgument DisableIfDisplayName The @DisableIfDisplayName annotation can be used to selectively disable parameterized tests based on their display names, which are dynamically registered on runtime. The annotation is only supported on test method level for parameterized...","categories": [],
         "tags": [],
