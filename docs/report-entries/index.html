@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-02-19T10:39:33+00:00">
+  <meta property="article:published_time" content="2022-02-19T11:56:33+00:00">
 
 
 
@@ -312,7 +312,7 @@ The data can be consumed via the <code>reportingEntryPublished()</code> method i
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">reportingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TestReporter</span> <span style="color: #f8f8f2">reporter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">noReportEntryExtension</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TestReporter</span> <span style="color: #f8f8f2">reporter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
     <span style="color: #f8f8f2">reporter</span><span style="color: #f92672">.</span><span style="color: #a6e22e">publishEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Hello World!&quot;</span><span style="color: #f92672">);</span>
 <span style="color: #f92672">}</span></code></pre>
@@ -341,7 +341,7 @@ This is what this extension is for!</p>
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Hello World!&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">reportingTest</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">simple</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
@@ -359,7 +359,7 @@ This is what this extension is for!</p>
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;foo&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;bar&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">reportingTest</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">multiple</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
@@ -370,10 +370,8 @@ This is what this extension is for!</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line1&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Once upon a midnight dreary&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line2&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;While I pondered weak and weary&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line1&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Once upon a midnight dreary&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line2&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;While I pondered weak and weary&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">edgarAllanPoe</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
 <span style="color: #f92672">}</span></code></pre>
@@ -392,10 +390,7 @@ Just so:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span>
-    <span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line&quot;</span><span style="color: #f92672">,</span>
-    <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;success entry&quot;</span><span style="color: #f92672">,</span>
-    <span style="color: #f8f8f2">when</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ReportEntry</span><span style="color: #f92672">.</span><span style="color: #a6e22e">PublishCondition</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ON_SUCCESS</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;success entry&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">when</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ReportEntry</span><span style="color: #f92672">.</span><span style="color: #a6e22e">PublishCondition</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ON_SUCCESS</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">sufferingFromSuccess</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
 <span style="color: #f92672">}</span></code></pre>
@@ -441,9 +436,9 @@ For example, if you have a <code>@ParameterizedTest</code> like the following:</
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;Hello, 21&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World, 42&quot;</span><span style="color: #f92672">})</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;Hello, 21&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World, 42&quot;</span> <span style="color: #f92672">})</span>
 <span style="color: #a6e22e">@ReportEntry</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;{1} - {0} - {1}&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">parameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
