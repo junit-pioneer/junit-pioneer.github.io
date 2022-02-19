@@ -1,6 +1,6 @@
 var store = [{
-        "title": "Cartesian product of all test parameters (deprecated in 1.5.0)",
-        "excerpt":"Note The CartesianTest extension has undergone significant changes in 1.5.0. This included moving it into a new package. This here is the old variant, which is deprecated and will be removed in the 2.0 release (tentatively scheduled for December 2021). For the new version, see here. From Wikipedia: In mathematics,...","categories": [],
+        "title": "Old Cartesian product of all test parameters (deprecated in 1.6.0)",
+        "excerpt":"Note The CartesianTest extension has undergone significant changes in 1.6.0. This included moving it into a new package. This here is the old variant, which is deprecated and will be removed in the 2.0 release (tentatively scheduled for 2022). For the new version, see here. From Wikipedia: In mathematics, specifically...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/cartesian-product-v1/",
         "teaser": null
