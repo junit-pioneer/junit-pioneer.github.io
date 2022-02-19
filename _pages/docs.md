@@ -13,7 +13,7 @@ For some of them you need to be quite familiar with JUnit 5, so make sure to rea
 
 <dl>
 {% for item in site.docs %}
-  {% if item.path contains '/xp/' %}
+  {% if item.path contains '/xp/' and item.unlist != true %}
     <dt><a href="{{ item.url }}">{{ item.title }}</a></dt>
     <dd>{{ item.description }}</dd>
   {% endif %}
