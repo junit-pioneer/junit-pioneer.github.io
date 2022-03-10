@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-02-21T15:24:53+00:00">
+  <meta property="article:published_time" content="2022-03-10T22:14:42+00:00">
 
 
 
@@ -309,8 +309,29 @@ The test function will be executed, up to <code>maxAttempts</code>, until it com
 <div class="sect2">
 <h3 id="onexceptions-optional">onExceptions [optional]</h3>
 <div class="paragraph">
-<p>By default a test annotated with <code>@RetryingTest</code> will be retried on all exceptions except <a href="https://ota4j-team.github.io/opentest4j/docs/current/api/org/opentest4j/TestAbortedException.html"><code>TestAbortedException</code></a> (which will abort the test entirely).
+<p>By default, a test annotated with <code>@RetryingTest</code> will be retried on all exceptions except <a href="https://ota4j-team.github.io/opentest4j/docs/current/api/org/opentest4j/TestAbortedException.html"><code>TestAbortedException</code></a> (which will abort the test entirely).
 To only retry on specific exceptions, use <code>onExceptions</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="name-optional">name [optional]</h3>
+<div class="paragraph">
+<p>The <code>name</code> attribute specifies the display name for the individual test invocations.
+(To give a custom name to your container, use <code>@DisplayName</code> on the test method.)
+The attribute value supports these variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>{index}</code>: will get replaced by the current invocation index</p>
+</li>
+<li>
+<p><code>{displayName}</code>: will get replaced by the test container display name</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The default for <code>name</code> is <code>[{index}]</code>.</p>
 </div>
 </div>
 </div>
