@@ -1,0 +1,653 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>JSON Argument Source - JUnit Pioneer</title>
+<meta name="description" content="Extends JUnit Jupiter with @JsonFileSource, a parametrized test that creates test based on a JSON Source">
+
+
+  <meta name="author" content="JUnit Pioneers">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="JUnit Pioneer">
+<meta property="og:title" content="JSON Argument Source">
+<meta property="og:url" content="https://junit-pioneer.org/docs/json-argument-source/">
+
+
+  <meta property="og:description" content="Extends JUnit Jupiter with @JsonFileSource, a parametrized test that creates test based on a JSON Source">
+
+
+
+  <meta property="og:image" content="https://junit-pioneer.org/assets/images/site/type-writer.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-04-10T17:35:57+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://junit-pioneer.org/docs/json-argument-source/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "JUnit Pioneers",
+      "url": "https://junit-pioneer.org/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="JUnit Pioneer Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          JUnit Pioneer
+          <span class="site-subtitle">JUnit 5 Extension Pack</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/docs/">Documentation</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://javadoc.io/doc/org.junit-pioneer/junit-pioneer">Javadoc</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/junit-pioneer/junit-pioneer/releases">Release Notes</a>
+            </li><li class="masthead__menu-item">
+              <a href="/junit-pioneer/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/junit-pioneer/junit-pioneer">GitHub</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/assets/images/site/type-writer.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline"
+        style="">
+        
+          JSON Argument Source
+
+        
+      </h1>
+      
+      
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">JUnit Pioneer Extensions</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+          
+            <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
+          
+            <li><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></li>
+          
+            <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
+          
+            <li><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+          
+            <li><a href="/docs/disable-if-test-fails/">Disable If Test Fails</a></li>
+          
+            <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
+          
+            <li><a href="/docs/issue/">Issue information</a></li>
+          
+            <li><a href="/docs/json-argument-source">JSON Argument Source</a></li>
+          
+            <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
+          
+            <li><a href="/docs/range-sources/">Range Sources</a></li>
+          
+            <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
+          
+            <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
+          
+            <li><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
+          
+            <li><a href="/docs/temp-directory/">Temporary Files and Directories (removed in 1.0)</a></li>
+          
+            <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="JSON Argument Source">
+    <meta itemprop="description" content="">
+    
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <div class="paragraph">
+<p>The JSON argument sources let you provide arguments for parameterized tests from JSON.
+There are three annotations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@JsonSource</code> for lenient inline JSON</p>
+</li>
+<li>
+<p><code>@JsonFileSource</code> for JSON files from the local file system</p>
+</li>
+<li>
+<p><code>@JsonClasspathSource</code> for JSON files from the classpath</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are various ways how the method arguments for a single parametrized test are provided.
+By default the root of the source will be treated as candidate for the test arguments.
+If the root is an object then the entire object will be one argument, if the root is an array then every element of the array will be one argument.</p>
+</div>
+<div class="paragraph">
+<p>It is also possible to use a nested array from the provided JSON to access the source for the test arguments.
+The <code>JsonFileSource#data</code> can be used to tell the extraction mechanism to use the element with that name to look for the source of the data.</p>
+</div>
+<div class="paragraph">
+<p>Depending on the test method parameters, the extraction of the values might differ.</p>
+</div>
+<div class="sect1">
+<h2 id="method-arguments">Method Arguments</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="single-argument-methods">Single Argument Methods</h3>
+<div class="paragraph">
+<p>If the method has a single argument, the JSON object argument will be converted to that type.</p>
+</div>
+<div class="listingblock">
+<div class="title">Argument type</div>
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Jedi</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name</span><span style="color: #f92672">;</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">height</span><span style="color: #f92672">;</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #a6e22e">toString</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #e6db74">&quot;Jedi {&quot;</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;name=&#39;&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;\&#39;&#39;</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;, height=&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">height</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;}&#39;</span><span style="color: #f92672">;</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">JSON Source File</div>
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="json"><span></span><span style="color: #f8f8f2">[</span>
+  <span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;Luke&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;height&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">172</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;Yoda&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f92672">&quot;height&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">66</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">]</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJedi</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Jedi</span> <span style="color: #f8f8f2">jedi</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@JsonSource</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;[&quot;</span>
+        <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;  { name: &#39;Luke&#39;, height: 172  },&quot;</span>
+        <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;  { name: &#39;Yoda&#39;, height: 66 }&quot;</span>
+        <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;]&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJedi</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Jedi</span> <span style="color: #f8f8f2">jedi</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This parametrized test will generate the following test executions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[1] Jedi {name='Luke', height=172}</p>
+</li>
+<li>
+<p>[2] Jedi {name='Yoda', height=66}</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It is also possible to extract only a single element from each argument object by using the <code>@Property</code> annotation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJediProperty</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">jediName</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@JsonSource</span><span style="color: #f92672">({</span>
+        <span style="color: #e6db74">&quot;{ name: &#39;Luke&#39;, height: 172  }&quot;</span><span style="color: #f92672">,</span>
+        <span style="color: #e6db74">&quot;{ name: &#39;Yoda&#39;, height: 66 }&quot;</span>
+<span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJediProperty</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">jediName</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This parametrized test will generate the following tests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[1] Luke</p>
+</li>
+<li>
+<p>[2] Yoda</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="multiple-argument-methods">Multiple Argument Methods</h3>
+<div class="paragraph">
+<p>If the method has multiple arguments, each JSON object argument will be deconstructed to each of the method arguments.
+By default, the method argument name will be used for locating the element that needs to be taken from the JSON object.
+You can also use <code>@Property</code> to give the name of the element that needs to be extracted.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If your test sources are not compiled using the <code>--parameters</code> flag then the names of the arguments will not be like they are written in the source code.
+In that the situation you need to use <code>@Property</code> instead.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Using the same <code>jedis.json</code> and the following test</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">deconstructFromArray</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name</span><span style="color: #f92672">,</span> <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">height</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@JsonSource</span><span style="color: #f92672">({</span>
+        <span style="color: #e6db74">&quot;{ name: &#39;Yoda&#39;, height: 66 }&quot;</span><span style="color: #f92672">,</span>
+        <span style="color: #e6db74">&quot;{ name: &#39;Luke&#39;, height: 172 }&quot;</span><span style="color: #f92672">,</span>
+<span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">deconstructFromArray</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name</span><span style="color: #f92672">,</span> <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">height</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span>
+<span style="color: #75715e">// @formatter:on</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This parametrized test will generate the following tests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[1] Luke, 172</p>
+</li>
+<li>
+<p>[2] Yoda, 66</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="extracting-nested-array">Extracting nested array</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sometimes we want to extract a nested array instead of the root element.
+For this purpose <code>JsonClasspathSource#data</code> can be used.</p>
+</div>
+<div class="listingblock">
+<div class="title">Jedi with nested array</div>
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="json"><span></span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;Luke&quot;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;height&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">172</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f92672">&quot;vehicles&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span>
+    <span style="color: #f8f8f2">{</span>
+      <span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;Snowspeeder&quot;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #f92672">&quot;length&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">4.5</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #f8f8f2">{</span>
+      <span style="color: #f92672">&quot;name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;Imperial Speeder Bike&quot;</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #f92672">&quot;length&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">3</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we want to test the vehicles.
+The test for this will look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;luke.json&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">data</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;vehicles&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">lukeVehicles</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name</span><span style="color: #f92672">,</span> <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;length&quot;</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">double</span> <span style="color: #f8f8f2">length</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This parametrized test will generate the following tests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[1] Snowspeeder, 4.5</p>
+</li>
+<li>
+<p>[2] Imperial Speeder Bike, 3</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="thread-safety">Thread-Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This extension is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
+</div>
+</div>
+</div>
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=JSON+Argument+Source%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fjson-argument-source%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fjson-argument-source%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fjson-argument-source%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/docs/issue/" class="pagination--pager" title="Issue Information
+">Previous</a>
+    
+    
+      <a href="/docs/range-sources/" class="pagination--pager" title="Range Sources
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/hashtag/JUnitPioneer" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/junit-pioneer" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

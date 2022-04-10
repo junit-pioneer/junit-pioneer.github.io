@@ -12,7 +12,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Default Locale and TimeZone",
-        "excerpt":"The @DefaultLocale and @DefaultTimeZone annotations can be used to change the values returned from Locale.getDefault() and TimeZone.getDefault(). Both annotations work on the test class level and on the test method level. After the annotated element has been executed the initial default value is restored. @DefaultLocale The default Locale can be...","categories": [],
+        "excerpt":"The @DefaultLocale and @DefaultTimeZone annotations can be used to change the values returned from Locale.getDefault() and TimeZone.getDefault(). Both annotations work on the test class level and on the test method level, and are inherited from higher-level containers. After the annotated element has been executed the initial default value is restored....","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/default-locale-timezone/",
         "teaser": null
@@ -42,7 +42,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Clearing or Setting Environment Variables",
-        "excerpt":"The @ClearEnvironmentVariable and @SetEnvironmentVariable annotations can be used to clear, respectively, set the values of environment variables for a test execution. Both annotations work on the test method and class level, are repeatable as well as combinable. After the annotated method has been executed, the variables mentioned in the annotation...","categories": [],
+        "excerpt":"The @ClearEnvironmentVariable and @SetEnvironmentVariable annotations can be used to clear, respectively, set the values of environment variables for a test execution. Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers. After the annotated method has been executed, the variables mentioned in...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/environment-variables/",
         "teaser": null
@@ -51,6 +51,12 @@ var store = [{
         "excerpt":"Introduction The main reason developers write tests is to ensure the functionality of a requirement or to avoid technical problems. The @Issue annotation allows marking tests with a String, referencing a related issue (like a requirement, or a bugfix) of an issue-tracker (like Jira or Redmine). It&#8217;s a JUnit Jupiter...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/issue/",
+        "teaser": null
+      },{
+        "title": "JSON Argument Source",
+        "excerpt":"The JSON argument sources let you provide arguments for parameterized tests from JSON. There are three annotations: @JsonSource for lenient inline JSON @JsonFileSource for JSON files from the local file system @JsonClasspathSource for JSON files from the classpath There are various ways how the method arguments for a single parametrized...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/json-argument-source/",
         "teaser": null
       },{
         "title": "Range Sources",
@@ -84,7 +90,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Clearing or Setting System Properties",
-        "excerpt":"The @ClearSystemProperty and @SetSystemProperty annotations can be used to clear, respectively, set the values of system properties for a test execution. Both annotations work on the test method and class level, are repeatable as well as combinable. After the annotated method has been executed, the properties mentioned in the annotation...","categories": [],
+        "excerpt":"The @ClearSystemProperty and @SetSystemProperty annotations can be used to clear, respectively, set the values of system properties for a test execution. Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers. After the annotated method has been executed, the properties mentioned in...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/system-properties/",
         "teaser": null
