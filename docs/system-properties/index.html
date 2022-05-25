@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-04-10T17:35:57+00:00">
+  <meta property="article:published_time" content="2022-05-25T06:11:23+00:00">
 
 
 
@@ -288,9 +288,8 @@ Other system properties that are changed during the test, are <strong>not</stron
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@ClearSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">))</span>
-        <span style="color: #f92672">.</span><span style="color: #a6e22e">isNull</span><span style="color: #f92672">();</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testClearingProperty</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f92672">();</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -300,11 +299,9 @@ Other system properties that are changed during the test, are <strong>not</stron
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@SetSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">))</span>
-        <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">);</span>
+<span style="color: #a6e22e">@SetSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testSettingProperty</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">);</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -316,13 +313,11 @@ Other system properties that are changed during the test, are <strong>not</stron
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@ClearSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;1st property&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #a6e22e">@ClearSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2nd property&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@SetSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;3rd property&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@SetSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;3rd property&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testClearingAndSettingProperty</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
     <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;1st property&quot;</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f92672">();</span>
     <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;2nd property&quot;</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f92672">();</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;3rd property&quot;</span><span style="color: #f92672">))</span>
-        <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">);</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;3rd property&quot;</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">);</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -335,11 +330,9 @@ Other system properties that are changed during the test, are <strong>not</stron
 <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MySystemPropertyTest</span> <span style="color: #f92672">{</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@SetSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">,</span>
-            <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">))</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">);</span>
+    <span style="color: #a6e22e">@SetSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">clearedAtClasslevel</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;new value&quot;</span><span style="color: #f92672">);</span>
     <span style="color: #f92672">}</span>
 
 <span style="color: #f92672">}</span></code></pre>
@@ -366,7 +359,7 @@ In this case, you can still leverage the restore mechanism:</p>
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
 <span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;foo&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;bar&quot;</span> <span style="color: #f92672">})</span>
 <span style="color: #a6e22e">@ClearSystemProperty</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">parameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
     <span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">setProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">);</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>

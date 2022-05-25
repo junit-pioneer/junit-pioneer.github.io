@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-04-10T17:35:57+00:00">
+  <meta property="article:published_time" content="2022-05-25T06:11:23+00:00">
 
 
 
@@ -321,15 +321,11 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <p>In this case <code>System.in</code> gets replaced and the code under test will read the specified lines (in the snippet, that&#8217;s just the line <code>"&#8230;&#8203;"</code>).</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
-
-    <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span><span style="color: #f92672">})</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// `System.in` is replaced and the code under</span>
-        <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;</span>
-    <span style="color: #f92672">}</span>
-
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinReplaceInput</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// `System.in` is replaced and the code under</span>
+    <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -339,16 +335,12 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <p>Like before, but the lines read by the code under test can be verified with the <code>StdIn</code> parameter.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
-
-    <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span><span style="color: #f92672">})</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// `System.in` is replaced, the code under</span>
-        <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;,</span>
-        <span style="color: #75715e">// and `StdIn` can be used to verify that</span>
-    <span style="color: #f92672">}</span>
-
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinReplaceAndVerify</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// `System.in` is replaced, the code under</span>
+    <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;,</span>
+    <span style="color: #75715e">// and `StdIn` can be used to verify that</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -358,14 +350,12 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <p><code>System.in</code> is <em>not</em> replaced (because no input lines are defined), but <code>System.out</code> is, so the written lines can be verified with the <code>StdOut</code> parameter.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
-
-    <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@StdIo</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// `System.out` is replaced, so the written lines</span>
-        <span style="color: #75715e">// are captured and can be verified with `StdOut`</span>
-    <span style="color: #f92672">}</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@StdIo</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinNotReplacedButStdout</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// `System.out` is replaced, so the written lines</span>
+    <span style="color: #75715e">// are captured and can be verified with `StdOut`</span>
+<span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 </dd>
@@ -374,15 +364,11 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <p><code>System.in</code> is replaced, so the code can read the input lines and <code>System.out</code> is replaced, so the written lines can be verified with the <code>StdOut</code> parameter.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
-
-    <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">()</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// `System.in` and `System.out` are replaced</span>
-        <span style="color: #75715e">// and written lines can be verified with `StdOut`</span>
-    <span style="color: #f92672">}</span>
-
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">()</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">bothReplaced</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// `System.in` and `System.out` are replaced</span>
+    <span style="color: #75715e">// and written lines can be verified with `StdOut`</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -392,18 +378,14 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <p>A combination of the two previous cases - <code>System.in</code> and <code>System.out</code> get replaced.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">StandardInputOutputTests</span> <span style="color: #f92672">{</span>
-
-    <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span><span style="color: #f92672">})</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// `System.in` is replaced, the code under</span>
-        <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;,</span>
-        <span style="color: #75715e">// and `StdIn` can be used to verify that;</span>
-        <span style="color: #75715e">// `System.out` is also replaced, so the</span>
-        <span style="color: #75715e">// written lines can be verified with `StdOut`</span>
-    <span style="color: #f92672">}</span>
-
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">bothReplaceAndVerify</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// `System.in` is replaced, the code under</span>
+    <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;,</span>
+    <span style="color: #75715e">// and `StdIn` can be used to verify that;</span>
+    <span style="color: #75715e">// `System.out` is also replaced, so the</span>
+    <span style="color: #75715e">// written lines can be verified with `StdOut`</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -464,7 +446,7 @@ Take the following example:</p>
 
     <span style="color: #66d9ef">private</span> <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">lines</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;&gt;();</span>
 
-    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">readLines</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">readLines</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f92672">{</span>
         <span style="color: #f8f8f2">InputStreamReader</span> <span style="color: #f8f8f2">is</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">InputStreamReader</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">in</span><span style="color: #f92672">);</span>
         <span style="color: #f8f8f2">BufferedReader</span> <span style="color: #f8f8f2">reader</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">BufferedReader</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">is</span><span style="color: #f92672">);</span>
         <span style="color: #66d9ef">for</span> <span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">++)</span> <span style="color: #f92672">{</span>

@@ -54,7 +54,7 @@ var store = [{
         "teaser": null
       },{
         "title": "JSON Argument Source",
-        "excerpt":"The JSON argument sources let you provide arguments for parameterized tests from JSON. There are three annotations: @JsonSource for lenient inline JSON @JsonFileSource for JSON files from the local file system @JsonClasspathSource for JSON files from the classpath There are various ways how the method arguments for a single parametrized...","categories": [],
+        "excerpt":"The JSON argument sources let you provide arguments for parameterized tests from JSON. There are three annotations: @JsonSource for lenient inline JSON, works with regular string literals and text blocks @JsonFileSource for JSON files from the local file system @JsonClasspathSource for JSON files from the classpath There are various ways...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/json-argument-source/",
         "teaser": null

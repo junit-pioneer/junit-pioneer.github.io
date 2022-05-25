@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-04-10T17:35:57+00:00">
+  <meta property="article:published_time" content="2022-05-25T06:11:23+00:00">
 
 
 
@@ -291,8 +291,7 @@ After the annotated element has been executed the initial default value is resto
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@DefaultLocale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;zh-Hant-TW&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_lanuage</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">())</span>
-        <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">forLanguageTag</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;zh-Hant-TW&quot;</span><span style="color: #f92672">));</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">forLanguageTag</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;zh-Hant-TW&quot;</span><span style="color: #f92672">));</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -316,26 +315,20 @@ After the annotated element has been executed the initial default value is resto
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@DefaultLocale</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">language</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_lanuage</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">())</span>
-        <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">));</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_lanuage_only</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">));</span>
 <span style="color: #f92672">}</span>
 
 <span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@DefaultLocale</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">language</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">country</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;EN&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_lanuage_and_country</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">())</span>
-        <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;EN&quot;</span><span style="color: #f92672">));</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;EN&quot;</span><span style="color: #f92672">));</span>
 <span style="color: #f92672">}</span>
 
 <span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@DefaultLocale</span><span style="color: #f92672">(</span>
-    <span style="color: #f8f8f2">language</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">,</span>
-    <span style="color: #f8f8f2">country</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;EN&quot;</span><span style="color: #f92672">,</span>
-    <span style="color: #f8f8f2">variant</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;gb&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@DefaultLocale</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">language</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">country</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;EN&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">variant</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;gb&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_lanuage_and_country_and_vairant</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">())</span>
-        <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;EN&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;gb&quot;</span><span style="color: #f92672">));</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;EN&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;gb&quot;</span><span style="color: #f92672">));</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -354,16 +347,15 @@ If <code>variant</code> is specified without <code>country</code>, an <code>Exte
 
     <span style="color: #a6e22e">@Test</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_class_level_configuration</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">())</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;fr&quot;</span><span style="color: #f92672">));</span>
+        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;fr&quot;</span><span style="color: #f92672">));</span>
     <span style="color: #f92672">}</span>
 
     <span style="color: #a6e22e">@Test</span>
     <span style="color: #a6e22e">@DefaultLocale</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">language</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">)</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_method_level_configuration</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">())</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">));</span>
+        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Locale</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Locale</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;en&quot;</span><span style="color: #f92672">));</span>
     <span style="color: #f92672">}</span>
+
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -390,17 +382,15 @@ A class-level configuration means that the specified locale is set before and re
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@DefaulTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;CET&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #a6e22e">@DefaultTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;CET&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_short_zone_id</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span>
-        <span style="color: #f8f8f2">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;CET&quot;</span><span style="color: #f92672">));</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;CET&quot;</span><span style="color: #f92672">));</span>
 <span style="color: #f92672">}</span>
 
 <span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@DefaultTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Africa/Juba&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_long_zone_id</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span>
-        <span style="color: #f8f8f2">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Africa/Juba&quot;</span><span style="color: #f92672">));</span>
+    <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Africa/Juba&quot;</span><span style="color: #f92672">));</span>
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -414,16 +404,15 @@ A class-level configuration means that the specified locale is set before and re
 
     <span style="color: #a6e22e">@Test</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_class_level_configuration</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span>
-            <span style="color: #f8f8f2">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;CET&quot;</span><span style="color: #f92672">));</span>
+        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;CET&quot;</span><span style="color: #f92672">));</span>
     <span style="color: #f92672">}</span>
 
     <span style="color: #a6e22e">@Test</span>
     <span style="color: #a6e22e">@DefaultTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Africa/Juba&quot;</span><span style="color: #f92672">)</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_with_method_level_configuration</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span>
-            <span style="color: #f8f8f2">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Africa/Juba&quot;</span><span style="color: #f92672">));</span>
+        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getDefault</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeZone</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getTimeZone</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Africa/Juba&quot;</span><span style="color: #f92672">));</span>
     <span style="color: #f92672">}</span>
+
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>

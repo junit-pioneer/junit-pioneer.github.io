@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-04-10T17:35:57+00:00">
+  <meta property="article:published_time" content="2022-05-25T06:11:23+00:00">
 
 
 
@@ -344,14 +344,14 @@ This included moving it into a new package.
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Values</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">myCartesianTestMethod</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span> <span style="color: #f92672">})</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">x</span><span style="color: #f92672">,</span>
-            <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span> <span style="color: #f92672">})</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">y</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// passing test code</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">myCartesianTestMethod</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span> <span style="color: #f92672">})</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">x</span><span style="color: #f92672">,</span> <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span> <span style="color: #f92672">})</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">y</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #75715e">// passing test code</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -384,15 +384,15 @@ You can mix and match parameter annotations as you need.</p>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Values</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Enum</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testIntChars</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@ShortRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">short</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">,</span>
-            <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">character</span><span style="color: #f92672">,</span>
-            <span style="color: #a6e22e">@Enum</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// passing test code</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">SecondCartesianTestClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testIntChars</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@ShortRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">short</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">,</span>
+                <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">character</span><span style="color: #f92672">,</span> <span style="color: #a6e22e">@Enum</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #75715e">// passing test code</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -406,14 +406,14 @@ The test will try every combination those values can have.</p>
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Values</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testIntChars</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span> <span style="color: #f92672">})</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">,</span>
-            <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">character</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// passing test code</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ThirdCartesianTestClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testIntChars</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span> <span style="color: #f92672">})</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">number</span><span style="color: #f92672">,</span> <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">character</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #75715e">// passing test code</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -486,12 +486,14 @@ The second parameter can have any of the two values <code>"A"</code> or <code>"B
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Enum</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithEnum</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Enum</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">).</span><span style="color: #a6e22e">isNotNull</span><span style="color: #f92672">();</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestWithEnumClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithEnum</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Enum</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">).</span><span style="color: #a6e22e">isNotNull</span><span style="color: #f92672">();</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -511,12 +513,14 @@ The <code>value</code> attribute is required in the following example because th
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Enum</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testExplicitEnum</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">TemporalUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">).</span><span style="color: #a6e22e">isNotNull</span><span style="color: #f92672">();</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestEnumWithTypeClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testExplicitEnum</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">TemporalUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">).</span><span style="color: #a6e22e">isNotNull</span><span style="color: #f92672">();</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -530,13 +534,14 @@ If omitted, all constants will be used.</p>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Enum</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testEnumNames</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;DAYS&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;HOURS&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">EnumSet</span><span style="color: #f92672">.</span><span style="color: #a6e22e">of</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">DAYS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">HOURS</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">contains</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">);</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestEnumWithTypeAndNamesClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testEnumNames</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;DAYS&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;HOURS&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">EnumSet</span><span style="color: #f92672">.</span><span style="color: #a6e22e">of</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">DAYS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">HOURS</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">contains</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">);</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -550,13 +555,14 @@ For example, you can exclude names from the enum constant pool or specify regula
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Enum</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithEnumModes</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">EXCLUDE</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;ERAS&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;FOREVER&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">EnumSet</span><span style="color: #f92672">.</span><span style="color: #a6e22e">of</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ERAS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">FOREVER</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">doesNotContain</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">);</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestEnumWithModeClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithEnumModes</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">EXCLUDE</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;ERAS&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;FOREVER&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">EnumSet</span><span style="color: #f92672">.</span><span style="color: #a6e22e">of</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ERAS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">ChronoUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">FOREVER</span><span style="color: #f92672">)).</span><span style="color: #a6e22e">doesNotContain</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">);</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -566,13 +572,14 @@ For example, you can exclude names from the enum constant pool or specify regula
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Enum</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithEnumRegex</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">MATCH_ALL</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;^.*DAYS$&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">name</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">endsWith</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;DAYS&quot;</span><span style="color: #f92672">);</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestEnumWithRegExClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithEnumRegex</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">MATCH_ALL</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;^.*DAYS$&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">ChronoUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">assertThat</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">unit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">name</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">endsWith</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;DAYS&quot;</span><span style="color: #f92672">);</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -583,22 +590,23 @@ For example, you can exclude names from the enum constant pool or specify regula
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Enum</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">enum</span> <span style="color: #f8f8f2">MyEnum</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">ONE</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TWO</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">THREE</span>
-<span style="color: #f92672">}</span>
-
-<span style="color: #66d9ef">enum</span> <span style="color: #f8f8f2">AnotherEnum</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">ALPHA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">BETA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">GAMMA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">DELTA</span>
-<span style="color: #f92672">}</span>
-
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testEnumValues</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@Enum</span> <span style="color: #f8f8f2">MyEnum</span> <span style="color: #f8f8f2">myEnum</span><span style="color: #f92672">,</span>
-        <span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;ALPHA&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;DELTA&quot;</span> <span style="color: #f92672">},</span> <span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Mode</span><span style="color: #f92672">.</span><span style="color: #a6e22e">EXCLUDE</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">AnotherEnum</span> <span style="color: #f8f8f2">anotherEnum</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// passing test code</span>
+    <span style="color: #66d9ef">enum</span> <span style="color: #f8f8f2">MyEnum</span> <span style="color: #f92672">{</span>
+        <span style="color: #f8f8f2">ONE</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TWO</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">THREE</span>
     <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+
+    <span style="color: #66d9ef">enum</span> <span style="color: #f8f8f2">AnotherEnum</span> <span style="color: #f92672">{</span>
+        <span style="color: #f8f8f2">ALPHA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">BETA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">GAMMA</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">DELTA</span>
+    <span style="color: #f92672">}</span>
+
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestEnumWithEnumTypesClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testEnumValues</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Enum</span> <span style="color: #f8f8f2">MyEnum</span> <span style="color: #f8f8f2">myEnum</span><span style="color: #f92672">,</span>
+                <span style="color: #a6e22e">@Enum</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">names</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;ALPHA&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;DELTA&quot;</span> <span style="color: #f92672">},</span> <span style="color: #f8f8f2">mode</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Enum</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Mode</span><span style="color: #f92672">.</span><span style="color: #a6e22e">EXCLUDE</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">AnotherEnum</span> <span style="color: #f8f8f2">anotherEnum</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #75715e">// passing test code</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -666,14 +674,15 @@ For <em>this purpose only</em>, range sources can be used on parameters.</p>
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.params.*</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
-    <span style="color: #a6e22e">@CartesianTest</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testShortAndLong</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@ShortRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">short</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">,</span>
-            <span style="color: #a6e22e">@LongRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">L</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2L</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">closed</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">long</span> <span style="color: #f8f8f2">l</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// passing test code</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestEnumWithRangeSourcesClass</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testShortAndLong</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@ShortRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">short</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">,</span>
+                <span style="color: #a6e22e">@LongRangeSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">L</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2L</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">closed</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">long</span> <span style="color: #f8f8f2">l</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #75715e">// passing test code</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -761,20 +770,21 @@ If you want to create an initially-empty <code>ArgumentSets</code>, call the sta
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span>
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestWithArgumentSetsClass</span> <span style="color: #f92672">{</span>
+
     <span style="color: #a6e22e">@CartesianTest</span>
     <span style="color: #a6e22e">@CartesianTest.MethodFactory</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;setFactory&quot;</span><span style="color: #f92672">)</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testMethod</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Class</span><span style="color: #f92672">&lt;?&gt;</span> <span style="color: #f8f8f2">clazz</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TimeUnit</span> <span style="color: #f8f8f2">unit</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
         <span style="color: #75715e">// passing test code</span>
     <span style="color: #f92672">}</span>
 
-    <span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">setFactory</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">setFactory</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
         <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">ArgumentSets</span>
                 <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForFirstParameter</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Alpha&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Omega&quot;</span><span style="color: #f92672">)</span>
                 <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Runnable</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Cloneable</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Predicate</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
                 <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">DAYS</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">TimeUnit</span><span style="color: #f92672">.</span><span style="color: #a6e22e">HOURS</span><span style="color: #f92672">);</span>
     <span style="color: #f92672">}</span>
+
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -881,7 +891,8 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTestClass</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CartesianTestWithReusedArgumentSetsClass</span> <span style="color: #f92672">{</span>
+
     <span style="color: #a6e22e">@CartesianTest</span>
     <span style="color: #a6e22e">@CartesianTest.MethodFactory</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;provideArguments&quot;</span><span style="color: #f92672">)</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testNeedingArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
@@ -894,11 +905,12 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
         <span style="color: #75715e">// different passing test code</span>
     <span style="color: #f92672">}</span>
 
-    <span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
         <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">ArgumentSets</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForFirstParameter</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Mercury&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Earth&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Venus&quot;</span><span style="color: #f92672">)</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">12</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">144</span><span style="color: #f92672">);</span>
+                <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForFirstParameter</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Mercury&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Earth&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;Venus&quot;</span><span style="color: #f92672">)</span>
+                <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">12</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">144</span><span style="color: #f92672">);</span>
     <span style="color: #f92672">}</span>
+
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -942,6 +954,7 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">BadExamples</span> <span style="color: #f92672">{</span>
+
     <span style="color: #a6e22e">@CartesianTest</span>
     <span style="color: #a6e22e">@CartesianTest.MethodFactory</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;resolveParameters&quot;</span><span style="color: #f92672">)</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">tooFewParameters</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">string</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">boolean</span> <span style="color: #f8f8f2">b</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
@@ -966,18 +979,17 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
         <span style="color: #75715e">// fails because both the factory method and JUnit tries to inject TestReporter</span>
     <span style="color: #f92672">}</span>
 
-    <span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">resolveParameters</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">ArgumentSets</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForFirstParameter</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f92672">)</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">);</span>
+    <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">resolveParameters</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">ArgumentSets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForFirstParameter</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f92672">).</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">);</span>
     <span style="color: #f92672">}</span>
 
-    <span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">resolveTestReporterParam</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">resolveTestReporterParam</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
         <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">ArgumentSets</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForFirstParameter</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f92672">)</span>
-            <span style="color: #75715e">// in this case MyTestReporter implements TestReporter</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">MyTestReporter</span><span style="color: #f92672">());</span>
+                <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForFirstParameter</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f92672">)</span>
+                <span style="color: #75715e">// in this case MyTestReporter implements TestReporter</span>
+                <span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">MyTestReporter</span><span style="color: #f92672">());</span>
     <span style="color: #f92672">}</span>
+
 <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
@@ -1021,16 +1033,7 @@ Let&#8217;s create an annotation for it.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">java.lang.annotation.*</span><span style="color: #f92672">;</span>
-<span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianArgumentsSource</span><span style="color: #f92672">;</span>
-
-<span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">PARAMETER</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">IntArgumentsProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">public</span> <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">Ints</span> <span style="color: #f92672">{</span>
-
-    <span style="color: #66d9ef">int</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">();</span>
-
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianArgumentsSource</span><span style="color: #f92672">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1051,12 +1054,34 @@ It is annotated with <code>@CartesianArgumentsSource</code>, so Pioneer knows wh
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junit.jupiter.api.extension.ExtensionContext</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianParameterArgumentsProvider</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">IntArgumentsProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianParameterArgumentsProvider</span> <span style="color: #f92672">{</span>
+    <span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">PARAMETER</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">IntArgumentsProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">Ints</span> <span style="color: #f92672">{</span>
 
-    <span style="color: #a6e22e">@Override</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Stream</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Integer</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Parameter</span> <span style="color: #f8f8f2">parameter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">Ints</span> <span style="color: #f8f8f2">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Objects</span><span style="color: #f92672">.</span><span style="color: #a6e22e">requireNonNull</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">parameter</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getAnnotation</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Ints</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">));</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Arrays</span><span style="color: #f92672">.</span><span style="color: #a6e22e">stream</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">value</span><span style="color: #f92672">());</span>
+        <span style="color: #66d9ef">int</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">();</span>
+
+    <span style="color: #f92672">}</span>
+
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">IntArgumentsProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianParameterArgumentsProvider</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@Override</span>
+        <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Stream</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Integer</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Parameter</span> <span style="color: #f8f8f2">parameter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">Ints</span> <span style="color: #f8f8f2">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Objects</span><span style="color: #f92672">.</span><span style="color: #a6e22e">requireNonNull</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">parameter</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getAnnotation</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Ints</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">));</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Arrays</span><span style="color: #f92672">.</span><span style="color: #a6e22e">stream</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">value</span><span style="color: #f92672">()).</span><span style="color: #a6e22e">boxed</span><span style="color: #f92672">();</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span>
+
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianWithDisplayNameTest</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@CartesianTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;{index} =&gt; first bit: {0} second bit: {1}&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #a6e22e">@DisplayName</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Basic bit test&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithCustomDisplayName</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;0&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;1&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">a</span><span style="color: #f92672">,</span>
+                <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;0&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;1&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">b</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #75715e">// passing test code</span>
+        <span style="color: #f92672">}</span>
+
     <span style="color: #f92672">}</span>
 
 <span style="color: #f92672">}</span></code></pre>
@@ -1082,26 +1107,28 @@ You could do additional processing, for example:</p>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianArgumentsSource</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianParameterArgumentsProvider</span><span style="color: #f92672">;</span>
 
-<span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">PARAMETER</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">PeopleProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">People</span> <span style="color: #f92672">{</span>
+    <span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">PARAMETER</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">PeopleProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">People</span> <span style="color: #f92672">{</span>
 
-    <span style="color: #f8f8f2">String</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">names</span><span style="color: #f92672">();</span>
+        <span style="color: #f8f8f2">String</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">names</span><span style="color: #f92672">();</span>
 
-    <span style="color: #66d9ef">int</span> <span style="color: #a6e22e">ages</span><span style="color: #f92672">();</span>
+        <span style="color: #66d9ef">int</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">ages</span><span style="color: #f92672">();</span>
 
-<span style="color: #f92672">}</span>
-
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">PeopleProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianParameterArgumentsProvider</span> <span style="color: #f92672">{</span>
-
-    <span style="color: #a6e22e">@Override</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Stream</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Person</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Parameter</span> <span style="color: #f8f8f2">parameter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">People</span> <span style="color: #f8f8f2">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Objects</span><span style="color: #f92672">.</span><span style="color: #a6e22e">requireNonNull</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">parameter</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getAnnotation</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">People</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">));</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">IntStream</span><span style="color: #f92672">.</span><span style="color: #a6e22e">range</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">)</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">mapToObj</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">i</span> <span style="color: #f92672">-&gt;</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Person</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">],</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ages</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">]));</span>
     <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">PeopleProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianParameterArgumentsProvider</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #a6e22e">@Override</span>
+        <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Stream</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Person</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Parameter</span> <span style="color: #f8f8f2">parameter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #f8f8f2">People</span> <span style="color: #f8f8f2">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Objects</span><span style="color: #f92672">.</span><span style="color: #a6e22e">requireNonNull</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">parameter</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getAnnotation</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">People</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">));</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">IntStream</span>
+                    <span style="color: #f92672">.</span><span style="color: #a6e22e">range</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">)</span>
+                    <span style="color: #f92672">.</span><span style="color: #a6e22e">mapToObj</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">i</span> <span style="color: #f92672">-&gt;</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Person</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">],</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ages</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">]));</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1119,33 +1146,24 @@ The previous example would look like the following:</p>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianArgumentsSource</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianParameterArgumentsProvider</span><span style="color: #f92672">;</span>
 
-<span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">PARAMETER</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">PeopleProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">People</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">PeopleProviderWithAnnotationConsumer</span>
+            <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianParameterArgumentsProvider</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">AnnotationConsumer</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">People</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
 
-    <span style="color: #f8f8f2">String</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">names</span><span style="color: #f92672">();</span>
+        <span style="color: #66d9ef">private</span> <span style="color: #f8f8f2">People</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">;</span>
 
-    <span style="color: #66d9ef">int</span> <span style="color: #a6e22e">ages</span><span style="color: #f92672">();</span>
+        <span style="color: #a6e22e">@Override</span>
+        <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Stream</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Person</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Parameter</span> <span style="color: #f8f8f2">parameter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">IntStream</span>
+                    <span style="color: #f92672">.</span><span style="color: #a6e22e">range</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">)</span>
+                    <span style="color: #f92672">.</span><span style="color: #a6e22e">mapToObj</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">i</span> <span style="color: #f92672">-&gt;</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Person</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">],</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ages</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">]));</span>
+        <span style="color: #f92672">}</span>
 
-<span style="color: #f92672">}</span>
+        <span style="color: #a6e22e">@Override</span>
+        <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">accept</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">People</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">;</span>
+        <span style="color: #f92672">}</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">PeopleProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianParameterArgumentsProvider</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">AnnotationConsumer</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">People</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
-
-    <span style="color: #66d9ef">private</span> <span style="color: #f8f8f2">People</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">;</span>
-
-    <span style="color: #a6e22e">@Override</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Stream</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Person</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">Parameter</span> <span style="color: #f8f8f2">parameter</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">IntStream</span><span style="color: #f92672">.</span><span style="color: #a6e22e">range</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">)</span>
-            <span style="color: #f92672">.</span><span style="color: #a6e22e">mapToObj</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">i</span> <span style="color: #f92672">-&gt;</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Person</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">names</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">],</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">ages</span><span style="color: #f92672">()[</span><span style="color: #f8f8f2">i</span><span style="color: #f92672">]));</span>
-    <span style="color: #f92672">}</span>
-
-    <span style="color: #a6e22e">@Override</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">accept</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">People</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">source</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">;</span>
-    <span style="color: #f92672">}</span>
-
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1167,11 +1185,11 @@ Let&#8217;s create an annotation for it.</p>
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">java.lang.annotation.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianArgumentsSource</span><span style="color: #f92672">;</span>
 
-<span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">METHOD</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">BitArgumentsProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">public</span> <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">BitSource</span> <span style="color: #f92672">{</span>
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">METHOD</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">BitArgumentsProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">BitSource</span> <span style="color: #f92672">{</span>
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1192,18 +1210,19 @@ It is annotated with <code>@CartesianArgumentsSource</code>, so Pioneer knows wh
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junit.jupiter.api.extension.ExtensionContext</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianMethodArgumentsProvider</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">BitArgumentsProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianMethodArgumentsProvider</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">BitArgumentsProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianMethodArgumentsProvider</span> <span style="color: #f92672">{</span>
 
-    <span style="color: #a6e22e">@Override</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">paramCount</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getRequiredTestMethod</span><span style="color: #f92672">().</span><span style="color: #a6e22e">getParameters</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">;</span>
-        <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #f8f8f2">sets</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ArgumentSets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">create</span><span style="color: #f92672">();</span>
-        <span style="color: #66d9ef">for</span> <span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">paramCount</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">++)</span> <span style="color: #f92672">{</span>
-            <span style="color: #f8f8f2">sets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">);</span>
+        <span style="color: #a6e22e">@Override</span>
+        <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">paramCount</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getRequiredTestMethod</span><span style="color: #f92672">().</span><span style="color: #a6e22e">getParameters</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">;</span>
+            <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #f8f8f2">sets</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ArgumentSets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">create</span><span style="color: #f92672">();</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">paramCount</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">++)</span> <span style="color: #f92672">{</span>
+                <span style="color: #f8f8f2">sets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">);</span>
+            <span style="color: #f92672">}</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">sets</span><span style="color: #f92672">;</span>
         <span style="color: #f92672">}</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">sets</span><span style="color: #f92672">;</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1241,33 +1260,35 @@ For example:</p>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianArgumentsSource</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianMethodArgumentsProvider</span><span style="color: #f92672">;</span>
 
-<span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">METHOD</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">NumberArgumentsProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">public</span> <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">NumberSource</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">int</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">();</span>
-<span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Target</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ElementType</span><span style="color: #f92672">.</span><span style="color: #a6e22e">METHOD</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@Retention</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">RetentionPolicy</span><span style="color: #f92672">.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f92672">)</span>
+    <span style="color: #a6e22e">@CartesianArgumentsSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">NumberArgumentsProvider</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">NumberSource</span> <span style="color: #f92672">{</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">NumberArgumentsProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianMethodArgumentsProvider</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">AnnotationConsumer</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">NumberSource</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">int</span><span style="color: #f92672">[]</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">();</span>
 
-    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">int</span><span style="color: #f92672">[]</span> <span style="color: #f8f8f2">numbers</span><span style="color: #f92672">;</span>
+    <span style="color: #f92672">}</span>
 
-    <span style="color: #a6e22e">@Override</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">paramCount</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getRequiredTestMethod</span><span style="color: #f92672">().</span><span style="color: #a6e22e">getParameters</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">;</span>
-        <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #f8f8f2">sets</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ArgumentSets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">create</span><span style="color: #f92672">();</span>
-        <span style="color: #66d9ef">for</span> <span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">paramCount</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">++)</span> <span style="color: #f92672">{</span>
-            <span style="color: #f8f8f2">sets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Arrays</span><span style="color: #f92672">.</span><span style="color: #a6e22e">stream</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">numbers</span><span style="color: #f92672">).</span><span style="color: #a6e22e">boxed</span><span style="color: #f92672">());</span>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">NumberArgumentsProvider</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">CartesianMethodArgumentsProvider</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">AnnotationConsumer</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">NumberSource</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">int</span><span style="color: #f92672">[]</span> <span style="color: #f8f8f2">numbers</span><span style="color: #f92672">;</span>
+
+        <span style="color: #a6e22e">@Override</span>
+        <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #a6e22e">provideArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ExtensionContext</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">paramCount</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">context</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getRequiredTestMethod</span><span style="color: #f92672">().</span><span style="color: #a6e22e">getParameters</span><span style="color: #f92672">().</span><span style="color: #a6e22e">length</span><span style="color: #f92672">;</span>
+            <span style="color: #f8f8f2">ArgumentSets</span> <span style="color: #f8f8f2">sets</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ArgumentSets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">create</span><span style="color: #f92672">();</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">paramCount</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">++)</span> <span style="color: #f92672">{</span>
+                <span style="color: #f8f8f2">sets</span><span style="color: #f92672">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Arrays</span><span style="color: #f92672">.</span><span style="color: #a6e22e">stream</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">numbers</span><span style="color: #f92672">).</span><span style="color: #a6e22e">boxed</span><span style="color: #f92672">());</span>
+            <span style="color: #f92672">}</span>
+            <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">sets</span><span style="color: #f92672">;</span>
         <span style="color: #f92672">}</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">sets</span><span style="color: #f92672">;</span>
-    <span style="color: #f92672">}</span>
 
-    <span style="color: #a6e22e">@Override</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">accept</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">NumberSource</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">numbers</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">value</span><span style="color: #f92672">();</span>
-    <span style="color: #f92672">}</span>
+        <span style="color: #a6e22e">@Override</span>
+        <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">accept</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">NumberSource</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">numbers</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">source</span><span style="color: #f92672">.</span><span style="color: #a6e22e">value</span><span style="color: #f92672">();</span>
+        <span style="color: #f92672">}</span>
 
-<span style="color: #f92672">}</span></code></pre>
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1286,15 +1307,16 @@ For example:</p>
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.*</span><span style="color: #f92672">;</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">org.junitpioneer.jupiter.cartesian.CartesianTest.Values</span><span style="color: #f92672">;</span>
 
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianTest</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyCartesianWithDisplayNameTest</span> <span style="color: #f92672">{</span>
 
-    <span style="color: #a6e22e">@CartesianTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;{index} =&gt; first bit: {0} second bit: {1}&quot;</span><span style="color: #f92672">)</span>
-    <span style="color: #a6e22e">@DisplayName</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Basic bit test&quot;</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithCustomDisplayName</span><span style="color: #f92672">(</span>
-            <span style="color: #a6e22e">@Values</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;0&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;1&quot;</span><span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">a</span><span style="color: #f92672">,</span> <span style="color: #a6e22e">@Values</span><span style="color: #f92672">({</span><span style="color: #e6db74">&quot;0&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;1&quot;</span><span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">b</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #75715e">// passing test code</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+        <span style="color: #a6e22e">@CartesianTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;{index} =&gt; first bit: {0} second bit: {1}&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #a6e22e">@DisplayName</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Basic bit test&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithCustomDisplayName</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;0&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;1&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">a</span><span style="color: #f92672">,</span>
+                <span style="color: #a6e22e">@Values</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;0&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;1&quot;</span> <span style="color: #f92672">})</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">b</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+            <span style="color: #75715e">// passing test code</span>
+        <span style="color: #f92672">}</span>
+
+    <span style="color: #f92672">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
