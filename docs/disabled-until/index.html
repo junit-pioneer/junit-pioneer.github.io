@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-05-25T06:11:23+00:00">
+  <meta property="article:published_time" content="2022-11-09T11:05:32+00:00">
 
 
 
@@ -275,10 +275,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="sect1">
-<h2 id="introduction">Introduction</h2>
-<div class="sectionbody">
-<div class="paragraph">
+        <div class="paragraph">
 <p>It&#8217;s sometimes useful to disable a test.
 One can imagine many reasons for doing so, maybe a remote dependency of the test is broken or not yet deployed.
 Maybe the test is still in development and unstable.</p>
@@ -290,7 +287,19 @@ The only problem with this approach is remembering to activate the test again on
 The <code>@DisabledUntil</code> annotation may be used to disable a test only for a certain period of time.
 The test will be automatically executed again once the date supplied by the <code>date</code> parameter is reached.</p>
 </div>
-</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Applying <code>@DisabledUntil</code> can make the test suite non-reproducible.
+If a failing test is disabled during a build that then passes, rerunning that build after the "until" date would fail.
+A report entry is issued for every test that is disabled until a certain date.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect1">
 <h2 id="usage">Usage</h2>
@@ -300,8 +309,8 @@ The test will be automatically executed again once the date supplied by the <cod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisabledUntil</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2022-01-01&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@Test</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@DisabledUntil</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2022-01-01&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// Test will be skipped if it&#39;s 2021-12-31 or earlier</span>
 <span style="color: #f92672">}</span></code></pre>
@@ -316,8 +325,8 @@ Invalid or unparsable date strings lead to an <code>ExtensionConfigurationExcept
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisabledUntil</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">reason</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;The remote server won&#39;t be ready until next year&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2022-01-01&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@Test</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@DisabledUntil</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">reason</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;The remote server won&#39;t be ready until next year&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2022-01-01&quot;</span><span style="color: #f92672">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithReason</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
     <span style="color: #75715e">// Test will be skipped if it&#39;s 2021-12-31 or earlier</span>
 <span style="color: #f92672">}</span></code></pre>
@@ -350,6 +359,14 @@ Invalid or unparsable date strings lead to an <code>ExtensionConfigurationExcept
 <div class="paragraph">
 <p>The test will be skipped only if the date specified by <code>date</code> is the future.
 If <code>date</code> is today or in the past, the test will be executed normally but a warning entry will be published to the <a href="https://junit-pioneer.org/docs/report-entries">test report</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="thread-safety">Thread-Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This extension is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
 </div>
 </div>
 </div>

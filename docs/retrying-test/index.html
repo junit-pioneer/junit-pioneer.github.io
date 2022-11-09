@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-05-25T06:11:23+00:00">
+  <meta property="article:published_time" content="2022-11-09T11:05:32+00:00">
 
 
 
@@ -309,6 +309,18 @@ The test function will be executed, up to <code>maxAttempts</code>, until it com
 </div>
 </div>
 <div class="sect2">
+<h3 id="suspendforms-optional">suspendForMs [optional]</h3>
+<div class="paragraph">
+<p>The <code>suspendForMs</code> attribute specifies the amount of time to pause between retries, in milliseconds.</p>
+</div>
+<div class="paragraph">
+<p>The thread executing this test is sleeping during that time and won&#8217;t execute other tests, so long suspensions are discouraged.</p>
+</div>
+<div class="paragraph">
+<p>The default for <code>suspendForMs</code> is 0 (no pause). The value must be greater than or equal to 0.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="onexceptions-optional">onExceptions [optional]</h3>
 <div class="paragraph">
 <p>By default, a test annotated with <code>@RetryingTest</code> will be retried on all exceptions except <a href="https://ota4j-team.github.io/opentest4j/docs/current/api/org/opentest4j/TestAbortedException.html"><code>TestAbortedException</code></a> (which will abort the test entirely).
@@ -409,6 +421,23 @@ The test suite as a whole is also marked as aborted/skipped.</p>
 <div class="paragraph">
 <p>The test <code>requiresTwoSuccesses</code> must run at least two times without raising an exception.
 However, it will not run more than four times.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="suspending-between-each-retry">Suspending between each Retry</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">suspendForMs</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">suspendsBetweenRetries</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// test code that will suspend/wait for 100 ms between retries</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <code>suspendForMs</code> to specify the number of milliseconds to wait between each retry.</p>
+</div>
+<div class="paragraph">
+<p>After failure, the test <code>suspendBetweenRetries</code> will wait for 100ms before retrying.</p>
 </div>
 </div>
 <div class="sect2">

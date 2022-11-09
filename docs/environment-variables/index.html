@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-05-25T06:11:23+00:00">
+  <meta property="article:published_time" content="2022-11-09T11:05:32+00:00">
 
 
 
@@ -278,7 +278,7 @@
         <div class="paragraph">
 <p>The <code>@ClearEnvironmentVariable</code> and <code>@SetEnvironmentVariable</code> annotations can be used to clear, respectively, set the values of environment variables for a test execution.
 Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers.
-After the annotated method has been executed, the variables mentioned in the annotation will be restored to their original value or will be cleared if they didn&#8217;t have one before.
+After the annotated method has been executed, the variables mentioned in the annotation will be restored to their original value or the value of the higher-level container, or will be cleared if they didn&#8217;t have one before.
 Other environment variables that are changed during the test, are <strong>not</strong> restored.</p>
 </div>
 <div class="admonitionblock warning">
@@ -337,7 +337,7 @@ For more details, see <a href="#warnings-for-reflective-access">Warnings for Ref
 </div>
 </div>
 <div class="paragraph">
-<p>Note that class level configurations are overwritten by method level configurations:</p>
+<p>Note that class-level configurations are overwritten by method-level configurations:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -352,6 +352,18 @@ For more details, see <a href="#warnings-for-reflective-access">Warnings for Ref
 
 <span style="color: #f92672">}</span></code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Method-level configurations are visible in both <code>@BeforeEach</code> setup methods and <code>@AfterEach</code> teardown methods (see <a href="https://junit.org/junit5/docs/current/user-guide/#extensions-execution-order-overview">user code and extension code execution order</a>).
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -392,10 +404,17 @@ module java.base does not &quot;opens java.lang&quot; to unnamed module [...]</c
 </div>
 <div class="paragraph">
 <p>The best way to prevent these warnings/errors, is to change the code under test, so this extension is no longer needed.
-The next best thing is to allow access to that specific package with <code>--add-opens=java.base/java.util=ALL-UNNAMED</code> (if you place JUnit Pioneer on the class path) or <code>--add-opens=java.base/java.util=org.junitpioneer</code> (if you place it on the module path).</p>
+The next best thing is to allow access to that specific package:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code><span></span>--add-opens java.base/java.util=$TARGET_MODULE
+--add-opens java.base/java.lang=$TARGET_MODULE</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>These command line options need to be added to the JVM that executes the tests:</p>
+<p>Where <code>$TARGET_MODULE</code> equals <code>ALL-UNNAMED</code> if you place JUnit Pioneer on the class path, or <code>org.junitpioneer</code> if you place JUnit Pioneer on the module path.
+These command line options need to be added to the JVM that executes the tests:</p>
 </div>
 <div class="ulist">
 <ul>

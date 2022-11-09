@@ -36,7 +36,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Temporarily Disable a Test",
-        "excerpt":"Introduction It&#8217;s sometimes useful to disable a test. One can imagine many reasons for doing so, maybe a remote dependency of the test is broken or not yet deployed. Maybe the test is still in development and unstable. The @Disable annotation is perfectly adequate to use in such cases. The...","categories": [],
+        "excerpt":"It&#8217;s sometimes useful to disable a test. One can imagine many reasons for doing so, maybe a remote dependency of the test is broken or not yet deployed. Maybe the test is still in development and unstable. The @Disable annotation is perfectly adequate to use in such cases. The test...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/disabled-until/",
         "teaser": null
@@ -48,7 +48,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Issue Information",
-        "excerpt":"Introduction The main reason developers write tests is to ensure the functionality of a requirement or to avoid technical problems. The @Issue annotation allows marking tests with a String, referencing a related issue (like a requirement, or a bugfix) of an issue-tracker (like Jira or Redmine). It&#8217;s a JUnit Jupiter...","categories": [],
+        "excerpt":"The main reason developers write tests is to ensure the functionality of a requirement or to avoid technical problems. The @Issue annotation allows marking tests with a String, referencing a related issue (like a requirement, or a bugfix) of an issue-tracker (like Jira or Redmine). It&#8217;s a JUnit Jupiter extension...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/issue/",
         "teaser": null
@@ -78,13 +78,13 @@ var store = [{
         "teaser": null
       },{
         "title": "Standard Input and Output",
-        "excerpt":"The standard IO extension adds a simple way to test classes that read from the standard input (System.in) or write to the standard output (System.out). Warning Depending on the configuration, the extension redirects the standard input and/or output, in which case nothing gets forwarded to the original System.in and/or System.out....","categories": [],
+        "excerpt":"The standard IO extension adds a simple way to test classes that read from the standard input (System.in) or write to the standard output (System.out or System.err). Warning Depending on the configuration, the extension redirects the standard input and/or output, in which case nothing gets forwarded to the original System.in...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/standard-input-output/",
         "teaser": null
       },{
         "title": "Measuring time with a Stopwatch",
-        "excerpt":"Introduction Test shall be fast. To get a feeling how fast or slow a specific test is, the @Stopwatch annotation can be used. It will measure elapsed time and pass the result to the TestReporter, which will publish it. Usage To measure elapsed time just add the @Stopwatch annotation to...","categories": [],
+        "excerpt":"Annotating a test with @Stopwatch will measure the time it takes to execute and report the result to the TestReporter. How that information is displayed depends on the tool used to run the tests and how it processes test report entries. Usage @Stopwatch can be applied to a method to...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/stopwatch/",
         "teaser": null

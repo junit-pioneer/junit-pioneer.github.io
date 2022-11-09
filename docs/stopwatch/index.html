@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-05-25T06:11:23+00:00">
+  <meta property="article:published_time" content="2022-11-09T11:05:32+00:00">
 
 
 
@@ -275,30 +275,76 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="sect1">
-<h2 id="introduction">Introduction</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Test shall be fast.
-To get a feeling how fast or slow a specific test is, the <code>@Stopwatch</code> annotation can be used.
-It will measure elapsed time and pass the result to the <code><a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/TestReporter.html">TestReporter</a></code>, which will publish it.</p>
-</div>
-</div>
+        <div class="paragraph">
+<p>Annotating a test with <code>@Stopwatch</code> will measure the time it takes to execute and report the result to the <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/TestReporter.html"><code>TestReporter</code></a>.
+How that information is displayed depends on the tool used to run the tests and how it processes test report entries.</p>
 </div>
 <div class="sect1">
 <h2 id="usage">Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To measure elapsed time just add the <code>@Stopwatch</code> annotation to a class or, like in the following example, to a method:</p>
+<p><code>@Stopwatch</code> can be applied to a method to report its execution time:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@Stopwatch</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// execution time will be reported</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It can also be applied to a class, in which case it reports the execution times of each test as if it were applied to each method individually:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Stopwatch</span>
-<span style="color: #a6e22e">@Test</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #75715e">// Some test</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TestCases</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_1</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+        <span style="color: #75715e">// execution time will be reported</span>
+    <span style="color: #f92672">}</span>
+
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_s</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+        <span style="color: #75715e">// execution time will be reported</span>
+    <span style="color: #f92672">}</span>
+
 <span style="color: #f92672">}</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>It can also be applied to a class and a method therein but since a class-level annotation already works as if each method was annotated, the method-level annotations would be redundant.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="output">Output</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is how IntelliJ displays a report entry (in the Run/Debug panel):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>timestamp = 2022-05-26T12:16:14.021646, StopwatchExtension = Execution of 'test()' took [11] ms.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other tools may or may not print report entries.</p>
+</div>
+<div class="paragraph">
+<p>The most reliable way to gather entries is to create a <a href="https://junit.org/junit5/docs/current/user-guide/#launcher-api-listeners-custom"><code>TestExecutionListener</code></a> and register it with the launcher.
+<a href="https://junit.org/junit5/docs/current/api/org.junit.platform.engine/org/junit/platform/engine/reporting/ReportEntry.html">Report entries</a> from the stopwatch extension can be identified by checking their <a href="https://junit.org/junit5/docs/current/api/org.junit.platform.engine/org/junit/platform/engine/reporting/ReportEntry.html#getKeyValuePairs()">key-value pairs</a> - at least one key will start with the string <code>"StopwatchExtension"</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="thread-safety">Thread-Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This extension is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
 </div>
 </div>
 </div>
