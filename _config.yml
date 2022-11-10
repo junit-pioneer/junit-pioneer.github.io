@@ -307,7 +307,8 @@ defaults:
       read_time: false
       comments: false
       share: true
-      related: true
+      paginate: true
+      related: false
   # _pages
   - scope:
       path: ""
@@ -318,6 +319,7 @@ defaults:
       read_time: false
       comments: false # true
       share: true
+      paginate: false
       related: false
   # docs
   - scope:
@@ -330,7 +332,8 @@ defaults:
       read_time: false
       comments: false
       share: true
-      related: true
+      paginate: false
+      related: false
   - scope:
       path: "_docs/*"
       type: docs
