@@ -49,7 +49,7 @@ body {
 
   .page__inner-wrap {
     float: left;
-    margin-top: 1em;
+    margin-top: 0;
     margin-left: 0;
     margin-right: 0;
     width: 100%;
@@ -111,17 +111,8 @@ body {
     font-size: 1em;
   }
 
-  /* paragraph indents */
   p {
-    margin: 0 0 $indent-var;
-
-    /* sibling indentation*/
-    @if $paragraph-indent == true {
-      & + p {
-        text-indent: $indent-var;
-        margin-top: -($indent-var);
-      }
-    }
+    margin: 0.5em 0 0.5em;
   }
 
   a:not(.btn) {
