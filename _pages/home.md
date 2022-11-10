@@ -10,16 +10,16 @@ excerpt: @xp:excerpt
 feature_row:
   - image_path: /assets/images/site/card-pioneer.jpg
     alt: "extensions"
-    title: "JUnit Extensions"
-    excerpt: "More about extensions..."
+    title: "The Project"
+    excerpt: "New to Pioneer..."
     url: "/junit-pioneer/"
-    btn_label: "Explore Pioneer"
+    btn_label: "Get Started"
   - image_path: /assets/images/site/card-docs.jpg
     alt: "docs"
     title: "Documentation"
-    excerpt: "How to get started..."
+    excerpt: "How to improve your tests..."
     url: "/docs/"
-    btn_label: "Get Started"
+    btn_label: "Explore Features"
   - image_path: /assets/images/site/card-release-notes.jpg
     alt: "release notes"
     title: "Release Notes"
