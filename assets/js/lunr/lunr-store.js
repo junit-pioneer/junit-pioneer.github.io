@@ -47,6 +47,12 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/environment-variables/",
         "teaser": null
       },{
+        "title": "Expected to Fail Tests",
+        "excerpt":"Often tests fail due to a bug in the tested application or in dependencies. Traditionally such a test method would be annotated with JUnit&#8217;s @Disabled. However, this has disadvantages when the bug that causes the test failure is fixed: the developer might not notice the existing test method and create...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/expected-to-fail-tests/",
+        "teaser": null
+      },{
         "title": "Issue Information",
         "excerpt":"The main reason developers write tests is to ensure the functionality of a requirement or to avoid technical problems. The @Issue annotation allows marking tests with a String, referencing a related issue (like a requirement, or a bugfix) of an issue-tracker (like Jira or Redmine). It&#8217;s a JUnit Jupiter extension...","categories": [],
         "tags": [],

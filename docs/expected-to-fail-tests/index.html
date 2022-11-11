@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Disable Parameterized Test Based on DisplayName - JUnit Pioneer</title>
-<meta name="description" content="Extends JUnit Jupiter with @DisableIfDisplayName, which selectively disables parameterized tests">
+<!-- begin _includes/seo.html --><title>Expected to Fail Tests - JUnit Pioneer</title>
+<meta name="description" content="Extends JUnit Jupiter with @ExpectedToFail, which marks a test method as temporarily ‘expected to fail’">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Disable Parameterized Test Based on DisplayName">
-<meta property="og:url" content="https://junit-pioneer.org/docs/disable-if-display-name/">
+<meta property="og:title" content="Expected to Fail Tests">
+<meta property="og:url" content="https://junit-pioneer.org/docs/expected-to-fail-tests/">
 
 
-  <meta property="og:description" content="Extends JUnit Jupiter with @DisableIfDisplayName, which selectively disables parameterized tests">
+  <meta property="og:description" content="Extends JUnit Jupiter with @ExpectedToFail, which marks a test method as temporarily ‘expected to fail’">
 
 
 
@@ -44,7 +44,7 @@
   
 
 
-<link rel="canonical" href="https://junit-pioneer.org/docs/disable-if-display-name/">
+<link rel="canonical" href="https://junit-pioneer.org/docs/expected-to-fail-tests/">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Disable Parameterized Test Based on DisplayName
+          Expected to Fail Tests
 
         
       </h1>
@@ -233,7 +233,7 @@
           
             <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
-            <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
+            <li class="active"><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
           
             <li><a href="/docs/issue/">Issue information</a></li>
           
@@ -267,7 +267,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Disable Parameterized Test Based on DisplayName">
+    <meta itemprop="headline" content="Expected to Fail Tests">
     <meta itemprop="description" content="">
     
     
@@ -278,8 +278,86 @@
       <section class="page__content" itemprop="text">
         
         <div class="paragraph">
-<p>This document has been moved and updated.
-See <a href="disable-parameterized-tests.adoc">the updated document</a>.</p>
+<p>Often tests fail due to a bug in the tested application or in dependencies.
+Traditionally such a test method would be annotated with JUnit&#8217;s <code>@Disabled</code>.
+However, this has disadvantages when the bug that causes the test failure is fixed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the developer might not notice the existing test method and create a new one</p>
+</li>
+<li>
+<p>the existing test method might not be noticed and remains disabled for a long time after the bug has been fixed, adding no value for the project</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>@ExpectedToFail</code> solves these issues.
+Unlike <code>@Disabled</code> it still executes the annotated test method but aborts the test if a test failure or error occurs.
+However, if the test is executed successfully it will cause a test failure because the test <em>is working</em>.
+This lets the developer know that they have fixed the bug (possibly by accident) and that they can now remove the <code>@ExpectedToFail</code> annotation from the test method.</p>
+</div>
+<div class="paragraph">
+<p>The annotation can only be used on methods and as meta-annotation on other annotation types.
+Similar to <code>@Disabled</code>, it has to be used in addition to a "testable" annotation, such as <code>@Test</code>.
+Otherwise the annotation has no effect.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+This annotation is <strong>not</strong> intended as a way to mark test methods which intentionally cause exceptions.
+Such test methods should use <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html#assertThrows(java.lang.Class,org.junit.jupiter.api.function.Executable)">JUnit&#8217;s <code>assertThrows</code></a> or similar means to explicitly test for a specific exception class being thrown by a specific action.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="basic-use">Basic Use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The test is aborted because the tested method <code>brokenMethod()</code> returns an incorrect result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@ExpectedToFail</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">brokenMethod</span><span style="color: #f92672">();</span>
+    <span style="color: #f8f8f2">assertEquals</span><span style="color: #f92672">(</span><span style="color: #ae81ff">10</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">actual</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An aborted test is no failure and so the test suite passes (if all other tests pass, of course).
+Should <code>brokenMethod()</code> start returning the correct value, the test invocation passes, but <code>@ExpectedToFail</code> marks the test as failed to draw attention to that change in behavior.</p>
+</div>
+<div class="paragraph">
+<p>A custom message can be provided, explaining why the tested code is not working as intended at the moment.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@ExpectedToFail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Implementation bug in brokenMethod()&quot;</span><span style="color: #f92672">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">doSomething</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">brokenMethod</span><span style="color: #f92672">();</span>
+    <span style="color: #f8f8f2">assertEquals</span><span style="color: #f92672">(</span><span style="color: #ae81ff">10</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">actual</span><span style="color: #f92672">);</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="thread-safety">Thread-Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This extension is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
+</div>
+</div>
 </div>
         
       </section>
@@ -298,11 +376,11 @@ See <a href="disable-parameterized-tests.adoc">the updated document</a>.</p>
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Disable+Parameterized+Test+Based+on+DisplayName%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Expected+to+Fail+Tests%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fexpected-to-fail-tests%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fexpected-to-fail-tests%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisable-if-display-name%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fexpected-to-fail-tests%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
