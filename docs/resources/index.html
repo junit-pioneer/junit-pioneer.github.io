@@ -1,0 +1,985 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Creating and Sharing Resourced - JUnit Pioneer</title>
+<meta name="description" content="Extends JUnit Jupiter with a mechanism to create, share, and inject resources like temporary directories or a port.">
+
+
+  <meta name="author" content="JUnit Pioneers">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="JUnit Pioneer">
+<meta property="og:title" content="Creating and Sharing Resourced">
+<meta property="og:url" content="https://junit-pioneer.org/docs/resources/">
+
+
+  <meta property="og:description" content="Extends JUnit Jupiter with a mechanism to create, share, and inject resources like temporary directories or a port.">
+
+
+
+  <meta property="og:image" content="https://junit-pioneer.org/assets/images/site/type-writer.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-11-14T15:31:57+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://junit-pioneer.org/docs/resources/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "JUnit Pioneers",
+      "url": "https://junit-pioneer.org/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="JUnit Pioneer Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          JUnit Pioneer
+          <span class="site-subtitle">JUnit 5 Extension Pack</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/docs/">Documentation</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://javadoc.io/doc/org.junit-pioneer/junit-pioneer">Javadoc</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/junit-pioneer/junit-pioneer/releases">Release Notes</a>
+            </li><li class="masthead__menu-item">
+              <a href="/junit-pioneer/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/junit-pioneer/junit-pioneer">GitHub</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: url('/assets/images/site/type-writer.jpg');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline"
+        style="">
+        
+          Creating and Sharing Resourced
+
+        
+      </h1>
+      
+      
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">JUnit Pioneer Extensions</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+          
+            <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
+          
+            <li><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></li>
+          
+            <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
+          
+            <li><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+          
+            <li><a href="/docs/disable-if-test-fails/">Disable If Test Fails</a></li>
+          
+            <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
+          
+            <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
+          
+            <li><a href="/docs/issue/">Issue information</a></li>
+          
+            <li><a href="/docs/json-argument-source">JSON Argument Source</a></li>
+          
+            <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
+          
+            <li><a href="/docs/range-sources/">Range Sources</a></li>
+          
+            <li class="active"><a href="/docs/resources/">Resources</a></li>
+          
+            <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
+          
+            <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
+          
+            <li><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
+          
+            <li><a href="/docs/temp-directory/">Temporary Directories</a></li>
+          
+            <li><a href="/docs/temp-directory-removed/">Temporary Files and Directories (removed in 1.0)</a></li>
+          
+            <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Creating and Sharing Resourced">
+    <meta itemprop="description" content="">
+    
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <div class="paragraph">
+<p>Some tests need "resources", which need to be cleaned up when finished, and sometimes, many tests need to access these resources.
+Furthermore, you may be running your JUnit Jupiter tests in parallel, which makes sharing these resources flaky.</p>
+</div>
+<div class="paragraph">
+<p>For example, you might want to share a temporary directory.
+This can be a problem if the directory isn&#8217;t deleted after your tests, or your tests try to read and write files at the same time.</p>
+</div>
+<div class="paragraph">
+<p>This extension separates parsing annotations, injecting new or shared resources, and registering them for getting cleaned up (which is needed for all kinds of resources) from actually creating and closing them (which is specific to each kind of resource).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This article describes the general mechanisms shared by different resource extensions but not their specifics.
+Check the individual documentations for that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="docs/temp-directory">Temporary directory</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The first part of this article describes how to use a resource with this extension.
+The second part describes how to integrate your own kind of resource with this mechanism.
+In both cases, the temporary directory extension will be used as an example, but what&#8217;s described here applies to other resources as well.</p>
+</div>
+<div class="sect1">
+<h2 id="using-resources">Using Resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two different approaches to using a resource:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Creating a new one for a given test.</p>
+</li>
+<li>
+<p>Sharing one between several tests.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="creating-a-new-resource">Creating a New Resource</h3>
+<div class="paragraph">
+<p>To create a new resource for a given test:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test1</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@New</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// Test code goes here, e.g.,</span>
+    <span style="color: #f8f8f2">assertTrue</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">exists</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">tempDir</span><span style="color: #f92672">));</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f92672">(</span><span style="color: #a6e22e">@New</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// This temporary directory is different to the first one.</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(<code>TemporaryDirectory</code> is a built-in resource for creating <a href="docs/temp-directory">temporary directories</a>.)</p>
+</div>
+<div class="paragraph">
+<p>This will create a brand-new resource for each test, and each resource will be "closed" at the end of its associated test.</p>
+</div>
+<div class="paragraph">
+<p>So in this case, a new temporary directory will be created for <code>test1</code> and another one will be created for <code>test2</code>.
+The temporary directory for <code>test1</code> will be deleted when the test is finished.
+Likewise, the temporary directory for <code>test2</code> will also be deleted right after its test.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-a-new-resource-with-arguments">Creating a New Resource with Arguments</h3>
+<div class="paragraph">
+<p>Some resources accept string arguments to control their behaviour.</p>
+</div>
+<div class="paragraph">
+<p>For example, <code>TemporaryDirectory</code> may accept a String argument to set the prefix of the name of the temporary directory that is created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithArg</span><span style="color: #f92672">(</span>
+        <span style="color: #a6e22e">@New</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">arguments</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;customPrefix&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// Test code goes here, e.g.,</span>
+    <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">rootTempDir</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Paths</span><span style="color: #f92672">.</span><span style="color: #a6e22e">get</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;java.io.tmpdir&quot;</span><span style="color: #f92672">));</span>
+    <span style="color: #f8f8f2">assertTrue</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">rootTempDir</span><span style="color: #f92672">.</span><span style="color: #a6e22e">relativize</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">tempDir</span><span style="color: #f92672">).</span><span style="color: #a6e22e">startsWith</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;customPrefix&quot;</span><span style="color: #f92672">));</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sharing_a_resource">Sharing a Resource</h3>
+<div class="paragraph">
+<p>To create a resource that is shared by multiple tests:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">void</span> <span style="color: #a6e22e">sharedResourceTest1</span><span style="color: #f92672">(</span>
+        <span style="color: #a6e22e">@Shared</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;sharedTempDir&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">sharedTempDir</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// Test code goes here, e.g.,</span>
+    <span style="color: #f8f8f2">assertTrue</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">exists</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">sharedTempDir</span><span style="color: #f92672">));</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">sharedResourceTest2</span><span style="color: #f92672">(</span>
+        <span style="color: #a6e22e">@Shared</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;sharedTempDir&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">sharedTempDir</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// &quot;sharedTempDir&quot; is shared with the temporary directory of</span>
+    <span style="color: #75715e">// the same name in test &quot;sharedResourceTest1&quot;, so any created</span>
+    <span style="color: #75715e">// subdirectories and files will be shared.</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(<code>TemporaryDirectory</code> is a built-in resource for creating <a href="docs/temp-directory">temporary directories</a>.)</p>
+</div>
+<div class="paragraph">
+<p>This will create a single resource instance that will be injected into all the tests.
+It will be "closed" when all the tests are finished.
+(See <a href="#scope_of_a_shared_resource">Scope of a Shared Resource</a> for a caveat on this.)</p>
+</div>
+<div class="paragraph">
+<p>So in this case, a single temporary directory will be shared across all tests, and it will only be deleted when all the tests have run.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When sharing resources, you may want to force your tests to run in a certain order, so that e.g. files written to a temporary directory in one test can be read from another test.</p>
+</div>
+<div class="paragraph">
+<p>Use JUnit Jupiter&#8217;s <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-test-execution-order">Test Execution Order</a> feature to do this.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sharing-multiple-resources">Sharing Multiple Resources</h3>
+<div class="paragraph">
+<p>The following code snippet shows an example of creating two shared resources.</p>
+</div>
+<div class="paragraph">
+<p>In this case, tests <code>firstSharedResource1</code> and <code>firstSharedResource2</code> use the same temporary directory, and test <code>secondSharedResource</code> uses a different temporary directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">void</span> <span style="color: #a6e22e">firstSharedResource1</span><span style="color: #f92672">(</span>
+        <span style="color: #a6e22e">@Shared</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;first&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">first</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// Test code working with first shared resource...</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">firstSharedResource2</span><span style="color: #f92672">(</span>
+        <span style="color: #a6e22e">@Shared</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;first&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">first</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// Test code working with first shared resource...</span>
+<span style="color: #f92672">}</span>
+
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">secondSharedResource</span><span style="color: #f92672">(</span>
+        <span style="color: #a6e22e">@Shared</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;second&quot;</span><span style="color: #f92672">)</span>
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">second</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+    <span style="color: #75715e">// This shared resource is different!</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="scope_of_a_shared_resource">Scope of a Shared Resource</h3>
+<div class="paragraph">
+<p>By default, a shared resource will be closed when the test file using it has finished.
+This means that if a resource is shared across two or more test files, it will be closed and re-created for <em>each</em> test file.</p>
+</div>
+<div class="paragraph">
+<p>If this behaviour isn&#8217;t what you want, you can change the "scope" of the resource to "global", which will keep the resource around until <em>all</em> test files have finished:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">FirstTest</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span>
+            <span style="color: #a6e22e">@Shared</span><span style="color: #f92672">(</span>
+                    <span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span>
+                    <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;globalTempDir&quot;</span><span style="color: #f92672">,</span>
+                    <span style="color: #f8f8f2">scope</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Shared</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Scope</span><span style="color: #f92672">.</span><span style="color: #a6e22e">GLOBAL</span><span style="color: #f92672">)</span>
+            <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #75715e">// Test code using the global shared resource...</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">SecondTest</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">(</span>
+            <span style="color: #a6e22e">@Shared</span><span style="color: #f92672">(</span>
+                    <span style="color: #f8f8f2">factory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">,</span>
+                    <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;globalTempDir&quot;</span><span style="color: #f92672">,</span>
+                    <span style="color: #f8f8f2">scope</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Shared</span><span style="color: #f92672">.</span><span style="color: #a6e22e">Scope</span><span style="color: #f92672">.</span><span style="color: #a6e22e">GLOBAL</span><span style="color: #f92672">)</span>
+            <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #75715e">// Test code using the global shared resource...</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You are not limited to singletons.
+You can create as many global shared resources as you want, as long as they have different names.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sharing-resources-with-arguments">Sharing Resources with Arguments</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We do not support creating shared resources with arguments.</p>
+</div>
+<div class="paragraph">
+<p>This is because if a test refers to a shared resource with the name "Foo" without arguments, then later another test refers to it with one argument, there is no reasonable way to fulfill that request.</p>
+</div>
+<div class="paragraph">
+<p>Furthermore, even if this was supported, the behavior would change if the first and second tests ever ran in opposite order, which is very likely when tests are configured to run in parallel.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="integrating-resources">Integrating Resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This extension allows you to integrate your own kind of resource with the mechanisms described above.</p>
+</div>
+<div class="paragraph">
+<p>To do that, you need to implement <code>Resource&lt;T&gt;</code> and <code>ResourceFactory&lt;T&gt;</code>, where <code>T</code> is the type of resource you want to provide (e.g. <code>Path</code> for temporary directories).
+Then you can reference the factory type in the <code>@New</code> and <code>@Shared</code> annotations.</p>
+</div>
+<div class="sect2">
+<h3 id="creating-factories">Creating Factories</h3>
+<div class="paragraph">
+<p>This extension will create a single <code>ResourceFactory</code>, which hence needs a parameterless constructor.
+If there&#8217;s no such constructor, the extension will throw an exception.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-resources">Creating Resources</h3>
+<div class="paragraph">
+<p>The factory&#8217;s <code>create</code> method gets called when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a test with a <code>@New</code>-annotated parameter is about to run</p>
+</li>
+<li>
+<p>a test with a <code>@Shared</code>-annotated parameter is about to run and no shared resource with the configured name could be found in the configured scope</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The extension will then populate the parameter with the contents of the returned <code>Resource</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>@New</code> parameters may have associated string <code>arguments</code>.
+These will be passed to the factory&#8217;s <code>ResourceFactory::create</code> method as a <code>List&lt;String&gt;</code> when a resource needs to be created.
+You have full control over what these arguments mean and how they are used and should document these details in your resource factory&#8217;s JavaDoc.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="closing-resources-and-factories">Closing Resources and Factories</h3>
+<div class="paragraph">
+<p>You can opt-in to cleaning resources up by implementing <code>close</code> methods on both of these types.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For a <code>@New</code> parameter, <code>Resource::close</code> will be called and the resource will be made eligible for garbage collection immediately after the test.</p>
+</li>
+<li>
+<p>For a <code>@Shared</code> parameter, <code>Resource::close</code> will be called when all tests are finished (regardless of the resource&#8217;s scope).
+The resource will be cached in-memory until then.</p>
+</li>
+<li>
+<p><code>ResourceFactory::close</code> will be called when all tests are finished.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Overriding these <code>close()</code> methods is optional - they will do nothing by default.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples">Examples</h3>
+<div class="paragraph">
+<p>These examples show how to create a resource called <code>InMemoryDirectory</code> for an in-memory filesystem using <a href="https://github.com/google/jimfs">Jimfs</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="set-up-the-factory">Set up the Factory</h4>
+<div class="paragraph">
+<p>This example shows how to create the <code>ResourceFactory</code> for your resources.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">final</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">InMemoryDirectory</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">ResourceFactory</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">static</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">AtomicInteger</span> <span style="color: #f8f8f2">DIRECTORY_NAME</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">AtomicInteger</span><span style="color: #f92672">();</span>
+
+    <span style="color: #75715e">// The resource factory we want to create resources with.</span>
+    <span style="color: #75715e">// In this case, an in-memory filesystem.</span>
+    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">FileSystem</span> <span style="color: #f8f8f2">fileSystem</span><span style="color: #f92672">;</span>
+
+    <span style="color: #75715e">// NOTE: The constructor must be parameter-less.</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #a6e22e">InMemoryDirectory</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">fileSystem</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Jimfs</span><span style="color: #f92672">.</span><span style="color: #a6e22e">newFileSystem</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Configuration</span><span style="color: #f92672">.</span><span style="color: #a6e22e">unix</span><span style="color: #f92672">());</span>
+    <span style="color: #f92672">}</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">create</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">arguments</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+        <span style="color: #75715e">// ...</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="close-the-factory">Close the Factory</h4>
+<div class="paragraph">
+<p>This example shows how to delete, tear down or otherwise "close" everything associated with the factory when this extension is ready to call the factory&#8217;s <code>ResourceFactory.close()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">final</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">InMemoryDirectory</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">ResourceFactory</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #75715e">// ...</span>
+
+    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">FileSystem</span> <span style="color: #f8f8f2">fileSystem</span><span style="color: #f92672">;</span>
+
+    <span style="color: #75715e">// ...</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">close</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">fileSystem</span><span style="color: #f92672">.</span><span style="color: #a6e22e">close</span><span style="color: #f92672">();</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-a-resource">Create a Resource</h4>
+<div class="paragraph">
+<p>This example shows how to create an actual <code>Resource</code> from your factory, with the <code>ResourceFactory.create()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">final</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">InMemoryDirectory</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">ResourceFactory</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #75715e">// ...</span>
+
+    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">FileSystem</span> <span style="color: #f8f8f2">fileSystem</span><span style="color: #f92672">;</span>
+
+    <span style="color: #75715e">// ...</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">create</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">arguments</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+        <span style="color: #75715e">// Create a new resource from the factory.</span>
+        <span style="color: #75715e">// In this case, return a new directory from</span>
+        <span style="color: #75715e">// the in-memory filesystem.</span>
+
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">newInMemoryDirectory</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">fileSystem</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getPath</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;/&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">DIRECTORY_NAME</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getAndIncrement</span><span style="color: #f92672">());</span>
+        <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">createDirectory</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">newInMemoryDirectory</span><span style="color: #f92672">);</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;()</span> <span style="color: #f92672">{</span>
+
+            <span style="color: #a6e22e">@Override</span>
+            <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Path</span> <span style="color: #a6e22e">get</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+                <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">newInMemoryDirectory</span><span style="color: #f92672">;</span>
+            <span style="color: #f92672">}</span>
+
+            <span style="color: #75715e">// ...</span>
+
+        <span style="color: #f92672">};</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="close-a-resource">Close a Resource</h4>
+<div class="paragraph">
+<p>This example shows how to expand the previous resource to delete, tear down or otherwise "close" everything associated with it when this extension is ready to call the resource&#8217;s <code>Resource.close()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">final</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">InMemoryDirectory</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">ResourceFactory</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #75715e">// ...</span>
+
+    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">FileSystem</span> <span style="color: #f8f8f2">fileSystem</span><span style="color: #f92672">;</span>
+
+    <span style="color: #75715e">// ...</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">create</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">arguments</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">newInMemoryDirectory</span> <span style="color: #f92672">=</span> <span style="color: #75715e">// ...</span>
+        <span style="color: #75715e">// ...</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;()</span> <span style="color: #f92672">{</span>
+
+            <span style="color: #75715e">// ...</span>
+
+            <span style="color: #a6e22e">@Override</span>
+            <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">close</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+                <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">walkFileTree</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">newInMemoryDirectory</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">SimpleFileVisitor</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;()</span> <span style="color: #f92672">{</span>
+
+                    <span style="color: #a6e22e">@Override</span>
+                    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">FileVisitResult</span> <span style="color: #a6e22e">visitFile</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">file</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">BasicFileAttributes</span> <span style="color: #f8f8f2">attrs</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f92672">{</span>
+                        <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">deleteIfExists</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">file</span><span style="color: #f92672">);</span>
+                        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">FileVisitResult</span><span style="color: #f92672">.</span><span style="color: #a6e22e">CONTINUE</span><span style="color: #f92672">;</span>
+                    <span style="color: #f92672">}</span>
+
+                    <span style="color: #a6e22e">@Override</span>
+                    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">FileVisitResult</span> <span style="color: #a6e22e">postVisitDirectory</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">dir</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f8f8f2">exc</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f92672">{</span>
+                        <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">deleteIfExists</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">dir</span><span style="color: #f92672">);</span>
+                        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">FileVisitResult</span><span style="color: #f92672">.</span><span style="color: #a6e22e">CONTINUE</span><span style="color: #f92672">;</span>
+                    <span style="color: #f92672">}</span>
+
+                <span style="color: #f92672">});</span>
+            <span style="color: #f92672">}</span>
+
+        <span style="color: #f92672">};</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="working-with-arguments-from-new">Working with Arguments from <code>@New</code></h4>
+<div class="paragraph">
+<p>This example shows how to interpret the first argument to be the <em>prefix</em> of the name of the to-be-created in-memory directory resource.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">final</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">InMemoryDirectory</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">ResourceFactory</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #75715e">// ...</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">create</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">arguments</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+        <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">directoryPrefix</span> <span style="color: #f92672">=</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">arguments</span><span style="color: #f92672">.</span><span style="color: #a6e22e">size</span><span style="color: #f92672">()</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span> <span style="color: #f92672">?</span> <span style="color: #f8f8f2">arguments</span><span style="color: #f92672">.</span><span style="color: #a6e22e">get</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">)</span> <span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f92672">;</span>
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">newInMemoryDirectory</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">fileSystem</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getPath</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;/&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">directoryPrefix</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">DIRECTORY_NAME</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getAndIncrement</span><span style="color: #f92672">());</span>
+        <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">createDirectory</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">newInMemoryDirectory</span><span style="color: #f92672">);</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;()</span> <span style="color: #f92672">{</span>
+
+            <span style="color: #a6e22e">@Override</span>
+            <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Path</span> <span style="color: #a6e22e">get</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+                <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">newInMemoryDirectory</span><span style="color: #f92672">;</span>
+            <span style="color: #f92672">}</span>
+
+            <span style="color: #75715e">// ...</span>
+
+        <span style="color: #f92672">};</span>
+
+    <span style="color: #f92672">}</span>
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="putting-it-all-together">Putting It All Together</h4>
+<div class="paragraph">
+<p>This example shows everything from the previous few sections in one big code snippet.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span>
+<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">final</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">InMemoryDirectory</span> <span style="color: #66d9ef">implements</span> <span style="color: #f8f8f2">ResourceFactory</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">{</span>
+
+    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">static</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">AtomicInteger</span> <span style="color: #f8f8f2">DIRECTORY_NAME</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">AtomicInteger</span><span style="color: #f92672">();</span>
+
+    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">FileSystem</span> <span style="color: #f8f8f2">fileSystem</span><span style="color: #f92672">;</span>
+
+    <span style="color: #66d9ef">public</span> <span style="color: #a6e22e">InMemoryDirectory</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">fileSystem</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Jimfs</span><span style="color: #f92672">.</span><span style="color: #a6e22e">newFileSystem</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Configuration</span><span style="color: #f92672">.</span><span style="color: #a6e22e">unix</span><span style="color: #f92672">());</span>
+    <span style="color: #f92672">}</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">create</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">arguments</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+        <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">directoryPrefix</span> <span style="color: #f92672">=</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">arguments</span><span style="color: #f92672">.</span><span style="color: #a6e22e">size</span><span style="color: #f92672">()</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span> <span style="color: #f92672">?</span> <span style="color: #f8f8f2">arguments</span><span style="color: #f92672">.</span><span style="color: #a6e22e">get</span><span style="color: #f92672">(</span><span style="color: #ae81ff">0</span><span style="color: #f92672">)</span> <span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f92672">;</span>
+
+        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">newInMemoryDirectory</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">fileSystem</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getPath</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;/&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">directoryPrefix</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">DIRECTORY_NAME</span><span style="color: #f92672">.</span><span style="color: #a6e22e">getAndIncrement</span><span style="color: #f92672">());</span>
+        <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">createDirectory</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">newInMemoryDirectory</span><span style="color: #f92672">);</span>
+
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Resource</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;()</span> <span style="color: #f92672">{</span>
+
+            <span style="color: #a6e22e">@Override</span>
+            <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">Path</span> <span style="color: #a6e22e">get</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+                <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">newInMemoryDirectory</span><span style="color: #f92672">;</span>
+            <span style="color: #f92672">}</span>
+
+            <span style="color: #a6e22e">@Override</span>
+            <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">close</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+                <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">walkFileTree</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">newInMemoryDirectory</span><span style="color: #f92672">,</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">SimpleFileVisitor</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Path</span><span style="color: #f92672">&gt;()</span> <span style="color: #f92672">{</span>
+
+                    <span style="color: #a6e22e">@Override</span>
+                    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">FileVisitResult</span> <span style="color: #a6e22e">visitFile</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">file</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">BasicFileAttributes</span> <span style="color: #f8f8f2">attrs</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f92672">{</span>
+                        <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">deleteIfExists</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">file</span><span style="color: #f92672">);</span>
+                        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">FileVisitResult</span><span style="color: #f92672">.</span><span style="color: #a6e22e">CONTINUE</span><span style="color: #f92672">;</span>
+                    <span style="color: #f92672">}</span>
+
+                    <span style="color: #a6e22e">@Override</span>
+                    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">FileVisitResult</span> <span style="color: #a6e22e">postVisitDirectory</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">dir</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f8f8f2">exc</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f92672">{</span>
+                        <span style="color: #f8f8f2">Files</span><span style="color: #f92672">.</span><span style="color: #a6e22e">deleteIfExists</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">dir</span><span style="color: #f92672">);</span>
+                        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">FileVisitResult</span><span style="color: #f92672">.</span><span style="color: #a6e22e">CONTINUE</span><span style="color: #f92672">;</span>
+                    <span style="color: #f92672">}</span>
+
+                <span style="color: #f92672">});</span>
+            <span style="color: #f92672">}</span>
+
+        <span style="color: #f92672">};</span>
+    <span style="color: #f92672">}</span>
+
+    <span style="color: #a6e22e">@Override</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">close</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f92672">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f92672">.</span><span style="color: #a6e22e">fileSystem</span><span style="color: #f92672">.</span><span style="color: #a6e22e">close</span><span style="color: #f92672">();</span>
+    <span style="color: #f92672">}</span>
+
+<span style="color: #f92672">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="thread-safety">Thread-Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This extension is safe to use during parallel test execution.</p>
+</div>
+<div class="paragraph">
+<p>Tests, test constructors, and lifecycle methods with <code>@New</code> resources will run in parallel.</p>
+</div>
+<div class="paragraph">
+<p>Tests, test constructors, and lifecycle methods with <code>@Shared</code> resources will be forced to run <strong>sequentially</strong>, even if parallel execution has been enabled.
+This is because resources may be <em>mutable</em>, and if the tests were allowed to run in parallel, they could mutate the resources in a non-deterministic way.
+Temporary directories are a good example of this, as tests can create new subdirectories and files inside them.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Caution</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Be careful not to save resources in fields from any test method, including <code>@BeforeAll</code> and <code>@BeforeEach</code> methods, as this extension cannot guarantee that such resources are read or mutated sequentially.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Creating+and+Sharing+Resourced%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fresources%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fresources%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fresources%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/hashtag/JUnitPioneer" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/junit-pioneer" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

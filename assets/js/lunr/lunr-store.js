@@ -77,6 +77,12 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/report-entries/",
         "teaser": null
       },{
+        "title": "Creating and Sharing Resourced",
+        "excerpt":"Some tests need \"resources\", which need to be cleaned up when finished, and sometimes, many tests need to access these resources. Furthermore, you may be running your JUnit Jupiter tests in parallel, which makes sharing these resources flaky. For example, you might want to share a temporary directory. This can...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/resources/",
+        "teaser": null
+      },{
         "title": "Retrying Failing Tests",
         "excerpt":"Some tests, e.g. those depending on external systems, may fail through no fault of the code under test. Such tests make a suite fragile and it makes sense to try and avoid them, but if that&#8217;s infeasible, it may help to retry a number of times before eventually assuming actual...","categories": [],
         "tags": [],
@@ -102,7 +108,13 @@ var store = [{
         "teaser": null
       },{
         "title": "Temporary Files and Directories (removed in 1.0)",
-        "excerpt":"Note Since JUnit Jupiter 5.4, there&#8217;s a built-in @TempDir extension. It doesn&#8217;t support custom file systems, but other than that it&#8217;s much better than this version, so we removed the extension in JUnit Pioneer 1.0. We plan to tackle this problem again in the future - see issue #348. The...","categories": [],
+        "excerpt":"Note JUnit Jupiter 5.4 introduced a built-in @TempDir extension. This extension was built before then, but its only advantage over the JUnit Jupiter extension is support for custom file systems. We felt this didn&#8217;t have enough value, so we removed this extension in JUnit Pioneer 1.0. Note We&#8217;ve tackled this...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/temp-directory-removed/",
+        "teaser": null
+      },{
+        "title": "Temporary Directory",
+        "excerpt":"Note This article describes the specifics of how to inject temporary directories into your tests. Most of the extension&#8217;s features are shared with other resources, though, and are described in the article covering resources in general (e.g. thread-safety and sharing resources), so make sure to read that one as well....","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/temp-directory/",
         "teaser": null
