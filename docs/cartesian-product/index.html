@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T10:20:19+00:00">
+  <meta property="article:published_time" content="2022-11-18T11:27:36+00:00">
 
 
 
@@ -972,13 +972,13 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
 <div class="sectionbody">
 <div class="paragraph">
 <p>You might find that the available annotations do not fit your need.
-For a <code>@ParameterizedTest</code>, you can write a custom <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/ArgumentsSource.html::"><code>@ArgumentsSource</code></a> and a corresponding <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/ArgumentsProvider.html::"><code>ArgumentsProvider</code></a>.
+For a <code>@ParameterizedTest</code>, you can write a custom <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/ArgumentsSource.html"><code>@ArgumentsSource</code></a> and a corresponding <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.params/org/junit/jupiter/params/provider/ArgumentsProvider.html"><code>ArgumentsProvider</code></a>.
 You can do the same thing for <code>@CartesianTest</code>, with the following caveats:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Instead of <code>@ArgumentsSource</code>, you have to use <a href="https://javadoc.io/static/org.junit-pioneer/junit-pioneer/1.5.0/org/junitpioneer/jupiter/cartesian/CartesianArgumentsSource.html::"><code>@CartesianArgumentsSource</code></a></p>
+<p>Instead of <code>@ArgumentsSource</code>, you have to use <a href="https://javadoc.io/static/org.junit-pioneer/junit-pioneer/1.6.0/org/junitpioneer/jupiter/cartesian/CartesianArgumentsSource.html"><code>@CartesianArgumentsSource</code></a></p>
 </li>
 <li>
 <p>Instead of <code>ArgumentsProvider</code>, you have to use one of two interfaces, each explored in their own section.</p>
@@ -1237,7 +1237,7 @@ For example:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Please note that name is a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/text/MessageFormat.html::"><code>MessageFormat</code></a> pattern.
+<p>Please note that name is a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/text/MessageFormat.html"><code>MessageFormat</code></a> pattern.
 A single quote (') needs to be represented as a doubled single quote ('') in order to be displayed.</p>
 </div>
 <div class="paragraph">
