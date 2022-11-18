@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Vintage @Test - JUnit Pioneer</title>
-<meta name="description" content="Extends JUnit Jupiter with a drop-in replacement for JUnit 4’s @Test annotation, including expected and timeout">
+<meta name="description" content="The JUnit 5 (Jupiter) extension @Test is a drop-in replacement for JUnit 4’s @Test annotation, including expected and timeout">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://junit-pioneer.org/docs/vintage-test/">
 
 
-  <meta property="og:description" content="Extends JUnit Jupiter with a drop-in replacement for JUnit 4’s @Test annotation, including expected and timeout">
+  <meta property="og:description" content="The JUnit 5 (Jupiter) extension @Test is a drop-in replacement for JUnit 4’s @Test annotation, including expected and timeout">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-14T15:31:57+00:00">
+  <meta property="article:published_time" content="2022-11-18T10:20:19+00:00">
 
 
 
@@ -219,7 +219,7 @@
         
         <ul>
           
-            <li><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+            <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
           
@@ -227,7 +227,7 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
-            <li><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+            <li><a href="/docs/disabled-until/">Disable a Test Temporarily</a></li>
           
             <li><a href="/docs/disable-if-test-fails/">Disable If Test Fails</a></li>
           
@@ -235,25 +235,23 @@
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
           
-            <li><a href="/docs/issue/">Issue information</a></li>
+            <li><a href="/docs/resources/">Injecting Resources</a></li>
+          
+            <li><a href="/docs/temp-directory/">Injecting Temporary Directories</a></li>
+          
+            <li><a href="/docs/issue/">Issue Information</a></li>
           
             <li><a href="/docs/json-argument-source">JSON Argument Source</a></li>
+          
+            <li><a href="/docs/stopwatch/">Measuring Test Run Time</a></li>
           
             <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
           
             <li><a href="/docs/range-sources/">Range Sources</a></li>
           
-            <li><a href="/docs/resources/">Resources</a></li>
-          
             <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
-          
-            <li><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
-          
-            <li><a href="/docs/temp-directory/">Temporary Directories</a></li>
-          
-            <li><a href="/docs/temp-directory-removed/">Temporary Files and Directories (removed in 1.0)</a></li>
           
             <li class="active"><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
@@ -282,10 +280,8 @@
       <section class="page__content" itemprop="text">
         
         <div class="paragraph">
-<p>The annotation <code>org.junitpioneer.vintage.@Test</code> is a drop-in replacement for <a href="https://junit.org/junit4/javadoc/4.12/org/junit/Test.html">JUnit 4&#8217;s <code>org.junit.@Test</code> annotation</a>, but marks the method as a regular JUnit Jupiter test.</p>
-</div>
-<div class="paragraph">
-<p>You can make use of it when migrating tests from JUnit 4 to Jupiter by doing a fulltext search/replace of <code>import org.junit.Test</code> with <code>import org.junitpioneer.vintage.Test</code>.
+<p>The annotation <code>org.junitpioneer.vintage.@Test</code> is a drop-in replacement for <a href="https://junit.org/junit4/javadoc/4.12/org/junit/Test.html">JUnit 4&#8217;s <code>org.junit.@Test</code> annotation</a>, but marks the method as a regular JUnit Jupiter test.
+You can make use of it when migrating tests from JUnit 4 to Jupiter by doing a fulltext search/replace of <code>import org.junit.Test</code> with <code>import org.junitpioneer.vintage.Test</code>.
 That means you do not need to run JUnit 5&#8217;s Vintage engine to execute such tests - Jupiter suffices.</p>
 </div>
 <div class="paragraph">

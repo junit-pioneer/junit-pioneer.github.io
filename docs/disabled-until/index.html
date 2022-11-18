@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Temporarily Disable a Test - JUnit Pioneer</title>
-<meta name="description" content="Extends JUnit Jupiter with @DisabledUntil to temporarily disable a test.">
+<!-- begin _includes/seo.html --><title>Disable a Test Temporarily - JUnit Pioneer</title>
+<meta name="description" content="The JUnit 5 (Jupiter) extension @DisabledUntil temporarily disables a test until a certain date">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Temporarily Disable a Test">
+<meta property="og:title" content="Disable a Test Temporarily">
 <meta property="og:url" content="https://junit-pioneer.org/docs/disabled-until/">
 
 
-  <meta property="og:description" content="Extends JUnit Jupiter with @DisabledUntil to temporarily disable a test.">
+  <meta property="og:description" content="The JUnit 5 (Jupiter) extension @DisabledUntil temporarily disables a test until a certain date">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-14T15:31:57+00:00">
+  <meta property="article:published_time" content="2022-11-18T10:20:19+00:00">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Temporarily Disable a Test
+          Disable a Test Temporarily
 
         
       </h1>
@@ -219,7 +219,7 @@
         
         <ul>
           
-            <li><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+            <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
           
@@ -227,7 +227,7 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
-            <li class="active"><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+            <li class="active"><a href="/docs/disabled-until/">Disable a Test Temporarily</a></li>
           
             <li><a href="/docs/disable-if-test-fails/">Disable If Test Fails</a></li>
           
@@ -235,25 +235,23 @@
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
           
-            <li><a href="/docs/issue/">Issue information</a></li>
+            <li><a href="/docs/resources/">Injecting Resources</a></li>
+          
+            <li><a href="/docs/temp-directory/">Injecting Temporary Directories</a></li>
+          
+            <li><a href="/docs/issue/">Issue Information</a></li>
           
             <li><a href="/docs/json-argument-source">JSON Argument Source</a></li>
+          
+            <li><a href="/docs/stopwatch/">Measuring Test Run Time</a></li>
           
             <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
           
             <li><a href="/docs/range-sources/">Range Sources</a></li>
           
-            <li><a href="/docs/resources/">Resources</a></li>
-          
             <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
-          
-            <li><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
-          
-            <li><a href="/docs/temp-directory/">Temporary Directories</a></li>
-          
-            <li><a href="/docs/temp-directory-removed/">Temporary Files and Directories (removed in 1.0)</a></li>
           
             <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
@@ -271,7 +269,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Temporarily Disable a Test">
+    <meta itemprop="headline" content="Disable a Test Temporarily">
     <meta itemprop="description" content="">
     
     
@@ -300,9 +298,11 @@ The test will be automatically executed again once the date supplied by the <cod
 <div class="title">Warning</div>
 </td>
 <td class="content">
-Applying <code>@DisabledUntil</code> can make the test suite non-reproducible.
+<div class="paragraph">
+<p>Applying <code>@DisabledUntil</code> can make the test suite non-reproducible.
 If a failing test is disabled during a build that then passes, rerunning that build after the "until" date would fail.
-A report entry is issued for every test that is disabled until a certain date.
+A report entry is issued for every test that is disabled until a certain date.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -393,7 +393,7 @@ If <code>date</code> is today or in the past, the test will be executed normally
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Temporarily+Disable+a+Test%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisabled-until%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Disable+a+Test+Temporarily%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisabled-until%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fdisabled-until%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 

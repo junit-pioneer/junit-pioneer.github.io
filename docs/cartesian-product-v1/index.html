@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Old Cartesian product of all test parameters (deprecated in 1.6.0) - JUnit Pioneer</title>
-<meta name="description" content="Extends JUnit Jupiter with @CartesianProductTest, a variant of parameterized tests that tests all combinations of its input">
+<!-- begin _includes/seo.html --><title>Cartesian Product of Parameters [removed in 2.0] - JUnit Pioneer</title>
+<meta name="description" content="The JUnit 5 (Jupiter) extension @CartesianProductTest adds a variant of parameterized tests that executes a test for each possible combination of input arguments">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Old Cartesian product of all test parameters (deprecated in 1.6.0)">
+<meta property="og:title" content="Cartesian Product of Parameters [removed in 2.0]">
 <meta property="og:url" content="https://junit-pioneer.org/docs/cartesian-product-v1/">
 
 
-  <meta property="og:description" content="Extends JUnit Jupiter with @CartesianProductTest, a variant of parameterized tests that tests all combinations of its input">
+  <meta property="og:description" content="The JUnit 5 (Jupiter) extension @CartesianProductTest adds a variant of parameterized tests that executes a test for each possible combination of input arguments">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-14T15:31:57+00:00">
+  <meta property="article:published_time" content="2022-11-18T10:20:19+00:00">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Old Cartesian product of all test parameters (deprecated in 1.6.0)
+          Cartesian Product of Parameters [removed in 2.0]
 
         
       </h1>
@@ -219,7 +219,7 @@
         
         <ul>
           
-            <li><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+            <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
           
@@ -227,7 +227,7 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
-            <li><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+            <li><a href="/docs/disabled-until/">Disable a Test Temporarily</a></li>
           
             <li><a href="/docs/disable-if-test-fails/">Disable If Test Fails</a></li>
           
@@ -235,25 +235,23 @@
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
           
-            <li><a href="/docs/issue/">Issue information</a></li>
+            <li><a href="/docs/resources/">Injecting Resources</a></li>
+          
+            <li><a href="/docs/temp-directory/">Injecting Temporary Directories</a></li>
+          
+            <li><a href="/docs/issue/">Issue Information</a></li>
           
             <li><a href="/docs/json-argument-source">JSON Argument Source</a></li>
+          
+            <li><a href="/docs/stopwatch/">Measuring Test Run Time</a></li>
           
             <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
           
             <li><a href="/docs/range-sources/">Range Sources</a></li>
           
-            <li><a href="/docs/resources/">Resources</a></li>
-          
             <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
-          
-            <li><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
-          
-            <li><a href="/docs/temp-directory/">Temporary Directories</a></li>
-          
-            <li><a href="/docs/temp-directory-removed/">Temporary Files and Directories (removed in 1.0)</a></li>
           
             <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
@@ -271,7 +269,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Old Cartesian product of all test parameters (deprecated in 1.6.0)">
+    <meta itemprop="headline" content="Cartesian Product of Parameters [removed in 2.0]">
     <meta itemprop="description" content="">
     
     
@@ -288,10 +286,12 @@
 <div class="title">Note</div>
 </td>
 <td class="content">
-The CartesianTest extension has undergone significant changes in 1.6.0.
-This included moving it into a new package.
-This here is the old variant, which is deprecated and will be removed in the 2.0 release (tentatively scheduled for 2022).
-<a href="/docs/cartesian-product">For the new version, see here.</a>
+<div class="paragraph">
+<p>The CartesianProductTest extension has undergone significant changes in 1.6.0.
+This included renaming it to <code>@CartesianTest</code> and moving it into a new package.
+This here is the old variant, which was deprecated in 1.6.0 and removed in 2.0.
+<a href="/docs/cartesian-product">For the new version, see here.</a></p>
+</div>
 </td>
 </tr>
 </table>
@@ -403,13 +403,15 @@ The test will try every combination of its elements.</p>
 <col style="width: 25%;">
 <col style="width: 25%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>a</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>b</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>c</code></p></td>
+<th class="tableblock halign-left valign-top"># of test</th>
+<th class="tableblock halign-left valign-top">value of <code>a</code></th>
+<th class="tableblock halign-left valign-top">value of <code>b</code></th>
+<th class="tableblock halign-left valign-top">value of <code>c</code></th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"0"</p></td>
@@ -501,12 +503,14 @@ The second parameter can have any of the two values <code>"A"</code> or <code>"B
 <col style="width: 33.3333%;">
 <col style="width: 33.3334%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>character</code></p></td>
+<th class="tableblock halign-left valign-top"># of test</th>
+<th class="tableblock halign-left valign-top">value of <code>number</code></th>
+<th class="tableblock halign-left valign-top">value of <code>character</code></th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
@@ -664,12 +668,14 @@ The second parameter can have any of the two constants <code>BETA</code> or <cod
 <col style="width: 33.3333%;">
 <col style="width: 33.3334%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>myEnum</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>anotherEnum</code></p></td>
+<th class="tableblock halign-left valign-top"># of test</th>
+<th class="tableblock halign-left valign-top">value of <code>myEnum</code></th>
+<th class="tableblock halign-left valign-top">value of <code>anotherEnum</code></th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ONE</p></td>
@@ -723,7 +729,7 @@ The second parameter can have any of the two constants <code>BETA</code> or <cod
 <div class="sect2">
 <h3 id="range-source-annotations">Range Source annotations</h3>
 <div class="paragraph">
-<p>Alternatively, you can annotate your test method with <a href="docs/range-sources">range source annotations</a>.
+<p>Alternatively, you can annotate your test method with <a href="/docs/range-sources">range source annotations</a>.
 For <em>this purpose only</em>, range sources are repeatable.
 When you annotate your <code>@CartesianProductTest</code> with a range source, you specify the inputs to a single test parameter.
 This is <em>not</em> like <code>@ParameterizedTest</code> where you have to define all inputs in a single <code>@ArgumentsSource</code>.</p>
@@ -757,12 +763,14 @@ The second parameter can have any of the three values <code>0L</code>, <code>1L<
 <col style="width: 33.3333%;">
 <col style="width: 33.3334%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>s</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>l</code></p></td>
+<th class="tableblock halign-left valign-top"># of test</th>
+<th class="tableblock halign-left valign-top">value of <code>s</code></th>
+<th class="tableblock halign-left valign-top">value of <code>l</code></th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
@@ -796,7 +804,7 @@ The second parameter can have any of the three values <code>0L</code>, <code>1L<
 </tbody>
 </table>
 <div class="paragraph">
-<p>For more information, please see the <a href="docs/range-sources">separate documentation about range sources</a>.
+<p>For more information, please see the <a href="/docs/range-sources">separate documentation about range sources</a>.
 You can combine range sources with <code>@CartesianValueSource</code>, it works as you&#8217;d expect:</p>
 </div>
 <div class="listingblock">
@@ -858,13 +866,15 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
 <col style="width: 25%;">
 <col style="width: 25%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"># of test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>string</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>clazz</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">value of <code>unit</code></p></td>
+<th class="tableblock halign-left valign-top"># of test</th>
+<th class="tableblock halign-left valign-top">value of <code>string</code></th>
+<th class="tableblock halign-left valign-top">value of <code>clazz</code></th>
+<th class="tableblock halign-left valign-top">value of <code>unit</code></th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
@@ -1247,7 +1257,7 @@ No ParameterResolver registered for parameter [&#8230;&#8203;]</p>
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Old+Cartesian+product+of+all+test+parameters+%28deprecated+in+1.6.0%29%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fcartesian-product-v1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Cartesian+Product+of+Parameters+%5Bremoved+in+2.0%5D%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fcartesian-product-v1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fcartesian-product-v1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 

@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Standard Input and Output - JUnit Pioneer</title>
-<meta name="description" content="Extends JUnit Jupiter with @StdIo, which simulates standard input or catches standard output.">
+<meta name="description" content="The JUnit 5 (Jupiter) extension @StdIo simulates standard input to System.in and captures standard output to System.out or System.err for assertions">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://junit-pioneer.org/docs/standard-input-output/">
 
 
-  <meta property="og:description" content="Extends JUnit Jupiter with @StdIo, which simulates standard input or catches standard output.">
+  <meta property="og:description" content="The JUnit 5 (Jupiter) extension @StdIo simulates standard input to System.in and captures standard output to System.out or System.err for assertions">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-14T15:31:57+00:00">
+  <meta property="article:published_time" content="2022-11-18T10:20:19+00:00">
 
 
 
@@ -219,7 +219,7 @@
         
         <ul>
           
-            <li><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+            <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
           
@@ -227,7 +227,7 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
-            <li><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+            <li><a href="/docs/disabled-until/">Disable a Test Temporarily</a></li>
           
             <li><a href="/docs/disable-if-test-fails/">Disable If Test Fails</a></li>
           
@@ -235,25 +235,23 @@
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
           
-            <li><a href="/docs/issue/">Issue information</a></li>
+            <li><a href="/docs/resources/">Injecting Resources</a></li>
+          
+            <li><a href="/docs/temp-directory/">Injecting Temporary Directories</a></li>
+          
+            <li><a href="/docs/issue/">Issue Information</a></li>
           
             <li><a href="/docs/json-argument-source">JSON Argument Source</a></li>
+          
+            <li><a href="/docs/stopwatch/">Measuring Test Run Time</a></li>
           
             <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
           
             <li><a href="/docs/range-sources/">Range Sources</a></li>
           
-            <li><a href="/docs/resources/">Resources</a></li>
-          
             <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li class="active"><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
-          
-            <li><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
-          
-            <li><a href="/docs/temp-directory/">Temporary Directories</a></li>
-          
-            <li><a href="/docs/temp-directory-removed/">Temporary Files and Directories (removed in 1.0)</a></li>
           
             <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
@@ -282,7 +280,8 @@
       <section class="page__content" itemprop="text">
         
         <div class="paragraph">
-<p>The standard IO extension adds a simple way to test classes that read from the standard input (<code>System.in</code>) or write to the standard output (<code>System.out</code> or <code>System.err</code>).</p>
+<p>The standard IO extension adds a simple way to test classes that read from the standard input (<code>System.in</code>) or write to the standard output (<code>System.out</code> or <code>System.err</code>).
+It redirects the original input/output streams to make predefined lines readable from <code>System.in</code> and to inject arguments that capture what was written to <code>System.out</code> or <code>System.err</code> for assertions.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -291,8 +290,10 @@
 <div class="title">Warning</div>
 </td>
 <td class="content">
-Depending on the configuration, the extension redirects the standard input and/or output, in which case nothing gets forwarded to the original <code>System.in</code> and/or <code>System.out</code> / <code>System.err</code>.
-This becomes particularly important when running tests in parallel, where other tests may interfere with tests annotated with <code>@StdIo</code>.
+<div class="paragraph">
+<p>Depending on the configuration, the extension redirects the standard input and/or output, in which case nothing gets forwarded to the original <code>System.in</code> and/or <code>System.out</code> / <code>System.err</code>.
+This becomes particularly important when running tests in parallel, where other tests may interfere with tests annotated with <code>@StdIo</code>.</p>
+</div>
 </td>
 </tr>
 </table>

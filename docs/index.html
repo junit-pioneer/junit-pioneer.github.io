@@ -217,7 +217,7 @@
         
         <ul>
           
-            <li><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></li>
+            <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
           
@@ -225,7 +225,7 @@
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
-            <li><a href="/docs/disabled-until/">Temporarily disable a test</a></li>
+            <li><a href="/docs/disabled-until/">Disable a Test Temporarily</a></li>
           
             <li><a href="/docs/disable-if-test-fails/">Disable If Test Fails</a></li>
           
@@ -233,25 +233,23 @@
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
           
-            <li><a href="/docs/issue/">Issue information</a></li>
+            <li><a href="/docs/resources/">Injecting Resources</a></li>
+          
+            <li><a href="/docs/temp-directory/">Injecting Temporary Directories</a></li>
+          
+            <li><a href="/docs/issue/">Issue Information</a></li>
           
             <li><a href="/docs/json-argument-source">JSON Argument Source</a></li>
+          
+            <li><a href="/docs/stopwatch/">Measuring Test Run Time</a></li>
           
             <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
           
             <li><a href="/docs/range-sources/">Range Sources</a></li>
           
-            <li><a href="/docs/resources/">Resources</a></li>
-          
             <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
-          
-            <li><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></li>
-          
-            <li><a href="/docs/temp-directory/">Temporary Directories</a></li>
-          
-            <li><a href="/docs/temp-directory-removed/">Temporary Files and Directories (removed in 1.0)</a></li>
           
             <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
@@ -287,103 +285,97 @@ For some of them you need to be quite familiar with JUnit 5, so make sure to rea
   
 
   
-    <dt><a href="/docs/cartesian-product/">Cartesian product of all test parameters</a></dt>
-    <dd>Extends JUnit Jupiter with `@CartesianTest`, a variant of parameterized tests that tests all combinations of its input</dd>
+    <dt><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></dt>
+    <dd>The JUnit 5 (Jupiter) extension `@CartesianTest` adds a variant of parameterized tests that executes a test for each possible combination of input arguments</dd>
   
 
   
     <dt><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></dt>
-    <dd>Extends JUnit Jupiter with `@DefaultLocale`, `@DefaultTimeZone`, which change the values returned from Locale.getDefault() and TimeZone.getDefault()</dd>
+    <dd>The JUnit 5 (Jupiter) extensions `@DefaultLocale` and `@DefaultTimeZone` change the runtime's default locale and time zone as returned from `Locale.getDefault()` and `TimeZone.getDefault()` for the duration of a test</dd>
   
 
-  
-    <dt><a href="/docs/disable-if-display-name/">Disable Parameterized Test Based on DisplayName</a></dt>
-    <dd>Extends JUnit Jupiter with `@DisableIfDisplayName`, which selectively disables parameterized tests</dd>
   
 
   
     <dt><a href="/docs/disable-if-test-fails/">Disable Tests if Others Fail</a></dt>
-    <dd>Disables all tests in a container once the first test failed</dd>
+    <dd>The JUnit 5 (Jupiter) extension @DisableIfTestFails disables all tests in a class once the first test failed</dd>
   
 
   
     <dt><a href="/docs/disable-parameterized-tests/">Disable Parameterized Test</a></dt>
-    <dd>Extends JUnit Jupiter with multiple extensions, which selectively disables parameterized tests</dd>
+    <dd>The JUnit 5 (Jupiter) extensions `@DisableIfDisplayName`, `@DisableIfArgument`, and more selectively disable parameterized tests based on their display name or argument values</dd>
   
 
   
-    <dt><a href="/docs/disabled-until/">Temporarily Disable a Test</a></dt>
-    <dd>Extends JUnit Jupiter with `@DisabledUntil` to temporarily disable a test.</dd>
+    <dt><a href="/docs/disabled-until/">Disable a Test Temporarily</a></dt>
+    <dd>The JUnit 5 (Jupiter) extension `@DisabledUntil` temporarily disables a test until a certain date</dd>
   
 
   
     <dt><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></dt>
-    <dd>Extends JUnit Jupiter with `@ClearEnvironmentVariable`, `@SetEnvironmentVariable`, which clear and set the values of environment variables</dd>
+    <dd>The JUnit 5 (Jupiter) extensions `@ClearEnvironmentVariable`/`@SetEnvironmentVariable` clear/set the values of environment variables for the duration of a test</dd>
   
 
   
-    <dt><a href="/docs/expected-to-fail-tests/">Expected to Fail Tests</a></dt>
-    <dd>Extends JUnit Jupiter with `@ExpectedToFail`, which marks a test method as temporarily 'expected to fail'</dd>
+    <dt><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></dt>
+    <dd>The JUnit 5 (Jupiter) extension `@ExpectedToFail` marks a test method as 'expected to fail', which marks a failing test as aborted and a passing test as failed</dd>
   
 
   
     <dt><a href="/docs/issue/">Issue Information</a></dt>
-    <dd>Extends JUnit Jupiter with `@Issue` to publish issue information.</dd>
+    <dd>The JUnit 5 (Jupiter) extension `@Issue` associates test information (e.g. passed or failed) an issue number</dd>
   
 
   
     <dt><a href="/docs/json-argument-source/">JSON Argument Source</a></dt>
-    <dd>Extends JUnit Jupiter with `@JsonFileSource`, a parametrized test that creates test based on a JSON Source</dd>
+    <dd>The JUnit 5 (Jupiter) extensions `@JsonSource`, `@JsonFileSource`, and `@JsonClasspathSource` allow passing arguments to a parametrized test that where read from inline JSON or a JSON file</dd>
   
 
   
     <dt><a href="/docs/range-sources/">Range Sources</a></dt>
-    <dd>Extends JUnit Jupiter with `@IntRangeSource`, `@FloatRangeSource`, etc., which provide series of numbers as argument sources for parameterized tests.</dd>
+    <dd>The JUnit 5 (Jupiter) extensions `@IntRangeSource`, `@FloatRangeSource`, etc. provide series of numbers as argument sources for parameterized tests</dd>
   
 
   
     <dt><a href="/docs/report-entries/">Publishing Report Entries</a></dt>
-    <dd>Extends JUnit Jupiter with `@ReportEntry`, which publishes report entries using `TestReporter`.</dd>
+    <dd>The JUnit 5 (Jupiter) extension `@ReportEntry` declaratively publishes report entries via the `TestReporter`</dd>
   
 
   
-    <dt><a href="/docs/resources/">Creating and Sharing Resourced</a></dt>
-    <dd>Extends JUnit Jupiter with a mechanism to create, share, and inject resources like temporary directories or a port.</dd>
+    <dt><a href="/docs/resources/">Injecting Resources</a></dt>
+    <dd>A JUnit 5 (Jupiter) extension mechanism to create, share, and inject resources like temporary directories or a port</dd>
   
 
   
     <dt><a href="/docs/retrying-test/">Retrying Failing Tests</a></dt>
-    <dd>Extends JUnit Jupiter with `@RetryingTest`, which retries a failing test a certain number of times; only marking it failed if none of them pass</dd>
+    <dd>The JUnit 5 (Jupiter) extension `@RetryingTest` retries a failing test a certain number of times; only marking the test failed if no execution passes</dd>
   
 
   
     <dt><a href="/docs/standard-input-output/">Standard Input and Output</a></dt>
-    <dd>Extends JUnit Jupiter with `@StdIo`, which simulates standard input or catches standard output.</dd>
+    <dd>The JUnit 5 (Jupiter) extension `@StdIo` simulates standard input to `System.in` and captures standard output to `System.out` or `System.err` for assertions</dd>
   
 
   
-    <dt><a href="/docs/stopwatch/">Measuring time with a Stopwatch</a></dt>
-    <dd>Extends JUnit Jupiter with `@Stopwatch` to measure elapsed time of a test method</dd>
+    <dt><a href="/docs/stopwatch/">Measuring Test Run Time</a></dt>
+    <dd>The JUnit 5 (Jupiter) extension `@Stopwatch` measures elapsed time of a test method</dd>
   
 
   
     <dt><a href="/docs/system-properties/">Clearing or Setting System Properties</a></dt>
-    <dd>Extends JUnit Jupiter with `@ClearSystemProperty`, `@SetSystemProperty`, which clear and set the values of system properties</dd>
+    <dd>The JUnit 5 (Jupiter) extensions `@ClearSystemProperty`/`@SetSystemProperty` clear/set the values of system properties for the duration of a test</dd>
   
 
   
-    <dt><a href="/docs/temp-directory-removed/">Temporary Files and Directories (removed in 1.0)</a></dt>
-    <dd>Extends JUnit Jupiter with `@TempDir`, which create and clean up a temporary directory.</dd>
-  
 
   
-    <dt><a href="/docs/temp-directory/">Temporary Directory</a></dt>
-    <dd>Extends JUnit Jupiter with a mechanism to create, share, and inject temporary directories.</dd>
+    <dt><a href="/docs/temp-directory/">Injecting Temporary Directories</a></dt>
+    <dd>The JUnit 5 (Jupiter) extension `@Dir` allows to create, share, and inject temporary directories as arguments</dd>
   
 
   
     <dt><a href="/docs/vintage-test/">Vintage @Test</a></dt>
-    <dd>Extends JUnit Jupiter with a drop-in replacement for JUnit 4's @Test annotation, including expected and timeout</dd>
+    <dd>The JUnit 5 (Jupiter) extension `@Test` is a drop-in replacement for JUnit 4's `@Test` annotation, including `expected` and `timeout`</dd>
   
 
 </dl>
