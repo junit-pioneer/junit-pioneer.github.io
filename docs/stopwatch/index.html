@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T11:59:10+00:00">
+  <meta property="article:published_time" content="2022-12-15T16:17:12+00:00">
 
 
 
@@ -177,6 +177,12 @@
         
       </h1>
       
+        <p class="page__lead"><div class="paragraph">
+Annotating a test with <code>@Stopwatch</code> will measure the time the test takes to execute and will report the result to the <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/TestReporter.html"><code>TestReporter</code></a>.
+How that information is displayed depends on the tool used to run the tests and how it processes test report entries.
+</div>
+</p>
+      
       
 
 
@@ -270,7 +276,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Measuring Test Run Time">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="Annotating a test with @Stopwatch will measure the time the test takes to execute and will report the result to the TestReporter.How that information is displayed depends on the tool used to run the tests and how it processes test report entries.">
     
     
 
@@ -293,9 +299,9 @@ How that information is displayed depends on the tool used to run the tests and 
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@Stopwatch</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// execution time will be reported</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -304,19 +310,19 @@ How that information is displayed depends on the tool used to run the tests and 
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Stopwatch</span>
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TestCases</span> <span style="color: #f92672">{</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TestCases</span> <span style="color: #f8f8f2">{</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_1</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_1</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #75715e">// execution time will be reported</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_s</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_s</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #75715e">// execution time will be reported</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #f8f8f2">}</span>
 
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

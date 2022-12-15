@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T11:59:10+00:00">
+  <meta property="article:published_time" content="2022-12-15T16:17:12+00:00">
 
 
 
@@ -177,6 +177,13 @@
         
       </h1>
       
+        <p class="page__lead"><div class="paragraph">
+There are situations where, when one test in a class fails, the remaining tests in the class don&#8217;t need to be executed because their results offer little additional insight.
+In those situations, disabling the remaining tests can be preferable in order to avoid larger build logs and/or reduce the test suite&#8217;s overall run time.
+By applying <code>@DisableIfTestFails</code> to the test class, all tests after the first failed one are disabled.
+</div>
+</p>
+      
       
 
 
@@ -270,7 +277,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Disable Tests if Others Fail">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="There are situations where, when one test in a class fails, the remaining tests in the class don&#8217;t need to be executed because their results offer little additional insight.In those situations, disabling the remaining tests can be preferable in order to avoid larger build logs and/or reduce the test suite&#8217;s overall run time.By applying @DisableIfTestFails to the test class, all tests after the first failed one are disabled.">
     
     
 
@@ -295,26 +302,26 @@ By applying <code>@DisableIfTestFails</code> to the test class, all tests after 
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfTestFails</span>
 <span style="color: #75715e">// this annotation ensures that tests are run in the order of</span>
 <span style="color: #75715e">// the numbers passed to the `@Order` annotation below</span>
-<span style="color: #a6e22e">@TestMethodOrder</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">MethodOrderer</span><span style="color: #f92672">.</span><span style="color: #a6e22e">OrderAnnotation</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Tests</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@TestMethodOrder</span><span style="color: #f8f8f2">(MethodOrderer.</span><span style="color: #a6e22e">OrderAnnotation</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Tests</span> <span style="color: #f8f8f2">{</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test1</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test1</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">fail</span><span style="color: #f92672">();</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">fail();</span>
+    <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test3</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test3</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">}</span>
 
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -335,28 +342,28 @@ If instead, failed assertions are acceptable and only other test failures should
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfTestFails</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">onAssertion</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@TestMethodOrder</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">MethodOrderer</span><span style="color: #f92672">.</span><span style="color: #a6e22e">OrderAnnotation</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">static</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ThreeTestsWithSecondFailingWithUnconfiguredAssertionTestCase</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfTestFails</span><span style="color: #f8f8f2">(onAssertion</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@TestMethodOrder</span><span style="color: #f8f8f2">(MethodOrderer.</span><span style="color: #a6e22e">OrderAnnotation</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">static</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ThreeTestsWithSecondFailingWithUnconfiguredAssertionTestCase</span> <span style="color: #f8f8f2">{</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test1</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test1</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #75715e">// fails test with assertion</span>
-        <span style="color: #f8f8f2">assertTrue</span><span style="color: #f92672">(</span><span style="color: #66d9ef">false</span><span style="color: #f92672">);</span>
-    <span style="color: #f92672">}</span>
+        <span style="color: #f8f8f2">assertTrue(</span><span style="color: #66d9ef">false</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test3</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test3</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">}</span>
 
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -373,33 +380,33 @@ If instead, only specific exceptions should lead to disabling, define them with 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfTestFails</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">with</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IOException</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@TestMethodOrder</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">MethodOrderer</span><span style="color: #f92672">.</span><span style="color: #a6e22e">OrderAnnotation</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">static</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ThreeTestsWithSecondThrowingConfiguredExceptionTestCase</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfTestFails</span><span style="color: #f8f8f2">(with</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IOException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@TestMethodOrder</span><span style="color: #f8f8f2">(MethodOrderer.</span><span style="color: #a6e22e">OrderAnnotation</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">static</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ThreeTestsWithSecondThrowingConfiguredExceptionTestCase</span> <span style="color: #f8f8f2">{</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test1</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test1</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">InterruptedException</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">InterruptedException</span><span style="color: #f92672">();</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f8f8f2">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">InterruptedException</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">InterruptedException();</span>
+    <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test3</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">IOException</span><span style="color: #f92672">();</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test3</span><span style="color: #f8f8f2">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">IOException();</span>
+    <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@Order</span><span style="color: #f92672">(</span><span style="color: #ae81ff">4</span><span style="color: #f92672">)</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test4</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test4</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">}</span>
 
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

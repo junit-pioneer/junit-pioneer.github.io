@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T11:59:10+00:00">
+  <meta property="article:published_time" content="2022-12-15T16:17:12+00:00">
 
 
 
@@ -177,6 +177,13 @@
         
       </h1>
       
+        <p class="page__lead"><div class="paragraph">
+The annotation <code>org.junitpioneer.vintage.@Test</code> is a drop-in replacement for <a href="https://junit.org/junit4/javadoc/4.12/org/junit/Test.html">JUnit 4&#8217;s <code>org.junit.@Test</code> annotation</a>, but marks the method as a regular JUnit Jupiter test.
+You can make use of it when migrating tests from JUnit 4 to Jupiter by doing a fulltext search/replace of <code>import org.junit.Test</code> with <code>import org.junitpioneer.vintage.Test</code>.
+That means you do not need to run JUnit 5&#8217;s Vintage engine to execute such tests - Jupiter suffices.
+</div>
+</p>
+      
       
 
 
@@ -270,7 +277,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Vintage @Test">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="The annotation org.junitpioneer.vintage.@Test is a drop-in replacement for JUnit 4&#8217;s org.junit.@Test annotation, but marks the method as a regular JUnit Jupiter test.You can make use of it when migrating tests from JUnit 4 to Jupiter by doing a fulltext search/replace of import org.junit.Test with import org.junitpioneer.vintage.Test.That means you do not need to run JUnit 5&#8217;s Vintage engine to execute such tests - Jupiter suffices.">
     
     
 
@@ -316,10 +323,10 @@ If it doesn&#8217;t throw an exception or if it throws an exception whose type i
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IndexOutOfBoundsException</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_passes</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;().</span><span style="color: #a6e22e">get</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f8f8f2">(expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IndexOutOfBoundsException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_passes</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -327,10 +334,10 @@ If it doesn&#8217;t throw an exception or if it throws an exception whose type i
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">RuntimeException</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_passes_too</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;().</span><span style="color: #a6e22e">get</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f8f8f2">(expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">RuntimeException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_passes_too</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -338,10 +345,10 @@ If it doesn&#8217;t throw an exception or if it throws an exception whose type i
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IllegalArgumentException</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_fails</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;().</span><span style="color: #a6e22e">get</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f8f8f2">(expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IllegalArgumentException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_fails</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -355,10 +362,10 @@ The following test fails:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">timeout</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">slow_fail</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">InterruptedException</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">Thread</span><span style="color: #f92672">.</span><span style="color: #a6e22e">sleep</span><span style="color: #f92672">(</span><span style="color: #ae81ff">1_000</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f8f8f2">(timeout</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">slow_fail</span><span style="color: #f8f8f2">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">InterruptedException</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">Thread.</span><span style="color: #a6e22e">sleep</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1_000</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -367,11 +374,11 @@ The following test does not run indefinitely - it fails after 100 milliseconds:<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">timeout</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">indefinitely</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">while</span> <span style="color: #f92672">(</span><span style="color: #66d9ef">true</span><span style="color: #f92672">)</span>
-        <span style="color: #f92672">;</span>
-<span style="color: #f92672">}</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f8f8f2">(timeout</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">indefinitely</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </div>

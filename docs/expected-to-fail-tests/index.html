@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T11:59:10+00:00">
+  <meta property="article:published_time" content="2022-12-15T16:17:12+00:00">
 
 
 
@@ -177,6 +177,13 @@
         
       </h1>
       
+        <p class="page__lead"><div class="paragraph">
+Often tests fail due to a bug in the tested application or in dependencies.
+Traditionally such a test method would be annotated with JUnit&#8217;s <code>@Disabled</code>.
+However, this has disadvantages when the bug that causes the test failure is fixed:
+</div>
+</p>
+      
       
 
 
@@ -270,7 +277,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Expected-to-Fail Tests">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="Often tests fail due to a bug in the tested application or in dependencies.Traditionally such a test method would be annotated with JUnit&#8217;s @Disabled.However, this has disadvantages when the bug that causes the test failure is fixed:">
     
     
 
@@ -330,10 +337,10 @@ Such test methods should use <a href="https://junit.org/junit5/docs/current/api/
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@ExpectedToFail</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">brokenMethod</span><span style="color: #f92672">();</span>
-    <span style="color: #f8f8f2">assertEquals</span><span style="color: #f92672">(</span><span style="color: #ae81ff">10</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">actual</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">brokenMethod();</span>
+    <span style="color: #f8f8f2">assertEquals(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">actual);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -346,11 +353,11 @@ Should <code>brokenMethod()</code> start returning the correct value, the test i
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@ExpectedToFail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Implementation bug in brokenMethod()&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">doSomething</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">brokenMethod</span><span style="color: #f92672">();</span>
-    <span style="color: #f8f8f2">assertEquals</span><span style="color: #f92672">(</span><span style="color: #ae81ff">10</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">actual</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #a6e22e">@ExpectedToFail</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Implementation bug in brokenMethod()&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">doSomething</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">brokenMethod();</span>
+    <span style="color: #f8f8f2">assertEquals(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">actual);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </div>

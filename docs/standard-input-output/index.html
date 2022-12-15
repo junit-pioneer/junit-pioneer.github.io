@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T11:59:10+00:00">
+  <meta property="article:published_time" content="2022-12-15T16:17:12+00:00">
 
 
 
@@ -177,6 +177,12 @@
         
       </h1>
       
+        <p class="page__lead"><div class="paragraph">
+The standard IO extension adds a simple way to test classes that read from the standard input (<code>System.in</code>) or write to the standard output (<code>System.out</code> or <code>System.err</code>).
+It redirects the original input/output streams to make predefined lines readable from <code>System.in</code> and to inject arguments that capture what was written to <code>System.out</code> or <code>System.err</code> for assertions.
+</div>
+</p>
+      
       
 
 
@@ -270,7 +276,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Standard Input and Output">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="The standard IO extension adds a simple way to test classes that read from the standard input (System.in) or write to the standard output (System.out or System.err).It redirects the original input/output streams to make predefined lines readable from System.in and to inject arguments that capture what was written to System.out or System.err for assertions.">
     
     
 
@@ -330,11 +336,11 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinReplaceInput</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@StdIo</span><span style="color: #f8f8f2">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinReplaceInput</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// `System.in` is replaced and the code under</span>
     <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </dd>
@@ -344,12 +350,12 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinReplaceAndVerify</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@StdIo</span><span style="color: #f8f8f2">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinReplaceAndVerify</span><span style="color: #f8f8f2">(StdIn</span> <span style="color: #f8f8f2">in)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// `System.in` is replaced, the code under</span>
     <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;,</span>
     <span style="color: #75715e">// and `StdIn` can be used to verify that</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </dd>
@@ -360,10 +366,10 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #a6e22e">@StdIo</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinNotReplacedButStdout</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">stdinNotReplacedButStdout</span><span style="color: #f8f8f2">(StdOut</span> <span style="color: #f8f8f2">out)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// `System.out` is replaced, so the written lines</span>
     <span style="color: #75715e">// are captured and can be verified with `StdOut`</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </dd>
@@ -373,11 +379,11 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">()</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">bothReplaced</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@StdIo</span><span style="color: #f8f8f2">()</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">bothReplaced</span><span style="color: #f8f8f2">(StdOut</span> <span style="color: #f8f8f2">out)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// `System.in` and `System.out` are replaced</span>
     <span style="color: #75715e">// and written lines can be verified with `StdOut`</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </dd>
@@ -387,14 +393,14 @@ With <code>System.out.print("Hello")</code> and <code>System.out.println("World"
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">bothReplaceAndVerify</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@StdIo</span><span style="color: #f8f8f2">({</span> <span style="color: #e6db74">&quot;Hello&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;World&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">bothReplaceAndVerify</span><span style="color: #f8f8f2">(StdIn</span> <span style="color: #f8f8f2">in,</span> <span style="color: #f8f8f2">StdOut</span> <span style="color: #f8f8f2">out)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// `System.in` is replaced, the code under</span>
     <span style="color: #75715e">// test reads lines &quot;Hello&quot; and &quot;World&quot;,</span>
     <span style="color: #75715e">// and `StdIn` can be used to verify that;</span>
     <span style="color: #75715e">// `System.out` is also replaced, so the</span>
     <span style="color: #75715e">// written lines can be verified with `StdOut`</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </dd>
@@ -462,20 +468,20 @@ Take the following example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ConsoleReader</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ConsoleReader</span> <span style="color: #f8f8f2">{</span>
 
-    <span style="color: #66d9ef">private</span> <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">lines</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;&gt;();</span>
+    <span style="color: #66d9ef">private</span> <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">lines</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;&gt;</span><span style="color: #f8f8f2">();</span>
 
-    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">readLines</span><span style="color: #f92672">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">InputStreamReader</span> <span style="color: #f8f8f2">is</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">InputStreamReader</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">System</span><span style="color: #f92672">.</span><span style="color: #a6e22e">in</span><span style="color: #f92672">);</span>
-        <span style="color: #f8f8f2">BufferedReader</span> <span style="color: #f8f8f2">reader</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">BufferedReader</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">is</span><span style="color: #f92672">);</span>
-        <span style="color: #66d9ef">for</span> <span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">;</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">++)</span> <span style="color: #f92672">{</span>
-            <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">reader</span><span style="color: #f92672">.</span><span style="color: #a6e22e">readLine</span><span style="color: #f92672">();</span>
-            <span style="color: #f8f8f2">lines</span><span style="color: #f92672">.</span><span style="color: #a6e22e">add</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">line</span><span style="color: #f92672">);</span>
-        <span style="color: #f92672">}</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">readLines</span><span style="color: #f8f8f2">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">InputStreamReader</span> <span style="color: #f8f8f2">is</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">InputStreamReader(System.</span><span style="color: #a6e22e">in</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">BufferedReader</span> <span style="color: #f8f8f2">reader</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">BufferedReader(is);</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span> <span style="color: #f8f8f2">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">reader.</span><span style="color: #a6e22e">readLine</span><span style="color: #f8f8f2">();</span>
+            <span style="color: #f8f8f2">lines.</span><span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(line);</span>
+        <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
 
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -485,25 +491,25 @@ This is the unit test for this class, using <code>StdIoExtension</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ConsoleReaderTest</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ConsoleReaderTest</span> <span style="color: #f8f8f2">{</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #a6e22e">@StdIo</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;line1&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;line2&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;line3&quot;</span> <span style="color: #f92672">})</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testReadLines</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">StdIn</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f92672">{</span>
-        <span style="color: #f8f8f2">ConsoleReader</span> <span style="color: #f8f8f2">consoleReader</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ConsoleReader</span><span style="color: #f92672">();</span>
+    <span style="color: #a6e22e">@StdIo</span><span style="color: #f8f8f2">({</span> <span style="color: #e6db74">&quot;line1&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;line2&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;line3&quot;</span> <span style="color: #f8f8f2">})</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testReadLines</span><span style="color: #f8f8f2">(StdIn</span> <span style="color: #f8f8f2">in)</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">IOException</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">ConsoleReader</span> <span style="color: #f8f8f2">consoleReader</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ConsoleReader();</span>
 
-        <span style="color: #f8f8f2">consoleReader</span><span style="color: #f92672">.</span><span style="color: #a6e22e">readLines</span><span style="color: #f92672">();</span>
+        <span style="color: #f8f8f2">consoleReader.</span><span style="color: #a6e22e">readLines</span><span style="color: #f8f8f2">();</span>
 
-        <span style="color: #f8f8f2">String</span><span style="color: #f92672">[]</span> <span style="color: #f8f8f2">lines</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">in</span><span style="color: #f92672">.</span><span style="color: #a6e22e">capturedLines</span><span style="color: #f92672">();</span>
+        <span style="color: #f8f8f2">String</span><span style="color: #f92672">[]</span> <span style="color: #f8f8f2">lines</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">in.</span><span style="color: #a6e22e">capturedLines</span><span style="color: #f8f8f2">();</span>
 
         <span style="color: #75715e">// This is failing</span>
         <span style="color: #75715e">// assertEquals(lines, &quot;line1&quot;, &quot;line2&quot;);</span>
 
         <span style="color: #75715e">// This is passing</span>
         <span style="color: #75715e">// assertEquals(lines, &quot;line1&quot;, &quot;line2&quot;, &quot;line3&quot;);</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #f8f8f2">}</span>
 
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

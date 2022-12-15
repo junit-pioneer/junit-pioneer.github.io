@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T11:59:10+00:00">
+  <meta property="article:published_time" content="2022-12-15T16:17:12+00:00">
 
 
 
@@ -177,6 +177,12 @@
         
       </h1>
       
+        <p class="page__lead"><div class="paragraph">
+The JSON argument sources let you provide arguments for parameterized tests from JSON.
+There are three annotations:
+</div>
+</p>
+      
       
 
 
@@ -270,7 +276,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="JSON Argument Source">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="The JSON argument sources let you provide arguments for parameterized tests from JSON.There are three annotations:">
     
     
 
@@ -319,17 +325,17 @@ The <code>JsonFileSource#data</code> can be used to tell the extraction mechanis
 <div class="listingblock">
 <div class="title">Argument type</div>
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Jedi</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">public</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">Jedi</span> <span style="color: #f8f8f2">{</span>
 
-    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name</span><span style="color: #f92672">;</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">height</span><span style="color: #f92672">;</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name;</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">height;</span>
 
     <span style="color: #a6e22e">@Override</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #a6e22e">toString</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #e6db74">&quot;Jedi {&quot;</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;name=&#39;&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;\&#39;&#39;</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;, height=&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">height</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;}&#39;</span><span style="color: #f92672">;</span>
-    <span style="color: #f92672">}</span>
+    <span style="color: #66d9ef">public</span> <span style="color: #f8f8f2">String</span> <span style="color: #a6e22e">toString</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #e6db74">&quot;Jedi {&quot;</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;name=&#39;&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;\&#39;&#39;</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;, height=&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">height</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;}&#39;</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
 
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -350,22 +356,22 @@ The <code>JsonFileSource#data</code> can be used to tell the extraction mechanis
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJedi</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Jedi</span> <span style="color: #f8f8f2">jedi</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJedi</span><span style="color: #f8f8f2">(Jedi</span> <span style="color: #f8f8f2">jedi)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@JsonSource</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;[&quot;</span>
+<span style="color: #a6e22e">@JsonSource</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;[&quot;</span>
         <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;  { name: &#39;Luke&#39;, height: 172  },&quot;</span>
         <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;  { name: &#39;Yoda&#39;, height: 66 }&quot;</span>
-        <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;]&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJedi</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">Jedi</span> <span style="color: #f8f8f2">jedi</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;]&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJedi</span><span style="color: #f8f8f2">(Jedi</span> <span style="color: #f8f8f2">jedi)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -387,24 +393,24 @@ The <code>JsonFileSource#data</code> can be used to tell the extraction mechanis
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJediProperty</span><span style="color: #f92672">(</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">jediName</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJediProperty</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">jediName)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@JsonSource</span><span style="color: #f92672">({</span>
-        <span style="color: #e6db74">&quot;{ name: &#39;Luke&#39;, height: 172  }&quot;</span><span style="color: #f92672">,</span>
+<span style="color: #a6e22e">@JsonSource</span><span style="color: #f8f8f2">({</span>
+        <span style="color: #e6db74">&quot;{ name: &#39;Luke&#39;, height: 172  }&quot;</span><span style="color: #f8f8f2">,</span>
         <span style="color: #e6db74">&quot;{ name: &#39;Yoda&#39;, height: 66 }&quot;</span>
-<span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJediProperty</span><span style="color: #f92672">(</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">jediName</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJediProperty</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">jediName)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -426,14 +432,14 @@ The <code>JsonFileSource#data</code> can be used to tell the extraction mechanis
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@JsonSource</span><span style="color: #f92672">({</span>
-        <span style="color: #e6db74">&quot;{ name: &#39;Yoda&#39;, padawans: [&#39;Dooku&#39;, &#39;Luke&#39;]  }&quot;</span><span style="color: #f92672">,</span>
+<span style="color: #a6e22e">@JsonSource</span><span style="color: #f8f8f2">({</span>
+        <span style="color: #e6db74">&quot;{ name: &#39;Yoda&#39;, padawans: [&#39;Dooku&#39;, &#39;Luke&#39;]  }&quot;</span><span style="color: #f8f8f2">,</span>
         <span style="color: #e6db74">&quot;{ name: &#39;Obi-Wan&#39;, padawans: [&#39;Anakin&#39;, &#39;Luke&#39;] }&quot;</span>
-<span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">multipleJedis</span><span style="color: #f92672">(</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;padawans&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">padawanNames</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">multipleJedis</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;padawans&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">List</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">String</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">padawanNames)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -465,26 +471,26 @@ In that the situation you need to use <code>@Property</code> instead.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">deconstructFromArray</span><span style="color: #f92672">(</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name</span><span style="color: #f92672">,</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">height</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">deconstructFromArray</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name,</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">height)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@JsonSource</span><span style="color: #f92672">({</span>
-        <span style="color: #e6db74">&quot;{ name: &#39;Yoda&#39;, height: 66 }&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;{ name: &#39;Luke&#39;, height: 172 }&quot;</span><span style="color: #f92672">,</span>
-<span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">deconstructFromArray</span><span style="color: #f92672">(</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name</span><span style="color: #f92672">,</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">height</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@JsonSource</span><span style="color: #f8f8f2">({</span>
+        <span style="color: #e6db74">&quot;{ name: &#39;Yoda&#39;, height: 66 }&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;{ name: &#39;Luke&#39;, height: 172 }&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">deconstructFromArray</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name,</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">height)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
-<span style="color: #f92672">}</span>
+<span style="color: #f8f8f2">}</span>
 <span style="color: #75715e">// @formatter:on</span></code></pre>
 </div>
 </div>
@@ -537,13 +543,13 @@ The test for this will look like:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f92672">(</span>
-        <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;luke.json&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">data</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;vehicles&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">lukeVehicles</span><span style="color: #f92672">(</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name</span><span style="color: #f92672">,</span>
-        <span style="color: #a6e22e">@Property</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;length&quot;</span><span style="color: #f92672">)</span> <span style="color: #66d9ef">double</span> <span style="color: #f8f8f2">length</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;luke.json&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">data</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;vehicles&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">lukeVehicles</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">name,</span>
+        <span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;length&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">double</span> <span style="color: #f8f8f2">length)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// YOUR TEST CODE HERE</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -601,7 +607,7 @@ The recommended one is to use <a href="https://docs.gradle.org/current/userguide
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="kotlin"><span></span><span style="color: #f8f8f2">testImplementation(</span><span style="color: #e6db74">&quot;com.fasterxml.jackson.core:jackson-databind:$CURRENT_VERSION&quot;</span><span style="color: #f8f8f2">)</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="kotlin"><span></span><span style="color: #f8f8f2">testImplementation(</span><span style="color: #e6db74">&quot;com.fasterxml.jackson.core:jackson-databind:$</span><span style="color: #f8f8f2">CURRENT_VERSION</span><span style="color: #e6db74">&quot;</span><span style="color: #f8f8f2">)</span></code></pre>
 </div>
 </div>
 </div>

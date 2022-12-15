@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T11:59:10+00:00">
+  <meta property="article:published_time" content="2022-12-15T16:17:12+00:00">
 
 
 
@@ -177,6 +177,13 @@
         
       </h1>
       
+        <p class="page__lead"><div class="paragraph">
+Some tests, e.g. those depending on external systems, may fail through no fault of the code under test.
+Such tests make a suite fragile and it makes sense to try and avoid them, but if that&#8217;s infeasible, it may help to retry a number of times before eventually assuming actual failure.
+<code>RetryingTest</code> provides that functionality.
+</div>
+</p>
+      
       
 
 
@@ -270,7 +277,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Retrying Failing Tests">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="Some tests, e.g. those depending on external systems, may fail through no fault of the code under test.Such tests make a suite fragile and it makes sense to try and avoid them, but if that&#8217;s infeasible, it may help to retry a number of times before eventually assuming actual failure.RetryingTest provides that functionality.">
     
     
 
@@ -363,10 +370,10 @@ The attribute <code>n</code> specifies how often the test is executed before giv
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsNever</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsNever</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// passing test code</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -374,11 +381,11 @@ The attribute <code>n</code> specifies how often the test is executed before giv
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsOnlyOnFirstInvocation</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsOnlyOnFirstInvocation</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// test code that fails on first execution</span>
     <span style="color: #75715e">// but passes on the second</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -387,10 +394,10 @@ To allow the entire test suite to pass, the first execution is marked as ignored
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsAlways</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsAlways</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// test code that always fails</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -399,11 +406,11 @@ The first two executions are marked as ignored/aborted, while the last as failed
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #ae81ff">3</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">aborted</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">aborted</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// test code that is aborted,</span>
     <span style="color: #75715e">// e.g. because of an `Assumption`.</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -416,10 +423,10 @@ The test suite as a whole is also marked as aborted/skipped.</p>
 <h3 id="configuring-the-number-of-successes">Configuring the Number of Successes</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">minSuccess</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">requiresTwoSuccesses</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">minSuccess</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">requiresTwoSuccesses</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// test code that must complete successfully twice</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -431,10 +438,10 @@ However, it will not run more than four times.</p>
 <h3 id="suspending-between-each-retry">Suspending between each Retry</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">suspendForMs</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">suspendsBetweenRetries</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">suspendForMs</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">suspendsBetweenRetries</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// test code that will suspend/wait for 100 ms between retries</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -451,18 +458,18 @@ However, it will not run more than four times.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">private</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">EXECUTION_COUNT</span><span style="color: #f92672">;</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">private</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">EXECUTION_COUNT;</span>
 
-<span style="color: #a6e22e">@RetryingTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">onExceptions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IllegalArgumentException</span><span style="color: #f92672">.</span><span style="color: #a6e22e">class</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsFirstWithExpectedThenWithUnexpectedException</span><span style="color: #f92672">()</span> <span style="color: #f92672">{</span>
-    <span style="color: #f8f8f2">EXECUTION_COUNT</span><span style="color: #f92672">++;</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">EXECUTION_COUNT</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">IllegalArgumentException</span><span style="color: #f92672">();</span>
-    <span style="color: #f92672">}</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">EXECUTION_COUNT</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">NullPointerException</span><span style="color: #f92672">();</span>
-    <span style="color: #f92672">}</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(value</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">onExceptions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IllegalArgumentException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">failsFirstWithExpectedThenWithUnexpectedException</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">EXECUTION_COUNT</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(EXECUTION_COUNT</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">IllegalArgumentException();</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(EXECUTION_COUNT</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">NullPointerException();</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

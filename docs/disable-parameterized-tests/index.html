@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-11-18T11:59:10+00:00">
+  <meta property="article:published_time" content="2022-12-15T16:17:12+00:00">
 
 
 
@@ -177,6 +177,12 @@
         
       </h1>
       
+        <p class="page__lead"><div class="paragraph">
+JUnit Pioneer offers multiple extensions for selectively disabling parameterized tests.
+These are as follows:
+</div>
+</p>
+      
       
 
 
@@ -270,7 +276,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Disable Parameterized Test">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="JUnit Pioneer offers multiple extensions for selectively disabling parameterized tests.These are as follows:">
     
     
 
@@ -305,22 +311,22 @@ As a consequence, instead of disabling the entire set of parameterized tests, ea
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// disable invocations whose display name contains &quot;disable&quot;</span>
-<span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;disable&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span>
+<span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f8f8f2">(contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;disable&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f8f8f2">(name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(</span>
         <span style="color: #75715e">// Disabled: 1,2,3,4,5</span>
         <span style="color: #75715e">// Not disabled: 6</span>
-        <span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;disable who&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 1</span>
-                <span style="color: #e6db74">&quot;you, disable you&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 2</span>
-                <span style="color: #e6db74">&quot;why am I disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 3</span>
-                <span style="color: #e6db74">&quot;what has been disabled must stay disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 4</span>
-                <span style="color: #e6db74">&quot;fine disable me all you want&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 5</span>
+        <span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;disable who&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 1</span>
+                <span style="color: #e6db74">&quot;you, disable you&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 2</span>
+                <span style="color: #e6db74">&quot;why am I disabled&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 3</span>
+                <span style="color: #e6db74">&quot;what has been disabled must stay disabled&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 4</span>
+                <span style="color: #e6db74">&quot;fine disable me all you want&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 5</span>
                 <span style="color: #e6db74">&quot;not those one, though!&quot;</span> <span style="color: #75715e">// 6</span>
-        <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testExecutionDisabled</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">reason</span><span style="color: #f92672">.</span><span style="color: #a6e22e">contains</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;disable&quot;</span><span style="color: #f92672">))</span>
-        <span style="color: #f8f8f2">fail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
+        <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testExecutionDisabled</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">reason)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(reason.</span><span style="color: #a6e22e">contains</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;disable&quot;</span><span style="color: #f8f8f2">))</span>
+        <span style="color: #f8f8f2">fail(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">reason);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -328,13 +334,13 @@ As a consequence, instead of disabling the entire set of parameterized tests, ea
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;1&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;2&quot;</span> <span style="color: #f92672">})</span>
-<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">ints</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">4</span><span style="color: #f92672">,</span> <span style="color: #ae81ff">5</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testDisplayNameString</span><span style="color: #f92672">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">num</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f92672">(</span><span style="color: #f8f8f2">num</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">num</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">)</span>
-        <span style="color: #f8f8f2">fail</span><span style="color: #f92672">(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled for &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">num</span><span style="color: #f92672">);</span>
-<span style="color: #f92672">}</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f8f8f2">(contains</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;1&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;2&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f8f8f2">(name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(ints</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">5</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testDisplayNameString</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">num)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(num</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">1</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">num</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">fail(</span><span style="color: #e6db74">&quot;Test should&#39;ve been disabled for &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">num);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -344,21 +350,21 @@ As a consequence, instead of disabling the entire set of parameterized tests, ea
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// disable invocations whose display name</span>
 <span style="color: #75715e">// contains &quot;disable &quot; or &quot;disabled &quot;</span>
-<span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">matches</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;.*disabled?\\s.*&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span>
+<span style="color: #a6e22e">@DisableIfDisplayName</span><span style="color: #f8f8f2">(matches</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;.*disabled?\\s.*&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@ParameterizedTest</span><span style="color: #f8f8f2">(name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;See if enabled with {0}&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(</span>
         <span style="color: #75715e">// Disabled: 1,2,4,5</span>
         <span style="color: #75715e">// Not disabled: 3,6</span>
-        <span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;disable who&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 1</span>
-                <span style="color: #e6db74">&quot;you, disable you&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 2</span>
-                <span style="color: #e6db74">&quot;why am I disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 3</span>
-                <span style="color: #e6db74">&quot;what has been disabled must stay disabled&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 4</span>
-                <span style="color: #e6db74">&quot;fine disable me all you want&quot;</span><span style="color: #f92672">,</span> <span style="color: #75715e">// 5</span>
+        <span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;disable who&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 1</span>
+                <span style="color: #e6db74">&quot;you, disable you&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 2</span>
+                <span style="color: #e6db74">&quot;why am I disabled&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 3</span>
+                <span style="color: #e6db74">&quot;what has been disabled must stay disabled&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 4</span>
+                <span style="color: #e6db74">&quot;fine disable me all you want&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// 5</span>
                 <span style="color: #e6db74">&quot;not those one, though!&quot;</span> <span style="color: #75715e">// 6</span>
-        <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">single</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">reason</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+        <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">single</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">reason)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// ...</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -423,15 +429,15 @@ Their only difference is whether <strong>at least one</strong> or <strong>all</s
 <h4 id="using-contains">Using <code>contains</code></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfAllArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;the&quot;</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfAllArguments</span><span style="color: #f8f8f2">(contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;the&quot;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then let them toll the passing-bell,;Then of your servitude be free,&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;The clock may stop, its hands fall still,;And time be over then for me!&quot;</span> <span style="color: #f92672">},</span> <span style="color: #f8f8f2">delimiter</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;;&#39;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">disableAllContains</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f8f8f2">(value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then let them toll the passing-bell,;Then of your servitude be free,&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;The clock may stop, its hands fall still,;And time be over then for me!&quot;</span> <span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">delimiter</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;;&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">disableAllContains</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">line,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// ...</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -440,15 +446,15 @@ Using the same test with a different annotation would look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfAnyArgument</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Then&quot;</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfAnyArgument</span><span style="color: #f8f8f2">(contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Then&quot;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then let them toll the passing-bell,;Then of your servitude be free,&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;The clock may stop, its hands fall still,;And time be over then for me!&quot;</span> <span style="color: #f92672">},</span> <span style="color: #f8f8f2">delimiter</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;;&#39;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">disableAnyContains</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f8f8f2">(value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then let them toll the passing-bell,;Then of your servitude be free,&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;The clock may stop, its hands fall still,;And time be over then for me!&quot;</span> <span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">delimiter</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;;&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">disableAnyContains</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">line,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// ...</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -460,15 +466,15 @@ The last execution does not get disabled, because the extension is case-sensitiv
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfAnyArgument</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;Then&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;then&quot;</span> <span style="color: #f92672">})</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfAnyArgument</span><span style="color: #f8f8f2">(contains</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;Then&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;then&quot;</span> <span style="color: #f8f8f2">})</span>
 <span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then let them toll the passing-bell,;Then of your servitude be free,&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;The clock may stop, its hands fall still,;And time be over then for me!&quot;</span> <span style="color: #f92672">},</span> <span style="color: #f8f8f2">delimiter</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;;&#39;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">disableAnyContainsMultipleArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f8f8f2">(value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then let them toll the passing-bell,;Then of your servitude be free,&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;The clock may stop, its hands fall still,;And time be over then for me!&quot;</span> <span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">delimiter</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;;&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">disableAnyContainsMultipleArguments</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">line,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// [...]</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -482,15 +488,15 @@ The last execution does not get disabled, because the extension is case-sensitiv
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfAllArguments</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">matches</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;.*\\s[a-z]{3}\\s.*&quot;</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfAllArguments</span><span style="color: #f8f8f2">(matches</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;.*\\s[a-z]{3}\\s.*&quot;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then let them toll the passing-bell,;Then of your servitude be free,&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;The clock may stop, its hands fall still,;And time be over then for me!&quot;</span> <span style="color: #f92672">},</span> <span style="color: #f8f8f2">delimiter</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;;&#39;</span><span style="color: #f92672">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">interceptMatchesAny</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f8f8f2">(value</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then let them toll the passing-bell,;Then of your servitude be free,&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;The clock may stop, its hands fall still,;And time be over then for me!&quot;</span> <span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">delimiter</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;;&#39;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">interceptMatchesAny</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">line,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// [...]</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -530,13 +536,13 @@ You can do this in three ways:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line2&quot;</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;swift&quot;</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f8f8f2">(name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;line2&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;swift&quot;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">targetName</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f8f8f2">({</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">targetName</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">line,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// [...]</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -550,13 +556,13 @@ You can do this in three ways:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">index</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;swift&quot;</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f8f8f2">(index</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;swift&quot;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">targetIndex</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f8f8f2">({</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">targetIndex</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">line,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// [...]</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -571,13 +577,13 @@ In this case the first <code>@DisableIfArgument</code> targets the first paramet
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;gibberish&quot;</span><span style="color: #f92672">)</span>
-<span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;gladly&quot;</span><span style="color: #f92672">)</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f8f8f2">(contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;gibberish&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f8f8f2">(contains</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;gladly&quot;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@CsvSource</span><span style="color: #f92672">({</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">targetByOrder</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line</span><span style="color: #f92672">,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f8f8f2">({</span> <span style="color: #e6db74">&quot;If the swift moment I entreat:;Tarry a while! You are so fair!&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Then forge the shackles to my feet,;Then I will gladly perish there!&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">targetByOrder</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">line,</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">line2)</span> <span style="color: #f8f8f2">{</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -607,12 +613,12 @@ Using this method to target parameters when your test has multiple parameters is
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// disable invocations whose argument ends with &#39;knew&#39; or &#39;grew&#39;</span>
-<span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">matches</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;.*knew&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;.*grew&quot;</span> <span style="color: #f92672">})</span>
+<span style="color: #a6e22e">@DisableIfArgument</span><span style="color: #f8f8f2">(matches</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;.*knew&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;.*grew&quot;</span> <span style="color: #f8f8f2">})</span>
 <span style="color: #a6e22e">@ParameterizedTest</span>
-<span style="color: #a6e22e">@ValueSource</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">strings</span> <span style="color: #f92672">=</span> <span style="color: #f92672">{</span> <span style="color: #e6db74">&quot;Lily-like, white as snow,&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;She hardly knew&quot;</span><span style="color: #f92672">,</span> <span style="color: #e6db74">&quot;She was a woman, so&quot;</span><span style="color: #f92672">,</span>
-        <span style="color: #e6db74">&quot;Sweetly she grew&quot;</span> <span style="color: #f92672">})</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">interceptMatches</span><span style="color: #f92672">(</span><span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">value</span><span style="color: #f92672">)</span> <span style="color: #f92672">{</span>
-<span style="color: #f92672">}</span></code></pre>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(strings</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;Lily-like, white as snow,&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;She hardly knew&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;She was a woman, so&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #e6db74">&quot;Sweetly she grew&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">interceptMatches</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">value)</span> <span style="color: #f8f8f2">{</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
