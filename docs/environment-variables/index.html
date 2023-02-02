@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-12-21T07:46:53+00:00">
+  <meta property="article:published_time" content="2023-02-02T17:46:41+00:00">
 
 
 
@@ -293,18 +293,22 @@ Both annotations work on the test method and class level, are repeatable, combin
 After the annotated method has been executed, the variables mentioned in the annotation will be restored to their original value or the value of the higher-level container, or will be cleared if they didn&#8217;t have one before.
 Other environment variables that are changed during the test, are <strong>not</strong> restored.</p>
 </div>
-<div class="paragraph">
-<p>[WARNING]J</p>
-</div>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
 <div class="paragraph">
 <p>Java considers environment variables to be immutable, so this extension uses reflection to change them.
 This requires that the <code>SecurityManager</code> allows modifications and can potentially break on different operating systems and Java versions.
 Be aware that this is a fragile solution and consider finding a better one for your specific situation.
 For more details, see <a href="#warnings-for-reflective-access">Warnings for Reflective Access</a>.</p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>For example, clearing a environment variable for a test execution can be done as follows:</p>
@@ -532,7 +536,7 @@ Tests that cover code that reads or writes environment variables need to be anno
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
