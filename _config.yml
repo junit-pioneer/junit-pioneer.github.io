@@ -326,7 +326,7 @@ defaults:
       path: ""
       type: docs
     values:
-      layout: single
+      layout: single-doc
       header: { overlay_image: assets/images/site/type-writer.jpg }
       author_profile: false
       read_time: false
