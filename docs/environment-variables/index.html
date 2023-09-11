@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Clearing or Setting Environment Variables - JUnit Pioneer</title>
-<meta name="description" content="The JUnit 5 (Jupiter) extensions @ClearEnvironmentVariable/@SetEnvironmentVariable clear/set the values of environment variables for the duration of a test">
+<!-- begin _includes/seo.html --><title>Clear, Set, and Restore Environment Variables - JUnit Pioneer</title>
+<meta name="description" content="The JUnit 5 (Jupiter) extensions @ClearEnvironmentVariable, @SetEnvironmentVariable and @RestoreEnvironmentVariables clear/set/restore the values of environment variables for the duration of a test, and/or restore them after">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Clearing or Setting Environment Variables">
+<meta property="og:title" content="Clear, Set, and Restore Environment Variables">
 <meta property="og:url" content="https://junit-pioneer.org/docs/environment-variables/">
 
 
-  <meta property="og:description" content="The JUnit 5 (Jupiter) extensions @ClearEnvironmentVariable/@SetEnvironmentVariable clear/set the values of environment variables for the duration of a test">
+  <meta property="og:description" content="The JUnit 5 (Jupiter) extensions @ClearEnvironmentVariable, @SetEnvironmentVariable and @RestoreEnvironmentVariables clear/set/restore the values of environment variables for the duration of a test, and/or restore them after">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-04-16T10:51:25+00:00">
+  <meta property="article:published_time" content="2023-09-11T21:01:55+00:00">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Clearing or Setting Environment Variables
+          Clear, Set, and Restore Environment Variables
 
         
       </h1>
@@ -219,9 +219,11 @@
           
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
-            <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
+            <li><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
           
-            <li class="active"><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></li>
+            <li class="active"><a href="/docs/environment-variables/">Clear, Set, and Restore Environment Variables</a></li>
+          
+            <li><a href="/docs/byte-array-converter/">Convert Number Argument to Byte Array</a></li>
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
@@ -251,6 +253,8 @@
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
           
+            <li><a href="/docs/simple-arguments-aggregator/">Simple Arguments Aggregator</a></li>
+          
             <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
         </ul>
@@ -267,8 +271,8 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Clearing or Setting Environment Variables">
-    <meta itemprop="description" content="The @ClearEnvironmentVariable and @SetEnvironmentVariable annotations can be used to clear and set, respectively, the values of environment variables for a test execution.Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers.After the annotated method has been executed, the variables mentioned in the annotation will be restored to their original value or the value of the higher-level container, or will be cleared if they didn&#8217;t have one before.Other environment variables that are changed during the test, are not restored.">
+    <meta itemprop="headline" content="Clear, Set, and Restore Environment Variables">
+    <meta itemprop="description" content="@ClearEnvironmentVariable and @SetEnvironmentVariableThe @ClearEnvironmentVariable and @SetEnvironmentVariable annotations can be used to clear and set, respectively, the values of environment variables for a test execution.Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers.After the annotated method has been executed, the variables mentioned in the annotation will be restored to their original value or the value of the higher-level container, or will be cleared if they didn&#8217;t have one before.Other environment variables that are changed during the test, are not restored (unless the @RestoreEnvironmentVariables is used).">
     
     
 
@@ -277,11 +281,14 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="paragraph">
+        <div class="sect1">
+<h2 id="clearenvironmentvariable-and-setenvironmentvariable"><code>@ClearEnvironmentVariable</code> and <code>@SetEnvironmentVariable</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>The <code>@ClearEnvironmentVariable</code> and <code>@SetEnvironmentVariable</code> annotations can be used to clear and set, respectively, the values of environment variables for a test execution.
 Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers.
 After the annotated method has been executed, the variables mentioned in the annotation will be restored to their original value or the value of the higher-level container, or will be cleared if they didn&#8217;t have one before.
-Other environment variables that are changed during the test, are <strong>not</strong> restored.</p>
+Other environment variables that are changed during the test, are <strong>not</strong> restored (unless the <code>@RestoreEnvironmentVariables</code> is used).</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -374,6 +381,148 @@ For more details, see <a href="#warnings-for-reflective-access">Warnings for Ref
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="restoreenvironmentvariables"><code>@RestoreEnvironmentVariables</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>@RestoreEnvironmentVariables</code> can be used to restore changes to environment variables made directly in code.
+While <code>@ClearEnvironmentVariable</code> and <code>@SetEnvironmentVariable</code> set or clear specific variables and values, they don&#8217;t allow values to be calculated or parameterized, thus there are times you may want to directly set them in your test code.
+<code>@RestoreEnvironmentVariables</code> can be placed on test methods or test classes and will completely restore all environment variables to their original state after a test or test class is complete.</p>
+</div>
+<div class="paragraph">
+<p>In this example, <code>@RestoreEnvironmentVariables</code> is used on a test method, ensuring any changes made in that method are restored:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(strings</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;foo&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;bar&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #a6e22e">@RestoreEnvironmentVariables</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">parameterizedTest</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">value)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">setEnvVar(</span><span style="color: #e6db74">&quot;some parameterized property&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">value);</span>
+    <span style="color: #f8f8f2">setEnvVar(</span><span style="color: #e6db74">&quot;some other dynamic property&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;my code calculates somehow&quot;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Modifying environment variables of a running JVM requires several lines of code and the Java reflection API.
+The two <code>@RestoreEnvironmentVariables</code> examples leave out that detail and use a hypothetical <code>setEnvVar()</code> method.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When <code>@RestoreEnvironmentVariables</code> is used on a test class, any environment variable changes made during the entire lifecycle of the test class, including test methods, <code>@BeforeAll</code>, <code>@BeforeEach</code> and 'after' methods, are restored after the test class' lifecycle is complete.
+In addition, the annotation is inherited by each test method just as if each one was annotated with <code>@RestoreEnvironmentVariables</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, both test methods see the environment variable changes made in <code>@BeforeAll</code> and <code>@BeforeEach</code>, however, the test methods are isolated from each other (<code>isolatedTest2</code> does not 'see' changes made in <code>isolatedTest1</code>).
+As shown in the second example below, the class-level <code>@RestoreEnvironmentVariables</code> ensures that environment variable changes made within the annotated class are completely restored after the class&#8217;s lifecycle, ensuring that changes are not visible to <code>SomeOtherTestClass</code>.
+Note that <code>SomeOtherTestClass</code> uses the <code>@ReadsEnvironmentVariable</code> annotation: This ensures that JUnit does not schedule the class to run during any test known to modify environment variables (see <a href="#thread-safety">Thread-Safety</a>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RestoreEnvironmentVariables</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">EnvironmentVarRestoreTest</span> <span style="color: #f8f8f2">{</span>
+
+    <span style="color: #a6e22e">@BeforeAll</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">beforeAll</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">setEnvVar(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;A value&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #a6e22e">@BeforeEach</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">beforeEach</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">setEnvVar(</span><span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;B value&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">isolatedTest1</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">setEnvVar(</span><span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;C value&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">isolatedTest2</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getenv</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;A value&quot;</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getenv</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;B value&quot;</span><span style="color: #f8f8f2">);</span>
+
+        <span style="color: #75715e">// Class-level @RestoreEnvironmentVariables restores &quot;C&quot; to original state</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getenv</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some other test class, running later:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #75715e">// A test class that runs later</span>
+<span style="color: #a6e22e">@ReadsEnvironmentVariable</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">SomeOtherTestClass</span> <span style="color: #f8f8f2">{</span>
+
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">isolatedTest</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #75715e">// Class-level @RestoreEnvironmentVariables restores all changes made in EnvironmentVarRestoreTest</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getenv</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getenv</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getenv</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #75715e">// Changes to A, B, C have been restored to their values prior to the above test</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-clearenvironmentvariable-setenvironmentvariable-and-restoreenvironmentvariables-together">Using <code>@ClearEnvironmentVariable</code>, <code>@SetEnvironmentVariable</code>, and <code>@RestoreEnvironmentVariables</code> together</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All three annotations can be combined, which could be used when some environment values are parameterized (i.e. need to be set in code) and others are not.
+For instance, imagine testing an image generation utility that takes configuration from environment variables.
+Basic configuration can be specified using <code>Set</code> and <code>Clear</code> and the image size parameterized:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@IntRangeSource</span><span style="color: #f8f8f2">(from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10000</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">500</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@RestoreEnvironmentVariables</span>
+<span style="color: #a6e22e">@SetEnvironmentVariable</span><span style="color: #f8f8f2">(key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;DISABLE_CACHE&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;TRUE&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@ClearEnvironmentVariable</span><span style="color: #f8f8f2">(key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;COPYWRITE_OVERLAY_TEXT&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">imageGenerationTest</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">imageSize)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">setEnvVar(</span><span style="color: #e6db74">&quot;IMAGE_SIZE&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">String.</span><span style="color: #a6e22e">valueOf</span><span style="color: #f8f8f2">(imageSize));</span> <span style="color: #75715e">// Requires restore</span>
+
+    <span style="color: #75715e">// Test your image generation utility with the current environment variables</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using <code>@RestoreEnvironmentVariables</code> is not necessary to restore environment variables modified via <code>@ClearEnvironmentVariable</code> or <code>@SetEnvironmentVariable</code> - they each automatically restore the referenced variables.
+'Restore', is only needed if environment variables are modified in some way <em>other than</em> Clear and Set during a test.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="warnings-for-reflective-access">Warnings for Reflective Access</h2>
 <div class="sectionbody">
@@ -430,7 +579,7 @@ These command line options need to be added to the JVM that executes the tests:<
 <div class="sectionbody">
 <div class="paragraph">
 <p>Since environment variables are global state, reading and writing them during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a> can lead to unpredictable results and flaky tests.
-The environment variable extension is prepared for that and tests annotated with <code>@ClearEnvironmentVariable</code> or <code>@SetEnvironmentVariable</code> will never execute in parallel (thanks to <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/parallel/ResourceLock.html">resource locks</a>) to guarantee correct test results.</p>
+The environment variable extension is prepared for that and tests annotated with <code>@ClearEnvironmentVariable</code>, <code>@SetEnvironmentVariable</code>, or <code>@RestoreEnvironmentVariables</code> will never execute in parallel (thanks to <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/parallel/ResourceLock.html">resource locks</a>) to guarantee correct test results.</p>
 </div>
 <div class="paragraph">
 <p>However, this does not cover all possible cases.
@@ -443,12 +592,12 @@ Tests that cover code that reads or writes environment variables need to be anno
 <p><code>@ReadsEnvironmentVariable</code></p>
 </li>
 <li>
-<p><code>@WritesEnvironmentVariable</code></p>
+<p><code>@WritesEnvironmentVariable</code> (though consider using <code>@RestoreEnvironmentVariables</code> instead)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Tests annotated in this way will never execute in parallel with tests annotated with <code>@ClearEnvironmentVariable</code> or <code>@SetEnvironmentVariable</code>.</p>
+<p>Tests annotated in this way will never execute in parallel with tests annotated with <code>@ClearEnvironmentVariable</code>, <code>@SetEnvironmentVariable</code>, or <code>@RestoreEnvironmentVariables</code>.</p>
 </div>
 </div>
 </div>
@@ -469,7 +618,7 @@ Tests that cover code that reads or writes environment variables need to be anno
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Clearing+or+Setting+Environment+Variables%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fenvironment-variables%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Clear%2C+Set%2C+and+Restore+Environment+Variables%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fenvironment-variables%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fenvironment-variables%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 

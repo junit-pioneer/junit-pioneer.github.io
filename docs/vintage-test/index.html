@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-04-16T10:51:25+00:00">
+  <meta property="article:published_time" content="2023-09-11T21:01:55+00:00">
 
 
 
@@ -219,9 +219,11 @@
           
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
-            <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
+            <li><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
           
-            <li><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></li>
+            <li><a href="/docs/environment-variables/">Clear, Set, and Restore Environment Variables</a></li>
+          
+            <li><a href="/docs/byte-array-converter/">Convert Number Argument to Byte Array</a></li>
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
@@ -250,6 +252,8 @@
             <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
+          
+            <li><a href="/docs/simple-arguments-aggregator/">Simple Arguments Aggregator</a></li>
           
             <li class="active"><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
@@ -316,7 +320,7 @@ If it doesn&#8217;t throw an exception or if it throws an exception whose type i
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f8f8f2">(expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IndexOutOfBoundsException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
 <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_passes</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">List.</span><span style="color: #a6e22e">of</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
@@ -327,7 +331,7 @@ If it doesn&#8217;t throw an exception or if it throws an exception whose type i
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f8f8f2">(expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">RuntimeException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
 <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_passes_too</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">List.</span><span style="color: #a6e22e">of</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
@@ -338,7 +342,7 @@ If it doesn&#8217;t throw an exception or if it throws an exception whose type i
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span><span style="color: #f8f8f2">(expected</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">IllegalArgumentException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
 <span style="color: #66d9ef">public</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">outOfBounds_fails</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">ArrayList</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">List.</span><span style="color: #a6e22e">of</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>

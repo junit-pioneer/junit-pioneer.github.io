@@ -1,4 +1,10 @@
 var store = [{
+        "title": "Convert Number Argument to Byte Array",
+        "excerpt":"In some use-cases (e.g.: bitwise operations) you might want to work with numbers in a byte array form. The conversion from number to byte array in this case would ideally not be part of your test. By applying @NumberToByteArrayConversion on the parameter you want to convert, you can immediately start...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/byte-array-converter/",
+        "teaser": null
+      },{
         "title": "Cartesian Product of Parameters [removed in 2.0]",
         "excerpt":"Note The CartesianProductTest extension has undergone significant changes in 1.6.0. This included renaming it to @CartesianTest and moving it into a new package. This here is the old variant, which was deprecated in 1.6.0 and removed in 2.0. For the new version, see here. From Wikipedia: In mathematics, specifically set...","categories": [],
         "tags": [],
@@ -41,8 +47,8 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/disabled-until/",
         "teaser": null
       },{
-        "title": "Clearing or Setting Environment Variables",
-        "excerpt":"The @ClearEnvironmentVariable and @SetEnvironmentVariable annotations can be used to clear and set, respectively, the values of environment variables for a test execution. Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers. After the annotated method has been executed, the variables mentioned...","categories": [],
+        "title": "Clear, Set, and Restore Environment Variables",
+        "excerpt":"@ClearEnvironmentVariable and @SetEnvironmentVariable The @ClearEnvironmentVariable and @SetEnvironmentVariable annotations can be used to clear and set, respectively, the values of environment variables for a test execution. Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers. After the annotated method has been executed,...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/environment-variables/",
         "teaser": null
@@ -89,6 +95,12 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/retrying-test/",
         "teaser": null
       },{
+        "title": "Simple Arguments Aggregator",
+        "excerpt":"Annotating a test parameter with @Aggregate aggregates all the supplied arguments into a single object. Usage @Aggregate can be applied to a parameter in a @ParameterizedTest. @ParameterizedTest @CsvSource({ \"Jane, Doe, F, 1990-05-20\", \"John, Doe, M, 1990-10-22\" }) void test(@Aggregate Person person) { } Limitations The extension is meant to be...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/simple-arguments-aggregator/",
+        "teaser": null
+      },{
         "title": "Standard Input and Output",
         "excerpt":"The standard IO extension adds a simple way to test classes that read from the standard input (System.in) or write to the standard output (System.out or System.err). It redirects the original input/output streams to make predefined lines readable from System.in and to inject arguments that capture what was written to...","categories": [],
         "tags": [],
@@ -101,8 +113,8 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/stopwatch/",
         "teaser": null
       },{
-        "title": "Clearing or Setting System Properties",
-        "excerpt":"The @ClearSystemProperty and @SetSystemProperty annotations can be used to clear and set, respectively, the values of system properties for a test execution. Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers. After the annotated method has been executed, the properties mentioned...","categories": [],
+        "title": "Clear, Set, and Restore System Properties",
+        "excerpt":"@ClearSystemProperty and @SetSystemProperty The @ClearSystemProperty and @SetSystemProperty annotations can be used to clear and set, respectively, the values of system properties for a test execution. Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers. After the annotated method has been executed,...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/system-properties/",
         "teaser": null

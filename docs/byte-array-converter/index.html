@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Measuring Test Run Time - JUnit Pioneer</title>
-<meta name="description" content="The JUnit 5 (Jupiter) extension @Stopwatch measures elapsed time of a test method">
+<!-- begin _includes/seo.html --><title>Convert Number Argument to Byte Array - JUnit Pioneer</title>
+<meta name="description" content="The JUnit 5 (Jupiter) argument converter @NumberToByteArrayConversion converts the number value of an argument to its byte array representation">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Measuring Test Run Time">
-<meta property="og:url" content="https://junit-pioneer.org/docs/stopwatch/">
+<meta property="og:title" content="Convert Number Argument to Byte Array">
+<meta property="og:url" content="https://junit-pioneer.org/docs/byte-array-converter/">
 
 
-  <meta property="og:description" content="The JUnit 5 (Jupiter) extension @Stopwatch measures elapsed time of a test method">
+  <meta property="og:description" content="The JUnit 5 (Jupiter) argument converter @NumberToByteArrayConversion converts the number value of an argument to its byte array representation">
 
 
 
@@ -44,7 +44,7 @@
   
 
 
-<link rel="canonical" href="https://junit-pioneer.org/docs/stopwatch/">
+<link rel="canonical" href="https://junit-pioneer.org/docs/byte-array-converter/">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Measuring Test Run Time
+          Convert Number Argument to Byte Array
 
         
       </h1>
@@ -223,7 +223,7 @@
           
             <li><a href="/docs/environment-variables/">Clear, Set, and Restore Environment Variables</a></li>
           
-            <li><a href="/docs/byte-array-converter/">Convert Number Argument to Byte Array</a></li>
+            <li class="active"><a href="/docs/byte-array-converter/">Convert Number Argument to Byte Array</a></li>
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
@@ -243,7 +243,7 @@
           
             <li><a href="/docs/json-argument-source">JSON Argument Source</a></li>
           
-            <li class="active"><a href="/docs/stopwatch/">Measuring Test Run Time</a></li>
+            <li><a href="/docs/stopwatch/">Measuring Test Run Time</a></li>
           
             <li><a href="/docs/report-entries/">Publishing Report Entries</a></li>
           
@@ -271,8 +271,8 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Measuring Test Run Time">
-    <meta itemprop="description" content="Annotating a test with @Stopwatch will measure the time the test takes to execute and will report the result to the TestReporter.How that information is displayed depends on the tool used to run the tests and how it processes test report entries.">
+    <meta itemprop="headline" content="Convert Number Argument to Byte Array">
+    <meta itemprop="description" content="In some use-cases (e.g.: bitwise operations) you might want to work with numbers in a byte array form.The conversion from number to byte array in this case would ideally not be part of your test.By applying @NumberToByteArrayConversion on the parameter you want to convert, you can immediately start working with a byte[] in your test.">
     
     
 
@@ -282,67 +282,48 @@
       <section class="page__content" itemprop="text">
         
         <div class="paragraph">
-<p>Annotating a test with <code>@Stopwatch</code> will measure the time the test takes to execute and will report the result to the <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/TestReporter.html"><code>TestReporter</code></a>.
-How that information is displayed depends on the tool used to run the tests and how it processes test report entries.</p>
+<p>In some use-cases (e.g.: bitwise operations) you might want to work with numbers in a byte array form.
+The conversion from number to byte array in this case would ideally not be part of your test.
+By applying <code>@NumberToByteArrayConversion</code> on the parameter you want to convert, you can immediately start working with a <code>byte[]</code> in your test.</p>
 </div>
 <div class="sect1">
-<h2 id="usage">Usage</h2>
+<h2 id="numbertobytearrayconversion"><code>@NumberToByteArrayConversion</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>@Stopwatch</code> can be applied to a method to report its execution time:</p>
+<p>When applied to a parameter supplied with a number by <code>@ValueSource</code>, <code>@NumberToByteArrayConversion</code> converts the number to its <code>byte[]</code> representation.
+To showcase with some examples:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@Stopwatch</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #75715e">// execution time will be reported</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(ints</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #ae81ff">1025</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">intExample</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@NumberToByteArrayConversion</span> <span style="color: #66d9ef">byte</span><span style="color: #f92672">[]</span> <span style="color: #f8f8f2">bytes)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">assertThat(bytes).</span><span style="color: #a6e22e">hasSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">containsExactly</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(longs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #ae81ff">393796333641L</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">longExample</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@NumberToByteArrayConversion</span> <span style="color: #66d9ef">byte</span><span style="color: #f92672">[]</span> <span style="color: #f8f8f2">bytes)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">assertThat(bytes).</span><span style="color: #a6e22e">hasSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">containsExactly</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">91</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">176</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">23</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">48</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">73</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It can also be applied to a class, in which case it reports the execution times of each test as if it were applied to each method individually:</p>
+<p>By default, the argument converter uses big endian order.
+This can be configured in the annotation using <code>order</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Stopwatch</span>
-<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TestCases</span> <span style="color: #f8f8f2">{</span>
-
-    <span style="color: #a6e22e">@Test</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_1</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #75715e">// execution time will be reported</span>
-    <span style="color: #f8f8f2">}</span>
-
-    <span style="color: #a6e22e">@Test</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test_s</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #75715e">// execution time will be reported</span>
-    <span style="color: #f8f8f2">}</span>
-
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(ints</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #ae81ff">1025</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@NumberToByteArrayConversion</span><span style="color: #f8f8f2">(order</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">NumberToByteArrayConversion.</span><span style="color: #a6e22e">ByteOrder</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">LITTLE_ENDIAN</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">byte</span><span style="color: #f92672">[]</span> <span style="color: #f8f8f2">bytes)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">assertThat(bytes).</span><span style="color: #a6e22e">hasSize</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">containsExactly</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It can also be applied to a class and a method therein but since a class-level annotation already works as if each method was annotated, the method-level annotations would be redundant.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="output">Output</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This is how IntelliJ displays a report entry (in the Run/Debug panel):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>timestamp = 2022-05-26T12:16:14.021646, StopwatchExtension = Execution of 'test()' took [11] ms.</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Other tools may or may not print report entries.</p>
-</div>
-<div class="paragraph">
-<p>The most reliable way to gather entries is to create a <a href="https://junit.org/junit5/docs/current/user-guide/#launcher-api-listeners-custom"><code>TestExecutionListener</code></a> and register it with the launcher.
-<a href="https://junit.org/junit5/docs/current/api/org.junit.platform.engine/org/junit/platform/engine/reporting/ReportEntry.html">Report entries</a> from the stopwatch extension can be identified by checking their <a href="https://junit.org/junit5/docs/current/api/org.junit.platform.engine/org/junit/platform/engine/reporting/ReportEntry.html#getKeyValuePairs()">key-value pairs</a> - at least one key will start with the string <code>"StopwatchExtension"</code>.</p>
+<p>The argument converter will support <code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>double</code> and <code>float</code>.
+It does not support <code>String</code>.</p>
 </div>
 </div>
 </div>
@@ -350,7 +331,7 @@ How that information is displayed depends on the tool used to run the tests and 
 <h2 id="thread-safety">Thread-Safety</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This extension is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
+<p>This argument converter is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
 </div>
 </div>
 </div>
@@ -371,11 +352,11 @@ How that information is displayed depends on the tool used to run the tests and 
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Measuring+Test+Run+Time%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fstopwatch%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Convert+Number+Argument+to+Byte+Array%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fbyte-array-converter%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fstopwatch%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fbyte-array-converter%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fstopwatch%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fbyte-array-converter%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 

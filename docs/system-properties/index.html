@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Clearing or Setting System Properties - JUnit Pioneer</title>
-<meta name="description" content="The JUnit 5 (Jupiter) extensions @ClearSystemProperty/@SetSystemProperty clear/set the values of system properties for the duration of a test">
+<!-- begin _includes/seo.html --><title>Clear, Set, and Restore System Properties - JUnit Pioneer</title>
+<meta name="description" content="The JUnit 5 (Jupiter) extensions @ClearSystemProperty, @SetSystemProperty and @RestoreSystemProperties clear/set/restore the values of system properties for the duration of a test, and/or restore them after">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Clearing or Setting System Properties">
+<meta property="og:title" content="Clear, Set, and Restore System Properties">
 <meta property="og:url" content="https://junit-pioneer.org/docs/system-properties/">
 
 
-  <meta property="og:description" content="The JUnit 5 (Jupiter) extensions @ClearSystemProperty/@SetSystemProperty clear/set the values of system properties for the duration of a test">
+  <meta property="og:description" content="The JUnit 5 (Jupiter) extensions @ClearSystemProperty, @SetSystemProperty and @RestoreSystemProperties clear/set/restore the values of system properties for the duration of a test, and/or restore them after">
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-04-16T10:51:25+00:00">
+  <meta property="article:published_time" content="2023-09-11T21:01:55+00:00">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Clearing or Setting System Properties
+          Clear, Set, and Restore System Properties
 
         
       </h1>
@@ -219,9 +219,11 @@
           
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
-            <li class="active"><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
+            <li class="active"><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
           
-            <li><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></li>
+            <li><a href="/docs/environment-variables/">Clear, Set, and Restore Environment Variables</a></li>
+          
+            <li><a href="/docs/byte-array-converter/">Convert Number Argument to Byte Array</a></li>
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
@@ -251,6 +253,8 @@
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
           
+            <li><a href="/docs/simple-arguments-aggregator/">Simple Arguments Aggregator</a></li>
+          
             <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
         </ul>
@@ -267,8 +271,8 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Clearing or Setting System Properties">
-    <meta itemprop="description" content="The @ClearSystemProperty and @SetSystemProperty annotations can be used to clear and set, respectively, the values of system properties for a test execution.Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers.After the annotated method has been executed, the properties mentioned in the annotation will be restored to their original value or the value of the higher-level container, or will be cleared if they didn&#8217;t have one before.Other system properties that are changed during the test, are not restored.">
+    <meta itemprop="headline" content="Clear, Set, and Restore System Properties">
+    <meta itemprop="description" content="@ClearSystemProperty and @SetSystemPropertyThe @ClearSystemProperty and @SetSystemProperty annotations can be used to clear and set, respectively, the values of system properties for a test execution.Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers.After the annotated method has been executed, the properties mentioned in the annotation will be restored to their original value or the value of the higher-level container, or will be cleared if they didn&#8217;t have one before.Other system properties that are changed during the test, are not restored (unless the @RestoreSystemProperties is used).">
     
     
 
@@ -277,11 +281,14 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="paragraph">
+        <div class="sect1">
+<h2 id="clearsystemproperty-and-setsystemproperty"><code>@ClearSystemProperty</code> and <code>@SetSystemProperty</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>The <code>@ClearSystemProperty</code> and <code>@SetSystemProperty</code> annotations can be used to clear and set, respectively, the values of system properties for a test execution.
 Both annotations work on the test method and class level, are repeatable, combinable, and inherited from higher-level containers.
 After the annotated method has been executed, the properties mentioned in the annotation will be restored to their original value or the value of the higher-level container, or will be cleared if they didn&#8217;t have one before.
-Other system properties that are changed during the test, are <strong>not</strong> restored.</p>
+Other system properties that are changed during the test, are <strong>not</strong> restored (unless the <code>@RestoreSystemProperties</code> is used).</p>
 </div>
 <div class="paragraph">
 <p>For example, clearing a system property for a test execution can be done as follows:</p>
@@ -357,18 +364,146 @@ Other system properties that are changed during the test, are <strong>not</stron
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="restoresystemproperties"><code>@RestoreSystemProperties</code></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Sometimes, you might also need to set a system property to a value that is not a constant expression, which is required for annotation values.
-In this case, you can still leverage the restore mechanism:</p>
+<p><code>@RestoreSystemProperties</code> can be used to restore changes to system properties made directly in code.
+While <code>@ClearSystemProperty</code> and <code>@SetSystemProperty</code> set or clear specific properties and values, they don&#8217;t allow property values to be calculated or parameterized, thus there are times you may want to directly set properties in your test code.
+<code>@RestoreSystemProperties</code> can be placed on test methods or test classes and will completely restore all system properties to their original state after a test or test class is complete.</p>
+</div>
+<div class="paragraph">
+<p>In this example, <code>@RestoreSystemProperties</code> is used on a test method, ensuring any changes made in that method are restored:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
 <span style="color: #a6e22e">@ValueSource</span><span style="color: #f8f8f2">(strings</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #e6db74">&quot;foo&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;bar&quot;</span> <span style="color: #f8f8f2">})</span>
-<span style="color: #a6e22e">@ClearSystemProperty</span><span style="color: #f8f8f2">(key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@RestoreSystemProperties</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">parameterizedTest</span><span style="color: #f8f8f2">(String</span> <span style="color: #f8f8f2">value)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f8f8f2">System.</span><span style="color: #a6e22e">setProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;some property&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">value);</span>
+    <span style="color: #f8f8f2">System.</span><span style="color: #a6e22e">setProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;some parameterized property&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">value);</span>
+    <span style="color: #f8f8f2">System.</span><span style="color: #a6e22e">setProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;some other dynamic property&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;my code calculates somehow&quot;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>@RestoreSystemProperties</code> is used on a test class, any system properties changes made during the entire lifecycle of the test class, including test methods, <code>@BeforeAll</code>, <code>@BeforeEach</code> and 'after' methods, are restored after the test class' lifecycle is complete.
+In addition, the annotation is inherited by each test method just as if each one was annotated with <code>@RestoreSystemProperties</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, both test methods see the system property changes made in <code>@BeforeAll</code> and <code>@BeforeEach</code>, however, the test methods are isolated from each other (<code>isolatedTest2</code> does not 'see' changes made in <code>isolatedTest1</code>).
+As shown in the second example below, the class-level <code>@RestoreSystemProperties</code> ensures that system property changes made within the annotated class are completely restored after the class&#8217;s lifecycle, ensuring that changes are not visible to <code>SomeOtherTestClass</code>.
+Note that <code>SomeOtherTestClass</code> uses the <code>@ReadsSystemProperty</code> annotation: This ensures that JUnit does not schedule the class to run during any test known to modify system properties (see <a href="#thread-safety">Thread-Safety</a>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RestoreSystemProperties</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MySystemPropertyRestoreTest</span> <span style="color: #f8f8f2">{</span>
+
+    <span style="color: #a6e22e">@BeforeAll</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">beforeAll</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">System.</span><span style="color: #a6e22e">setProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;A value&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #a6e22e">@BeforeEach</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">beforeEach</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">System.</span><span style="color: #a6e22e">setProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;B value&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">isolatedTest1</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">System.</span><span style="color: #a6e22e">setProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;C value&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">isolatedTest2</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;A value&quot;</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;B value&quot;</span><span style="color: #f8f8f2">);</span>
+
+        <span style="color: #75715e">// Class-level @RestoreSystemProperties restores &quot;C&quot; to original state</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some other test class, running later:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ReadsSystemProperty</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">SomeOtherTestClass</span> <span style="color: #f8f8f2">{</span>
+
+    <span style="color: #a6e22e">@Test</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">isolatedTest</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;A&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;B&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f8f8f2">();</span>
+        <span style="color: #f8f8f2">assertThat(System.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;C&quot;</span><span style="color: #f8f8f2">)).</span><span style="color: #a6e22e">isNull</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-clearsystemproperty-setsystemproperty-and-restoresystemproperties-together">Using <code>@ClearSystemProperty</code>, <code>@SetSystemProperty</code>, and <code>@RestoreSystemProperties</code> together</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All three annotations can be combined, which could be used when some system properties are parameterized (i.e. need to be set in code) and others are not.
+For instance, imagine testing an image generation utility that takes configuration from system properties.
+Basic configuration can be specified using <code>Set</code> and <code>Clear</code> and the image size parameterized:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@IntRangeSource</span><span style="color: #f8f8f2">(from</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">to</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10000</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">step</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">500</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@RestoreSystemProperties</span>
+<span style="color: #a6e22e">@SetSystemProperty</span><span style="color: #f8f8f2">(key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;DISABLE_CACHE&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">value</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;TRUE&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@ClearSystemProperty</span><span style="color: #f8f8f2">(key</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;COPYWRITE_OVERLAY_TEXT&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">imageGenerationTest</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">imageSize)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">System.</span><span style="color: #a6e22e">setProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;IMAGE_SIZE&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">String.</span><span style="color: #a6e22e">valueOf</span><span style="color: #f8f8f2">(imageSize));</span> <span style="color: #75715e">// Requires restore</span>
+
+    <span style="color: #75715e">// Test your image generation utility with the current system properties</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using <code>@RestoreSystemProperties</code> is not necessary to restore system properties modified via <code>@ClearSystemProperty</code> or <code>@SetSystemProperty</code> - they each automatically restore the referenced properties.
+'Restore', is only needed if system properties are modified in some way <em>other than</em> Clear and Set during a test.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="restoresystemproperties-limitations"><code>@RestoreSystemProperties</code> Limitations</h3>
+<div class="paragraph">
+<p>The system <code>Properties</code> object is normally just a hashmap of strings, however, it is technically possible to store non-string values and create <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Properties.html#%3Cinit%3E(java.util.Properties)">nested <code>Properties</code> with inherited default values</a>.
+<code>@RestoreSystemProperties</code> restores the original <code>Properties</code> object with all of its potential richness <em>after</em> the annotated scope is complete.
+However, for use during the test <em>within</em> the test scope it provides a cloned <code>Properties</code> object with these limitations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Properties with non-string values are removed</p>
+</li>
+<li>
+<p>Nested <code>Properties</code> are flattened into a non-nested instance that has the same effective values, but not necessarily the same structure</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -376,7 +511,7 @@ In this case, you can still leverage the restore mechanism:</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Since system properties are global state, reading and writing them during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a> can lead to unpredictable results and flaky tests.
-The system property extension is prepared for that and tests annotated with <code>@ClearSystemProperty</code> or <code>@SetSystemProperty</code> will never execute in parallel (thanks to <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/parallel/ResourceLock.html">resource locks</a>) to guarantee correct test results.</p>
+The system property extension is prepared for that and tests annotated with <code>@ClearSystemProperty</code>, <code>@SetSystemProperty</code>, or <code>@RestoreSystemProperties</code> will never execute in parallel (thanks to <a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/parallel/ResourceLock.html">resource locks</a>) to guarantee correct test results.</p>
 </div>
 <div class="paragraph">
 <p>However, this does not cover all possible cases.
@@ -389,12 +524,12 @@ Tests that cover code that reads or writes system properties need to be annotate
 <p><code>@ReadsSystemProperty</code></p>
 </li>
 <li>
-<p><code>@WritesSystemProperty</code></p>
+<p><code>@WritesSystemProperty</code> (though consider using <code>@RestoreSystemProperties</code> instead)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Tests annotated in this way will never execute in parallel with tests annotated with <code>@ClearSystemProperty</code> or <code>@SetSystemProperty</code>.</p>
+<p>Tests annotated in this way will never execute in parallel with tests annotated with <code>@ClearSystemProperty</code>, <code>@SetSystemProperty</code>, or <code>@RestoreSystemProperties</code>.</p>
 </div>
 </div>
 </div>
@@ -415,7 +550,7 @@ Tests that cover code that reads or writes system properties need to be annotate
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Clearing+or+Setting+System+Properties%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fsystem-properties%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Clear%2C+Set%2C+and+Restore+System+Properties%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fsystem-properties%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Fsystem-properties%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 

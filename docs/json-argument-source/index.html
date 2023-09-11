@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-04-16T10:51:25+00:00">
+  <meta property="article:published_time" content="2023-09-11T21:01:55+00:00">
 
 
 
@@ -219,9 +219,11 @@
           
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
-            <li><a href="/docs/system-properties/">Clearing or Setting System Properties</a></li>
+            <li><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
           
-            <li><a href="/docs/environment-variables/">Clearing or Setting Environment Variables</a></li>
+            <li><a href="/docs/environment-variables/">Clear, Set, and Restore Environment Variables</a></li>
+          
+            <li><a href="/docs/byte-array-converter/">Convert Number Argument to Byte Array</a></li>
           
             <li><a href="/docs/default-locale-timezone/">Default Locale and TimeZone</a></li>
           
@@ -250,6 +252,8 @@
             <li><a href="/docs/retrying-test/">Retrying Failing Tests</a></li>
           
             <li><a href="/docs/standard-input-output/">Standard Input and Output</a></li>
+          
+            <li><a href="/docs/simple-arguments-aggregator/">Simple Arguments Aggregator</a></li>
           
             <li><a href="/docs/vintage-test/">Vintage @Test</a></li>
           
@@ -617,6 +621,88 @@ The recommended one is to use <a href="https://docs.gradle.org/current/userguide
     <span style="color: #f92672">&lt;scope&gt;</span>test<span style="color: #f92672">&lt;/scope&gt;</span>
 <span style="color: #f92672">&lt;/dependency&gt;</span></code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="custom-objectmapper-for-jackson">Custom <code>ObjectMapper</code> for Jackson</h3>
+<div class="paragraph">
+<p>By default, Jackson does not support complex fields (e.g.: <code>LocalDate</code>).
+It uses an extension/module system for additional capabilities.
+You have to register these modules on the <code>ObjectMapper</code> instance you want to use.</p>
+</div>
+<div class="paragraph">
+<p>Pioneer provides the service interface <code>ObjectMapperProvider</code> for you to be able to provide your own <code>ObjectMapper</code> instance (<em>and register modules on it</em>).
+This interface has three methods:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>get()</code> for supplying an <code>ObjectMapper</code>.</p>
+</li>
+<li>
+<p><code>getLenient()</code> this is a <code>default</code> method that copies the value from <code>get</code> and enables some convenience features.
+The <code>ObjectMapper</code> provided by this method is the one Pioneer uses to parse your JSON.
+If you use your own custom <code>ObjectMapper</code> implementation, you might have to override this method.</p>
+</li>
+<li>
+<p><code>id()</code> to identify the <code>ObjectMapperProvider</code>.
+This has to be a unique <code>String</code>.
+The <code>ObjectMapperProvider</code> used by Pioneer has the id <strong>"default"</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pioneer uses <code>ServiceLoader</code> to load in your implementation of <code>ObjectMapperProvider</code>.
+You can tell Pioneer to use your implementation in one of two ways.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>By using <code>@UseObjectMapper</code> on your test.
+This will make that single test use the <code>ObjectMapper</code> provided by the <code>ObjectMapperProvider</code> with the id specified.
+You can also add <code>@UseObjectMapper</code> to your own annotation as meta-annotation.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Annotating your test</div>
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@UseObjectMapper</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;custom&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@JsonClasspathSource</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;jedis.json&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">singleJediProperty</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@Property</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">jediName)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #75715e">// YOUR TEST CODE HERE</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Creating your own annotation</div>
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Retention</span><span style="color: #f8f8f2">(RetentionPolicy.</span><span style="color: #a6e22e">RUNTIME</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@Target</span><span style="color: #f8f8f2">(ElementType.</span><span style="color: #a6e22e">METHOD</span><span style="color: #f8f8f2">)</span>
+<span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@UseObjectMapper</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;custom&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">public</span> <span style="color: #a6e22e">@interface</span> <span style="color: #f8f8f2">JsonTest</span> <span style="color: #f8f8f2">{</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>By supplying the id of an <code>ObjectMapperProvider</code> implementation as a <a href="https://junit.org/junit5/docs/current/user-guide/#running-tests-config-params">configuration parameter</a>.
+The configuration parameter is <code>org.junitpioneer.jupiter.json.objectmapper</code>.
+All tests will use the <code>ObjectMapper</code> provided by the <code>ObjectMapperProvider</code> with the id specified.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Configuration parameter example</div>
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code><span></span>org.junitpioneer.jupiter.json.objectmapper=custom</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If both the configuration parameter and the <code>@UseObjectMapper</code> annotation is present, the annotation value will be used.</p>
 </div>
 </div>
 <div class="sect2">
