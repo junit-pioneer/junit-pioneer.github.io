@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-09-11T21:01:55+00:00">
+  <meta property="article:published_time" content="2023-09-13T17:08:35+00:00">
 
 
 
@@ -290,16 +290,12 @@
 <div class="paragraph">
 <p><code>@Aggregate</code> can be applied to a parameter in a <code>@ParameterizedTest</code>.</p>
 </div>
-<div class="exampleblock">
+<div class="listingblock">
 <div class="content">
-<div class="literalblock">
-<div class="content">
-<pre>@ParameterizedTest
-@CsvSource({ "Jane, Doe, F, 1990-05-20", "John, Doe, M, 1990-10-22" })
-void test(@Aggregate Person person) {
-}</pre>
-</div>
-</div>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@ParameterizedTest</span>
+<span style="color: #a6e22e">@CsvSource</span><span style="color: #f8f8f2">({</span> <span style="color: #e6db74">&quot;Jane, Doe, F, 1990-05-20&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;John, Doe, M, 1990-10-22&quot;</span> <span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@Aggregate</span> <span style="color: #f8f8f2">Person</span> <span style="color: #f8f8f2">person)</span> <span style="color: #f8f8f2">{</span>
+<span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -327,16 +323,12 @@ void test(@Aggregate Person person) {
 <p>This last point has a few exceptions based on JUnit 5 support for <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-argument-conversion-implicit">implicit type conversions</a>.
 In the example above, if we have the following fields in the <code>Person</code> class:</p>
 </div>
-<div class="exampleblock">
+<div class="listingblock">
 <div class="content">
-<div class="literalblock">
-<div class="content">
-<pre>private final String firstName;
-private final String lastName;
-private final Gender gender;
-private final LocalDate birthday;</pre>
-</div>
-</div>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">firstName;</span>
+<span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">String</span> <span style="color: #f8f8f2">lastName;</span>
+<span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">Gender</span> <span style="color: #f8f8f2">gender;</span>
+<span style="color: #66d9ef">private</span> <span style="color: #66d9ef">final</span> <span style="color: #f8f8f2">LocalDate</span> <span style="color: #f8f8f2">birthday;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

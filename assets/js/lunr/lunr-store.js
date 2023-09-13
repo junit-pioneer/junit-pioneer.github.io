@@ -96,7 +96,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Simple Arguments Aggregator",
-        "excerpt":"Annotating a test parameter with @Aggregate aggregates all the supplied arguments into a single object. Usage @Aggregate can be applied to a parameter in a @ParameterizedTest. @ParameterizedTest @CsvSource({ \"Jane, Doe, F, 1990-05-20\", \"John, Doe, M, 1990-10-22\" }) void test(@Aggregate Person person) { } Limitations The extension is meant to be...","categories": [],
+        "excerpt":"Annotating a test parameter with @Aggregate aggregates all the supplied arguments into a single object. Usage @Aggregate can be applied to a parameter in a @ParameterizedTest. @ParameterizedTest @CsvSource({ &quot;Jane, Doe, F, 1990-05-20&quot;, &quot;John, Doe, M, 1990-10-22&quot; }) void test(@Aggregate Person person) { } Limitations The extension is meant to be...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/simple-arguments-aggregator/",
         "teaser": null
