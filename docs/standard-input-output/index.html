@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-10-07T17:37:10+00:00">
+  <meta property="article:published_time" content="2023-11-16T20:16:19+00:00">
 
 
 
@@ -294,7 +294,8 @@ It redirects the original input/output streams to make predefined lines readable
 <td class="content">
 <div class="paragraph">
 <p>Depending on the configuration, the extension redirects the standard input and/or output, in which case nothing gets forwarded to the original <code>System.in</code> and/or <code>System.out</code> / <code>System.err</code>.
-This becomes particularly important when running tests in parallel, where other tests may interfere with tests annotated with <code>@StdIo</code>.</p>
+This becomes particularly important when running tests in parallel, where other tests may interfere with tests annotated with <code>@StdIo</code>.
+More on that in the section <em>Thread-Safety</em>.</p>
 </div>
 </td>
 </tr>
@@ -309,18 +310,110 @@ This becomes particularly important when running tests in parallel, where other 
 <div class="ulist">
 <ul>
 <li>
-<p>The annotation <code>@StdIo</code>. It allows defining input that is read from <code>System.in</code> without having to wait for user input.</p>
+<p>The annotation <code>@StdIo</code> enables the extension and optionally defines input that is read from <code>System.in</code> without having to wait for user input.</p>
 </li>
 <li>
-<p>Parameters <code>StdIn</code>, <code>StdOut</code>, and <code>StdErr</code>, which you can have injected into your test.
-Their <code>capturedLines()</code> methods allow you to access lines read from <code>System.in</code> or written to <code>System.out</code> or <code>System.err</code>, so you can verify them with common assertions.</p>
+<p>The parameters <code>StdIn</code>, <code>StdOut</code>, and <code>StdErr</code> can be injected into your test.
+Their <code>capturedString()</code> and <code>capturedLines()</code> methods allow you to access the strings read from <code>System.in</code> or written to <code>System.out</code> or <code>System.err</code>, so you can verify them with common assertions.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, after calling <code>System.out.println("Hello")</code> and <code>System.out.println("World")</code>,  the <code>StdOut::capturedLines</code> method would return an array ["Hello", "World"].
-With <code>System.out.print("Hello")</code> and <code>System.out.println("World")</code> (note that the first method does not print a line break), it would return <code>["HelloWorld"]</code>.</p>
+<p>For example, after calling <code>System.out.println("Hello")</code> and <code>System.out.println("World")</code>, <code>StdOut::capturedString</code> would return <code>"Hello%nWorld%n"</code>.
+With <code>System.out.print("Hello")</code> and <code>System.out.println("World")</code> (note that the first method does not print a line break), the method would return <code>"HelloWorld%n"</code>.
+(In both cases, <code>%n</code> corresponds to <code>System.getProperty("line.separator")</code>.)</p>
 </div>
+<div class="sect2">
+<h3 id="captured-strings-and-lines">Captured strings and lines</h3>
+<div class="paragraph">
+<p>Since the strings passed to <code>@StdIo</code> or <code>System.out/err.print/println</code> don&#8217;t need to end with a line separator, the question arises how they are separated for the purpose of <code>capturedString()</code>, i.e. how does the method&#8217;s return distinguish between <code>println("Hello"); println("World");</code> and <code>print("Hello"); println("World");</code>?</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This extension operates under the basic assumption that every string passed to <code>@StdIo</code>, <code>System.out.println</code>, or <code>System.err.println</code> implicitly ends with a line separator and hence adds it explicitly to the string returned by <code>capturedString()</code>.
+This is not the case for strings passed to <code>System.out.print</code> and <code>System.err.print</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The classes <code>StdIn</code>, <code>StdOut</code>, and <code>StdErr</code> also offer a method <code>String[] capturedLines()</code>, which divides the captured string on the line separator and includes leading, inner, and trailing empty lines but does not include the potential empty string that comes after a trailing line separator.
+(The exact algorithm is based on but behaves differently from <code>String::split</code>.)</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The combination of these two approaches leads to the unfortunate situation that <code>capturedLines()</code> can&#8217;t be used to distinguish the cases where the last line was created by a <code>print</code> or a <code>println</code> (see the first two lines in the table below) because regardless of whether the string ends with a line separator or not, there will be no trailing empty string in the array.
+Use <code>capturedString()</code> to distinguish these cases.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here are some examples to illustrate this behavior (<code>%n</code> corresponds to <code>System.getProperty("line.separator")</code>):</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">prints</th>
+<th class="tableblock halign-left valign-top"><code>capturedString()</code></th>
+<th class="tableblock halign-left valign-top"><code>capturedLines()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>println("A");</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"A%n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["A"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>print("A");</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"A"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["A"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>print("A");</code> <code>println("B");</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"AB%n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["AB"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>println("A");</code> <code>println("B");</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"A%nB%n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["A", "B"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>println("A");</code> <code>println();</code> <code>println("B");</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"A%n%nB%n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["A", "", "B"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>println();</code> <code>println("A");</code> <code>println();</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"%nA%n%n"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["", "A", ""]</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="valid-configurations">Valid configurations</h3>
 <div class="paragraph">
 <p>Here are the valid combinations of the annotation (with or without values for the read lines) and parameters:</p>
 </div>
@@ -419,6 +512,7 @@ Omitted from these examples is <code>StdErr</code> which behaves exactly the sam
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="thread-safety">Thread-Safety</h2>
 <div class="sectionbody">
@@ -428,8 +522,8 @@ The <code>@StdIo</code> extension is prepared for that and tests annotated with 
 </div>
 <div class="paragraph">
 <p>However, this does not cover all possible cases.
-Tested code that reads <code>System.in</code> or <code>System.out</code> or calls <code>System.setIn()</code> or <code>System.setOut()</code> <em>independently</em> of the extensions can still run in parallel to them and may thus behave erratically when, for example, it unexpectedly uses <code>System.out</code> that was set by the extension in another thread.
-Tests that cover code that reads or writes <code>System.in</code> or <code>System.out</code> need to be annotated with the respective annotation:</p>
+Tested code that reads <code>System.in</code> or <code>System.out</code> or calls <code>System.setIn()</code> or <code>System.setOut()</code> <em>independently</em> of the extensions can still run in parallel to them and may thus behave erratically if, for example, it unexpectedly uses <code>System.out</code> that was set by the extension in another thread.
+Tests that cover code that reads or writes <code>System.in</code>, <code>System.out</code>, or <code>System.err</code> need to be annotated with the respective annotation:</p>
 </div>
 <div class="ulist">
 <ul>
