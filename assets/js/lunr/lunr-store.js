@@ -59,6 +59,12 @@ var store = [{
         "url": "https://junit-pioneer.org/docs/expected-to-fail-tests/",
         "teaser": null
       },{
+        "title": "Fail test after certain date",
+        "excerpt":"It&#8217;s sometimes useful to fail a test after a certain date. One can imagine many reasons for doing so, maybe a remote dependency of the test is not licenced anymore. The @FailAt annotation is perfectly suited for such cases. The test will fail when the given date is reached. Warning...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/fail-at/",
+        "teaser": null
+      },{
         "title": "Issue Information",
         "excerpt":"The main reason developers write tests is to ensure the functionality of a requirement or to avoid technical problems. The @Issue annotation allows marking tests with a String, referencing a related issue (like a requirement, or a bugfix) of an issue-tracker (like Jira or Redmine). Information about the tests, e.g....","categories": [],
         "tags": [],
@@ -75,6 +81,12 @@ var store = [{
         "excerpt":"The various range sources can be used to provide a series of numeric arguments with fixed differences between them (i.e., arithmetic progressions) to a @ParameterizedTest. There is a range source for every corresponding numeric primitive type: ByteRangeSource, ShortRangeSource, IntRangeSource, LongRangeSource, FloatRangeSource, and DoubleRangeSource. Basic Use In the basic use case,...","categories": [],
         "tags": [],
         "url": "https://junit-pioneer.org/docs/range-sources/",
+        "teaser": null
+      },{
+        "title": "ReplaceCamelCaseAndUnderscoreAndNumber",
+        "excerpt":"The aim is to simplify unit test display names for method names combining CamelCase, underscore and numbers. Instead of using the method annotation org.junit.jupiter.api.DisplayName, we can just use the class annotation org.junit.jupiter.api.DisplayNameGeneration and only use the method annotation if needed. Applying @DisplayNameGeneration(ReplaceCamelCaseAndUnderscoreAndNumber.class) to the test class will provide human-readable descriptions...","categories": [],
+        "tags": [],
+        "url": "https://junit-pioneer.org/docs/replace-camelcase-and-underscore-and-number/",
         "teaser": null
       },{
         "title": "Publishing Report Entries",

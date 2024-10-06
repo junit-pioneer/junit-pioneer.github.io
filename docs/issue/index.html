@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-11-16T20:16:19+00:00">
+  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
 
 
 
@@ -217,6 +217,8 @@
         
         <ul>
           
+            <li><a href="/docs/replace-camelcase-and-underscore-and-number/">DisplayName generator to replace CamelCase, underscore and numbers</a></li>
+          
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
@@ -234,6 +236,8 @@
             <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
+          
+            <li><a href="/docs/fail-at/">Fail Test at a Date</a></li>
           
             <li><a href="/docs/resources/">Injecting Resources</a></li>
           
@@ -376,6 +380,39 @@ For further information about that, see <a href="https://docs.oracle.com/javase/
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>The exact API has two classes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>IssueTestSuite</code>, which represents a single issue and all related tests.</p>
+</li>
+<li>
+<p><code>IssueTestCase</code>, which represents a single test.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>IssueTestCase</code> contains:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the result of the test</p>
+</li>
+<li>
+<p>the unique identifier of the test</p>
+</li>
+<li>
+<p>the time it took to execute the test (optionally)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The time information is only available if the test is annotated with <code>@Stopwatch</code>.
+For more information, see the <a href="/docs/stopwatch.adoc">@Stopwatch documentation</a>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -461,7 +498,7 @@ For further information about that, see <a href="https://docs.oracle.com/javase/
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

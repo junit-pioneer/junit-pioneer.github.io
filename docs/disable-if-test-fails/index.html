@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-11-16T20:16:19+00:00">
+  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
 
 
 
@@ -217,6 +217,8 @@
         
         <ul>
           
+            <li><a href="/docs/replace-camelcase-and-underscore-and-number/">DisplayName generator to replace CamelCase, underscore and numbers</a></li>
+          
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
@@ -234,6 +236,8 @@
             <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
+          
+            <li><a href="/docs/fail-at/">Fail Test at a Date</a></li>
           
             <li><a href="/docs/resources/">Injecting Resources</a></li>
           
@@ -308,7 +312,7 @@ By applying <code>@DisableIfTestFails</code> to the test class, all tests after 
     <span style="color: #a6e22e">@Test</span>
     <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">fail();</span>
+        <span style="color: #f8f8f2">fail(</span><span style="color: #e6db74">&quot;fails&quot;</span><span style="color: #f8f8f2">);</span>
     <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
@@ -350,7 +354,7 @@ If instead, failed assertions are acceptable and only other test failures should
     <span style="color: #a6e22e">@Order</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
     <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test2</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #75715e">// fails test with assertion</span>
-        <span style="color: #f8f8f2">assertTrue(</span><span style="color: #66d9ef">false</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">assertThat(</span><span style="color: #66d9ef">false</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">isTrue</span><span style="color: #f8f8f2">();</span>
     <span style="color: #f8f8f2">}</span>
 
     <span style="color: #a6e22e">@Test</span>
@@ -535,7 +539,7 @@ That means if&#8230;&#8203;</p>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

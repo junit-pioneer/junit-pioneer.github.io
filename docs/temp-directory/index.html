@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-11-16T20:16:19+00:00">
+  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
 
 
 
@@ -217,6 +217,8 @@
         
         <ul>
           
+            <li><a href="/docs/replace-camelcase-and-underscore-and-number/">DisplayName generator to replace CamelCase, underscore and numbers</a></li>
+          
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
@@ -234,6 +236,8 @@
             <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
+          
+            <li><a href="/docs/fail-at/">Fail Test at a Date</a></li>
           
             <li><a href="/docs/resources/">Injecting Resources</a></li>
           
@@ -318,7 +322,7 @@ JUnit Pioneer versions before 1.0 contain <a href="/docs/temp-directory-removed"
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">dirTest1</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@Dir</span> <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// Test code goes here, e.g.,</span>
-    <span style="color: #f8f8f2">assertTrue(Files.</span><span style="color: #a6e22e">exists</span><span style="color: #f8f8f2">(tempDir));</span>
+    <span style="color: #f8f8f2">assertThat(tempDir).</span><span style="color: #a6e22e">exists</span><span style="color: #f8f8f2">();</span>
 <span style="color: #f8f8f2">}</span>
 
 <span style="color: #a6e22e">@Test</span>
@@ -335,7 +339,7 @@ JUnit Pioneer versions before 1.0 contain <a href="/docs/temp-directory-removed"
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test1</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@New</span><span style="color: #f8f8f2">(TemporaryDirectory.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// Test code goes here, e.g.,</span>
-    <span style="color: #f8f8f2">assertTrue(Files.</span><span style="color: #a6e22e">exists</span><span style="color: #f8f8f2">(tempDir));</span>
+    <span style="color: #f8f8f2">assertThat(tempDir).</span><span style="color: #a6e22e">exists</span><span style="color: #f8f8f2">();</span>
 <span style="color: #f8f8f2">}</span>
 
 <span style="color: #a6e22e">@Test</span>
@@ -360,7 +364,7 @@ JUnit Pioneer versions before 1.0 contain <a href="/docs/temp-directory-removed"
         <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// Test code goes here, e.g.,</span>
     <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">rootTempDir</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Paths.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(System.</span><span style="color: #a6e22e">getProperty</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;java.io.tmpdir&quot;</span><span style="color: #f8f8f2">));</span>
-    <span style="color: #f8f8f2">assertTrue(rootTempDir.</span><span style="color: #a6e22e">relativize</span><span style="color: #f8f8f2">(tempDir).</span><span style="color: #a6e22e">toString</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">startsWith</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;customPrefix&quot;</span><span style="color: #f8f8f2">));</span>
+    <span style="color: #f8f8f2">assertThat(rootTempDir.</span><span style="color: #a6e22e">relativize</span><span style="color: #f8f8f2">(tempDir)).</span><span style="color: #a6e22e">asString</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">startsWith</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;customPrefix&quot;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
@@ -394,7 +398,7 @@ Follow <a href="https://github.com/junit-pioneer/junit-pioneer/issues/648">this 
         <span style="color: #a6e22e">@Shared</span><span style="color: #f8f8f2">(factory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TemporaryDirectory.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">name</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;sharedTempDir&quot;</span><span style="color: #f8f8f2">)</span>
         <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">sharedTempDir)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #75715e">// Test code goes here, e.g.,</span>
-    <span style="color: #f8f8f2">assertTrue(Files.</span><span style="color: #a6e22e">exists</span><span style="color: #f8f8f2">(sharedTempDir));</span>
+    <span style="color: #f8f8f2">assertThat(sharedTempDir).</span><span style="color: #a6e22e">exists</span><span style="color: #f8f8f2">();</span>
 <span style="color: #f8f8f2">}</span>
 
 <span style="color: #a6e22e">@Test</span>
@@ -513,7 +517,7 @@ Tests with <code>@Shared</code> temporary directories will be forced to run <str
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

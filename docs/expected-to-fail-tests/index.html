@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-11-16T20:16:19+00:00">
+  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
 
 
 
@@ -217,6 +217,8 @@
         
         <ul>
           
+            <li><a href="/docs/replace-camelcase-and-underscore-and-number/">DisplayName generator to replace CamelCase, underscore and numbers</a></li>
+          
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
@@ -234,6 +236,8 @@
             <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
             <li class="active"><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
+          
+            <li><a href="/docs/fail-at/">Fail Test at a Date</a></li>
           
             <li><a href="/docs/resources/">Injecting Resources</a></li>
           
@@ -334,7 +338,7 @@ Such test methods should use <a href="https://junit.org/junit5/docs/current/api/
 <span style="color: #a6e22e">@ExpectedToFail</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">brokenMethod();</span>
-    <span style="color: #f8f8f2">assertEquals(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">actual);</span>
+    <span style="color: #f8f8f2">assertThat(actual).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
@@ -351,8 +355,41 @@ Should <code>brokenMethod()</code> start returning the correct value, the test i
 <span style="color: #a6e22e">@ExpectedToFail</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Implementation bug in brokenMethod()&quot;</span><span style="color: #f8f8f2">)</span>
 <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">doSomething</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">brokenMethod();</span>
-    <span style="color: #f8f8f2">assertEquals(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">actual);</span>
+    <span style="color: #f8f8f2">assertThat(actual).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="only-abort-on-expected-exceptions">Only Abort on Expected Exceptions</h3>
+<div class="paragraph">
+<p>A test that is <code>@ExpectedToFail</code> will change its behavior by starting to actually fail, once the code under test behaves correctly.
+If the underlying failure changes, though, for example from an assertion error to an exception or from an <code>UnsupportedOperationException</code> of a formerly missing implementation to a runtime exception of buggy implementation, the <code>@ExpectedToFail</code>-test will keep passing.</p>
+</div>
+<div class="paragraph">
+<p>To better react to such changes, <code>@ExpectedToFail</code> has an attribute <code>withExceptions</code> that can be used to enumerate the exceptions which when thrown will result in an aborted (and thus passing) test.
+Any other exception thrown by the code under test will result in a failing test.</p>
+</div>
+<div class="paragraph">
+<p>In the following example a test case for <code>productionFeature()</code> has been implemented.
+While the test is fully implemented, the production code has been stubbed and throws an <code>UnsupportedOperationException</code> to indicate this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@ExpectedToFail</span><span style="color: #f8f8f2">(withExceptions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">UnsupportedOperationException.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testProductionFeature</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">actual</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">productionFeature();</span>
+    <span style="color: #f8f8f2">assertThat(actual).</span><span style="color: #a6e22e">isEqualTo</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #66d9ef">private</span> <span style="color: #66d9ef">int</span> <span style="color: #a6e22e">productionFeature</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">throw</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">UnsupportedOperationException(</span><span style="color: #e6db74">&quot;productionFeature() is not yet implemented&quot;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once <code>productionFeature()</code> is implemented, <code>@ExpectedToFail</code> will fail the test, as no <code>UnsupportedOperationException</code> is thrown anymore.
+By using <code>withExceptions</code> you can thus prevent "masking" a faulty implementation (e.g. when a value other rather than <code>10</code> is returned) with an aborted test (which would be the result when no <code>withExceptions</code> is set).</p>
 </div>
 </div>
 </div>
@@ -439,7 +476,7 @@ Should <code>brokenMethod()</code> start returning the correct value, the test i
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

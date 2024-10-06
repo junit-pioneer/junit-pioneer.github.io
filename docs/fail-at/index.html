@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Temporary Files and Directories (removed in 1.0) - JUnit Pioneer</title>
-<meta name="description" content="The JUnit 5 (Jupiter) extension @TempDir allows to inject temporary directories as arguments">
+<!-- begin _includes/seo.html --><title>Fail test after certain date - JUnit Pioneer</title>
+<meta name="description" content="The JUnit 5 (Jupiter) extension @FailAt fails a test after a certain date">
 
 
   <meta name="author" content="JUnit Pioneers">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="JUnit Pioneer">
-<meta property="og:title" content="Temporary Files and Directories (removed in 1.0)">
-<meta property="og:url" content="https://junit-pioneer.org/docs/temp-directory-removed/">
+<meta property="og:title" content="Fail test after certain date">
+<meta property="og:url" content="https://junit-pioneer.org/docs/fail-at/">
 
 
-  <meta property="og:description" content="The JUnit 5 (Jupiter) extension @TempDir allows to inject temporary directories as arguments">
+  <meta property="og:description" content="The JUnit 5 (Jupiter) extension @FailAt fails a test after a certain date">
 
 
 
@@ -44,7 +44,7 @@
   
 
 
-<link rel="canonical" href="https://junit-pioneer.org/docs/temp-directory-removed/">
+<link rel="canonical" href="https://junit-pioneer.org/docs/fail-at/">
 
 
 
@@ -172,7 +172,7 @@
       <h1 id="page-title" class="page__title" itemprop="headline"
         style="">
         
-          Temporary Files and Directories (removed in 1.0)
+          Fail test after certain date
 
         
       </h1>
@@ -237,7 +237,7 @@
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
           
-            <li><a href="/docs/fail-at/">Fail Test at a Date</a></li>
+            <li class="active"><a href="/docs/fail-at/">Fail Test at a Date</a></li>
           
             <li><a href="/docs/resources/">Injecting Resources</a></li>
           
@@ -275,8 +275,8 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Temporary Files and Directories (removed in 1.0)">
-    <meta itemprop="description" content="NoteJUnit Jupiter 5.4 introduced a built-in @TempDir extension.This extension was built before then, but its only advantage over the JUnit Jupiter extension is support for custom file systems.We felt this didn&#8217;t have enough value, so we removed this extension in JUnit Pioneer 1.0.">
+    <meta itemprop="headline" content="Fail test after certain date">
+    <meta itemprop="description" content="It&#8217;s sometimes useful to fail a test after a certain date.One can imagine many reasons for doing so, maybe a remote dependency of the test is not licenced anymore.">
     
     
 
@@ -285,86 +285,100 @@
 
       <section class="page__content" itemprop="text">
         
-        <div class="admonitionblock note">
+        <div class="paragraph">
+<p>It&#8217;s sometimes useful to fail a test after a certain date.
+One can imagine many reasons for doing so, maybe a remote dependency of the test is not licenced anymore.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@FailAt</code> annotation is perfectly suited for such cases.
+The test will fail when the given date is reached.</p>
+</div>
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Warning</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>JUnit Jupiter 5.4 introduced a <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-built-in-extensions-TempDirectory">built-in <code>@TempDir</code> extension</a>.
-This extension was built before then, but its only advantage over the JUnit Jupiter extension is support for custom file systems.
-We felt this didn&#8217;t have enough value, so we removed this extension in JUnit Pioneer 1.0.</p>
-</div>
-<div class="paragraph">
-<p>We&#8217;ve tackled this problem again, and introduced a <a href="/docs/temp-directory-removed">resource-based extension</a> in version 1.9.0.
-It allows temporary directories to be created that last longer than a single test method.
-Give it a try!</p>
+<p>This annotation allows the user to move an <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-assumptions">assumption</a> out of one or multiple test method&#8217;s code into the annotation.
+But this comes at a cost:
+Applying <code>@FailAt</code> can make the test suite non-reproducible.
+If a passing test is run again after the specified date, that build would fail.
+A report entry is issued for every test that does not fail until a certain date.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="sect1">
+<h2 id="usage">Usage</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The <code>TempDirectory</code> extension can be used to create and clean up a temporary directory for an individual test or all tests in a test class.
-To use it, simply register the extension and add a parameter of type <code>java.nio.file.Path</code> to your test or lifecycle method or constructor.</p>
-</div>
-<div class="paragraph">
-<p>For example, the following test registers the extension for a single test method, creates and writes a file to the temporary directory and checks its content.</p>
+<p>To mark a test to fail at a given date, add the <code>@FailAt</code> annotation like so:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
-<span style="color: #a6e22e">@ExtendWith</span><span style="color: #f8f8f2">(TempDirectory.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
-<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@TempDir</span> <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">file</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">tempDir.</span><span style="color: #a6e22e">resolve</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;test.txt&quot;</span><span style="color: #f8f8f2">);</span>
-    <span style="color: #f8f8f2">writeFile(file);</span>
-    <span style="color: #f8f8f2">assertExpectedFileContent(file);</span>
+<span style="color: #a6e22e">@FailAt</span><span style="color: #f8f8f2">(date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2025-01-01&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #75715e">// Test will fail as soon as 1st of January 2025 is reached.</span>
 <span style="color: #f8f8f2">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In addition to the default file system, the extension can be used with any <code>FileSystem</code> implementation, e.g. <a href="https://github.com/google/jimfs">Jimfs</a>.
-In order to use a custom file system, simply register the extension programmatically and pass a provider of a custom parent directory of type <code>Path</code>.
-The following example uses the Jimfs <code>FileSystem</code> and passes a custom <code>tmp</code> parent directory to the static factory method <code>TempDirectory::createInCustomDirectory</code>.</p>
+<p>The <code>date</code> parameter must be a string in the date format specified by <a href="https://en.m.wikipedia.org/wiki/ISO_8601">ISO 8601</a>, e.g. "1985-10-26".
+Invalid or unparsable date strings lead to an <code>ExtensionConfigurationException</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@FailAt</code> annotation may optionally be declared with a reason to document why the annotated test class or test method fails as soon as the date is reached:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #66d9ef">class</span> <span style="color: #a6e22e">MyTests</span> <span style="color: #f8f8f2">{</span>
-
-    <span style="color: #66d9ef">private</span> <span style="color: #66d9ef">static</span> <span style="color: #f8f8f2">FileSystem</span> <span style="color: #f8f8f2">fileSystem;</span>
-
-    <span style="color: #a6e22e">@BeforeAll</span>
-    <span style="color: #66d9ef">static</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">createFileSystem</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">fileSystem</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Jimfs.</span><span style="color: #a6e22e">newFileSystem</span><span style="color: #f8f8f2">();</span>
-    <span style="color: #f8f8f2">}</span>
-
-    <span style="color: #a6e22e">@AfterAll</span>
-    <span style="color: #66d9ef">static</span> <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">closeFileSystem</span><span style="color: #f8f8f2">()</span> <span style="color: #66d9ef">throws</span> <span style="color: #f8f8f2">Exception</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">fileSystem.</span><span style="color: #a6e22e">close</span><span style="color: #f8f8f2">();</span>
-    <span style="color: #f8f8f2">}</span>
-
-    <span style="color: #a6e22e">@RegisterExtension</span>
-    <span style="color: #f8f8f2">Extension</span> <span style="color: #f8f8f2">tempDirectory</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">TempDirectory.</span><span style="color: #a6e22e">createInCustomDirectory</span><span style="color: #f8f8f2">(()</span> <span style="color: #f92672">-&gt;</span>
-        <span style="color: #f8f8f2">Files.</span><span style="color: #a6e22e">createDirectories</span><span style="color: #f8f8f2">(fileSystem.</span><span style="color: #a6e22e">getPath</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;tmp&quot;</span><span style="color: #f8f8f2">)));</span>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@Test</span>
+<span style="color: #a6e22e">@FailAt</span><span style="color: #f8f8f2">(reason</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;We are not allowed anymore&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2025-01-01&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">testWithReason</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #75715e">// Test will fail with the given reason as soon as 1st of January 2025 is reached.</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@FailAt</code> annotation can be used on the class and method level, it will be inherited from higher-level containers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@FailAt</span><span style="color: #f8f8f2">(date</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;2025-01-01&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TestClass</span> <span style="color: #f8f8f2">{</span>
 
     <span style="color: #a6e22e">@Test</span>
-    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">@TempDir</span> <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">tempDir)</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">Path</span> <span style="color: #f8f8f2">file</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">tempDir.</span><span style="color: #a6e22e">resolve</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;test.txt&quot;</span><span style="color: #f8f8f2">);</span>
-        <span style="color: #f8f8f2">writeFile(file);</span>
-        <span style="color: #f8f8f2">assertExpectedFileContent(file);</span>
+    <span style="color: #66d9ef">void</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #75715e">// Test will fail as soon as 1st of January 2025 is reached.</span>
     <span style="color: #f8f8f2">}</span>
 
 <span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@FailAt</code> annotation can only be used once per class or method.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="before-and-after">Before and After</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The test will be executed normally if the date specified by <code>date</code> is in the future, but a warning entry will be published to the <a href="https://junit-pioneer.org/docs/report-entries">test report</a> to indicate that there might be a problem in the future.</p>
+</div>
+<div class="paragraph">
+<p>If <code>date</code> is today or in the past, the test will fail as the execution condition is not fulfilled anymore.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="thread-safety">Thread-Safety</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This extension&#8217;s thread-safety is undetermined, we recommend to be cautious when using it during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.
-(We&#8217;re working on it.)</p>
+<p>This extension is safe to use during <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>.</p>
 </div>
 </div>
 </div>
@@ -385,11 +399,11 @@ The following example uses the Jimfs <code>FileSystem</code> and passes a custom
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Temporary+Files+and+Directories+%28removed+in+1.0%29%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Ftemp-directory-removed%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Fail+test+after+certain+date%20https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Ffail-at%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Ftemp-directory-removed%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Ffail-at%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Ftemp-directory-removed%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjunit-pioneer.org%2Fdocs%2Ffail-at%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 

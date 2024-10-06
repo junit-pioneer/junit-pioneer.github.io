@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-11-16T20:16:19+00:00">
+  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
 
 
 
@@ -217,6 +217,8 @@
         
         <ul>
           
+            <li><a href="/docs/replace-camelcase-and-underscore-and-number/">DisplayName generator to replace CamelCase, underscore and numbers</a></li>
+          
             <li><a href="/docs/cartesian-product/">Cartesian Product of Parameters</a></li>
           
             <li><a href="/docs/system-properties/">Clear, Set, and Restore System Properties</a></li>
@@ -234,6 +236,8 @@
             <li><a href="/docs/disable-parameterized-tests/">Disable Parameterized Tests</a></li>
           
             <li><a href="/docs/expected-to-fail-tests/">Expected-to-Fail Tests</a></li>
+          
+            <li><a href="/docs/fail-at/">Fail Test at a Date</a></li>
           
             <li><a href="/docs/resources/">Injecting Resources</a></li>
           
@@ -593,10 +597,10 @@ This is the unit test for this class, using <code>StdIoExtension</code>:</p>
         <span style="color: #f8f8f2">String</span><span style="color: #f92672">[]</span> <span style="color: #f8f8f2">lines</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">in.</span><span style="color: #a6e22e">capturedLines</span><span style="color: #f8f8f2">();</span>
 
         <span style="color: #75715e">// This is failing</span>
-        <span style="color: #75715e">// assertEquals(lines, &quot;line1&quot;, &quot;line2&quot;);</span>
+        <span style="color: #75715e">// assertThat(lines).containsExactly(&quot;line1&quot;, &quot;line2&quot;);</span>
 
         <span style="color: #75715e">// This is passing</span>
-        <span style="color: #75715e">// assertEquals(lines, &quot;line1&quot;, &quot;line2&quot;, &quot;line3&quot;);</span>
+        <span style="color: #75715e">// assertThat(lines).containsExactly(&quot;line1&quot;, &quot;line2&quot;, &quot;line3&quot;);</span>
     <span style="color: #f8f8f2">}</span>
 
 <span style="color: #f8f8f2">}</span></code></pre>
@@ -683,7 +687,7 @@ This means that the assertion fails, because <code>in.capturedLines()</code> con
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
