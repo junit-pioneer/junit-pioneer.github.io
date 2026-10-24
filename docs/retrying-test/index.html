@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
+  <meta property="article:published_time" content="2026-10-24T10:37:15+00:00">
 
 
 
@@ -451,6 +451,33 @@ However, it will not run more than four times.</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="configuring-the-jitter">Configuring the Jitter</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">maxJitterMs</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">500</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">jitter</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #75715e">// randomly jitted value is added to sleep interval</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <code>maxJitterMs</code> to add a random delay (between 0 and the specified value in milliseconds) on top of <code>suspendForMs</code> between retries.
+This helps avoid thundering-herd problems when multiple retrying tests access the same external resource simultaneously.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="java"><span></span><span style="color: #a6e22e">@RetryingTest</span><span style="color: #f8f8f2">(maxAttempts</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">maxJitterMs</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">500</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">jitterSeed</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">123</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">void</span> <span style="color: #a6e22e">jitterSeed</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #75715e">// jitter might be initialized with the seed.</span>
+<span style="color: #f8f8f2">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <code>jitterSeed</code> to make the jitter reproducible by providing a fixed seed for the random number generator.
+This is useful for testing or debugging jitter behavior.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="configuring-on-which-exceptions-to-retry">Configuring on which Exceptions to Retry</h3>
 <div class="paragraph">
 <p>Use <code>onExceptions</code> to only retry on the mentioned exception(s):</p>
@@ -504,7 +531,7 @@ This is typically the result of annotating a method with multiple competing anno
 <div class="sectionbody">
 <div class="paragraph">
 <p>This extension is thread-safe.
-During <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>, all repetitions of a <code>@RepeatFailedTest</code> are executed sequentially.</p>
+During <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution">parallel test execution</a>, all repetitions of a <code>@RetryingTest</code> are executed sequentially.</p>
 </div>
 </div>
 </div>
@@ -582,7 +609,7 @@ During <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

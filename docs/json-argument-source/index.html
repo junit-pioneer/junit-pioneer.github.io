@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
+  <meta property="article:published_time" content="2026-10-24T10:37:15+00:00">
 
 
 
@@ -579,7 +579,7 @@ This is the list of supported parsers:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://search.maven.org/artifact/com.fasterxml.jackson.core/jackson-databind">Jackson</a></p>
+<p><a href="https://search.maven.org/artifact/tools.jackson.core/jackson-databind">Jackson</a></p>
 </li>
 </ul>
 </div>
@@ -588,43 +588,43 @@ This is the list of supported parsers:</p>
 If your project does not already depend on a supported JSON parser, you can add it as follows.</p>
 </div>
 <div class="sect2">
-<h3 id="gradle">Gradle</h3>
+<h3 id="pulling-in-the-parser">Pulling in the parser</h3>
 <div class="paragraph">
-<p>Gradle offers two ways to pull in a parser.
-The recommended one is to use <a href="https://docs.gradle.org/current/userguide/feature_variants.html">feature variants</a>:</p>
+<p>Add the parser as a test dependency.</p>
+</div>
+<div class="paragraph">
+<p>In Gradle:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="kotlin"><span></span><span style="color: #f8f8f2">testRuntimeOnly(</span><span style="color: #e6db74">&quot;org.junit-pioneer:junit-pioneer&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f8f8f2">capabilities</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">requireCapability(</span><span style="color: #e6db74">&quot;org.junit-pioneer:junit-pioneer-jackson&quot;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span></code></pre>
+<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="kotlin"><span></span><span style="color: #f8f8f2">testImplementation(</span><span style="color: #e6db74">&quot;tools.jackson.core:jackson-databind:$</span><span style="color: #f8f8f2">CURRENT_VERSION</span><span style="color: #e6db74">&quot;</span><span style="color: #f8f8f2">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively, the dependency can be added directly:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="kotlin"><span></span><span style="color: #f8f8f2">testImplementation(</span><span style="color: #e6db74">&quot;com.fasterxml.jackson.core:jackson-databind:$</span><span style="color: #f8f8f2">CURRENT_VERSION</span><span style="color: #e6db74">&quot;</span><span style="color: #f8f8f2">)</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="maven">Maven</h3>
-<div class="paragraph">
-<p>In Maven, add the parser as a test dependency:</p>
+<p>In Maven:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight" style="background: #272822; color: #f8f8f2"><code data-lang="xml"><span></span><span style="color: #f92672">&lt;dependency&gt;</span>
-    <span style="color: #f92672">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span style="color: #f92672">&lt;/groupId&gt;</span>
+    <span style="color: #f92672">&lt;groupId&gt;</span>tools.jackson.core<span style="color: #f92672">&lt;/groupId&gt;</span>
     <span style="color: #f92672">&lt;artifactId&gt;</span>jackson-databind<span style="color: #f92672">&lt;/artifactId&gt;</span>
     <span style="color: #f92672">&lt;version&gt;</span>$CURRENT_VERSION<span style="color: #f92672">&lt;/version&gt;</span>
     <span style="color: #f92672">&lt;scope&gt;</span>test<span style="color: #f92672">&lt;/scope&gt;</span>
 <span style="color: #f92672">&lt;/dependency&gt;</span></code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Before 3.0, Pioneer used a Gradle feature variant as an option.
+That has been removed in 3.0 for the sake of simplicity.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -717,7 +717,7 @@ That means (1) it must be on the module path and (2) it must be resolved.</p>
 </div>
 <div class="paragraph">
 <p>The steps above ensure that your build tool knows about the parser and should accomplish (1), but if no other module depends on the parser (directly or indirectly), (2) requires additional work.
-In that case, you need to manually resolve the module by applying the command line option <code>--add-modules=com.fasterxml.jackson.databind</code> to the Java process that executes the tests.</p>
+In that case, you need to manually resolve the module by applying the command line option <code>--add-modules=tools.jackson.databind</code> to the Java process that executes the tests.</p>
 </div>
 </div>
 </div>
@@ -804,7 +804,7 @@ In that case, you need to manually resolve the module by applying the command li
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

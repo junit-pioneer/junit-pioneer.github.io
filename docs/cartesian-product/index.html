@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
+  <meta property="article:published_time" content="2026-10-24T10:37:15+00:00">
 
 
 
@@ -711,6 +711,8 @@ This method must return <code>ArgumentSets</code>.</p>
 <p><code>ArgumentSets</code> is a helper class, specifically for creating sets for <code>@CartesianTest</code>.
 To create the test data, instantiate with the static factory method <code>argumentsForFirstParameter</code>, then call the <code>addValuesForNextParameter</code> method once per additional parameter in the order in which they appear in the test method.
 In each call, pass in all values for the corresponding parameter.
+By default the display name for arguments will use <code>toString()</code> for conversion.
+An argument can be wrapped in <code>org.junit.jupiter.api.Named</code> to provide a custom display name.
 For convenience, all methods return with your <code>ArgumentSets</code> instance, so you can chain <code>add&#8230;&#8203;</code> calls.
 If you want to create an initially-empty <code>ArgumentSets</code>, call the static factory method <code>create()</code>.</p>
 </div>
@@ -733,7 +735,9 @@ If you want to create an initially-empty <code>ArgumentSets</code>, call the sta
             <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">argumentsForFirstParameter</span><span style="color: #f8f8f2">(</span>
                     <span style="color: #e6db74">&quot;Alpha&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Omega&quot;</span><span style="color: #f8f8f2">)</span>
             <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f8f8f2">(</span>
-                    <span style="color: #f8f8f2">Runnable.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">Cloneable.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">Predicate.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">)</span>
+                    <span style="color: #f8f8f2">Named.</span><span style="color: #a6e22e">of</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Runnable&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">Runnable.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">Named.</span><span style="color: #a6e22e">of</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Cloneable&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">Cloneable.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">Named.</span><span style="color: #a6e22e">of</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Predicate&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">Predicate.</span><span style="color: #a6e22e">class</span><span style="color: #f8f8f2">))</span>
             <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">argumentsForNextParameter</span><span style="color: #f8f8f2">(</span>
                     <span style="color: #f8f8f2">TimeUnit.</span><span style="color: #a6e22e">DAYS</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">TimeUnit.</span><span style="color: #a6e22e">HOURS</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span></code></pre>
@@ -742,7 +746,7 @@ If you want to create an initially-empty <code>ArgumentSets</code>, call the sta
 <div class="paragraph">
 <p>The test <code>testMethod</code> is executed exactly twelve times.
 The first parameter can have any of the two values <code>"Alpha"</code> or <code>"Omega"</code>.
-The second parameter can have any of the three values <code>Runnable.class</code>, <code>Cloneable.class</code> or <code>Predicate.class</code>.
+The second parameter can have any of the three values <code>Runnable.class</code>, <code>Cloneable.class</code> or <code>Predicate.class</code>, and uses <code>org.junit.jupiter.api.Named</code> to replace the long display name of <code>Class#toString()</code>.
 The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or <code>TimeUnit.HOURS</code>.
 <code>@CartesianTest</code> tests for all input combinations, that&#8217;s <code>2 × 3 × 2</code>, so twelve tests in total.</p>
 </div>
@@ -768,73 +772,73 @@ The third parameter can have any of the two values <code>TimeUnit.DAYS</code> or
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1st test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2nd test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3rd test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Alpha"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runnable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">9th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloneable</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">11th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.DAYS</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">12th test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"Omega"</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate.class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Predicate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TimeUnit.HOURS</p></td>
 </tr>
 </tbody>
@@ -1383,7 +1387,7 @@ No ParameterResolver registered for parameter [&#8230;&#8203;]</p>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

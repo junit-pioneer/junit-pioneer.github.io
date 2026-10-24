@@ -33,7 +33,7 @@
 
 
 
-  <meta property="article:published_time" content="2024-10-06T13:48:10+00:00">
+  <meta property="article:published_time" content="2026-10-24T10:37:15+00:00">
 
 
 
@@ -307,6 +307,7 @@ The test will be automatically executed again once the date supplied by the <cod
 <div class="paragraph">
 <p>Applying <code>@DisabledUntil</code> can make the test suite non-reproducible.
 If a failing test is disabled during a build that then passes, rerunning that build after the "until" date would fail.
+A fixed execution date can be configured to make reruns reproducible, as described <a href="disabled-until.adoc#reproducible_builds">below</a>.
 A report entry is issued for every test that is disabled until a certain date.</p>
 </div>
 </td>
@@ -362,6 +363,17 @@ Invalid or unparsable date strings lead to an <code>ExtensionConfigurationExcept
 </div>
 <div class="paragraph">
 <p>The <code>@DisabledUntil</code> annotation can only be used once per class or method.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reproducible_builds">Reproducible Builds</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, <code>@DisabledUntil</code> compares its <code>date</code> to the current date.
+To make a build reproducible, set the <code>org.junitpioneer.jupiter.disableduntil.executiondate</code> <a href="https://docs.junit.org/current/overview.html#running-tests-config-params">configuration parameter</a> to the build&#8217;s execution date in ISO 8601 format.
+For example, pass <code>-Dorg.junitpioneer.jupiter.disableduntil.executiondate=2026-08-27</code> when running the tests.
+An invalid configured date causes an <code>ExtensionConfigurationException</code>.</p>
 </div>
 </div>
 </div>
@@ -456,7 +468,7 @@ If <code>date</code> is today or in the past, the test will be executed normally
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2026 JUnit Pioneers, <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
